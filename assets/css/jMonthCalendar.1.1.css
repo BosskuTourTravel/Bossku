@@ -1,0 +1,116 @@
+body {
+}
+
+#jMonthCalendar { position:relative; display: inline-block !important;}
+.MonthlyCalendar .MonthNavigation {clear:both; padding:5px 10px; display:inline-block;height:40px;width:250px}
+.MonthlyCalendar .MonthNavPrev, .MonthlyCalendar, .MonthlyCalendar .TodayLink { float:left; width:15%;text-align:left}
+.MonthlyCalendar .MonthNavNext{ float:right;text-align:right;width:15% }
+.MonthlyCalendar .MonthNavNext,.MonthlyCalendar .MonthNavPrev{height:30px;}
+.MonthlyCalendar .MonthName { width: 70%;text-align: center;font-weight: bold;float: left;color: #433926;font-size: 22px;height: 25px;line-height: 25px;padding:0 20px}
+
+.MonthlyCalendar .link-prev,.MonthlyCalendar .link-next{font-size:16px !important;color:#FFF; line-height:30px;width:30px;height:30px;background-color:#009ada;display:inline-block;border-radius:15px}
+.MonthlyCalendar .link-prev{padding-left:7px}
+.MonthlyCalendar .link-next{padding-right:7px}
+
+.MonthlyCalendar .YearNavigation{position:absolute}
+.MonthlyCalendar .YearNavNext, .MonthlyCalendar .YearNavPrev, .MonthlyCalendar .CurrentYear{ float:left;margin-top:10px;width:50px;height:18px;line-height:normal;text-align:center }
+.MonthlyCalendar .YearNavNext a, .MonthlyCalendar .YearNavPrev a{ font-size:16px !important;color:#646464;line-height:normal }
+.MonthlyCalendar .YearNavPrev{border-right:solid 1px #646464}
+.MonthlyCalendar .YearNavNext{border-left:solid 1px #646464}
+.MonthlyCalendar .CurrentYear{font-size:16px !important;color:#009ada;font-weight:bold}
+
+.MonthlyCalendar { width:100%; }
+.MonthlyCalendar #CalendarHead { width:100%; background:transparent none repeat scroll 0 0; }
+.MonthlyCalendar #CalendarHead .DateHeader { width:14%; text-align:center; vertical-align:middle; background-color:#bfbfbf;}
+th.DateHeader:not(:last-child) {border-right:solid 1px #bfbfbf}
+.MonthlyCalendar #CalendarHead .DateHeader span {font-size:14px;font-weight:bold}
+
+.MonthlyCalendar #btnReset{position:absolute;right:5px;top:10px;cursor:pointer;color:#F00;display:none}
+
+.MonthlyCalendar #CalendarBody { }
+.DateBox { vertical-align:top; border:solid 1px #ddd;background-color:#FFF }
+.DateLabel { width:100%;text-align:center; padding:3px 0 0 }
+.DateLabel a { cursor:pointer; padding:0 5px 2px; text-decoration:none; line-height:15px;font-size:15px;color:#555;font-weight:bold }
+
+#CalendarBody .Inactive{ background:#fff none repeat scroll 0 0; }
+#CalendarBody .Inactive .DateLabel a{color:#c3c3c3}
+#CalendarBody .EventDay{}
+#CalendarBody .Weekend { /*background:#fff none repeat scroll 0 0; */}
+.Today { /*background:#A9DFFF none repeat scroll 0 0; */}
+
+#jMonthCalendar .Event { font-size:12px;text-align:center;cursor:pointer; display:block; }
+.Event a { text-decoration:none; color:#000; }
+.Event a:hover { text-decoration:underline; }
+
+.availDate {
+    height: 100%;
+    background-image:url(../i/icon/ico-cal-check-off.png);
+    background-repeat:no-repeat;
+    background-position:center;
+}
+.selectedDate{background-color:#daedfe !important}
+.selectedDate:after {
+    content: "";
+    background-image: url(../i/icon/ico-cal-check-on.png);
+    height:100%;
+    height: calc(100% - 23px);
+    width: 100%;
+    display: block;
+    z-index: 2;
+    background-repeat:no-repeat;
+    background-position: center;
+}
+.EventDay.selectedDate .availDate{background-image:url(../i/icon/ico-cal-check-on.png)}
+.EventDay.selectedDate:after{display:none}
+.extendDate,.hideDate,.shortenDate{background-image:none}
+.extendDate:after{
+    content:"";
+    width:20px;
+    height:100%;
+    display:inline-block;
+    background-image:url(../i/icon/ico-cal-check-plus-blue.png);
+    background-repeat:no-repeat;
+    background-position:center
+}
+.shortenDate:after{
+    content:"";
+    width:20px;
+    height:100%;
+    display:inline-block;
+    background-image:url(../i/icon/ico-cal-check-minus.png);
+    background-repeat:no-repeat;
+    background-position:center
+}
+.checkin:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-top: 37px solid transparent;
+    border-bottom: 37px solid transparent;
+    border-left: 20px solid green;
+}
+
+.checkout:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 37px solid transparent;
+    border-bottom: 37px solid transparent;
+    border-right: 20px solid green;
+}
+ul.legend li{float:left;margin-right:10px;line-height:35px}
+@media (max-width: 767px)
+{
+.MonthlyCalendar .MonthName{padding:2px 10px;font-size:16px}
+.MonthlyCalendar .YearNavNext a, .MonthlyCalendar .YearNavPrev a,.MonthlyCalendar .CurrentYear{font-size:14px !important}
+.MonthlyCalendar #btnReset{font-size:12px}
+.MonthlyCalendar .MonthNavigation{width:200px}
+.MonthlyCalendar .YearNavigation{position:static}
+ul.legend li{margin-right:5px;font-size:12px}
+}

@@ -1,0 +1,16 @@
+.ui-autocomplete {cursor: default;z-index:1051 !important;width:530px;padding:0px;margin-left:-30px;-webkit-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.3);-moz-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.3); box-shadow: 0 1px 2px rgba(34, 25, 25, 0.3);}
+.ui-autocomplete .header{line-height:30px;height:30px;vertical-align:middle;text-align:left;padding:0px 10px !important;}
+.ui-autocomplete li {font-family: Helvetica, Arial, sans-serif;font-size:14px;vertical-align:middle;clear:both;color:#333 !important}
+.ui-autocomplete li:hover div{color:initial;font-weight:initial}
+.ui-autocomplete li div.ui-state-active{border:none;color:#FFF !important;background-color:#337ab7 !important}
+.ui-autocomplete li div.ui-state-active b{color:#FFF !important}
+.ui-autocomplete li a {font-weight:bold;}
+.ui-autocomplete li div {margin-left:0;padding-left:25px;min-height:35px;vertical-align:middle;line-height:35px}
+.ui-autocomplete li div.ver-align {line-height:35px;}
+.ui-autocomplete li:first-child {border-top:none;}
+.ui-autocomplete li small {color:#686868;font-size:12px;font-weight:normal;line-height:12px;}
+.ui-autocomplete li a img {-webkit-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.3);-moz-box-shadow: 0 1px 2px rgba(34, 25, 25, 0.3); box-shadow: 0 1px 2px rgba(34, 25, 25, 0.3);-webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;overflow:hidden;width:35px;height:35px;float:left;}
+.ui-autocomplete li.footer {font-size:12px;padding:0px;}
+.ui-autocomplete li.footer a {color:#fa7d87;}
+.ui-autocomplete li:hover small {color:#FFFFFF;margin-top:0px;}
+.ui-autocomplete .ui-autocomplete-category {font-weight: bold;padding: 0 10px !important;line-height: 35px;background-color:#e5e5e5}

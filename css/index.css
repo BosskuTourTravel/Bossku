@@ -1,0 +1,19 @@
+.container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.content{
+    padding: 20px;
+}
+.box-promo{
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    background-color: red;
+    color: aquamarine;
+    box-shadow: 9px 9px 5px -4px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 9px 9px 5px -4px rgba(0,0,0,0.23);
+  -moz-box-shadow: 9px 9px 5px -4px rgba(0,0,0,0.23);
+  }

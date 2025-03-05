@@ -1,7 +1,7 @@
 <?php
 include "db=connection.php";
 include "slug.php";
-include "../API/Price/Api_LT_total_baru.php";
+include "API/Price/Api_LT_total_baru.php";
 
 ?>
 <!DOCTYPE html>

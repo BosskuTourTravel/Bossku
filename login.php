@@ -3,7 +3,7 @@
 <head>
     <?php
     include "header.php";
-    include "navbar.php"; 
+    include "navbar.php";  
     include "db=connection.php";
     ?>
     <title>Login | Bossku Tour & Travel</title>

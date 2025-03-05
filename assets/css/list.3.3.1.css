@@ -1,0 +1,1088 @@
+/*WK=#fb7d88 YT=#009ada*/
+/*WK=#FFFFFF YT=#FFFFFF*/
+/*WK=#ff99a1 YT=#bb0b0e*/
+/*WK=#ed7580 YT=#840405*/
+/*WK=#ffe5e7 YT=#039ada*/
+/*WK=#ffe5e7 YT=#009ada*/
+/*WK=#ffe5e7 YT=#009bdd*/
+/*WK=#ffe5e7 YT=#bb0b0e*/
+/*WK=#fa7d87 YT=#FFFFFF*/
+/*WK=#ff99a1 YT=#009ada*/
+/*WK=#ff99a1 YT=#ff0000*/
+/*WK="Linotype Didot",serif YT=Trebuchet*/
+body {
+  position: relative;
+}
+.container-list {
+  padding: 0px;
+}
+
+.row.productlist .col-xs-12 {
+  padding: 0px;
+}
+
+.thumbnail-list article {
+  padding: 25px 15px 0px 15px;
+  overflow: hidden;
+}
+.thumbnail-list article h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  white-space: normal;
+  line-height: normal;
+}
+.thumbnail-list article .tagpromo-list {
+  width: 95%;
+  z-index: 3;
+}
+.thumbnail-list article .star {
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.pricebook {
+  margin-top: 5px;
+  min-height: 50px;
+}
+
+.business-header {
+  height: 250px;
+  background: url("https://images.yuktravel.com/assets/i/head-maldives.jpg")
+    center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  background-position-y: 0px;
+}
+.business-header .tagline a {
+  font-weight: 600;
+  color: #fff;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  font-size: 34px;
+  opacity: 0.85;
+}
+.business-header .load-filter {
+  text-align: center;
+}
+.business-header button {
+  opacity: 0.85;
+}
+.business-header .btn-search-list {
+  opacity: 0.92;
+}
+.business-header .btn-search-list,
+.business-header .load-filter {
+  display: none;
+}
+
+.col-pad {
+  padding: 4px;
+  border: 1px solid #ddd;
+  padding-bottom: 10px !important;
+}
+
+.tagdiscount {
+  right: 0px;
+  top: 0px;
+}
+
+.taginstallment {
+  right: 5px;
+}
+.tagprivatetour {
+  display: inline-block;
+  height: 50px;
+  background: transparent url("../i/ico/ico-private-tour.png") no-repeat scroll
+    0 0;
+  background-size: contain;
+  width: 80px;
+  vertical-align: middle;
+  position: absolute;
+  right: 0px;
+  bottom: -30px;
+}
+.taghotpromo {
+  display: inline-block;
+  height: 82px;
+  background: transparent url("../i/ico/ico-hot-promo.png") no-repeat scroll 0 0;
+  background-size: contain;
+  width: 80px;
+  vertical-align: middle;
+  position: absolute;
+  left: -10px;
+  top: -10px;
+}
+
+.tagpromo-list {
+  margin-top: -50px;
+  margin-left: -15px;
+}
+
+#slideshome {
+  top: 70px;
+}
+
+.tagline {
+  color: #fff;
+  margin: 0px;
+  margin-top: 7px;
+  margin-bottom: 20px;
+  font-family: "Roboto", "Trebuchet MS";
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.8);
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.tagline .sub {
+  font-size: 22px;
+}
+
+.img-center {
+  margin: 0 auto;
+}
+
+.imgcontainer {
+  height: 0;
+  padding-bottom: 66.667%;
+  position: relative;
+}
+
+.imgproduct {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content-page {
+  padding-top: 105px;
+}
+
+.col-title-list {
+  position: relative;
+  top: 75px;
+}
+.col-title-list span.text {
+  padding-left: 25px;
+}
+.col-title-list .text-muted {
+  left: 20px;
+  position: absolute;
+}
+.col-title-list i {
+  background: rgba(255, 255, 255, 0.65);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  border-radius: 5px;
+  height: 40px;
+  text-align: center;
+  width: 40px;
+  text-shadow: none;
+  line-height: 40px;
+  margin-right: 10px;
+  color: #ffffff;
+  font-size: 34px;
+}
+
+.author {
+  color: #9b9b9b;
+  margin: -4px 0px 3px 0px;
+}
+
+.brief-travel-ideas {
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.installment {
+  padding-bottom: 7px;
+}
+.installment .small {
+  font-size: 90%;
+}
+
+.location {
+  margin-bottom: 0px;
+  clear: both;
+}
+
+.row-breadcrumb.is_stuck,
+.container-breadcrumb.is_stuck {
+  background-color: #fff;
+  z-index: 4;
+  box-shadow: 0 4px 6px -6px #222;
+  margin-bottom: 10px;
+}
+.container-breadcrumb {
+  z-index: 4;
+  background-color: #fff;
+}
+.breadcumbs-wrapper .breadcrumb {
+  border-bottom: 0;
+  margin-bottom: 0;
+  padding: 10px 0;
+}
+.container-breadcrumb.is_stuck .breadcumbs-wrapper .breadcrumb {
+  padding-top: 11px;
+}
+
+.breadcumbs-wrapper .breadcrumb .fa-chevron-down {
+  color: #777;
+  font-size: 14px;
+  margin-left: 2px;
+}
+.breadcumbs-wrapper .breadcrumb li a {
+  display: inline-block;
+  vertical-align: middle;
+}
+.breadcrumb > li + li:before {
+  padding: 0 2px;
+}
+.breadcrumb > li + li.ico-filter:before {
+  content: "";
+  display: none;
+}
+.breadcumbs-wrapper {
+  /*margin-top: -38px;opacity: 0.8;*/
+  background-color: white;
+  z-index: 4;
+}
+.breadcumbs-wrapper .breadcrumb {
+  margin-left: 10px;
+}
+.breadcumbs-wrapper .breadcrumb .ico-filter {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.ico-filter {
+  position: initial !important;
+  background-color: transparent;
+  float: right;
+  line-height: 22px;
+  height: 22px;
+  width: auto;
+  margin-right: 5px;
+  z-index: 0;
+  box-shadow: none;
+  border: 0;
+}
+.btn-filter {
+  height: 35px;
+  position: relative;
+  border: solid 1px #515151;
+  border-radius: 5px;
+  padding: 5px 3px 5px 40px;
+  margin-top: -7px;
+}
+.btn-filter:after {
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  content: "";
+  background: url(../i/ico/ico-filter.png);
+  width: 22px;
+  height: 16px;
+}
+.ico-filter.filtered .btn-filter {
+  border-color: #009ada;
+  color: #009ada;
+}
+.ico-filter.filtered .btn-filter:after {
+  background-position: -22px 0;
+}
+
+@media (min-width: 768px) {
+  .btn-filter {
+    height: auto;
+    padding: 5px 15px 5px 40px;
+  }
+  /*.ico-filter.filtered *{color:#BB0B0E !important}*/
+}
+
+.scrollPanel {
+  z-index: 5;
+  background-color: #fff;
+}
+.search-slcLocation {
+  overflow-y: auto;
+}
+
+.divPackageType {
+  min-width: 170px;
+}
+#DivFilterType li {
+  cursor: pointer;
+  border: 0;
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+#DivFilterType li .imgcontainer {
+  width: 100%;
+  padding-bottom: 100%;
+}
+#DivFilterType li .imgproduct {
+  padding: 5px;
+}
+#DivFilterType li .imgcontainer a {
+  display: block;
+  background-color: #fff;
+  height: 100%;
+  border: solid 1px #a9a9a9;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: #a9a9a9 3px 3px 2px;
+}
+
+.add-category {
+  padding: 0 20px;
+  text-align: center;
+}
+.add-category .head {
+  font-size: 14px;
+  padding: 5px 7px;
+  font-weight: bold;
+}
+.add-category .date-picker-wrapper {
+  background-color: transparent;
+}
+.searchModal .back {
+  display: none;
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 4;
+}
+.slc-area .close,
+.searchModal .close {
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  width: 22px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.modal-backdrop {
+  background-color: Transparent;
+}
+.slc-area {
+  text-align: left;
+  background: #fff;
+  display: none;
+  position: absolute;
+  border: 1px solid #ddd;
+  z-index: 5;
+  top: 0;
+  left: 8px;
+  min-width: 320px;
+}
+.slc-area li {
+  margin-left: 20px;
+  position: relative;
+  cursor: pointer;
+  padding: 14px 5px 14px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.slc-area li.head {
+  margin-left: 0px;
+  padding-left: 20px;
+  font-weight: bold;
+}
+.slc-area li.head span.qt {
+  background-color: #009ada;
+}
+.slc-area li:after {
+  content: "";
+  background: url(../i/ico/ico-chevron-right.png);
+  float: right;
+  width: 18px;
+  height: 25px;
+}
+
+.slc-area li span.qt,
+.slcType li span.qt {
+  position: absolute;
+  right: 5px;
+  top: 9px;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 10px;
+  background: #bb0b0e;
+  color: #fff;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 15px !important;
+  line-height: 30px;
+  font-weight: normal !important;
+}
+.slc-area li span.qt {
+  right: 33px;
+}
+.slcType li {
+  position: relative;
+}
+.slcType li span.qt {
+  position: static;
+  height: 25px;
+  padding: 0 10px;
+  line-height: 25px;
+  font-size: 14px !important;
+}
+
+.breadcrumb i.fa-caret-down {
+  margin-left: 2px;
+  vertical-align: bottom;
+}
+
+#filterModal .modal-content {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+  background-color: #dedede;
+}
+#filterModal .modal-dialog {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#filterModal .panel {
+  border-bottom: 0;
+}
+#filterModal .modal-body {
+  max-height: 100%;
+}
+
+#filterModal .breadcrumb {
+  padding: 0;
+  margin: 0 30px;
+  background-color: initial;
+  text-align: left;
+}
+#filterModal .breadcrumb span {
+  font-size: 14px;
+  text-align: left;
+}
+#filterModal .breadcrumb > li:first-child {
+  position: relative;
+  top: 1px;
+}
+#filterModal .breadcrumb i.fa-caret-down {
+  margin-left: 5px;
+}
+#filterModal .slc-area li {
+  line-height: 20px;
+}
+#filterModal #DivFilterArea {
+  top: 41px;
+}
+
+.filter-header {
+  position: relative;
+  width: 100%;
+  z-index: 3;
+  text-align: center;
+  background-color: #009ada;
+  color: #fff;
+  line-height: 50px;
+  padding: 0;
+}
+#DivFilterArea .filter-header {
+  position: fixed;
+}
+#DivFilterArea ul.slcLocation {
+  margin-top: 50px;
+}
+@media (min-width: 768px) {
+  #filterModal {
+    left: initial;
+  }
+  #filterModal .modal-dialog {
+    height: auto;
+  }
+  #filterModal .modal-content {
+    min-height: initial;
+  }
+  .slc-area {
+    top: 2px;
+  }
+  #DivFilterArea .filter-header {
+    position: relative;
+  }
+  #DivFilterArea ul.slcLocation {
+    margin-top: 0px;
+  }
+}
+
+.slc-filter li.more:before,
+.slc-filter li.less:before {
+  border: none;
+  color: #000;
+  margin-right: 10px;
+  margin-right: 10px;
+  font-family: FontAwesome;
+}
+.slc-filter li.more:before {
+  content: "\f078";
+}
+.slc-filter li.less:before {
+  content: "\f077";
+}
+.slc-filter input[type="number"] {
+  width: 100px;
+  padding: 5px 5px 5px 10px;
+  border: solid 1px #ccc;
+  border-radius: 4px;
+}
+
+ul.slcslider > li {
+  border: 0;
+}
+ul.slcslider > li:before {
+  display: none;
+}
+.slc-price .slider.slider-horizontal {
+  width: 100%;
+}
+.slc-price .slider.slider-horizontal .slider-tick,
+.slider.slider-horizontal .slider-handle {
+  margin-top: 0;
+}
+.slc-price .slider.slider-horizontal .tooltip {
+  display: none !important;
+}
+.slc-price .slider.slider-horizontal .slider-selection {
+  background: #c9e1f5;
+}
+
+.vdashline {
+  width: 20px;
+  height: 260px;
+  margin: 20px 0;
+  border-right: dashed 1px #ccc;
+}
+
+#DivFilterType .slc-price li span {
+  color: #555;
+  text-shadow: none;
+  font-size: 12px;
+}
+#DivFilterType {
+  background: #dedede;
+  margin-bottom: 0;
+  border-bottom: 0;
+  min-width: 280px;
+  padding: 5px;
+}
+#DivFilterType .pagetitle {
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px;
+  text-align: center;
+}
+
+.slcslider {
+  min-width: 260px;
+}
+.divClose {
+  width: 100%;
+  text-align: center;
+  background-color: #dedede;
+  padding: 5px;
+  clear: both;
+}
+.divClose ul {
+  display: block !important;
+  padding: 3px 0;
+}
+.divClose li {
+  height: auto !important;
+}
+#filter-result {
+  font-style: italic;
+}
+#filter-result .loading {
+  width: 20px;
+  height: 20px;
+  margin: 2px auto;
+}
+#filter-result .loading .spin {
+  width: 20px;
+  height: 20px;
+}
+
+div.filter-buble {
+  position: relative;
+  display: inline-block;
+  background: #daedfe;
+  margin-top: 10px;
+  padding: 10px 45px 10px 20px;
+  border-radius: 20px;
+}
+div.filter-buble:after {
+  content: "\f00d";
+  font-family: FontAwesome;
+  position: absolute;
+  right: 7px;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  background: #009ada;
+  text-align: center;
+  line-height: 29px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.divPackageType div.filter-buble {
+  padding-right: 20px;
+}
+.divPackageType div.filter-buble:after {
+  display: none;
+}
+
+.filter-price {
+  margin-top: 10px;
+}
+
+@media (max-width: 767px) {
+  .add-category {
+    padding: 0;
+    float: none !important;
+  }
+  .slcslider {
+    width: 100%;
+    border-top: dashed 1px #ccc;
+    margin-top: 10px;
+  }
+  .slc-price .slider.slider-horizontal {
+    width: 90%;
+  }
+  #DivFilterType .filter-header {
+    border-bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-filter {
+    float: right;
+  }
+  .slc-price {
+    padding-left: 20px;
+  }
+  .add-category {
+    padding: 0;
+  }
+  #filterModal .modal-body {
+    height: auto;
+    max-height: initial;
+  }
+  body.modal-open #filterModal.in {
+    display: flex !important;
+    height: 100%;
+  }
+  body.modal-open #filterModal .modal-dialog {
+    width: 320px;
+    margin-top: 91px;
+    margin-right: 70px;
+  }
+  .divClose {
+    padding-bottom: 10px;
+  }
+}
+#DivFilterType li span {
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 1px 3px black;
+  display: inline-block;
+  font-size: 12px;
+}
+#DivFilterType li a {
+  font-weight: bold;
+  font-size: 11px;
+}
+
+.package-type {
+  vertical-align: top;
+  line-height: 20px;
+  padding: 0 5px;
+}
+#DivFilterType li .ico {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  background-position: -100% 0px;
+  background-size: cover;
+  margin: 0;
+}
+#DivFilterType li.selected .ico {
+  background-position: 0px 0px;
+}
+#DivFilterType li .ico-tour {
+  background-image: url(../i/ico/ico-tour.png);
+}
+#DivFilterType li .ico-hotel {
+  background-image: url(../i/ico/ico-hotel.png);
+}
+#DivFilterType li .ico-activity {
+  background-image: url(../i/ico/ico-activity.png);
+}
+#DivFilterType li .ico-highlight {
+  background-image: url(../i/ico/ico-highlight.png);
+}
+#DivFilterType li .ico-cruise {
+  background-image: url(../i/ico/ico-cruise.png);
+}
+
+#DivFilterPax td {
+  padding: 3px;
+}
+#DivFilterPax select {
+  padding: 7px;
+  border-radius: 5x;
+}
+
+.package-type {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+}
+@media (min-width: 768px) {
+}
+
+@media (min-width: 801px) {
+  #DivFilterType li span {
+    font-size: 14px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .filter-clear {
+    clear: both;
+  }
+}
+@media (max-width: 767px) {
+  .scrollPanel .row-custom {
+    /*border: solid 1px #CCC;border-top:0;box-shadow: 1px 1px 3px #CCC;*/
+    margin-bottom: 20px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  .slc-area {
+    max-width: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999;
+    height: 100%;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 991px) {
+  .col-md-4.thumbnail-list,
+  .col-md-4.show-tick,
+  .col-md-4.col-btn-list {
+    padding: 3px !important;
+  }
+
+  .productlist .btn {
+    padding: 9px 25px 7px;
+  }
+}
+@media (max-width: 991px) {
+  .col-md-4.thumbnail-list,
+  .col-md-4.show-tick,
+  .col-md-4.col-btn-list {
+    padding: 3px !important;
+  }
+
+  .pricebook {
+    min-height: 78px;
+  }
+
+  .location {
+    bottom: 2px;
+  }
+}
+@media (max-width: 768px) {
+  .taginstallment {
+    right: 3px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .btn {
+    padding: 9px 15px 7px;
+    margin-top: 5px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .business-header {
+    background: url("http://www.yuktravel.com/assets/i/head-maldives-m.jpg")
+      center center no-repeat scroll;
+    background-size: cover;
+  }
+
+  .pricebook {
+    min-height: 50px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .content-page {
+    padding-top: 0px;
+  }
+
+  .search-list .col-sm-4 {
+    padding: 3px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 350px;
+  }
+}
+@media screen and (max-width: 990px) {
+  .bootstrap-select.btn-group .dropdown-menu li a span.text {
+    margin-right: 0px !important;
+  }
+}
+@media screen and (max-width: 320px) {
+  .business-header .tagline a {
+    font-size: 26px;
+  }
+}
+/**CSS LIST SEARCH BARU**/
+.col-search-new ul {
+  background: rgba(255, 255, 255, 0.65);
+}
+.col-search-new ul li a {
+  color: #333;
+}
+
+.breadcrumb .nav-menu {
+  border: solid 1px #ccc;
+  border-radius: 12px;
+  line-height: 20px;
+  display: inline-block;
+  padding: 0 12px;
+  font-weight: bold;
+  font-size: 13px;
+  color: #009ada;
+  text-transform: uppercase;
+}
+
+.hotpromo {
+  background-color: #e21b1b;
+  height: 20px;
+  color: #fff;
+  line-height: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 0 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.date-picker-wrapper {
+  width: 100%;
+  background-color: #fff;
+  padding: 0 !important;
+  border: 0 !important;
+  margin: 0 -5px;
+}
+.date-picker-wrapper .month-element {
+  font-weight: bold;
+  font-size: 18px;
+  color: #0000009e;
+}
+.date-picker-wrapper .month-wrapper {
+  padding: 0 !important;
+  border-radius: 0;
+  border-width: 2px;
+  border-color: #cccccc6e;
+}
+.date-picker-wrapper .month-wrapper table td,
+.date-picker-wrapper .month-wrapper table th {
+  width: 14%;
+}
+.date-picker-wrapper .month-wrapper table .day.real-today {
+  background-color: #fff;
+}
+.date-picker-wrapper .month-wrapper table .day {
+  padding: 10px !important;
+}
+.date-picker-wrapper .month-wrapper table .week-name {
+  text-transform: capitalize;
+  height: 25px !important;
+  line-height: 25px !important;
+}
+.date-picker-wrapper table .caption {
+  background-color: #d1d1d1;
+}
+.date-picker-wrapper table .caption .next,
+.date-picker-wrapper table .caption .prev {
+  color: #fff;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  line-height: 24px;
+  text-align: center;
+  background-color: #009ada;
+  padding: 0;
+}
+.date-picker-wrapper table .caption .prev .fa {
+  margin-left: -3px;
+}
+.date-picker-wrapper table .caption .next .fa {
+  margin-left: 2px;
+}
+
+#dtTravelM {
+  border: solid 2px #cccccc6e;
+  padding: 25px 25px 15px;
+  margin-top: 12px;
+  min-width: 300px;
+}
+.month-head,
+.month-cell {
+  width: 100%;
+}
+.month-head th.prev,
+.month-head th.next {
+  width: 24px;
+  cursor: pointer;
+}
+.month-head th.prev,
+.month-head th.next .fa {
+  font-size: 12px;
+}
+.month-head th.prev .fa {
+  margin-left: -2px;
+}
+.month-head th.next .fa {
+  margin-left: 3px;
+}
+.month-head th.year {
+  text-align: center;
+}
+.month-head span.prev,
+.month-head span.next {
+  color: #fff;
+  border-radius: 12px;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  line-height: 24px;
+  text-align: center;
+  background-color: #009ada;
+  padding: 0;
+}
+
+.month-cell td > div {
+  border: solid 1px #ccc;
+  border-radius: 3px;
+  margin: 5px 2px 0;
+  padding: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.month-cell td > div:hover,
+.month-cell td > div.selected {
+  color: #fff;
+  background-color: #009ada;
+}
+.month-cell td > div.disabled {
+  background-color: #ccc;
+  color: #fff;
+  cursor: default;
+}
+
+.slcType li span.shine,
+button.shine {
+  background: #8a8a8a;
+  background-image: linear-gradient(
+    to right,
+    #8a8a8a 0%,
+    #edeef1 20%,
+    #cecece 40%,
+    #8a8a8a 60%,
+    #8a8a8a 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 800px 104px;
+  display: inline-block;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-name: placeholderShimmer;
+  -webkit-animation-timing-function: linear;
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+
+  100% {
+    background-position: 468px 0;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading {
+  width: 78px;
+  height: 78px;
+  margin: 30px auto;
+  background-image: url("../i/logo-loading.png");
+  background-position: center center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+}
+
+.loading .spin {
+  border-radius: 50%;
+  width: 75px;
+  height: 75px;
+  border: 0.25rem solid rgba(138, 138, 138, 0.2);
+  border-top-color: #8a8a8a;
+  animation: spin 1s infinite linear;
+}
+
+.ico-sold-out {
+  display: inline-block;
+  width: 113px;
+  height: 30px;
+  margin: 3px 0 5px;
+  background: url(../i/ico/ico-sold-out.png);
+  vertical-align: middle;
+}

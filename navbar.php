@@ -10,7 +10,7 @@
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
 			<span class="navbar-toggler-icon"></span>
 		</button>
- 
+  
 		<!-- Menu Tengah -->
 		<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
 			<ul class="navbar-nav text-center">
