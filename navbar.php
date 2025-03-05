@@ -27,6 +27,9 @@
 			<a href="<?php echo $domain_web ?>member/">
 				<button class="btn keranjang-btn">Keranjang</button>
 			</a>
+			<a href="<?php echo $domain_web ?>member/">
+				<button class="btn login-btn">Login</button>
+			</a>
 		</div>
 	</div>
 </nav>

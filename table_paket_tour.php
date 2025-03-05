@@ -67,7 +67,7 @@
                         </td>
                         <td class="text-center"><?php echo "Rp." . number_format($twn_rp['value'], 0, ",", ".") ?></td>
                         <td class="text-center">
-                            <a class="btn btn-warning btn-sm tip my-1" href="Admin/cetak_all_LTnew.php?id=<?php echo $row['tour_id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
+                            <a class="btn btn-warning btn-sm tip my-1" href="<?php echo $domain_web ?>Admin/cetak_all_LTnew.php?id=<?php echo $row['tour_id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
                             <a class="btn btn-success btn-sm tip my-1" href="https://wa.me/<?php echo $row['phone'] . '?text=' . $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> Whatsapp</a>
                             <a class="btn btn-primary btn-sm tip my-1" href="<?php echo $domain_web ?>detail-landtour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>"><i class="fa fa-info-circle"></i> detail</a>
                         </td>
