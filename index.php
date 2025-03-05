@@ -40,35 +40,59 @@ include "navbar.php";
 
     <div class="container-fluid">
         <div><?php include "table_paket_tour.php"; ?></div>
+        <div><?php include "table_paket_tour2.php"; ?></div>
+    </div>
 
-        <!-- Video Section -->
-        <div class="container my-4">
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-3 mb-3">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item w-100" src="https://www.youtube.com/embed/UzAayl0Lefo" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-3">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item w-100" src="https://www.youtube.com/embed/frXzt2Fm1M0" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-3">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item w-100" src="https://www.youtube.com/embed/ffnHCAVJVP4" allowfullscreen></iframe>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3 mb-3">
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item w-100" src="https://www.youtube.com/embed/DzsXnfvP8Bk" allowfullscreen></iframe>
-                    </div>
+    <div class="container my-5" style="margin-top: 20px;">
+        <div class="header-section">
+            <h1>Visa</h1>
+            <a href="#">Lihat Lainnya ></a>
+        </div>
+
+        <div class="row g-4">
+        <!-- Card Visa Jepang -->
+        <div class="col-md-3 col-sm-6">
+            <div class="visa-card">
+                <img src="img/VisaJapan.jpg" alt="Japan">
+                <div class="visa-content">
+                    <h5>Visa Jepang</h5>
+                    <p class="price">Rp1.500.000</p>
                 </div>
             </div>
         </div>
 
+        <!-- Card Visa China -->
+        <div class="col-md-3 col-sm-6">
+            <div class="visa-card">
+                <img src="img/VisaChina.jpg" alt="USA">
+                <div class="visa-content">
+                    <h5>Visa China</h5>
+                    <p class="price">Rp2.800.000</p>
+                </div>
+            </div>
+        </div>
 
-        <div><?php include "table_paket_tour2.php"; ?></div>
+        <!-- Card Visa Prancis -->
+        <div class="col-md-3 col-sm-6">
+            <div class="visa-card">
+                <img src="img/VisaTurkey.jpg" alt="France">
+                <div class="visa-content">
+                    <h5>Visa Turkey</h5>
+                    <p class="price">Rp2.500.000</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Visa Australia -->
+        <div class="col-md-3 col-sm-6">
+            <div class="visa-card">
+                <img src="img/VisaAusie.jpg" alt="Australia">
+                <div class="visa-content">
+                    <h5>Visa Australia</h5>
+                    <p class="price">Rp2.200.000</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="content">
@@ -234,6 +258,72 @@ include "navbar.php";
     </script>
 </body>
 <style>
+    .visa-card {
+            position: relative;
+            overflow: hidden;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .visa-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.3);
+        }
+        .visa-card img {
+            width: 100%;
+            height: 180px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        .visa-card:hover img {
+            transform: scale(1.05);
+        }
+        .visa-content {
+            padding: 20px;
+            text-align: center;
+        }
+        .visa-content h5 {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #343a40;
+        }
+        .visa-content p {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .visa-content .price {  
+            color: black;
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header-section h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header-section a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .header-section a:hover {
+            text-decoration: underline;
+        }
+
     .video-wrapper {
         width: 100%;
         max-width: 270px;
