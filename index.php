@@ -16,16 +16,16 @@ include "navbar.php";
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="../img_header/Carousel1.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
+                <img src="img/Carousel1.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
             </div>
             <div class="carousel-item">
-                <img src="../img_header/Carousel2.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
+                <img src="img/Carousel2.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
             </div>
             <div class="carousel-item">
-                <img src="../img_header/Carousel3.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
+                <img src="img/Carousel3.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
             </div>
             <div class="carousel-item">
-                <img src="../img_header/Carousel4.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
+                <img src="img/Carousel4.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
             </div>
         </div>
         <!-- Tombol Navigasi -->
@@ -141,22 +141,22 @@ include "navbar.php";
         <div class="row text-center">
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="<?php echo $domain_web ?>Activity">
-                    <img src="../assets/i/theme/attraction2.png" class="img-thumbnail shadow-sm img-hover">
+                    <img src="img/attraction2.png" class="img-thumbnail shadow-sm img-hover">
                 </a>
             </div>
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="">
-                    <img src="../assets/i/theme/cruise.png" class="img-thumbnail shadow-sm img-hover">
+                    <img src="img/cruise.png" class="img-thumbnail shadow-sm img-hover">
                 </a>
             </div>
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="<?php echo $domain_web ?>paket-landtour.php">
-                    <img src="../assets/i/theme/land_tour.png" class="img-thumbnail shadow-sm img-hover">
+                    <img src="img/land_tour.png" class="img-thumbnail shadow-sm img-hover">
                 </a>
             </div>
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="<?php echo $domain_web ?>Hotel">
-                    <img src="../assets/i/theme/hotel.png" class="img-thumbnail shadow-sm img-hover">
+                    <img src="img/hotel.png" class="img-thumbnail shadow-sm img-hover">
                 </a>
             </div>
         </div>

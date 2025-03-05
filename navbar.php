@@ -3,7 +3,7 @@
 	<div class="container">
 		<!-- Logo -->
 		<a class="navbar-brand" href="<?php echo $domain_web ?>">
-			<img src="../img/header/LogoWeb.png" alt="Bossku Tour & Travel" width="120" class="img-fluid">
+			<img src="img/LogoWeb.png" alt="Bossku Tour & Travel" width="120" class="img-fluid">
 		</a>
 
 		<!-- Tombol Toggle -->
@@ -26,9 +26,6 @@
 		<div class="d-flex gap-2">
 			<a href="<?php echo $domain_web ?>member/">
 				<button class="btn keranjang-btn">Keranjang</button>
-			</a>
-			<a href="<?php echo $domain_web ?>member/">
-				<button class="btn login-btn">Login</button>
 			</a>
 		</div>
 	</div>
