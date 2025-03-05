@@ -24,56 +24,65 @@
 
 		<!-- Button di Kanan -->
 		<div class="d-flex gap-2">
-			<a href="<?php echo $domain_web ?>member/">
-				<button class="btn keranjang-btn">Keranjang</button>
-			</a>
+			<a href="<?php echo $domain_web ?>member/" class="btn keranjang-btn d-flex align-items-center justify-content-center">Keranjang</a>
+			<a href="<?php echo $domain_web ?>member/" class="btn login-btn d-flex align-items-center justify-content-center">Login</a>
 		</div>
 	</div>
 </nav>
 
 <!-- CSS -->
 <style>
-	/* Button Keranjang */
-	.keranjang-btn {
-		background-color: #FFCA10;
-		height: 35px;
-		width: 100px;
-		font-size: 15px;
-		font-weight: bold;
-		border: none;
-		transition: 0.3s;
-	}
+/* Ukuran Button */
+.keranjang-btn,
+.login-btn {
+    width: 110px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 20px; /* Membuatnya bulat */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+}
 
-	.keranjang-btn:hover {
-		color: #FFCA10;
-		background-color: #02335B;
-	}
+/* Button Keranjang */
+.keranjang-btn {
+    background-color: #FFCA10;
+    color: #02335B;
+    border: none;
+}
 
-	/* Button Login */
-	.login-btn {
-		background-color: #FFFFFF;
-		height: 35px;
-		width: 100px;
-		font-size: 15px;
-		font-weight: bold;
-		color: #02335B;
-		border: 2px solid #02335B;
-		transition: 0.3s;
-	}
+.keranjang-btn:hover {
+    background-color: #02335B;
+    color: #FFCA10;
+}
 
-	.login-btn:hover {
-		background-color: #02335B;
-		color: #FFFFFF;
-	}
+/* Button Login */
+.login-btn {
+    background-color: #FFFFFF;
+    color: #02335B;
+    border: 2px solid #02335B;
+}
+
+.login-btn:hover {
+    background-color: #02335B;
+    color: #FFFFFF;
+}
+
+
 
 	/* Responsif */
 	@media (max-width: 991px) {
 		.navbar-brand img {
-			width: 100px; /* Ukuran logo lebih kecil di layar kecil */
+			width: 100px;
+			/* Ukuran logo lebih kecil di layar kecil */
 		}
 
 		.d-flex.gap-2 {
-			flex-wrap: wrap; /* Agar button tidak berdesakan */
+			flex-wrap: wrap;
+			/* Agar button tidak berdesakan */
 			justify-content: center;
 			margin-top: 10px;
 		}
