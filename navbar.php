@@ -24,8 +24,9 @@
 
 		<!-- Button di Kanan -->
 		<div class="d-flex gap-2">
-			<a href="<?php echo $domain_web ?>member/" class="btn keranjang-btn d-flex align-items-center justify-content-center">Keranjang</a>
-			<a href="<?php echo $domain_web ?>member/" class="btn login-btn d-flex align-items-center justify-content-center">Login</a>
+			<a href="<?php echo $domain_web ?>member/">
+				<button class="btn keranjang-btn">Keranjang</button>
+			</a>
 		</div>
 	</div>
 </nav>

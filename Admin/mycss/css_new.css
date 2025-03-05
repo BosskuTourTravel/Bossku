@@ -1,0 +1,77 @@
+.modal-custom{
+    max-width: 95% !important;
+    margin: auto;
+}
+.scoll-tree {
+    width:5000px;
+}
+.input-kecil{
+    height: 22px;
+    padding: 2px 5px;
+    font-size: 12px;
+    line-height: 1.5; /* If Placeholder of the input is moved up, rem/modify this. */
+    border-radius: 3px;
+}
+.label-kecil{
+    font-size: 8pt !important;
+    font-weight: bold;
+}
+.col-max-200{
+    max-width: 200px;
+}
+.col-max-100{
+    max-width: 100px;
+}
+.col-max-150{
+    max-width: 150px;
+}
+.col-max-300{
+    max-width: 300px;
+}
+.col-pad-2{
+    padding: 5px 5px;
+}
+#loadingmsg {
+    color: black;
+    background: none; 
+    padding: 10px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    margin-right: -25%;
+    margin-bottom: -25%;
+    }
+    #loadingover {
+    background: black;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+  }
+
+  .badge-link:hover {
+    color: #fff; /* White text on hover */
+    background-color: #007bff !important; /* Blue background on hover (Bootstrap primary color) */
+    border-color: #007bff !important; /* Blue border on hover */
+    cursor: pointer; /* Indicate it's clickable */
+}
+.modal-fullscreen .modal-dialog {
+    max-width: 100%;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    display: flex;
+    position: fixed;
+    z-index: 100000;
+}
