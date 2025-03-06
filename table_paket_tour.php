@@ -55,7 +55,7 @@
                 $rs = mysqli_query($con, $query);
                 while ($row = mysqli_fetch_array($rs)) {
 
-                    $url_encode = urldecode("Haii " . $row['staff_name'] . ", Saya ingin Memesan LandTour : https://www.holidaymyboss.com/Admin/cetak_all_LTnew.php?id=" . $row['id']);
+                    $url_encode = urldecode("Haii " . $row['staff_name'] . ", Saya ingin Memesan LandTour : ".$domain_web."cetak_all_LTnew.php?id=" . $row['id']);
                     $data_twn = array(
                         "kurs" => $row['kurs'],
                         "nominal" => $row['agent_twn'],
