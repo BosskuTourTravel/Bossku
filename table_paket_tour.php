@@ -55,7 +55,7 @@
                 $rs = mysqli_query($con, $query);
                 while ($row = mysqli_fetch_array($rs)) {
 
-                    $url_encode = urldecode("Haii " . $row['staff_name'] . ", Saya ingin Memesan LandTour : ".$domain_web."cetak_all_LTnew.php?id=" . $row['id']);
+                    $url_encode = urldecode("Haii Bossku, Saya ingin Memesan LandTour : ".$domain_web."cetak_all_LTnew.php?id=" . $row['id']);
                     $data_twn = array(
                         "kurs" => $row['kurs'],
                         "nominal" => $row['agent_twn'],
@@ -92,7 +92,7 @@
                         <td class="text-center">Rp. <?php echo number_format($twn_rp['value'], 0, ",", ".") ?></td>
                         <td class="text-center">
                             <a class="btn btn-warning btn-sm my-1" href="<?php echo $domain_web ?>Admin/cetak_all_LTnew.php?id=<?php echo $row['tour_id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
-                            <a class="btn btn-success btn-sm my-1" href="https://wa.me/<?php echo $row['phone'] . '?text=' . $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> WhatsApp</a>
+                            <a class="btn btn-success btn-sm my-1" href="https://wa.me/628112557728?text=<?php echo $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> WhatsApp</a>
                             <a class="btn btn-primary btn-sm my-1" href="<?php echo $domain_web ?>detail-landtour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>"><i class="fa fa-info-circle"></i> Detail</a>
                         </td>
                     </tr>
