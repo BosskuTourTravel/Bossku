@@ -36,8 +36,8 @@
 .login-btn {
     width: 110px;
     height: 30px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 17px;
+    font-weight: 640;
     text-align: center;
     border-radius: 20px; /* Membuatnya bulat */
     display: flex;

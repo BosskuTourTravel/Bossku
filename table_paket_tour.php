@@ -1,16 +1,51 @@
-<div style="padding-top: 20px;">
-    <div style="text-align: center;">
-        <h3>LANDTOUR PRICE LIST</h3>
-    </div>
+<style>
+    .table-container {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .table thead {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table th,
+    .table td {
+        vertical-align: middle !important;
+    }
+
+    .btn {
+        border-radius: 5px;
+        font-size: 10pt;
+        padding: 5px 10px;
+    }
+</style>
+
+<div class="table-container">
+    <div class="table-title">LANDTOUR PRICE LIST</div>
     <div class="table-responsive">
-        <table id="tb-lt-web" class="table table-striped table-bordered table-sm" style="width:100% ;font-size: 10pt;">
-            <thead style="background-color: darkblue; color: white;">
+        <table id="tb-lt-web" class="table table-hover table-bordered table-sm" style="width:100%; font-size: 10pt;">
+            <thead>
                 <tr>
                     <th class="text-center">No</th>
                     <th style="max-width: 420px;">Nama Paket</th>
                     <th class="text-center">Pax</th>
                     <th class="text-center">Price</th>
-                    <th class="text-center" style="white-space: nowrap;">Action</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,28 +83,17 @@
 
                 ?>
                     <tr>
-                        <th class="text-center"><?php echo $no ?></th>
+                        <td class="text-center"><?php echo $no ?></td>
                         <td>
                             <div><?php echo $row['judul'] ?></div>
-                            <div><?php echo $row['landtour'] ?></div>
+                            <div class="text-muted" style="font-size: 9pt;"><?php echo $row['landtour'] ?></div>
                         </td>
+                        <td class="text-center"><?php echo $row['pax'] . ($row['pax_u'] != 0 ? "-" . $row['pax_u'] : "") . ($row['pax_b'] != 0 ? "+" . $row['pax_b'] : "") ?></td>
+                        <td class="text-center">Rp. <?php echo number_format($twn_rp['value'], 0, ",", ".") ?></td>
                         <td class="text-center">
-                            <?php
-                            $pax_u = "";
-                            $pax_b = "";
-                            if ($row['pax_u'] != 0) {
-                                $pax_u = "-" . $row['pax_u'];
-                            }
-                            if ($row['pax_b'] != 0) {
-                                $pax_b = "+" . $row['pax_b'];
-                            }
-                            echo $row['pax'] . $pax_u . $pax_b ?>
-                        </td>
-                        <td class="text-center"><?php echo "Rp." . number_format($twn_rp['value'], 0, ",", ".") ?></td>
-                        <td class="text-center">
-                            <a class="btn btn-warning btn-sm tip my-1" href="<?php echo $domain_web ?>Admin/cetak_all_LTnew.php?id=<?php echo $row['tour_id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
-                            <a class="btn btn-success btn-sm tip my-1" href="https://wa.me/<?php echo $row['phone'] . '?text=' . $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> Whatsapp</a>
-                            <a class="btn btn-primary btn-sm tip my-1" href="<?php echo $domain_web ?>detail-landtour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>"><i class="fa fa-info-circle"></i> detail</a>
+                            <a class="btn btn-warning btn-sm my-1" href="<?php echo $domain_web ?>Admin/cetak_all_LTnew.php?id=<?php echo $row['tour_id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
+                            <a class="btn btn-success btn-sm my-1" href="https://wa.me/<?php echo $row['phone'] . '?text=' . $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> WhatsApp</a>
+                            <a class="btn btn-primary btn-sm my-1" href="<?php echo $domain_web ?>detail-landtour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>"><i class="fa fa-info-circle"></i> Detail</a>
                         </td>
                     </tr>
                 <?php
@@ -80,7 +104,8 @@
         </table>
     </div>
 </div>
-<script type="text/javascript">
+
+<script>
     $(document).ready(function() {
         $('#tb-lt-web').DataTable({
             "aLengthMenu": [
