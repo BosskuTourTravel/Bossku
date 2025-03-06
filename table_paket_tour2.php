@@ -25,7 +25,7 @@
                 $rs = mysqli_query($con, $query);
                 while ($row = mysqli_fetch_array($rs)) {
                     $judul = "";
-                    $url_encode = urldecode("Haii " . $row['staff_name'] . ", Saya ingin Memesan Paket Tour : https://www.holidaymyboss.com/Admin/cetak_pt_website.php?id=" . $row['id']);
+                    $url_encode = urldecode("Haii Bossku , Saya ingin Memesan Paket Tour : https://www.bosskujalanjalan.com/Admin/cetak_pt_website.php?id=" . $row['id']);
 
                     $query_cek = "SELECT paket_tour_online.start, paket_tour_online.promo,LTSUB_itin.landtour FROM paket_tour_online LEFT JOIN LTSUB_itin ON paket_tour_online.tour_id=LTSUB_itin.id where LTSUB_itin.landtour='" . $row['landtour'] . "' GROUP BY paket_tour_online.start , paket_tour_online.promo ORDER BY paket_tour_online.start, paket_tour_online.promo ASC";
                     $rs_cek = mysqli_query($con, $query_cek);
@@ -102,7 +102,7 @@
                         <td><?php echo "IDR " . number_format($row['gt'], 0, ".", ".") ?></td>
                         <td>
                             <a class="btn btn-warning btn-sm tip my-1" href="Admin/cetak_pt_website.php?id=<?php echo $row['id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
-                            <a class="btn btn-success btn-sm tip my-1" href="https://wa.me/<?php echo $row['phone'] . '?text=' . $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> Whatsapp</a>
+                            <a class="btn btn-success btn-sm tip my-1" href="https://wa.me/628112557728?text=<?php echo $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> Whatsapp</a>
                             <a class="btn btn-primary btn-sm tip my-1" href="<?php echo $domain_web ?>detail-paket-tour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>"><i class="fa fa-info-circle"></i> detail</a>
                         </td>
                     </tr>
