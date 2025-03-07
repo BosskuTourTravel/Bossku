@@ -24,19 +24,19 @@ include "navbar.php";
         <h2 class="text-center mb-4 fw-bold">Trip Indonesia</h2>
 
         <!-- Filter dan Search -->
-        <!-- <div class="row mb-4">
-            <div class="col-md-4">
+        <div class="row mb-4">
+            <!-- <div class="col-md-4">
                 <select id="filterKategori" class="form-select">
                     <option value="all">Semua Kategori</option>
                     <option value="paket-tour">Paket Tour</option>
                     <option value="land-tour">Land Tour</option>
                     <option value="consortium">Consortium</option>
                 </select>
-            </div>
-            <div class="col-md-8">
+            </div> -->
+            <div class="col-md-4">
                 <input type="text" id="searchInput" class="form-control" placeholder="Cari trip...">
             </div>
-        </div> -->
+        </div>
 
         <!-- Card Container -->
         <div class="row" id="tripContainer">
@@ -48,7 +48,7 @@ include "navbar.php";
                         <h5 class="card-title">Trip Bali</h5>
                         <p class="card-text">3 Hari 2 Malam</p>
                         <p class="fw-bold text-danger">Rp3.500.000</p>
-                        <a href="https://wa.me/628123456789" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
+                        <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@ include "navbar.php";
                         <h5 class="card-title">Trip Lombok</h5>
                         <p class="card-text">4 Hari 3 Malam</p>
                         <p class="fw-bold text-danger">Rp4.200.000</p>
-                        <a href="https://wa.me/628123456789" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
+                        <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@ include "navbar.php";
                         <h5 class="card-title">Trip Jogja Solo</h5>
                         <p class="card-text">5 Hari 4 Malam</p>
                         <p class="fw-bold text-danger">Rp7.800.000</p>
-                        <a href="https://wa.me/628123456789" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
+                        <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
                     </div>
                 </div>
             </div>

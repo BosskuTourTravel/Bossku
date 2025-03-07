@@ -2,13 +2,11 @@
 // include "API/Price/Api_LT_total_baru.php";
 // include "slug.php";
 ?>
-<div style="padding-top: 20px;">
-    <div style="text-align: center;">
-        <h3>PAKET TOUR PRICE LIST</h3>
-    </div>
+<div class="table-container" style="margin-top: 30px;">
+    <div class="table-title">PAKET TOUR PRICE LIST</div>
     <div class="table-responsive">
         <table id="tb-pt-web" class="table table-striped table-bordered table-sm" style="width:100% ;font-size: 10pt; padding: 20px;">
-            <thead style="background-color: darkgreen; color: white;">
+            <thead style="background-color: #007bff; color: white;">
                 <tr>
                     <th>No</th>
                     <th style="max-width: 350px;">Nama Paket</th>
@@ -116,13 +114,50 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#tb-pt-web').DataTable({
-            "aLengthMenu": [
-                [5, 10, 25, -1],
-                [5, 10, 25, "All"]
-            ],
-            "iDisplayLength": 10,
-            "bDestroy": true
-        });
+    $('#tb-pt-web').DataTable({
+        "aLengthMenu": [
+            [5, 10, 25, -1],
+            [5, 10, 25, "All"]
+        ],
+        "iDisplayLength": 10,
+        "bDestroy": true,
+        "pagingType": "full_numbers",
+        "language": {
+            "lengthMenu": "Tampilkan _MENU_ paket",
+            "zeroRecords": "Paket tidak ditemukan",
+            "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ paket",
+            "infoEmpty": "Tidak ada data",
+            "infoFiltered": "(dari total _MAX_ paket)"
+        }
     });
+});
+
 </script>
+
+<style>
+    /* Header Table */
+#tb-pt-web thead {
+    background: linear-gradient(to right, #004d00, #008000);
+    color: white;
+    text-transform: uppercase;
+}
+
+/* Hover Effect pada Row */
+#tb-pt-web tbody tr:hover {
+    background-color: #f0fff0;
+    transition: 0.3s;
+}
+
+/* Styling Tombol Action */
+.btn-sm {
+    font-size: 12px;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.btn-sm:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+</style>
