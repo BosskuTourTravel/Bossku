@@ -13,11 +13,11 @@
 		<!-- Menu Tengah -->
 		<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
 			<ul class="navbar-nav text-center">
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>">HOME</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>about.php">ABOUT</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>faq.php">FAQ</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>terms_condition.php">TERMS & CONDITIONS</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>privacy_policy.php">PRIVACY POLICY</a></li>
+				<li class="nav-item"><a class="nav-link fw-semibold text-white" href="<?php echo $domain_web ?>">HOME</a></li>
+				<li class="nav-item"><a class="nav-link fw-semibold text-white" href="<?php echo $domain_web ?>about.php">ABOUT</a></li>
+				<li class="nav-item"><a class="nav-link fw-semibold text-white" href="<?php echo $domain_web ?>faq.php">FAQ</a></li>
+				<li class="nav-item"><a class="nav-link fw-semibold text-white" href="<?php echo $domain_web ?>terms_condition.php">TERMS & CONDITIONS</a></li>
+				<li class="nav-item"><a class="nav-link fw-semibold text-white" href="<?php echo $domain_web ?>privacy_policy.php">PRIVACY POLICY</a></li>
 			</ul>
 		</div>
 

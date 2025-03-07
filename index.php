@@ -11,7 +11,8 @@ include "header.php";
 include "navbar.php";
 ?>
 
-<body style="overflow-x: hidden;">
+<body style="overflow-x: hidden; font-family: 'poppins', sans-serif; background-color: #f4f4f4;">
+
     <!-- Bootstrap 5 Carousel -->
     <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -36,6 +37,38 @@ include "navbar.php";
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
     </div>
+
+    <!-- Destinasi -->
+    <div class="container py-5">
+        <!-- Judul -->
+        <div class="d-flex align-items-center mb-4">
+            <i class="fa fa-globe fa-2x text-primary me-3"></i>
+            <h2 class="fw-bold mb-0 text-uppercase">Destinasi</h2>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <a href="bagian-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
+                    <img src="img/Europe/Europe.jpg" alt="Europe" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
+                        <h3 class="fw-bold mb-0 text-white">Europe</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6">
+                <a href="negara-asia.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
+                    <img src="img/Asia/Asia.jpg" alt="Asia" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
+                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
+                        <h3 class="fw-bold mb-0 text-white">Asia</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <div class="container-fluid">
@@ -259,6 +292,47 @@ include "navbar.php";
     </script>
 </body>
 <style>
+    .custom-card {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-card:hover {
+        transform: scale(1.05);
+    }
+
+    .custom-card img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+
+    .card-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        color: white;
+        padding: 15px;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .card-subtitle {
+        font-size: 14px;
+        font-weight: 400;
+        margin-bottom: 10px;
+    }
+
     .visa-card {
         position: relative;
         overflow: hidden;
