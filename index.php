@@ -45,9 +45,31 @@ include "navbar.php";
             <i class="fa fa-globe fa-2x text-primary me-3"></i>
             <h2 class="fw-bold mb-0 text-uppercase">Destinasi</h2>
         </div>
-
         <div class="row g-4">
-            <div class="col-md-6">
+            <?php
+            $query_con = "SELECT consortium_list.id, consortium_list.continent,continent.img FROM consortium_list LEFT JOIN continent ON consortium_list.continent LIKE continent.name GROUP BY consortium_list.continent";
+            $rs_con = mysqli_query($con, $query_con);
+            while ($row_con = mysqli_fetch_array($rs_con)) {
+                if(isset($row_con['img'])){
+                    $img = $row_con['img'];
+                }else{
+                    $img = "img/home.png";
+                }
+                
+            ?>
+                <div class="col-md-6">
+                    <a href="negara-asia.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
+                        <img src="<?php  echo $img?>" alt="Asia" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
+                        <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
+                            <h3 class="fw-bold mb-0 text-white"><?php echo $row_con['continent'] ?></h3>
+                        </div>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
+            <!-- <div class="col-md-6">
                 <a href="bagian-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
                     <img src="img/Europe/Europe.jpg" alt="Europe" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
                     <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
@@ -55,16 +77,8 @@ include "navbar.php";
                         <h3 class="fw-bold mb-0 text-white">Europe</h3>
                     </div>
                 </a>
-            </div>
-            <div class="col-md-6">
-                <a href="negara-asia.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/Asia.jpg" alt="Asia" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Asia</h3>
-                    </div>
-                </a>
-            </div>
+            </div> -->
+
         </div>
     </div>
 
