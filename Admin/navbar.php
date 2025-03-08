@@ -347,6 +347,23 @@ function hide_menu($x, $y)
                 <?php
                 }
                 ?>
+                <li class='nav-item has-treeview' id='li12'>
+                    <a href='#' onclick='hideShow(8,1,0);' class='nav-link' id='ali12'>
+                        <i class='nav-icon fas fa-th'></i>
+                        <p>
+                            Consortium
+                            <i class='right fas fa-angle-left'></i>
+                        </p>
+                    </a>
+                    <ul class='nav nav-treeview'>
+                        <li class="nav-item">
+                            <a href="#" onclick="CS_Package(0,0,0);" class="nav-link" id="a1">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Consortium List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <li class='nav-item has-treeview' id='li8'>
                     <a href='#' onclick='hideShow(8,1,0);' class='nav-link' id='ali8'>
                         <i class='nav-icon fas fa-th'></i>

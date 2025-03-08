@@ -4986,6 +4986,27 @@
         }
     }
 
+    function CS_Package(a, b, c) {
+        $("#divDashboard").hide();
+        $("#divReloadPage").show();
+        document.getElementById("loading").style.display = "block";
+        if (a == 0) {
+            $.ajax({
+                url: "CS_package_list.php",
+                method: "POST",
+                asynch: false,
+                data: {
+                    id: b,
+                },
+                success: function(data) {
+                    document.getElementById("loading").style.display = "none";
+                    $("#divReloadPage").html(data);
+                    $('.tooltip').remove();
+                }
+            });
+        }
+    }
+
     function hideShow(x, y, z) {
 
         if (x == 1) {
