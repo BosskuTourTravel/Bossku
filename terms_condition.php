@@ -5,24 +5,85 @@ include "db=connection.php";
 include "slug.php";
 ?>
 
+<style>
+.header-banner {
+    height: 300px;
+    background-image: url('<?php echo $domain_web ?>img/header/faq.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* Container */
+.terms {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+/* Card untuk terms */
+.terms-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.terms-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Typography */
+.terms-card h2 {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+.terms-card p {
+    font-size: 16px;
+    text-align: justify;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .header-banner {
+        font-size: 2rem;
+        height: 250px;
+    }
+
+    .terms-card {
+        padding: 20px;
+    }
+}
+</style>
+
+
 <body>
-    <div style="padding-top: 40px; height: 300px; background-image:url('<?php echo $domain_web ?>img/header/faq.jpg'); background-position: bottom; background-repeat: no-repeat; background-size: cover;">
-    </div>
-    <div class="container" style="max-width: 950px;">
-        <div class="card">
-            <div class="card-body">
-                <div class="judul" style="font-size: 40px; font-weight: bold; text-align: center; padding: 20px;">TERMS & CONDITIONS</div>
-                <div class="content" style="padding: 40px;">
-                    <div class="article">
-                        <h2 class="title-top-des">TERMS & CONDITIONS</h2>
-                        <p dir="ltr">
-                            www.holidaymyboss.com  dimiliki dan dioperasikan oleh PT Performa tour & travel. Web merupakan layanan yang memberikan informasi secara umum dan khusus kepada masyarakat yang menggunakan jasa dan/atau mengakses Web (untuk selanjutnya disebut “Pelanggan”) dan menjadi aset Perusahaan yang terpenting adalah menjaga hubungan Perusahaan dengan Pelanggan, demikian berkaitan dengan informasi-informasi pribadi yang Pelanggan berikan (untuk selanjutnya disebut “Data Pribadi”). Berkaitan dengan Data Pribadi tersebut, berikut Perusahaan jelaskan bagaimana pengumpulan, penggunaan, serta pemrosesan informasi yang Perusahaan kumpulkan tentang Data Pribadi yang dapat diidentifikasi secara pribadi terkait dengan layanan yang tersedia melalui Web.</br></br>
-                            Dengan memberikan dan memasukan Data Pribadi ke dalam Web, Pelanggan secara sadar telah setuju untuk memberikan Data Pribadi kepada Perusahaan untuk digunakan demi kepentingan dan tujuan Pelanggan dalam menggunakan Web. Persetujuan yang diberikan Pelanggan dimaksud merupakan persetujuan yang diberikan secara tegas yang disampaikan secara elektronik.</br></br>
-                            Kami tidak dapat menjamin bahwa harga pemesanan yang tertera dalam situs ini tidak akan terdapat gangguan atau kesalahan sistem yang menyebabkan harga pemesanan tersebut tidak akurat atau tidak sesuai dengan harga yang wajar dan menyebabkan ada kekeliruan pengguna saat melakukan pemesanan dengan harga tidak wajar tersebut, dan jika hal tersebut terjadi dan pengguna sudah melakukan pembayaran, maka kami tetap berhak untuk melakukan pembatalan sepihak dan hanya menjamin pengembalian dana (refund) kepada pengguna situs ini.
-                        </p>
-                    </div>
-                </div>
-            </div>
+
+    <div class="container terms">
+        <div class="terms-card">
+            <h2>Syarat & Ketentuan</h2>
+            <p>
+                <strong>Bossku Tour & Travel</strong> adalah agen perjalanan yang dimiliki dan dioperasikan oleh PT Performa Tour & Travel. Website ini menyediakan informasi umum maupun khusus bagi pelanggan yang menggunakan layanan kami.
+            </p>
+            <p>
+                Dengan menggunakan website ini, pelanggan setuju untuk memberikan informasi pribadi yang akan digunakan sesuai dengan ketentuan layanan kami.
+            </p>
+            <p>
+                Harga pemesanan yang tertera dapat berubah sewaktu-waktu tanpa pemberitahuan terlebih dahulu. Jika terjadi kesalahan sistem yang menyebabkan harga tidak wajar, kami berhak membatalkan pesanan dan mengembalikan dana pelanggan.
+            </p>
         </div>
     </div>
 </body>
