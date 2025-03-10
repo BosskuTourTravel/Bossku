@@ -9,6 +9,11 @@ include "API/Price/Api_LT_total_baru.php";
 <?php
 include "header.php";
 include "navbar.php";
+
+$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' && consortium_list.detail='" . $_GET['region'] . "' && consortium_list.country='".$_GET['country']."' GROUP BY consortium_list.country";
+$rs = mysqli_query($con, $query);
+
+
 ?>
 
 <body>
@@ -16,12 +21,11 @@ include "navbar.php";
         <img src="img/Asia/IndonesiaThumb.jpg" alt="Europe Map" class="img-fluid w-100" style="height: 500px; object-fit: cover;">
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
-            <h1 class="fw-bold">Indonesia</h1>
-            <p class="fs-5">Negeri kepulauan dengan keindahan alam luar biasa, budaya yang kaya, dan wisata yang tak terlupakan.</p>
+            <h1 class="fw-bold"><?php echo $_GET['country'] ?></h1>
         </div>
     </div>
     <div class="container my-4">
-        <h2 class="text-center mb-4 fw-bold">Trip Indonesia</h2>
+        <h2 class="text-center mb-4 fw-bold">Trip <?php echo $_GET['country'] ?></h2>
 
         <!-- Filter dan Search -->
         <div class="row mb-4">
@@ -41,7 +45,9 @@ include "navbar.php";
         <!-- Card Container -->
         <div class="row" id="tripContainer">
             <!-- Card 1 -->
-            <div class="col-md-4 mb-4 trip-card paket-tour">
+            <?php 
+            while($row=mysqli_fetch_array($rs)){
+                ?> <div class="col-md-4 mb-4 trip-card paket-tour">
                 <div class="card">
                     <img src="img/Asia/PaketBali.jpg" class="card-img-top" alt="Bali">
                     <div class="card-body d-flex flex-column">
@@ -51,31 +57,10 @@ include "navbar.php";
                         <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
                     </div>
                 </div>
-            </div>
-            <!-- Card 2 -->
-            <div class="col-md-4 mb-4 trip-card land-tour">
-                <div class="card">
-                    <img src="img/Asia/PaketBromo.jpg" class="card-img-top" alt="Lombok">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Trip Lombok</h5>
-                        <p class="card-text">4 Hari 3 Malam</p>
-                        <p class="fw-bold text-danger">Rp4.200.000</p>
-                        <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </div>
-            <!-- Card 3 -->
-            <div class="col-md-4 mb-4 trip-card consortium">
-                <div class="card">
-                    <img src="img/Asia/Jogja.jpg" class="card-img-top" alt="Raja Ampat">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Trip Jogja Solo</h5>
-                        <p class="card-text">5 Hari 4 Malam</p>
-                        <p class="fw-bold text-danger">Rp7.800.000</p>
-                        <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </div>
+            </div> <?php 
+
+            }
+            ?>
         </div>
     </div>
 

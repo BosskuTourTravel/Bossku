@@ -58,7 +58,7 @@ include "navbar.php";
                 
             ?>
                 <div class="col-md-6">
-                    <a href="negara-asia.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
+                    <a href="region.php?id=<?php echo $row_con['continent'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
                         <img src="<?php  echo $img?>" alt="Asia" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
                         <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
                         <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">

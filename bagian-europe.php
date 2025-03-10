@@ -17,7 +17,7 @@ include "navbar.php";
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.9); z-index: 1;"></div>
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
             <h1 class="fw-bold">Europe</h1>
-            <p class="fs-5">Temukan keindahan dan keberagaman budaya dari Eropa Barat hingga Timur.</p>
+            <p class="fs-5"></p>
         </div>
     </div>
 
