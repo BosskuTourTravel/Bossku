@@ -9,6 +9,8 @@ include "API/Price/Api_LT_total_baru.php";
 <?php
 include "header.php";
 include "navbar.php";
+$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='Asia' GROUP BY consortium_list.detail";
+$rs = mysqli_query($con, $query);
 ?>
 
 <body>
@@ -18,23 +20,29 @@ include "navbar.php";
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
             <h1 class="fw-bold">Benua Asia</h1>
             <p class="fs-5 mt-3 px-3" style="max-width: 800px;">
-            Asia adalah benua terbesar dengan budaya, alam, dan kota-kota modern yang menakjubkan.
+                Asia adalah benua terbesar dengan budaya, alam, dan kota-kota modern yang menakjubkan.
             </p>
         </div>
     </div>
 
     <div class="container py-5">
         <div class="row g-2">
-            <div class="col-md-4">
-                <a href="asiatenggara.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/AsiaTenggara.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Asia Tenggara</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
+            <?php
+            while ($row = mysqli_fetch_array($rs)) {
+            ?>
+                <div class="col-md-4">
+                    <a href="asiatenggara.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
+                        <img src="img/Asia/AsiaTenggara.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
+                        <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
+                            <h3 class="fw-bold mb-0 text-white"><?php echo $row['detail']." Asia" ?></h3>
+                        </div>
+                    </a>
+                </div>
+            <?php
+            }
+            ?>
+            <!-- <div class="col-md-4">
                 <a href="asiatimur.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
                     <img src="img/Asia/AsiaTimur.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
                     <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
@@ -69,7 +77,7 @@ include "navbar.php";
                         <h3 class="fw-bold mb-0 text-white">Asia Barat</h3>
                     </div>
                 </a>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
