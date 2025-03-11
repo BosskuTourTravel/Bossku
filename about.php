@@ -8,7 +8,6 @@ include "slug.php";
 <style>
     .hero {
         height: 350px;
-        background: url('<?php echo $domain_web ?>img/header/pantai.jpg') no-repeat center center/cover;
         display: flex;
         align-items: center;
         justify-content: center;
