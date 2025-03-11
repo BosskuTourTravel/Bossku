@@ -9,19 +9,18 @@ include "API/Price/Api_LT_total_baru.php";
 <?php
 include "header.php";
 include "navbar.php";
-$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='".$_GET['id']."' GROUP BY consortium_list.detail";
+$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' GROUP BY consortium_list.detail";
 $rs = mysqli_query($con, $query);
 
-if($_GET['id'] =="Asia"){
+if ($_GET['id'] == "Asia") {
     $judul = "Benua Asia";
     $sub_judul = "Asia adalah benua terbesar dengan budaya, alam, dan kota-kota modern yang menakjubkan.";
     $img_header = "img/Asia/AsiaMap.jpg";
-}else if($_GET['id'] == "Europe"){
+} else if ($_GET['id'] == "Europe") {
     $judul = "Benua Europe";
     $sub_judul = "Temukan keindahan dan keberagaman budaya dari Eropa Barat hingga Timur.";
     $img_header = "img/Europe/Europe.jpg";
-}else{
-
+} else {
 }
 ?>
 
@@ -32,7 +31,7 @@ if($_GET['id'] =="Asia"){
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
             <h1 class="fw-bold"><?php echo $judul ?></h1>
             <p class="fs-5 mt-3 px-3" style="max-width: 800px;">
-            <?php echo $sub_judul ?>
+                <?php echo $sub_judul ?>
             </p>
         </div>
     </div>
@@ -44,11 +43,11 @@ if($_GET['id'] =="Asia"){
 
             ?>
                 <div class="col-md-4">
-                    <a href="negara.php?id=<?php echo $_GET['id']."&&region=".$row['detail'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
+                    <a href="negara.php?id=<?php echo $_GET['id'] . "&&region=" . $row['detail'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
                         <img src="img/Asia/AsiaTenggara.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
                         <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
                         <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                            <h3 class="fw-bold mb-0 text-white"><?php echo $row['detail']." " ?></h3>
+                            <h3 class="fw-bold mb-0 text-white"><?php echo $row['detail'] . " " ?></h3>
                         </div>
                     </a>
                 </div>

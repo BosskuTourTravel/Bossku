@@ -12,16 +12,15 @@ include "navbar.php";
 
 $query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' && consortium_list.detail='" . $_GET['region'] . "' GROUP BY consortium_list.detail";
 $rs = mysqli_query($con, $query);
-if(
+if (
     $_GET['id'] == "Asia"
-){
+) {
     $sub_judul = "Wilayah tropis yang kaya akan budaya, kuliner lezat, dan destinasi eksotis.";
     $img_header = "img/Asia/AsiaTenggaraThumb.jpg";
-}else if ($_GET['id']  == "Europe" )
-{
+} else if ($_GET['id']  == "Europe") {
     $sub_judul = "Nikmati keindahan kota bersejarah, lanskap menawan, dan budaya unik Eropa.";
     $img_header = "img/Europe/EastEuropeThumb.jpg";
-} 
+}
 // echo $query;
 ?>
 
@@ -30,7 +29,7 @@ if(
         <img src="<?php echo $img_header ?>" alt="Europe Map" class="img-fluid w-100" style="height: 400px; object-fit: cover;">
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.9); z-index: 1;"></div>
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
-            <h1 class="fw-bold"><?php echo $_GET['region']. " " .$_GET['id'] ?></h1>
+            <h1 class="fw-bold"><?php echo $_GET['region'] . " " . $_GET['id'] ?></h1>
             <p class="fs-5"><?php echo $sub_judul ?></p>
         </div>
     </div>
@@ -38,9 +37,9 @@ if(
         <div class="row g-2">
             <?php
             while ($row = mysqli_fetch_array($rs)) {
-                if($row['img'] ==""){
-$img = "img/Asia/Asia.jpg";
-                }else{
+                if ($row['img'] == "") {
+                    $img = "img/Asia/Asia.jpg";
+                } else {
                     $img = $row['img'];
                 }
             ?>

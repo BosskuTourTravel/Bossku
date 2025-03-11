@@ -10,7 +10,7 @@ include "API/Price/Api_LT_total_baru.php";
 include "header.php";
 include "navbar.php";
 
-$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' && consortium_list.detail='" . $_GET['region'] . "' && consortium_list.country='".$_GET['country']."' GROUP BY consortium_list.country";
+$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' && consortium_list.detail='" . $_GET['region'] . "' && consortium_list.country='" . $_GET['country'] . "' GROUP BY consortium_list.country";
 $rs = mysqli_query($con, $query);
 
 
@@ -45,22 +45,22 @@ $rs = mysqli_query($con, $query);
         <!-- Card Container -->
         <div class="row" id="tripContainer">
             <!-- Card 1 -->
-            <?php 
-            while($row=mysqli_fetch_array($rs)){
-                ?> <div class="col-md-4 mb-4 trip-card paket-tour">
-                <div class="card">
-                    <img src="img/Asia/PaketBali.jpg" class="card-img-top" alt="Bali">
-                    <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">Trip Bali</h5>
-                        <p class="card-text">3 Hari 2 Malam</p>
-                        <p class="fw-bold text-danger">Rp3.500.000</p>
-                        <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
+            <?php
+            while ($row = mysqli_fetch_array($rs)) {
+            ?> <div class="col-md-4 mb-4 trip-card paket-tour">
+                    <div class="card">
+                        <img src="img/Asia/PaketBali.jpg" class="card-img-top" alt="Bali">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Trip Bali</h5>
+                            <p class="card-text">3 Hari 2 Malam</p>
+                            <p class="fw-bold text-danger">Rp3.500.000</p>
+                            <a href="https://wa.me/628112557728?text=Halo Bossku" target="_BLANK" class="btn btn-success mt-auto">Pesan via WhatsApp</a>
+                        </div>
                     </div>
-                </div>
-            </div> <?php 
+                </div> <?php
 
-            }
-            ?>
+                    }
+                        ?>
         </div>
     </div>
 

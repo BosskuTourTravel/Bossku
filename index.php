@@ -50,16 +50,16 @@ include "navbar.php";
             $query_con = "SELECT consortium_list.id, consortium_list.continent,continent.img FROM consortium_list LEFT JOIN continent ON consortium_list.continent LIKE continent.name GROUP BY consortium_list.continent";
             $rs_con = mysqli_query($con, $query_con);
             while ($row_con = mysqli_fetch_array($rs_con)) {
-                if(isset($row_con['img'])){
+                if (isset($row_con['img'])) {
                     $img = $row_con['img'];
-                }else{
+                } else {
                     $img = "img/home.png";
                 }
-                
+
             ?>
                 <div class="col-md-6">
                     <a href="region.php?id=<?php echo $row_con['continent'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                        <img src="<?php  echo $img?>" alt="Asia" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
+                        <img src="<?php echo $img ?>" alt="Asia" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
                         <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
                         <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
                             <h3 class="fw-bold mb-0 text-white"><?php echo $row_con['continent'] ?></h3>
