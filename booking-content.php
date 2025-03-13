@@ -72,7 +72,7 @@ if (isset($_POST['room'])) {
     $agent_sgl = $rs_kurs_sgl['data'];
     $agent_cnb = $rs_kurs_cnb['data'];
 
-    $sql_profit = "SELECT * FROM LT_itin_profit_range where price1 <='" . $agent_twn . "' && price2 >='" . $agent_twn . "'";
+    $sql_profit = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $agent_twn . "' && price2 >='" . $agent_twn . "'";
     $rs_profit = mysqli_query($con, $sql_profit);
     $row_profit = mysqli_fetch_array($rs_profit);
     $pr = 0;

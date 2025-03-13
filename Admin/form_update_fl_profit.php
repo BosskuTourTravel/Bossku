@@ -6,7 +6,7 @@ include "../db=connection.php";
 if ($_POST['z'] == '0') {
 	$data =  explode(",", $_POST['id']);
 } else {
-	$query2 = "SELECT id FROM LT_profit_range order by id ASC";
+	$query2 = "SELECT id FROM LT_profit_range_bossku order by id ASC";
 	$rs2 = mysqli_query($con, $query2);
 	$data = [];
 	while ($row2 = mysqli_fetch_array($rs2)) {
@@ -30,7 +30,7 @@ if ($_POST['z'] == '0') {
 							<?php
 							$u = 1;
 							foreach ($data as $value) {
-								$query = "SELECT * FROM LT_profit_range where id='" . $value . "'";
+								$query = "SELECT * FROM LT_profit_range_bossku where id='" . $value . "'";
 								$rs = mysqli_query($con, $query);
 								$row = mysqli_fetch_array($rs);
 							?>

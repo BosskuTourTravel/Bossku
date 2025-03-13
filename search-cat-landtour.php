@@ -67,7 +67,7 @@ if ($_POST['cari'] !== "") {
             $agent_twn = $rs_kurs_twn['data'];
 
             if ($row_bn2['agent_twn'] != "") {
-                $sql_profit2 = "SELECT * FROM LT_itin_profit_range where price1 <='" . $agent_twn . "' && price2 >='" . $agent_twn . "'";
+                $sql_profit2 = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $agent_twn . "' && price2 >='" . $agent_twn . "'";
                 $rs_profit2 = mysqli_query($con, $sql_profit2);
                 $row_profit2 = mysqli_fetch_array($rs_profit2);
 

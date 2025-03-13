@@ -19,7 +19,7 @@ $gagal = 0;
 if (!empty($_POST['mulai'])) {
 	$i = 0;
 	foreach ($mulai as $value) {
-		$sql = "INSERT INTO LT_profit_range VALUES ('','$date','" . $value . "','" . $until[$i] . "','" . $profit[$i] . "','" . $admin[$i] . "','" . $marketing[$i] . "','" . $sub_agent[$i] . "','" . $staff[$i] . "','".$nominal[$i]."','$status')";
+		$sql = "INSERT INTO LT_profit_range_bossku VALUES ('','$date','" . $value . "','" . $until[$i] . "','" . $profit[$i] . "','" . $admin[$i] . "','" . $marketing[$i] . "','" . $sub_agent[$i] . "','" . $staff[$i] . "','".$nominal[$i]."','$status')";
 		if (mysqli_query($con, $sql)) {
 			$berhasil++;
 		} else {

@@ -8,7 +8,6 @@ include "API/Price/Api_LT_total_baru.php";
 <?php
 include "header.php";
 include "navbar.php";
-
 $query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.detail='" . $_GET['region'] . "' && consortium_list.continent='" . $_GET['id'] . "' GROUP BY consortium_list.detail";
 $rs = mysqli_query($con, $query);
 

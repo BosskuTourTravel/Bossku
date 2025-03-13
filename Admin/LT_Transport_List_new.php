@@ -115,7 +115,7 @@ session_start();
 
 
                                     // set profit flight
-                                    $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $adt_rt . "' && price2 >='" . $adt_rt. "'";
+                                    $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $adt_rt . "' && price2 >='" . $adt_rt. "'";
                                     $rs_profit = mysqli_query($con, $sql_profit);
                                     $row_profit = mysqli_fetch_array($rs_profit);
 

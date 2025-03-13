@@ -342,7 +342,7 @@ $arr_all_fery = [];
                             // var_dump($query_lt2);
                             $no =1;
                             while ($row_lt2 = mysqli_fetch_array($rs_lt2)) {
-                                $sql_profit = "SELECT * FROM LT_itin_profit_range where price1 <='" . $row_lt2['agent_twn'] . "' && price2 >='" . $row_lt2['agent_twn'] . "'";
+                                $sql_profit = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $row_lt2['agent_twn'] . "' && price2 >='" . $row_lt2['agent_twn'] . "'";
                                 $rs_profit = mysqli_query($con, $sql_profit);
                                 $row_profit = mysqli_fetch_array($rs_profit);
 

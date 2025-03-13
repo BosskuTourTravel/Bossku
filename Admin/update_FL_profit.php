@@ -15,7 +15,7 @@ $berhasil = 0;
 $gagal = 0;
 foreach($id as $val_id){
 
-     $sql = "UPDATE  LT_profit_range SET price1='".$start[$x]."', price2='".$until[$x]."', profit='".$profit[$x]."', adm_mkp='".$admin[$x]."',marketing='".$marketing[$x]."', sub_agent='".$sub_agent[$x]."',staff_eks='".$staff[$x]."', nominal='".$nominal[$x]."'  where  id=".$val_id;
+     $sql = "UPDATE  LT_profit_range_bossku SET price1='".$start[$x]."', price2='".$until[$x]."', profit='".$profit[$x]."', adm_mkp='".$admin[$x]."',marketing='".$marketing[$x]."', sub_agent='".$sub_agent[$x]."',staff_eks='".$staff[$x]."', nominal='".$nominal[$x]."'  where  id=".$val_id;
      if (mysqli_query($con, $sql)) {
           $berhasil++;
      } else {

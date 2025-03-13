@@ -83,6 +83,24 @@ include "../db=connection.php";
                 <?php
                 if ($i == 1) {
                 ?>
+                    <label>Start From</label>
+                <?php
+                }
+                ?>
+
+                <select id="start_from<?php echo $i ?>" name="start_from" class="form-control form-control-sm" onchange="set_start_from(this.value,<?php echo $i ?>)">
+                    <option selected value="">Choose...</option>
+                    <option value="Jakarta">Jakarta</option>
+                    <option value="Surabaya">Surabaya</option>
+                    <option value="Bali">Bali</option>
+                    <option value="Batam">Batam</option>
+                    <option value="Yogyakarta">Yogyakarta</option>
+                </select>
+            </div>
+            <div class="col mb-2" style="max-width: 190px;">
+                <?php
+                if ($i == 1) {
+                ?>
                     <label>Kurs</label>
                 <?php
                 }
@@ -181,6 +199,15 @@ include "../db=connection.php";
         }
 
     }
+    function set_start_from(x, y) {
+        var loop = document.getElementById("row_number").value;
+        if (y == 1) {
+            for ($i = 1; $i <= loop; $i++) {
+                document.getElementById("start_from" + $i).value = x;
+            };
+        }
+
+    }
 
     function set_in_kurs(x, y) {
         var loop = document.getElementById("row_number").value;
@@ -208,6 +235,8 @@ include "../db=connection.php";
             var inf = document.getElementById("inf" + i).value;
             var pdf = document.getElementById("pdf" + i).value;
             var img = document.getElementById("img" + i).value;
+            var start = document.getElementById("start_from" + i).value;
+
 
             formData.append('con' + i, con);
             formData.append('region' + i, region);
@@ -220,6 +249,7 @@ include "../db=connection.php";
             formData.append('inf' + i, inf);
             formData.append('pdf' + i, pdf);
             formData.append('img' + i, img);
+            formData.append('start' + i, start);
 
 
             //     // alert(trip);

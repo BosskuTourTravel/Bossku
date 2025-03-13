@@ -24,7 +24,7 @@ function get_fl_total($datareq)
 
 
                 // set profit flight
-                $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $row_flight2['adt'] . "' && price2 >='" . $row_flight2['adt'] . "'";
+                $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $row_flight2['adt'] . "' && price2 >='" . $row_flight2['adt'] . "'";
                 $rs_profit = mysqli_query($con, $sql_profit);
                 $row_profit = mysqli_fetch_array($rs_profit);
 

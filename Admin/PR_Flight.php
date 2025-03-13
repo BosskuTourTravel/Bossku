@@ -140,7 +140,7 @@ session_start();
                                     <td><?php echo number_format($row['inf'], 0, ",", ".")  ?></td>
                                     <td style="background-color: greenyellow;">
                                         <?php
-                                        $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $row['adt'] . "' && price2 >='" . $row['adt'] . "'";
+                                        $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $row['adt'] . "' && price2 >='" . $row['adt'] . "'";
                                         $rs_profit = mysqli_query($con, $sql_profit);
                                         $row_profit = mysqli_fetch_array($rs_profit);
                                         // var_dump($sql_profit);
