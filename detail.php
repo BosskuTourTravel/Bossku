@@ -83,11 +83,41 @@ $rs = mysqli_query($con, $query);
 
         </div>
 
-        <!-- Card Container -->
         <div class="row" id="tripContainer">
-            <?php while ($row = mysqli_fetch_array($rs)) { ?>
+            <?php while ($row = mysqli_fetch_array($rs)) {
+
+                // konversi kurs
+                $adt = 0;
+                if($row['kurs'] != "IDR"){
+                    $datareq = array(
+                        "kurs" =>  $row['kurs'],
+                        "nominal" => $$row['adt'],
+                    );
+                    $adt_kurs = get_kurs($datareq);
+                    $rs_adt_kurs = json_decode($adt_kurs, true);
+                    $adt = $rs_adt_kurs['data'];
+
+                }else{
+                    $adt = $row['adt'];
+                }
+
+                // Jika link gambar berasal dari Google Drive, ubah ke direct link
+                $link_gambar = $row['link_gambar'];
+                if (strpos($link_gambar, 'drive.google.com') !== false) {
+                    preg_match('/\/d\/(.*?)\//', $link_gambar, $matches);
+                    if (!empty($matches[1])) {
+                        $link_gambar = "https://drive.google.com/uc?export=view&id=" . $matches[1];
+                    }
+                }
+            ?>
                 <div class="col-lg-4 col-md-6 mb-4 trip-card">
                     <div class="card border-0 shadow-lg rounded-4 overflow-hidden position-relative">
+
+                        <!-- Thumbnail Flyer -->
+                        <?php if (!empty($link_gambar)) { ?>
+                            <img src="<?php echo $link_gambar; ?>" alt="Flyer <?php echo $row['nama']; ?>" class="card-img-top" style="height: 300px; object-fit: cover;">
+                        <?php } ?>
+
                         <div class="card-body text-center p-4 d-flex flex-column">
                             <!-- Nama Paket -->
                             <h5 class="fw-bold text-dark"><?php echo $row['nama'] ?></h5>
@@ -97,7 +127,7 @@ $rs = mysqli_query($con, $query);
 
                             <!-- Harga -->
                             <div class="price-tag bg-warning text-white py-2 px-3 rounded-pill mx-auto">
-                                <span class="fs-5 fw-bold"><?php echo "IDR " . number_format($row['adt']); ?></span>
+                                <span class="fs-5 fw-bold"><?php echo "IDR " . number_format($adt); ?></span>
                             </div>
 
                             <!-- Tombol -->
@@ -124,6 +154,7 @@ $rs = mysqli_query($con, $query);
                 </div>
             <?php } ?>
         </div>
+
     </div>
 
     <script>

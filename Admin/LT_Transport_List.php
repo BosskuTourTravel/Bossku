@@ -93,7 +93,7 @@ session_start();
                                     // $inf = $inf + intval($rowflight['inf']) + $inf_price;
 
                                     // set profit flight
-                                    $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $rowflight['adt'] . "' && price2 >='" . $rowflight['adt'] . "'";
+                                    $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $rowflight['adt'] . "' && price2 >='" . $rowflight['adt'] . "'";
                                     $rs_profit = mysqli_query($con, $sql_profit);
                                     $row_profit = mysqli_fetch_array($rs_profit);
 

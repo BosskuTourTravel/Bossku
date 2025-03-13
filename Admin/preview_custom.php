@@ -1475,7 +1475,7 @@ while ($row_ex = mysqli_fetch_array($rs_ex)) {
                                                                             $tl_adt = $tl_adt + intval($row_fl['adt']);
 
                                                                             // set profit flight
-                                                                            $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $row_fl['adt'] . "' && price2 >='" . $row_fl['adt'] . "'";
+                                                                            $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $row_fl['adt'] . "' && price2 >='" . $row_fl['adt'] . "'";
                                                                             $rs_profit = mysqli_query($con, $sql_profit);
                                                                             $row_profit = mysqli_fetch_array($rs_profit);
 

@@ -14,7 +14,7 @@ $row = mysqli_fetch_array($rs);
 		$rs_itin = mysqli_query($con, $query_itin);
 		while ($row_itin = mysqli_fetch_array($rs_itin)) {
 
-			$sql_profit = "SELECT * FROM LT_itin_profit_range where price1 <='" . $row_itin['agent_twn'] . "' && price2 >='" . $row_itin['agent_twn'] . "'";
+			$sql_profit = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $row_itin['agent_twn'] . "' && price2 >='" . $row_itin['agent_twn'] . "'";
 			$rs_profit = mysqli_query($con, $sql_profit);
 			$row_profit = mysqli_fetch_array($rs_profit);
 

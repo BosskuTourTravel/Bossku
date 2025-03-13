@@ -28,7 +28,7 @@ session_start();
                     <?php
                     include "../site.php";
                     include "../db=connection.php";
-                    $query = "SELECT * FROM  LT_profit_range order by price1 ASC";
+                    $query = "SELECT * FROM  LT_profit_range_bossku order by price1 ASC";
                     $rs = mysqli_query($con, $query);
                     $no = 1
                     ?>

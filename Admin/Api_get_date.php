@@ -158,7 +158,7 @@ function get_date($data)
                                 $price_flight_chd = $val_tgl['inf'] + $price_detail_inf ;
 
                                 // set profit flight
-                                $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $price_flight_adt . "' && price2 >='" .$price_flight_adt . "'";
+                                $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $price_flight_adt . "' && price2 >='" .$price_flight_adt . "'";
                                 $rs_profit = mysqli_query($con, $sql_profit);
                                 $row_profit = mysqli_fetch_array($rs_profit);
 
@@ -403,7 +403,7 @@ function get_date_pilih($data)
                                 $inf_dt_sfee = $val_tgl['inf'] + $fl_detail_inf;
 
                                 // set profit flight
-                                $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $adt_dt_sfee . "' && price2 >='" . $adt_dt_sfee . "'";
+                                $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $adt_dt_sfee . "' && price2 >='" . $adt_dt_sfee . "'";
                                 $rs_profit = mysqli_query($con, $sql_profit);
                                 $row_profit = mysqli_fetch_array($rs_profit);
                                 // var_dump($sql_profit);

@@ -114,7 +114,7 @@ $no = 1;
                                                                                                 if ($row_ltn['pax_b'] != 0) {
                                                                                                     $pax_b = "+" . $row_ltn['pax_b'];
                                                                                                 }
-                                                                                                $sql_profit = "SELECT * FROM LT_itin_profit_range where price1 <='" . $row_ltn['agent_twn'] . "' && price2 >='" . $row_ltn['agent_twn'] . "'";
+                                                                                                $sql_profit = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $row_ltn['agent_twn'] . "' && price2 >='" . $row_ltn['agent_twn'] . "'";
                                                                                                 $rs_profit = mysqli_query($con, $sql_profit);
                                                                                                 $row_profit = mysqli_fetch_array($rs_profit);
                                                                                                 // var_dump($sql_profit);
@@ -146,7 +146,7 @@ $no = 1;
                                                                                                 if ($row_ltn['pax_b'] != 0) {
                                                                                                     $pax_b = "+" . $row_ltn['pax_b'];
                                                                                                 }
-                                                                                                $sql_profit = "SELECT * FROM LT_itin_profit_range where price1 <='" . $row_ltn['agent_twn'] . "' && price2 >='" . $row_ltn['agent_twn'] . "'";
+                                                                                                $sql_profit = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $row_ltn['agent_twn'] . "' && price2 >='" . $row_ltn['agent_twn'] . "'";
                                                                                                 $rs_profit = mysqli_query($con, $sql_profit);
                                                                                                 $row_profit = mysqli_fetch_array($rs_profit);
                                                                                                 // var_dump($sql_profit);

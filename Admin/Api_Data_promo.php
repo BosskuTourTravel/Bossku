@@ -57,7 +57,7 @@ function get_datapromo($x){
                 $rs_itin = mysqli_query($con, $query_itin);
                 $row_itin = mysqli_fetch_array($rs_itin);
                 if ($row_itin['id'] != "") {
-                    $sql_profit = "SELECT id,profit FROM LT_itin_profit_range where price1 <='" . $row_itin['agent_twn'] . "' && price2 >='" . $row_itin['agent_twn'] . "'";
+                    $sql_profit = "SELECT id,profit FROM LT_itin_profit_range_bossku where price1 <='" . $row_itin['agent_twn'] . "' && price2 >='" . $row_itin['agent_twn'] . "'";
                     $rs_profit = mysqli_query($con, $sql_profit);
                     $row_profit = mysqli_fetch_array($rs_profit);
 

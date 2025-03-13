@@ -79,7 +79,7 @@ while ($row_data = mysqli_fetch_array($rs_data)) {
         $rs_flight2 = mysqli_query($con, $query_flight2);
         $row_flight2 = mysqli_fetch_array($rs_flight2);
 
-        $sql_profit = "SELECT * FROM LT_profit_range where price1 <='" . $row_flight2['adt'] . "' && price2 >='". $row_flight2['adt']."'";
+        $sql_profit = "SELECT * FROM LT_profit_range_bossku where price1 <='" . $row_flight2['adt'] . "' && price2 >='". $row_flight2['adt']."'";
         $rs_profit = mysqli_query($con, $sql_profit);
         $row_profit = mysqli_fetch_array($rs_profit);
         // var_dump($sql_profit);
