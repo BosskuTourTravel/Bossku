@@ -2,7 +2,6 @@
 include "db=connection.php";
 include "slug.php";
 include "API/Price/Api_LT_total_baru.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +9,9 @@ include "API/Price/Api_LT_total_baru.php";
 include "header.php";
 include "navbar.php";
 
-$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' && consortium_list.detail='" . $_GET['region'] . "' GROUP BY consortium_list.detail";
+$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.detail='" . $_GET['region'] . "' && consortium_list.continent='" . $_GET['id'] . "' GROUP BY consortium_list.detail";
 $rs = mysqli_query($con, $query);
+
 if (
     $_GET['id'] == "Asia"
 ) {
@@ -21,9 +21,10 @@ if (
     $sub_judul = "Nikmati keindahan kota bersejarah, lanskap menawan, dan budaya unik Eropa.";
     $img_header = "img/Europe/EastEuropeThumb.jpg";
 }
-// echo $query;
-?>
 
+// echo $query;
+
+?>
 <body>
     <div class="position-relative">
         <img src="<?php echo $img_header ?>" alt="Europe Map" class="img-fluid w-100" style="height: 400px; object-fit: cover;">
@@ -55,94 +56,19 @@ if (
             <?php
             }
             ?>
-
-            <!-- <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/MalaysiaFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Malaysia</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/ThailandFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Thailand</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/VietnamFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); "></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Vietnam</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/BruneiFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); "></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Brunei</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/SingaporeFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); "></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Singapore</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/LaosFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); "></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Laos</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/FilipinaFLag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); "></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Filipina</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/MyanmarFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); "></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Myanmar</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="negara-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/KambojaFlag.jpg" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); "></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Kamboja</h3>
-                    </div>
-                </a>
-            </div> -->
         </div>
+
     </div>
+
 </body>
+
 <?php
+
 include "footer.php";
+
 ?>
+
+
 
 <style>
     .custom-card {
@@ -151,7 +77,6 @@ include "footer.php";
         overflow: hidden;
         transition: transform 0.3s ease-in-out;
     }
-
     .custom-card:hover {
         transform: scale(1.05);
     }
@@ -162,7 +87,6 @@ include "footer.php";
         object-fit: cover;
         border-radius: 15px;
     }
-
     .card-overlay {
         position: absolute;
         inset: 0;
@@ -174,12 +98,10 @@ include "footer.php";
         background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
         transition: all 0.3s ease-in-out;
     }
-
     .card-title {
         font-size: 20px;
         font-weight: 600;
     }
-
     .card-subtitle {
         font-size: 14px;
         font-weight: 400;

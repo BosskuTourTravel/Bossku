@@ -15,11 +15,11 @@ $rs = mysqli_query($con, $query);
 if ($_GET['id'] == "Asia") {
     $judul = "Benua Asia";
     $sub_judul = "Asia adalah benua terbesar dengan budaya, alam, dan kota-kota modern yang menakjubkan.";
-    $img_header = "img/Asia/AsiaMap.jpg";
+    $img_header = "img/asia/AsiaMap.jpg";
 } else if ($_GET['id'] == "Europe") {
     $judul = "Benua Europe";
     $sub_judul = "Temukan keindahan dan keberagaman budaya dari Eropa Barat hingga Timur.";
-    $img_header = "img/Europe/Europe.jpg";
+    $img_header = "img/europe/Europe.jpg";
 } else {
 }
 ?>
@@ -44,52 +44,40 @@ if ($_GET['id'] == "Asia") {
             ?>
                 <div class="col-md-4">
                     <a href="negara.php?id=<?php echo $_GET['id'] . "&&region=" . $row['detail'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                        <img src="img/Asia/AsiaTenggara.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
+                        <?php
+                        // Array manual untuk menyimpan gambar berdasarkan benua & region
+                        $images = [
+                            "Europe" => [
+                                "West" => "img/europe/WestEurope.jpg",
+                                "East" => "img/europe/EastEurope.jpg",
+                            ],
+                            "Asia" => [
+                                "North" => "img/asia/AsiaBarat.jpg",
+                                "Southeast" => "img/asia/AsiaTenggara.jpg",
+                                "South" => "img/asia/AsiaSelatan.jpg"
+                            ]
+                        ];
+
+                        // Ambil nama benua dari URL
+                        $continent = $_GET['id'];  // Misal: "Asia" atau "Europe"
+                        $region = $row['detail'];  // Misal: "West", "Southeast", dll
+
+                        // Cek apakah ada gambar untuk benua dan region ini
+                        $image = "img/default.jpg"; // Default image
+                        if (isset($images[$continent][$region])) {
+                            $image = $images[$continent][$region];
+                        }
+                        ?>
+                        <img src="<?php echo $image; ?>" alt="<?php echo $row['detail']; ?>" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
+
                         <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
                         <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
                             <h3 class="fw-bold mb-0 text-white"><?php echo $row['detail'] . " " ?></h3>
-                        </div>
-                    </a>
+                        </div>                    </a>
                 </div>
             <?php
             }
             ?>
-            <!-- <div class="col-md-4">
-                <a href="asiatimur.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/AsiaTimur.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Asia Timur</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="asiaselatan.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/AsiaSelatan.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Asia Selatan</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="asiatengah.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/AsiaTengah.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Asia Tengah</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="asiabarat.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Asia/AsiaBarat.jpg" alt="Europe" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Asia Barat</h3>
-                    </div>
-                </a>
-            </div> -->
         </div>
     </div>
 </body>

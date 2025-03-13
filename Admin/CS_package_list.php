@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "../site.php";
 include "../db=connection.php";
 ?>
