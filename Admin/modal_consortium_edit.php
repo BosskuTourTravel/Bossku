@@ -82,6 +82,24 @@ $row_cek = mysqli_fetch_array($rs_cek);
         <?php
         if ($i == 1) {
         ?>
+            <label>Start From</label>
+        <?php
+        }
+        ?>
+
+        <select id="start_from<?php echo $i ?>" name="start_from" class="form-control form-control-sm">
+            <option selected value="<?php echo $row_cek['start_from'] ?>"><?php echo $row_cek['start_from'] ?></option>
+            <option value="Jakarta">Jakarta</option>
+            <option value="Surabaya">Surabaya</option>
+            <option value="Bali">Bali</option>
+            <option value="Batam">Batam</option>
+            <option value="Yogyakarta">Yogyakarta</option>
+        </select>
+    </div>
+    <div class="col mb-2" style="max-width: 190px;">
+        <?php
+        if ($i == 1) {
+        ?>
             <label>Kurs</label>
         <?php
         }
@@ -158,31 +176,34 @@ $row_cek = mysqli_fetch_array($rs_cek);
 <script>
     function edit_cons(x) {
         let formData = new FormData();
-            var con = document.getElementById("continent").value;
-            var region = document.getElementById("region").value;
-            var coun = document.getElementById("country").value;
-            var city = document.getElementById("city").value;
-            var nama = document.getElementById("nama").value;
-            var kurs = document.getElementById("kurs").value;
-            var adt = document.getElementById("adt").value;
-            var chd = document.getElementById("chd").value;
-            var inf = document.getElementById("inf").value;
-            var pdf = document.getElementById("pdf").value;
-            var img = document.getElementById("img").value;
+        var con = document.getElementById("continent").value;
+        var region = document.getElementById("region").value;
+        var coun = document.getElementById("country").value;
+        var city = document.getElementById("city").value;
+        var nama = document.getElementById("nama").value;
+        var kurs = document.getElementById("kurs").value;
+        var adt = document.getElementById("adt").value;
+        var chd = document.getElementById("chd").value;
+        var inf = document.getElementById("inf").value;
+        var pdf = document.getElementById("pdf").value;
+        var img = document.getElementById("img").value;
+        var start = document.getElementById("start_from").value;
 
-            formData.append('con', con);
-            formData.append('region', region);
-            formData.append('coun', coun);
-            formData.append('city', city);
-            formData.append('nama', nama);
-            formData.append('kurs', kurs);
-            formData.append('adt', adt);
-            formData.append('chd', chd);
-            formData.append('inf', inf);
-            formData.append('pdf', pdf);
-            formData.append('img', img);
-            formData.append('id', x);
-            //     // alert(trip);
+        formData.append('con', con);
+        formData.append('region', region);
+        formData.append('coun', coun);
+        formData.append('city', city);
+        formData.append('nama', nama);
+        formData.append('kurs', kurs);
+        formData.append('adt', adt);
+        formData.append('chd', chd);
+        formData.append('inf', inf);
+        formData.append('pdf', pdf);
+        formData.append('img', img);
+        formData.append('id', x);
+        formData.append('start', start);
+
+        //     // alert(trip);
         // formData.append('id', x);
         $.ajax({
             type: 'POST',

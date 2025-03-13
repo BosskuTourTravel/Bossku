@@ -20,8 +20,10 @@ for ($i = 1; $i <= $loop; $i++) {
     $kurs = $_POST['kurs' . $i];
     $pdf = $_POST['pdf' . $i];
     $img = $_POST['img' . $i];
+    $start = $_POST['start' . $i];
+
     if ($adt != "" && $city !="" && $continent !="" && $country !="") {
-        $sql = "INSERT INTO consortium_list VALUES ('','" . $continent . "','" . $region . "','" . $country . "','" . $city . "','" . $nama . "','" . $kurs . "','" . $adt . "','" . $chd . "','" . $inf . "','" . $pdf . "','" . $img . "','" . $tgl . "','" . $_SESSION['staff_id'] . "')";
+        $sql = "INSERT INTO consortium_list VALUES ('','" . $continent . "','" . $region . "','" . $country . "','" . $city . "','" . $nama . "','" . $kurs . "','" . $adt . "','" . $chd . "','" . $inf . "','" . $pdf . "','" . $img . "','" . $tgl . "','".$start."','" . $_SESSION['staff_id'] . "')";
         if (mysqli_query($con, $sql)) {
             $berhasil++;
         } else {
