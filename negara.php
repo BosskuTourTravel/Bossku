@@ -2,25 +2,30 @@
 include "db=connection.php";
 include "slug.php";
 include "API/Price/Api_LT_total_baru.php";
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <?php
 include "header.php";
 include "navbar.php";
 
-$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.detail='" . $_GET['region'] . "' && consortium_list.continent='" . $_GET['id'] . "' GROUP BY consortium_list.detail";
+$query = "SELECT DISTINCT consortium_list.country, country.img 
+          FROM consortium_list 
+          LEFT JOIN country ON consortium_list.country = country.name
+          WHERE consortium_list.detail = '" . $_GET['region'] . "' 
+          AND consortium_list.continent = '" . $_GET['id'] . "'";
+
 $rs = mysqli_query($con, $query);
+
 if (
     $_GET['id'] == "Asia"
 ) {
     $sub_judul = "Wilayah tropis yang kaya akan budaya, kuliner lezat, dan destinasi eksotis.";
-    $img_header = "img/Asia/AsiaTenggaraThumb.jpg";
+    $img_header = "img/asia/AsiaTenggaraThumb.jpg";
 } else if ($_GET['id']  == "Europe") {
     $sub_judul = "Nikmati keindahan kota bersejarah, lanskap menawan, dan budaya unik Eropa.";
-    $img_header = "img/Europe/EastEuropeThumb.jpg";
+    $img_header = "img/europe/EastEuropeThumb.jpg";
 }
 // echo $query;
 ?>
@@ -37,23 +42,44 @@ if (
     <div class="container py-5">
         <div class="row g-2">
             <?php
-            while ($row = mysqli_fetch_array($rs)) {
-                if ($row['img'] == "") {
-                    $img = "img/Asia/Asia.jpg";
-                } else {
-                    $img = $row['img'];
-                }
+            if ($rs && mysqli_num_rows($rs) > 0) {
+                while ($row = mysqli_fetch_array($rs)) {
+                    $country = $row['country'];
+
+                    $filename_base = strtolower(str_replace([" ", "’"], ["-", ""], $country));
+
+                    // Coba cek apakah file .jpg atau .jpeg tersedia
+                    $img_jpg = "img/flag/" . $filename_base . ".jpg";
+                    $img_jpeg = "img/flag/" . $filename_base . ".jpeg";
+                    $img_png = "img/flag/" . $filename_base . ".png";
+                    //echo $img_jpeg;
+                    //echo $img_jpg;
+                    //echo $img_png;
+
+                    if (file_exists(__DIR__ . "/" . $img_jpg)) {
+                        $img = $img_jpg;
+                    } elseif (file_exists(__DIR__ . "/" . $img_jpeg)) {
+                        $img = $img_jpeg;
+                    } elseif (file_exists(__DIR__ . "/" . $img_png)) {
+                        $img = $img_png;
+                    } else {
+                        $img = "img/asia/Asia.jpg"; // Default image jika tidak ditemukan
+                    }
             ?>
-                <div class="col-md-4">
-                    <a href="detail.php?id=<?php echo $_GET['id'] . "&&region=" . $_GET['region'] . "&&country=" . $row['country'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                        <img src="<?php echo $img ?>" alt="Europe" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
-                        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
-                        <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                            <h3 class="fw-bold mb-0 text-white"><?php echo $row['country'] ?></h3>
-                        </div>
-                    </a>
-                </div>
+                    <div class="col-md-4">
+                        <a href="detail.php?id=<?php echo $_GET['id'] . "&&region=" . $_GET['region'] . "&&country=" . urlencode($country) ?>"
+                            class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
+                            <img src="<?php echo $img ?>" alt="<?php echo $country ?>" class="img-fluid w-100" style="height: 225px; object-fit: cover;">
+                            <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5);"></div>
+                            <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
+                                <h3 class="fw-bold mb-0 text-white"><?php echo $country ?></h3>
+                            </div>
+                        </a>
+                    </div>
             <?php
+                }
+            } else {
+                echo "<p class='text-center text-muted'>Tidak ada data tersedia.</p>";
             }
             ?>
         </div>
@@ -63,7 +89,6 @@ if (
 <?php
 include "footer.php";
 ?>
-
 <style>
     .custom-card {
         position: relative;
@@ -72,7 +97,7 @@ include "footer.php";
         transition: transform 0.3s ease-in-out;
     }
     .custom-card:hover {
-    transform: scale(1.05);
+        transform: scale(1.05);
     }
     .custom-card img {
         width: 100%;
@@ -80,6 +105,8 @@ include "footer.php";
         object-fit: cover;
         border-radius: 15px;
     }
+
+
 
     .card-overlay {
         position: absolute;
@@ -92,10 +119,12 @@ include "footer.php";
         background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
         transition: all 0.3s ease-in-out;
     }
+
     .card-title {
         font-size: 20px;
         font-weight: 600;
     }
+
     .card-subtitle {
         font-size: 14px;
         font-weight: 400;

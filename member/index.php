@@ -29,7 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </script>
 
     <!-- Custom Theme files -->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- <link href="css/style.css" rel="stylesheet" type="text/css" media="all" /> -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all" />
     <!-- //Custom Theme files -->
 
@@ -40,6 +40,31 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </head>
 
 <body>
+    <div class="login-bg">
+        <div class="login-card shadow">
+            <h2 class="mb-4 text-center">Welcome Back!</h2>
+            <form action="cek.php" method="post">
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                    <input type="password" name="password" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="form-check text-start mb-3">
+                    <input type="checkbox" class="form-check-input" id="rememberMe" checked>
+                    <label class="form-check-label" for="rememberMe">Keep me logged in</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Log In</button>
+                <div class="mt-3 text-center">
+                    <a href="#" class="text-decoration-none" onclick="showForgotPassword()">Forgot Password?</a> |
+                    <a href="#" class="text-decoration-none" onclick="showRegister()">New User? Register</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
     <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
     <script>
@@ -127,121 +152,55 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         ga('send', 'pageview');
     </script>
 
-    <body>
-
-        <!-- main -->
-        <div class="w3layouts-main">
-            <div class="bg-layer">
-                <h1>MEMBER FORM</h1>
-                <!---728x90--->
-
-                <div class="header-main">
-                    <div class="main-icon">
-                        <a href="<?php echo $domain_web ?>"><span class="fa fa-eercast"><img src="../assets/i/performalogo.png" style="padding-left: 10px;"></span></a>
-                    </div>
-                    <div class='header-left-bottom' id='formsignin'>
-                        <form action='cek.php' method='post'>
-                            <input name='id' id='id' value='1' type='hidden'>
-                            <div class='icon1'>
-                                <span class='fa fa-user'></span>
-                                <input type='email' name='email' placeholder='Email Address' required='' />
-                            </div>
-                            <div class='icon1'>
-                                <span class='fa fa-lock'></span>
-                                <input type='password' name='password' placeholder='Password' required='' />
-                            </div>
-                            <div class='login-check'>
-                                <label class='checkbox'><input type='checkbox' name='checkbox' checked=''><i> </i> Keep me logged in</label>
-                            </div>
-                            <div class='bottom'>
-                                <button class='btn'>Log In</button>
-                            </div>
-                            <div class='links'>
-                                <p><a onclick='hideshow(3)'>Forgot Password?</a></p>
-                                <p class='right'><a onclick='hideshow(1)'>New User? Register</a></p>
-                                <div class='clear'></div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class='header-left-bottom' id='formforgotpassword'>
-                        <form action='cek.php' method='post'>
-                            <input name='id' id='id' value='3' type='hidden'>
-                            <div class='icon1'>
-                                <span class='fa fa-user'></span>
-                                <input type='email' name='email' placeholder='Email Address' required='' />
-                            </div>
-                            <div class='bottom'>
-                                <button class='btn'>Log In</button>
-                            </div>
-                            <div class='links'>
-                                <p class='right'><a onclick='hideshow(2)'>Already have account?</a></p>
-                                <p class='right'><a onclick='hideshow(1)'>New User? Register</a></p>
-
-                                <div class='clear'></div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div class='header-left-bottom' id='formsignup'>
-                        <form action='cek.php' method='post'>
-                            <input name='id' id='id' value='2' type='hidden'>
-                            <div class='icon1'>
-                                <span class='fa fa-user'></span>
-                                <input type='text' name='name' placeholder='Nama Lengkap' required='' />
-                            </div>
-                            <div class='icon1'>
-                                <span class='fa fa-address-book'></span>
-                                <input type='text' name='address' placeholder='Alamat Lengkap' required='' />
-                            </div>
-                            <div class='icon1'>
-                                <span class='fa fa-phone'></span>
-                                <input type='text' name='phone' placeholder='No Telepon' required='' />
-                            </div>
-                            <div class='icon1'>
-                                <span class='fa fa-address-card'></span>
-                                <input type='email' name='email' placeholder='Email Address' required='' />
-                            </div>
-                            <div class='icon1'>
-                                <span class='fa fa-lock'></span>
-                                <input type='password' name='password' placeholder='Password' required='' />
-                            </div>
-                            <div class='login-check'>
-                                <label class='checkbox'><input type='checkbox' name='checkbox' checked=''><i> </i> Saya sudah membaca dan setuju <a href=<?php echo $domain_web ?>/conditionofuse style='color: yellow;' class=more target=_blank><u>Terms & Conditions</u></a> dari holidaymyboss.com</label>
-                            </div>
-                            <div class='bottom'>
-                                <button class='btn'>Register</button>
-                            </div>
-                            <div class='links'>
-                                <p><a onclick='hideshow(3)'>Forgot Password?</a></p>
-                                <p class='right'><a onclick='hideshow(2)'>Already have account?</a></p>
-                                <div class='clear'></div>
-                            </div>
-                        </form>
-                    </div>
-                    <!--     <div class="social">
-                <ul>
-                    <li>or login using : </li>
-                    <li><a href="#" class="facebook"><span class="fa fa-facebook"></span></a></li>
-                    <li><a href="#" class="twitter"><span class="fa fa-twitter"></span></a></li>
-                    <li><a href="#" class="google"><span class="fa fa-google-plus"></span></a></li>
-                </ul>
-            </div> -->
-                </div>
-                <!---728x90--->
-
-
-            </div>
-        </div>
-        <!-- //main -->
-        <?php
-        if (isset($_GET["err"]) && !empty($_GET["err"])) {
-            if ($_GET["err"] == 1) {
-                echo "<script>alert('email atau password salah !')</script>";
-            }
-        }
-        ?>
-
-    </body>
-
 </html>
+
+<style>
+    .login-bg {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #007bff, #6610f2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-card {
+        background: #fff;
+        border-radius: 10px;
+        padding: 2rem;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Input Field Styling */
+    .input-group-text {
+        background-color: #FFCA10;
+        border: none;
+        color: #02335B;
+    }
+
+    .form-control:focus {
+        border-color: #FFCA10;
+        box-shadow: 0 0 5px rgba(255, 202, 16, 0.7);
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #FFCA10;
+        border: none;
+        color: #02335B;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #e0af0b;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .login-card {
+            width: 90%;
+        }
+    }
+</style>

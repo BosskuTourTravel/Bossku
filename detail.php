@@ -22,7 +22,13 @@ include "navbar.php";
 
 
 
-$query = "SELECT consortium_list.*,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' && consortium_list.detail='" . $_GET['region'] . "' && consortium_list.country LIKE '%" . $_GET['country'] . "%'";
+$query = "SELECT consortium_list.*,country.img 
+          FROM consortium_list 
+          LEFT JOIN country ON consortium_list.country = country.name 
+          WHERE consortium_list.continent='" . $_GET['id'] . "' 
+          AND consortium_list.detail='" . $_GET['region'] . "' 
+          AND consortium_list.country = '" . $_GET['country'] . "'";
+
 $rs = mysqli_query($con, $query);
 
 
@@ -104,8 +110,8 @@ $rs = mysqli_query($con, $query);
                 // Jika link gambar berasal dari Google Drive, ubah ke direct link
                 $link_gambar = $row['link_gambar'];
                 if (strpos($link_gambar, 'drive.google.com') !== false) {
-                    preg_match('/\/d\/(.*?)\//', $link_gambar, $matches);
-                    if (!empty($matches[1])) {
+
+                    if (preg_match('/(?:\/d\/|id=)([\w-]+)/', $link_gambar, $matches)) {
                         $link_gambar = "https://drive.google.com/uc?export=view&id=" . $matches[1];
                     }
                 }
