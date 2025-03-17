@@ -2,8 +2,8 @@
 include "db=connection.php";
 include "slug.php";
 include "API/Price/Api_LT_total_baru.php";
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php
@@ -11,40 +11,88 @@ include "header.php";
 include "navbar.php";
 ?>
 
+
 <body style="overflow-x: hidden; font-family: 'poppins', sans-serif; background-color: #f4f4f4;">
 
-    <!-- Bootstrap 5 Carousel -->
-    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="img/Carousel1.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="img/Carousel2.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="img/Carousel3.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
-            </div>
-            <div class="carousel-item">
-                <img src="img/Carousel4.jpg" class="img-fluid d-block w-100" style="height: 500px; object-fit: cover;">
+    <div class="position-relative">
+        <img src="img/asia/AsiaBaratThumb.jpg" alt="Europe Map" class="img-fluid w-100" style="height: 550px; object-fit: cover;">
+        <div class="position-absolute top-50 start-50 translate-middle w-75 bg-dark bg-opacity-50 p-4 rounded text-white">
+            <div class="row">
+                <!-- Input Pencarian Negara -->
+                <div class="col-md-5">
+                    <label for="searchCountry" class="form-label">Cari Negara</label>
+                    <input type="text" id="searchCountry" class="form-control" placeholder="Masukkan nama negara...">
+                </div>
+                <!-- Dropdown Filter Harga -->
+                <div class="col-md-5">
+                    <label for="filterPrice" class="form-label">Start From</label>
+                    <select id="filterPrice" class="form-select">
+                        <option value="">Semua</option>
+                        <option value="jakarta">Jakarta</option>
+                        <option value="surabaya">Surabaya</option>
+                        <option value="bali">Bali</option>
+                        <option value="singapore">Singapore</option>
+                        <option value="batam">Batam</option>
+                    </select>
+                </div>
+                <!-- Tombol Search -->
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" onclick="filterCountries()">Search</button>
+                </div>
             </div>
         </div>
-        <!-- Tombol Navigasi -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        </button>
     </div>
 
-    <!-- Destinasi -->
+
+    <div class="container py-5">
+        <div class="row g-3" id="countryList">
+            <?php
+
+            $continent = mysqli_real_escape_string($con, $_GET['id']);
+            $region = mysqli_real_escape_string($con, $_GET['region']);
+            $countryFilter = isset($_GET['country']) ? mysqli_real_escape_string($con, $_GET['country']) : "";
+
+            // Query database
+            $query = "SELECT consortium_list.*, country.img 
+          FROM consortium_list 
+          LEFT JOIN country ON consortium_list.country = country.name 
+          WHERE consortium_list.continent='$continent' 
+          AND consortium_list.detail='$region'";
+
+            if (!empty($countryFilter)) {
+                $query .= " AND consortium_list.country = '$countryFilter'";
+            }
+            $rs = mysqli_query($con, $query);
+
+            if (mysqli_num_rows($rs) > 0) {
+                while ($row = mysqli_fetch_assoc($rs)) {
+                    echo '
+                <div class="col-md-4 country-card" data-name="' . strtolower($row['country']) . '" data-city="' . strtolower($row['start']) . '">
+                    <div class="card">
+                        <img src="' . $row['img'] . '" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title fw-bold">' . $row['country'] . '</h5>
+                            <p class="text-muted small">
+                                Start from: <span class="fw-bold text-white px-2 py-1 rounded bg-primary">' . $row['start'] . '</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>';
+                }
+            } else {
+                echo "<p class='text-center text-danger'>❌ Data tidak ditemukan.</p>";
+            }
+            ?>
+        </div>
+    </div>
+
     <div class="container py-5">
         <!-- Judul -->
         <div class="d-flex align-items-center mb-4">
             <i class="fa fa-globe fa-2x text-primary me-3"></i>
             <h2 class="fw-bold mb-0 text-uppercase">Destinasi</h2>
         </div>
+
         <div class="row g-4">
             <?php
             $query_con = "SELECT consortium_list.id, consortium_list.continent,continent.img FROM consortium_list LEFT JOIN continent ON consortium_list.continent LIKE continent.name GROUP BY consortium_list.continent";
@@ -55,7 +103,6 @@ include "navbar.php";
                 } else {
                     $img = "img/home.png";
                 }
-
             ?>
                 <div class="col-md-6">
                     <a href="region.php?id=<?php echo $row_con['continent'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
@@ -69,20 +116,8 @@ include "navbar.php";
             <?php
             }
             ?>
-            <!-- <div class="col-md-6">
-                <a href="bagian-europe.php" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                    <img src="img/Europe/Europe.jpg" alt="Europe" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                    <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                        <h3 class="fw-bold mb-0 text-white">Europe</h3>
-                    </div>
-                </a>
-            </div> -->
-
         </div>
     </div>
-
-
 
 
     <div class="container-fluid">
@@ -216,16 +251,19 @@ include "navbar.php";
                     <img src="img/attraction2.png" class="img-thumbnail shadow-sm img-hover">
                 </a>
             </div>
+
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="">
                     <img src="img/cruise.png" class="img-thumbnail shadow-sm img-hover">
                 </a>
             </div>
+
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="<?php echo $domain_web ?>paket-landtour.php">
                     <img src="img/land_tour.png" class="img-thumbnail shadow-sm img-hover">
                 </a>
             </div>
+
             <div class="col-md-6 col-lg-3 mb-3">
                 <a href="<?php echo $domain_web ?>Hotel">
                     <img src="img/hotel.png" class="img-thumbnail shadow-sm img-hover">
@@ -234,6 +272,29 @@ include "navbar.php";
         </div>
     </div>
     <script>
+        function filterCountries() {
+            let searchCountry = document.getElementById("searchCountry").value.toLowerCase();
+            let filterPrice = document.getElementById("filterPrice").value.toLowerCase(); // Ambil value dari dropdown
+            let countryCards = document.querySelectorAll(".country-card");
+
+            console.log("🔍 Filter negara:", searchCountry);
+            console.log("🔍 Start From:", filterPrice);
+
+            countryCards.forEach(card => {
+                let countryName = card.getAttribute("data-name");
+                let cityStart = card.getAttribute("data-city");
+
+                let matchCountry = countryName.includes(searchCountry);
+                let matchPrice = filterPrice === "" || cityStart.includes(filterPrice);
+
+                if (matchCountry && matchPrice) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
         function search_promo() {
             var negara = document.getElementById("negara").value;
             $.ajax({
@@ -410,6 +471,7 @@ include "navbar.php";
     }
 
     .header-section h1 {
+
         font-size: 24px;
         font-weight: bold;
     }
@@ -422,6 +484,7 @@ include "navbar.php";
 
     .header-section a:hover {
         text-decoration: underline;
+
     }
 
     .video-wrapper {
@@ -507,6 +570,7 @@ include "navbar.php";
         }
     }
 </style>
+
 <?php
 include "footer.php";
 ?>

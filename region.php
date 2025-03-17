@@ -56,6 +56,7 @@ if ($_GET['id'] == "Asia") {
                                 "Southeast" => "img/asia/AsiaTenggara.jpg",
                                 "South" => "img/asia/AsiaSelatan.jpg",
                                 "Northwest" => "img/asia/Northwest.jpg",
+                                "East" => "img/asia/AsiaTimur.jpg"
                             ]
                         ];
 

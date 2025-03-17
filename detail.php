@@ -1,27 +1,14 @@
 <?php
-
 include "db=connection.php";
-
 include "slug.php";
-
 include "API/Price/Api_LT_total_baru.php";
-
-
-
 ?>
-
 <!DOCTYPE html>
-
 <html lang="en">
 
 <?php
-
 include "header.php";
-
 include "navbar.php";
-
-
-
 $query = "SELECT consortium_list.*,country.img 
           FROM consortium_list 
           LEFT JOIN country ON consortium_list.country = country.name 
@@ -29,38 +16,23 @@ $query = "SELECT consortium_list.*,country.img
           AND consortium_list.detail='" . $_GET['region'] . "' 
           AND consortium_list.country = '" . $_GET['country'] . "'";
 
+//echo $query;
 $rs = mysqli_query($con, $query);
-
-
-
-
-
 ?>
 
 
 
 <body>
-
     <div class="position-relative">
-
         <img src="img/asia/IndonesiaThumb.jpg" alt="Europe Map" class="img-fluid w-100" style="height: 500px; object-fit: cover;">
-
         <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
-
             <h1 class="fw-bold"><?php echo $_GET['country'] ?></h1>
-
         </div>
-
     </div>
 
     <div class="container my-4">
-
         <h2 class="text-center mb-4 fw-bold">Trip <?php echo $_GET['country'] ?></h2>
-
-
-
         <!-- Filter dan Search -->
 
         <div class="row mb-4">
@@ -82,36 +54,44 @@ $rs = mysqli_query($con, $query);
             </div> -->
 
             <div class="col-md-4">
-
                 <input type="text" id="searchInput" class="form-control" placeholder="Cari trip...">
-
             </div>
-
         </div>
 
         <div class="row" id="tripContainer">
-            <?php while ($row = mysqli_fetch_array($rs)) {
+            <?php
+            function getStartColor($start)
+            {
+                $colors = [
+                    "Surabaya" => "#007bff",  // Biru
+                    "Jakarta" => "#dc3545",  // Merah
+                    "Bali" => "#28a745",  // Hijau
+                    "Bandung" => "#17a2b8",  // Biru Muda
+                    "Yogyakarta" => "#ffc107",  // Kuning
+                ];
+                return isset($colors[$start]) ? $colors[$start] : "#6c757d"; // Default Abu-abu
+            }
 
-                // konversi kurs
+            while ($row = mysqli_fetch_array($rs)) {
+                // Konversi kurs
                 $adt = 0;
-                if($row['kurs'] != "IDR"){
+                if ($row['kurs'] != "IDR") {
                     $datareq = array(
-                        "kurs" =>  $row['kurs'],
-                        "nominal" => $$row['adt'],
+                        "kurs" => $row['kurs'],
+                        "nominal" => $row['adt'],
                     );
                     $adt_kurs = get_kurs($datareq);
                     $rs_adt_kurs = json_decode($adt_kurs, true);
                     $adt = $rs_adt_kurs['data'];
-
-                }else{
+                } else {
                     $adt = $row['adt'];
                 }
 
-                // Jika link gambar berasal dari Google Drive, ubah ke direct link
+                // Ubah link Google Drive ke direct link
                 $link_gambar = $row['link_gambar'];
                 if (strpos($link_gambar, 'drive.google.com') !== false) {
-
-                    if (preg_match('/(?:\/d\/|id=)([\w-]+)/', $link_gambar, $matches)) {
+                    preg_match('/\/d\/(.*?)\//', $link_gambar, $matches);
+                    if (!empty($matches[1])) {
                         $link_gambar = "https://drive.google.com/uc?export=view&id=" . $matches[1];
                     }
                 }
@@ -129,7 +109,13 @@ $rs = mysqli_query($con, $query);
                             <h5 class="fw-bold text-dark"><?php echo $row['nama'] ?></h5>
 
                             <!-- Start Location -->
-                            <p class="text-muted small">Start from: <span class="fw-semibold"><?php echo $row['start'] ?></span></p>
+                            <p class="text-muted small">
+                                Start from:
+                                <span class="fw-bold text-white px-2 py-1 rounded"
+                                    style="background-color: <?php echo getStartColor($row['start']); ?>;">
+                                    <?php echo $row['start']; ?>
+                                </span>
+                            </p>
 
                             <!-- Harga -->
                             <div class="price-tag bg-warning text-white py-2 px-3 rounded-pill mx-auto">
