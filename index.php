@@ -23,68 +23,118 @@ include "navbar.php";
                     <label for="searchCountry" class="form-label">Cari Negara</label>
                     <input type="text" id="searchCountry" class="form-control" placeholder="Masukkan nama negara...">
                 </div>
-                <!-- Dropdown Filter Harga -->
                 <div class="col-md-5">
                     <label for="filterPrice" class="form-label">Start From</label>
                     <select id="filterPrice" class="form-select">
                         <option value="">Semua</option>
-                        <option value="jakarta">Jakarta</option>
-                        <option value="surabaya">Surabaya</option>
-                        <option value="bali">Bali</option>
-                        <option value="singapore">Singapore</option>
-                        <option value="batam">Batam</option>
+                        <option value="Jakarta">Jakarta</option>
+                        <option value="Surabaya">Surabaya</option>
+                        <option value="Bali">Bali</option>
+                        <option value="Singapore">Singapore</option>
                     </select>
-                </div>
-                <!-- Tombol Search -->
-                <div class="col-md-2 d-flex align-items-end">
-                    <button class="btn btn-primary w-100" onclick="filterCountries()">Search</button>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="container py-5">
-        <div class="row g-3" id="countryList">
-            <?php
+    <div class="row" id="tripContainer">
+        <?php
+        $query = "SELECT consortium_list.*, country.img 
+        FROM consortium_list 
+        LEFT JOIN country ON consortium_list.country = country.name 
+        WHERE consortium_list.continent='" . $_GET['id'] . "' 
+        AND consortium_list.detail='" . $_GET['region'] . "'";
 
-            $continent = mysqli_real_escape_string($con, $_GET['id']);
-            $region = mysqli_real_escape_string($con, $_GET['region']);
-            $countryFilter = isset($_GET['country']) ? mysqli_real_escape_string($con, $_GET['country']) : "";
+        if (!empty($_GET['country'])) {
+            $query .= " AND consortium_list.country = '" . $_GET['country'] . "'";
+        }
 
-            // Query database
-            $query = "SELECT consortium_list.*, country.img 
-          FROM consortium_list 
-          LEFT JOIN country ON consortium_list.country = country.name 
-          WHERE consortium_list.continent='$continent' 
-          AND consortium_list.detail='$region'";
+        echo $query;
+        $rs = mysqli_query($con, $query);
 
-            if (!empty($countryFilter)) {
-                $query .= " AND consortium_list.country = '$countryFilter'";
-            }
-            $rs = mysqli_query($con, $query);
+        // $result = mysqli_query($con, "SELECT * FROM consortium_list");
+        // var_dump(mysqli_fetch_all($result, MYSQLI_ASSOC));
 
-            if (mysqli_num_rows($rs) > 0) {
-                while ($row = mysqli_fetch_assoc($rs)) {
-                    echo '
-                <div class="col-md-4 country-card" data-name="' . strtolower($row['country']) . '" data-city="' . strtolower($row['start']) . '">
-                    <div class="card">
-                        <img src="' . $row['img'] . '" class="card-img-top" style="height: 200px; object-fit: cover;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title fw-bold">' . $row['country'] . '</h5>
-                            <p class="text-muted small">
-                                Start from: <span class="fw-bold text-white px-2 py-1 rounded bg-primary">' . $row['start'] . '</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>';
-                }
+        function getStartColor($start)
+        {
+            $colors = [
+                "Surabaya" => "#007bff",  // Biru
+                "Jakarta" => "#dc3545",  // Merah
+                "Bali" => "#28a745",  // Hijau
+                "Bandung" => "#17a2b8",  // Biru Muda
+                "Yogyakarta" => "#ffc107",  // Kuning
+            ];
+            return isset($colors[$start]) ? $colors[$start] : "#6c757d"; // Default Abu-abu
+        }
+
+        while ($row = mysqli_fetch_array($rs)) {
+            // Konversi kurs
+            $adt = 0;
+            if ($row['kurs'] != "IDR") {
+                $datareq = array("kurs" => $row['kurs'], "nominal" => $row['adt']);
+                $adt_kurs = get_kurs($datareq);
+                $rs_adt_kurs = json_decode($adt_kurs, true);
+                $adt = $rs_adt_kurs['data'];
             } else {
-                echo "<p class='text-center text-danger'>❌ Data tidak ditemukan.</p>";
+                $adt = $row['adt'];
             }
-            ?>
-        </div>
+
+            // Ubah link Google Drive ke direct link
+            $link_gambar = $row['link_gambar'];
+            if (strpos($link_gambar, 'drive.google.com') !== false) {
+                preg_match('/\/d\/(.*?)\//', $link_gambar, $matches);
+                if (!empty($matches[1])) {
+                    $link_gambar = "https://drive.google.com/uc?export=view&id=" . $matches[1];
+                }
+            }
+        ?>
+            <div class="col-lg-4 col-md-6 mb-4 trip-card" data-city="<?php echo strtolower($row['start']); ?>">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden position-relative">
+
+                    <!-- Thumbnail Flyer -->
+                    <?php if (!empty($link_gambar)) { ?>
+                        <img src="<?php echo $link_gambar; ?>" alt="Flyer <?php echo $row['nama']; ?>" class="card-img-top" style="height: 300px; object-fit: cover;">
+                    <?php } ?>
+
+                    <div class="card-body text-center p-4 d-flex flex-column">
+                        <h5 class="fw-bold text-dark"><?php echo $row['nama'] ?></h5>
+
+                        <p class="text-muted small">
+                            Start from:
+                            <span class="fw-bold text-white px-2 py-1 rounded" style="background-color: <?php echo getStartColor($row['start']); ?>;">
+                                <?php echo $row['start']; ?>
+                            </span>
+                        </p>
+
+                        <div class="price-tag bg-warning text-white py-2 px-3 rounded-pill mx-auto">
+                            <span class="fs-5 fw-bold"><?php echo "IDR " . number_format($adt); ?></span>
+                        </div>
+
+                        <div class="mt-4 d-grid gap-2">
+                            <a href="https://wa.me/628112557728?text=Halo Bossku" target="_blank" class="btn btn-success btn-lg fw-bold shadow-sm">
+                                <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
+                            </a>
+
+                            <?php if (!empty($row['link_pdf'])) { ?>
+                                <a href="<?php echo $row['link_pdf']; ?>" target="_blank" class="btn btn-outline-primary btn-lg fw-bold shadow-sm">
+                                    <i class="bi bi-file-earmark-text"></i> Lihat Itinerary
+                                </a>
+                            <?php } ?>
+
+                            <?php if (!empty($row['link_gambar'])) { ?>
+                                <a href="<?php echo $row['link_gambar']; ?>" target="_blank" class="btn btn-outline-warning btn-lg fw-bold shadow-sm">
+                                    <i class="bi bi-image"></i> Lihat Flyer
+                                </a>
+                            <?php } ?>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
     </div>
+
 
     <div class="container py-5">
         <!-- Judul -->
@@ -272,28 +322,22 @@ include "navbar.php";
         </div>
     </div>
     <script>
-        function filterCountries() {
-            let searchCountry = document.getElementById("searchCountry").value.toLowerCase();
-            let filterPrice = document.getElementById("filterPrice").value.toLowerCase(); // Ambil value dari dropdown
-            let countryCards = document.querySelectorAll(".country-card");
+        document.getElementById("filterPrice").addEventListener("change", function() {
+            let selectedStart = this.value.toLowerCase(); // Ambil lokasi yang dipilih
+            let tripCards = document.querySelectorAll(".trip-card"); // Ambil semua trip card
 
-            console.log("🔍 Filter negara:", searchCountry);
-            console.log("🔍 Start From:", filterPrice);
+            tripCards.forEach(card => {
+                let startCity = card.getAttribute("data-city").toLowerCase(); // Ambil lokasi dari atribut data-city
 
-            countryCards.forEach(card => {
-                let countryName = card.getAttribute("data-name");
-                let cityStart = card.getAttribute("data-city");
-
-                let matchCountry = countryName.includes(searchCountry);
-                let matchPrice = filterPrice === "" || cityStart.includes(filterPrice);
-
-                if (matchCountry && matchPrice) {
+                // Jika filter kosong atau cocok dengan lokasi, tampilkan
+                if (selectedStart === "" || startCity === selectedStart) {
                     card.style.display = "block";
                 } else {
                     card.style.display = "none";
                 }
             });
-        }
+        });
+
 
         function search_promo() {
             var negara = document.getElementById("negara").value;

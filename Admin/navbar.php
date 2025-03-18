@@ -45,17 +45,13 @@ function hide_menu($x, $y)
             $staff_menu = 1;
 
             array_push($sub_menu, 1);
-
         } else {
 
             array_push($sub_menu, 0);
-
         }
-
     }
 
     return json_encode(array("menu" => $staff_menu, "sub_menu" => $sub_menu), true);
-
 }
 
 ?>

@@ -89,10 +89,13 @@ $rs = mysqli_query($con, $query);
 
                 // Ubah link Google Drive ke direct link
                 $link_gambar = $row['link_gambar'];
+
                 if (strpos($link_gambar, 'drive.google.com') !== false) {
-                    preg_match('/\/d\/(.*?)\//', $link_gambar, $matches);
-                    if (!empty($matches[1])) {
-                        $link_gambar = "https://drive.google.com/uc?export=view&id=" . $matches[1];
+                    if (preg_match('/\/d\/(.*?)\//', $link_gambar, $matches) || preg_match('/id=([a-zA-Z0-9_-]+)/', $link_gambar, $matches)) {
+                        if (!empty($matches[1])) {
+                            // Gunakan URL alternatif untuk gambar resolusi tinggi
+                            $link_gambar = "https://lh3.googleusercontent.com/d/{$matches[1]}=s0";
+                        }
                     }
                 }
             ?>
@@ -101,7 +104,7 @@ $rs = mysqli_query($con, $query);
 
                         <!-- Thumbnail Flyer -->
                         <?php if (!empty($link_gambar)) { ?>
-                            <img src="<?php echo $link_gambar; ?>" alt="Flyer <?php echo $row['nama']; ?>" class="card-img-top" style="height: 300px; object-fit: cover;">
+                            <img src="<?php echo htmlspecialchars($link_gambar, ENT_QUOTES, 'UTF-8'); ?>" alt="Flyer <?php echo htmlspecialchars($row['nama'], ENT_QUOTES, 'UTF-8'); ?>" class="card-img-top" style="height: 300px; object-fit: cover;">
                         <?php } ?>
 
                         <div class="card-body text-center p-4 d-flex flex-column">
