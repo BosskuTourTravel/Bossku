@@ -139,8 +139,6 @@ include "navbar.php";
     }
     ?>
 
-
-
     <div class="container py-5">
         <!-- Judul -->
         <div class="d-flex align-items-center mb-4">
@@ -242,11 +240,9 @@ include "navbar.php";
             <?php } ?>
         </div>
 
-        <?php if (count($tickets) > $maxVisible) { ?>
-            <div class="text-center mt-4">
-                <button id="toggleButton" class="btn btn-primary btn-lg">Lihat Lainnya</button>
-            </div>
-        <?php } ?>
+        <div class="text-center mt-4">
+            <a href="<?php echo $domain_web ?>tiket.php" class="btn btn-primary btn-lg">Lihat Semua Tiket</a>
+        </div>
     </div>
 
     <div class="container my-5">
