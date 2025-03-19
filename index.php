@@ -15,125 +15,130 @@ include "navbar.php";
 <body style="overflow-x: hidden; font-family: 'poppins', sans-serif; background-color: #f4f4f4;">
 
     <div class="position-relative">
-        <img src="img/asia/AsiaBaratThumb.jpg" alt="Europe Map" class="img-fluid w-100" style="height: 550px; object-fit: cover;">
-        <div class="position-absolute top-50 start-50 translate-middle w-75 bg-dark bg-opacity-50 p-4 rounded text-white">
-            <div class="row">
-                <!-- Input Pencarian Negara -->
-                <div class="col-md-5">
-                    <label for="searchCountry" class="form-label">Cari Negara</label>
-                    <input type="text" id="searchCountry" class="form-control" placeholder="Masukkan nama negara...">
+        <!-- Gambar Background -->
+        <img src="img/asia/AsiaBaratThumb.jpg" alt="Asia Barat" class="img-fluid w-100" style="height: 550px; object-fit: cover;">
+
+        <!-- Overlay dengan efek Glassmorphism -->
+        <div class="position-absolute top-50 start-50 translate-middle w-75 p-4 rounded text-white shadow-lg custom-bg">
+            <h2 class="text-center fw-bold mb-3 text-warning">✨ Temukan Destinasi Impianmu ✨</h2>
+
+            <!-- Form Pencarian -->
+            <form method="GET" action="" class="row g-3">
+                <!-- Input Search by Country -->
+                <div class="col-md-6">
+                    <label for="country" class="form-label fw-semibold">Cari Berdasarkan Negara</label>
+                    <input type="text" id="country" name="country" class="form-control rounded-pill px-3 py-2 text-dark" placeholder="Masukkan negara..." value="<?= htmlspecialchars($_GET['country'] ?? '') ?>">
                 </div>
-                <div class="col-md-5">
-                    <label for="filterPrice" class="form-label">Start From</label>
-                    <select id="filterPrice" class="form-select">
-                        <option value="">Semua</option>
-                        <option value="Jakarta">Jakarta</option>
-                        <option value="Surabaya">Surabaya</option>
-                        <option value="Bali">Bali</option>
-                        <option value="Singapore">Singapore</option>
+
+                <!-- Filter by Start (Dropdown) -->
+                <div class="col-md-4">
+                    <label for="start" class="form-label fw-semibold">Filter Berdasarkan Start</label>
+                    <select id="start" name="start" class="form-select rounded-pill px-3 py-2 text-dark">
+                        <option value="">Pilih Start</option>
+                        <option value="SBY" <?= (isset($_GET['start']) && $_GET['start'] == 'SBY') ? 'selected' : '' ?>>Surabaya (SBY)</option>
+                        <option value="JKT" <?= (isset($_GET['start']) && $_GET['start'] == 'JKT') ? 'selected' : '' ?>>Jakarta (JKT)</option>
+                        <option value="DPS" <?= (isset($_GET['start']) && $_GET['start'] == 'DPS') ? 'selected' : '' ?>>Denpasar (DPS)</option>
+                        <option value="SG" <?= (isset($_GET['start']) && $_GET['start'] == 'SG') ? 'selected' : '' ?>>Singapura (SG)</option>
+                        <option value="BTM" <?= (isset($_GET['start']) && $_GET['start'] == 'BTM') ? 'selected' : '' ?>>Batam (BTM)</option>
                     </select>
                 </div>
-            </div>
+
+                <!-- Submit Button -->
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn w-100 btn-cari rounded-pill">🔍 Cari</button>
+                </div>
+            </form>
         </div>
     </div>
 
+    <?php
+    // Ambil data pencarian
+    $country = isset($_GET['country']) ? $_GET['country'] : '';
+    $start = isset($_GET['start']) ? $_GET['start'] : '';
 
-    <div class="row" id="tripContainer">
-        <?php
-        $query = "SELECT consortium_list.*, country.img 
-        FROM consortium_list 
-        LEFT JOIN country ON consortium_list.country = country.name 
-        WHERE consortium_list.continent='" . $_GET['id'] . "' 
-        AND consortium_list.detail='" . $_GET['region'] . "'";
+    // Jika user mengisi form, tampilkan hasil
+    if (!empty($country) || !empty($start)) {
+        echo '<div class="container mt-4">';
+        echo '<h3 class="text-center mb-4 fw-bold">Hasil Pencarian</h3>';
+        echo '<div class="table-responsive">
+                <table class="table table-hover align-middle shadow-sm">
+                    <thead class="table-dark text-center">
+                        <tr>
+                            <th>ID</th>
+                            <th>Negara</th>
+                            <th>Kota</th>
+                            <th>Nama</th>
+                            <th>Start</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">';
 
-        if (!empty($_GET['country'])) {
-            $query .= " AND consortium_list.country = '" . $_GET['country'] . "'";
+        // Query Default
+        $sql = "SELECT id, country, city, nama, start, status, link_pdf, link_gambar FROM consortium_list WHERE 1=1";
+
+        if (!empty($country)) {
+            $sql .= " AND country LIKE '%" . $con->real_escape_string($country) . "%'";
+        }
+        if (!empty($start)) {
+            $sql .= " AND start = '" . $con->real_escape_string($start) . "'";
         }
 
-        echo $query;
-        $rs = mysqli_query($con, $query);
+        $result = mysqli_query($con, $sql);
 
-        // $result = mysqli_query($con, "SELECT * FROM consortium_list");
-        // var_dump(mysqli_fetch_all($result, MYSQLI_ASSOC));
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $id = htmlspecialchars($row['id'] ?? '');
+                $country = htmlspecialchars($row['country'] ?? '');
+                $city = htmlspecialchars($row['city'] ?? '');
+                $nama = htmlspecialchars($row['nama'] ?? '');
+                $start = htmlspecialchars($row['start'] ?? '');
+                $status = htmlspecialchars($row['status'] ?? '');
+                $link_pdf = !empty(trim($row['link_pdf'])) ? htmlspecialchars($row['link_pdf']) : null;
+                $link_gambar = !empty(trim($row['link_gambar'])) ? htmlspecialchars($row['link_gambar']) : null;
+                $wa_number = "6281234567890"; // Nomor WA
 
-        function getStartColor($start)
-        {
-            $colors = [
-                "Surabaya" => "#007bff",  // Biru
-                "Jakarta" => "#dc3545",  // Merah
-                "Bali" => "#28a745",  // Hijau
-                "Bandung" => "#17a2b8",  // Biru Muda
-                "Yogyakarta" => "#ffc107",  // Kuning
-            ];
-            return isset($colors[$start]) ? $colors[$start] : "#6c757d"; // Default Abu-abu
-        }
+                echo "<tr class='fw-semibold'>
+                    <td>{$id}</td>
+                    <td>{$country}</td>
+                    <td>{$city}</td>
+                    <td>{$nama}</td>
+                    <td>{$start}</td>
+                    <td>
+                        <div class='d-flex flex-wrap gap-2 justify-content-center'>";
 
-        while ($row = mysqli_fetch_array($rs)) {
-            // Konversi kurs
-            $adt = 0;
-            if ($row['kurs'] != "IDR") {
-                $datareq = array("kurs" => $row['kurs'], "nominal" => $row['adt']);
-                $adt_kurs = get_kurs($datareq);
-                $rs_adt_kurs = json_decode($adt_kurs, true);
-                $adt = $rs_adt_kurs['data'];
-            } else {
-                $adt = $row['adt'];
-            }
-
-            // Ubah link Google Drive ke direct link
-            $link_gambar = $row['link_gambar'];
-            if (strpos($link_gambar, 'drive.google.com') !== false) {
-                preg_match('/\/d\/(.*?)\//', $link_gambar, $matches);
-                if (!empty($matches[1])) {
-                    $link_gambar = "https://drive.google.com/uc?export=view&id=" . $matches[1];
+                // Tombol Lihat Itinerary (Jika Ada)
+                if ($link_pdf) {
+                    echo "<a href='{$link_pdf}' target='_blank' class='btn btn-outline-primary btn-sm fw-bold'>
+                            <i class='bi bi-file-earmark-text'></i> Itinerary
+                          </a>";
                 }
+
+                // Tombol Lihat Gambar (Jika Ada)
+                if ($link_gambar) {
+                    echo "<a href='{$link_gambar}' target='_blank' class='btn btn-outline-warning btn-sm fw-bold'>
+                            <i class='bi bi-image'></i> Flyer
+                          </a>";
+                }
+
+                // Tombol Pesan Sekarang (Selalu Ada)
+                echo "<a href='https://wa.me/{$wa_number}?text=" . urlencode("Halo, saya tertarik dengan paket {$nama} di {$country}. Bagaimana cara memesannya?") . "' 
+                        class='btn btn-outline-success btn-sm fw-bold' target='_blank'>
+                        <i class='bi bi-whatsapp'></i> Pesan
+                      </a>";
+
+                echo "</div>
+                    </td>
+                </tr>";
             }
-        ?>
-            <div class="col-lg-4 col-md-6 mb-4 trip-card" data-city="<?php echo strtolower($row['start']); ?>">
-                <div class="card border-0 shadow-lg rounded-4 overflow-hidden position-relative">
+        } else {
+            echo "<tr><td colspan='6' class='text-center text-muted fw-light'>Tidak ada hasil ditemukan.</td></tr>";
+        }
 
-                    <!-- Thumbnail Flyer -->
-                    <?php if (!empty($link_gambar)) { ?>
-                        <img src="<?php echo $link_gambar; ?>" alt="Flyer <?php echo $row['nama']; ?>" class="card-img-top" style="height: 300px; object-fit: cover;">
-                    <?php } ?>
+        echo '</tbody></table></div></div>';
+    }
+    ?>
 
-                    <div class="card-body text-center p-4 d-flex flex-column">
-                        <h5 class="fw-bold text-dark"><?php echo $row['nama'] ?></h5>
-
-                        <p class="text-muted small">
-                            Start from:
-                            <span class="fw-bold text-white px-2 py-1 rounded" style="background-color: <?php echo getStartColor($row['start']); ?>;">
-                                <?php echo $row['start']; ?>
-                            </span>
-                        </p>
-
-                        <div class="price-tag bg-warning text-white py-2 px-3 rounded-pill mx-auto">
-                            <span class="fs-5 fw-bold"><?php echo "IDR " . number_format($adt); ?></span>
-                        </div>
-
-                        <div class="mt-4 d-grid gap-2">
-                            <a href="https://wa.me/628112557728?text=Halo Bossku" target="_blank" class="btn btn-success btn-lg fw-bold shadow-sm">
-                                <i class="bi bi-whatsapp"></i> Pesan via WhatsApp
-                            </a>
-
-                            <?php if (!empty($row['link_pdf'])) { ?>
-                                <a href="<?php echo $row['link_pdf']; ?>" target="_blank" class="btn btn-outline-primary btn-lg fw-bold shadow-sm">
-                                    <i class="bi bi-file-earmark-text"></i> Lihat Itinerary
-                                </a>
-                            <?php } ?>
-
-                            <?php if (!empty($row['link_gambar'])) { ?>
-                                <a href="<?php echo $row['link_gambar']; ?>" target="_blank" class="btn btn-outline-warning btn-lg fw-bold shadow-sm">
-                                    <i class="bi bi-image"></i> Lihat Flyer
-                                </a>
-                            <?php } ?>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
-    </div>
 
 
     <div class="container py-5">
@@ -169,8 +174,82 @@ include "navbar.php";
         </div>
     </div>
 
+    <div class="container my-5 p-4 bg-white shadow-lg rounded-4" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.8);">
+        <h2 class="text-center fw-bold mb-4 text-primary border-bottom pb-2">Admission Ticket</h2>
+        <div class="row">
+            <?php
 
-    <div class="container-fluid">
+            function getGoogleDriveDirectLink($url)
+            {
+                if (strpos($url, 'drive.google.com') !== false) {
+                    preg_match('/d\/([^\/]+)/', $url, $matches);
+                    if (!empty($matches[1])) {
+                        return "https://lh3.googleusercontent.com/d/{$matches[1]}=s0";
+                    }
+                }
+                return $url;
+            }
+
+            $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
+               lti.summer_img, lti.winter_img, lti.autumn_img
+        FROM List_tempat AS lt
+        LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
+        WHERE lt.price > 100000
+        LIMIT 1000";
+
+            $result = $con->query($sql);
+            $tickets = [];
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $tickets[] = $row;
+                }
+            }
+
+            $maxVisible = 3; // Jumlah card yang ditampilkan pertama kali
+            foreach ($tickets as $index => $ticket) {
+                $image = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
+                $hiddenClass = ($index >= $maxVisible) ? 'hidden-card' : ''; // Sembunyikan jika lebih dari 3
+            ?>
+                <div class="col-lg-4 col-md-6 mb-4 ticket-card <?php echo $hiddenClass; ?>">
+                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden position-relative">
+                        <img src="<?php echo htmlspecialchars($image); ?>"
+                            alt="Admission Ticket"
+                            class="card-img-top" style="height: 250px; object-fit: cover;">
+
+                        <div class="card-body text-center p-4 d-flex flex-column">
+                            <h5 class="fw-bold text-dark"><?php echo htmlspecialchars($ticket['name']); ?></h5>
+                            <p class="text-muted small">
+                                Location: <span class="fw-bold text-white px-2 py-1 rounded bg-primary">
+                                    <?php echo htmlspecialchars($ticket['location']); ?>
+                                </span>
+                            </p>
+                            <div class="price-tag bg-warning text-white py-2 px-3 rounded-pill mx-auto">
+                                <span class="fs-5 fw-bold">IDR <?php echo number_format($ticket['price'], 0, ',', '.'); ?></span>
+                            </div>
+                            <div class="mt-4 d-grid gap-2">
+                                <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
+                                    target="_blank" class="btn btn-success btn-lg fw-bold shadow-sm">
+                                    <i class="bi bi-whatsapp"></i> Buy Ticket
+                                </a>
+                                <a href="<?php echo htmlspecialchars($image); ?>"
+                                    target="_blank" class="btn btn-outline-warning btn-lg fw-bold shadow-sm">
+                                    <i class="bi bi-image"></i> Lihat Gambar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
+        <?php if (count($tickets) > $maxVisible) { ?>
+            <div class="text-center mt-4">
+                <button id="toggleButton" class="btn btn-primary btn-lg">Lihat Lainnya</button>
+            </div>
+        <?php } ?>
+    </div>
+
+    <div class="container my-5">
         <div><?php include "table_paket_tour.php"; ?></div>
         <div><?php include "table_paket_tour2.php"; ?></div>
     </div>
@@ -227,6 +306,8 @@ include "navbar.php";
             </div>
         </div>
     </div>
+
+
 
     <div class="content">
         <div class="content-promo-lebaran">
@@ -322,23 +403,6 @@ include "navbar.php";
         </div>
     </div>
     <script>
-        document.getElementById("filterPrice").addEventListener("change", function() {
-            let selectedStart = this.value.toLowerCase(); // Ambil lokasi yang dipilih
-            let tripCards = document.querySelectorAll(".trip-card"); // Ambil semua trip card
-
-            tripCards.forEach(card => {
-                let startCity = card.getAttribute("data-city").toLowerCase(); // Ambil lokasi dari atribut data-city
-
-                // Jika filter kosong atau cocok dengan lokasi, tampilkan
-                if (selectedStart === "" || startCity === selectedStart) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        });
-
-
         function search_promo() {
             var negara = document.getElementById("negara").value;
             $.ajax({
@@ -408,9 +472,29 @@ include "navbar.php";
                 }
             });
         }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const hiddenCards = document.querySelectorAll(".hidden-card");
+            const toggleButton = document.getElementById("toggleButton");
+            let isExpanded = false;
+
+            if (toggleButton) {
+                toggleButton.addEventListener("click", function() {
+                    isExpanded = !isExpanded;
+                    hiddenCards.forEach(card => {
+                        card.style.display = isExpanded ? "block" : "none";
+                    });
+                    toggleButton.textContent = isExpanded ? "Tampilkan Lebih Sedikit" : "Lihat Lainnya";
+                });
+            }
+        });
     </script>
 </body>
 <style>
+    .hidden-card {
+        display: none;
+    }
+
     .custom-card {
         position: relative;
         border-radius: 15px;
@@ -612,6 +696,62 @@ include "navbar.php";
         .table-responsive {
             overflow-x: auto;
         }
+    }
+
+    .custom-bg {
+        background: rgba(0, 0, 0, 0.1);
+        /* Transparan lebih halus */
+        backdrop-filter: blur(5px);
+        border-radius: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-cari {
+        background: linear-gradient(135deg, #FFD700, #FFCA10);
+        border: none;
+        color: black;
+        font-weight: bold;
+        padding: 10px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .btn-cari:hover {
+        background: linear-gradient(135deg, #E0B000, #D4A000);
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(255, 202, 16, 0.5);
+    }
+
+    /* Styling untuk input dan dropdown */
+    .form-control,
+    .form-select {
+        border: 2px solid rgba(255, 202, 16, 0.8);
+        background-color: rgba(255, 255, 255, 0.9);
+        /* Warna putih lebih terlihat */
+        color: black;
+        /* Teks jadi hitam agar terlihat */
+    }
+
+    .form-control::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #FFD700;
+        box-shadow: 0 0 8px rgba(255, 202, 16, 0.8);
+    }
+
+    /* Styling tambahan untuk dropdown */
+    .form-select option {
+        background-color: white;
+        /* Warna latar dropdown */
+        color: black;
+        /* Warna teks dropdown */
+    }
+
+    .form-select:hover {
+        background-color: rgba(255, 255, 255, 0.95);
     }
 </style>
 
