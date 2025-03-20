@@ -20,7 +20,7 @@ include "navbar.php";
 
         <!-- Overlay dengan efek Glassmorphism -->
         <div class="position-absolute top-50 start-50 translate-middle w-75 p-4 rounded text-white shadow-lg custom-bg">
-            <h2 class="text-center fw-bold mb-3 text-warning">✨ Temukan Destinasi Impianmu ✨</h2>
+            <h2 class="text-center fw-bold mb-3 text-warning">Temukan Destinasi Impianmu</h2>
 
             <!-- Form Pencarian -->
             <form method="GET" action="" class="row g-3">
@@ -45,7 +45,7 @@ include "navbar.php";
 
                 <!-- Submit Button -->
                 <div class="col-md-2 d-flex align-items-end">
-                    <button type="submit" class="btn w-100 btn-cari rounded-pill">🔍 Cari</button>
+                    <button type="submit" class="btn w-100 btn-cari rounded-pill">Cari</button>
                 </div>
             </form>
         </div>
