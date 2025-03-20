@@ -25,7 +25,7 @@
           <ul class="footer-links">
             <li><a href="<?php echo $domain_web ?>about.php">About Us</a></li>
             <li><a href="<?php echo $domain_web ?>contact.php">Contact Us</a></li>
-            <li><a href="">Contribute</a></li>
+            <li><a href="<?php echo $domain_web ?>perhitungan.php">Perhitungan</a></li>
             <li><a href="<?php echo $domain_web ?>privacy_policy.php">Privacy Policy</a></li>
             <li><a href="">Sitemap</a></li>
           </ul>
