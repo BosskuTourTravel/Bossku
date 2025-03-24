@@ -268,5 +268,8 @@ include "navbar.php";
         border: 2px solid #FFCA10;
     }
 </style>
+<?php
+include 'footer.php';
+?>
 
 </html>

@@ -20,6 +20,10 @@ if ($_GET['id'] == "Asia") {
     $judul = "Benua Europe";
     $sub_judul = "Temukan keindahan dan keberagaman budaya dari Eropa Barat hingga Timur.";
     $img_header = "img/europe/Europe.jpg";
+} else if ($_GET['id'] == "Australia") {
+    $judul = "Benua Australia";
+    $sub_judul = "Keajaiban alam, satwa unik, dan kota metropolitan yang menakjubkan.";
+    $img_header = "img/BenuaAus.jpg";
 } else {
 }
 ?>
@@ -57,9 +61,11 @@ if ($_GET['id'] == "Asia") {
                                 "South" => "img/asia/AsiaSelatan.jpg",
                                 "Northwest" => "img/asia/Northwest.jpg",
                                 "East" => "img/asia/AsiaTimur.jpg"
+                            ],
+                            "Australia" => [
+                                "" => "img/AustraliaThumb.jpg"
                             ]
                         ];
-
                         // Ambil nama benua dari URL
                         $continent = $_GET['id'];  // Misal: "Asia" atau "Europe"
                         $region = $row['detail'];  // Misal: "West", "Southeast", dll
@@ -75,7 +81,8 @@ if ($_GET['id'] == "Asia") {
                         <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
                         <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
                             <h3 class="fw-bold mb-0 text-white"><?php echo $row['detail'] . " " ?></h3>
-                        </div>                    </a>
+                        </div>
+                    </a>
                 </div>
             <?php
             }

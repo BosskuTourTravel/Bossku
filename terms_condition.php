@@ -6,57 +6,56 @@ include "slug.php";
 ?>
 
 <style>
-.header-banner {
-    height: 300px;
-    background-image: url('<?php echo $domain_web ?>img/header/faq.jpg');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
+/* Overlay */
+.header-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 /* Container */
 .terms {
-    max-width: 900px;
+    max-width: 850px;
     margin: 50px auto;
     padding: 20px;
 }
 
-/* Card untuk terms */
+/* Card */
 .terms-card {
-    background: #fff;
+    background: #f8f9fa;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #007bff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .terms-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* Typography */
 .terms-card h2 {
     text-align: center;
-    font-size: 28px;
+    font-size: 26px;
     font-weight: bold;
-    margin-bottom: 20px;
-    color: #2c3e50;
+    margin-bottom: 18px;
+    color: #333;
 }
 
 .terms-card p {
     font-size: 16px;
     text-align: justify;
-    line-height: 1.6;
-    color: #555;
+    line-height: 1.7;
+    color: #444;
 }
 
-/* Responsif */
+/* Responsive */
 @media (max-width: 768px) {
     .header-banner {
         font-size: 2rem;
@@ -69,25 +68,30 @@ include "slug.php";
 }
 </style>
 
-
 <body>
 
     <div class="container terms">
         <div class="terms-card">
             <h2>Syarat & Ketentuan</h2>
             <p>
-                <strong>Bossku Tour & Travel</strong> adalah agen perjalanan yang dimiliki dan dioperasikan oleh PT Performa Tour & Travel. Website ini menyediakan informasi umum maupun khusus bagi pelanggan yang menggunakan layanan kami.
+                <strong>Bossku Tour & Travel</strong> adalah agen perjalanan yang menyediakan berbagai paket wisata domestik dan internasional. Informasi yang tersedia di website ini ditujukan untuk memberikan kemudahan bagi pelanggan dalam merencanakan perjalanan.
             </p>
             <p>
-                Dengan menggunakan website ini, pelanggan setuju untuk memberikan informasi pribadi yang akan digunakan sesuai dengan ketentuan layanan kami.
+                Dengan melakukan pemesanan, pelanggan menyetujui penggunaan data pribadi sesuai dengan kebijakan privasi kami.
             </p>
             <p>
-                Harga pemesanan yang tertera dapat berubah sewaktu-waktu tanpa pemberitahuan terlebih dahulu. Jika terjadi kesalahan sistem yang menyebabkan harga tidak wajar, kami berhak membatalkan pesanan dan mengembalikan dana pelanggan.
+                Harga yang tertera dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya. Jika terjadi kesalahan sistem yang menyebabkan harga tidak sesuai, kami berhak membatalkan pesanan dan mengembalikan dana pelanggan.
+            </p>
+            <p>
+                Pemesanan harus dilakukan jauh hari sebelum keberangkatan untuk memastikan ketersediaan tiket dan akomodasi. Semua peserta tour wajib mematuhi peraturan yang berlaku selama perjalanan.
+            </p>
+            <p>
+                Bossku Tour & Travel tidak bertanggung jawab atas kehilangan barang pribadi, keterlambatan penerbangan, atau perubahan jadwal akibat kondisi di luar kendali kami.
             </p>
         </div>
     </div>
-</body>
 
+</body>
 
 <?php
 include "footer.php"

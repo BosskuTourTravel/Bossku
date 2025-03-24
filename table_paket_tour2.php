@@ -24,7 +24,6 @@
                 while ($row = mysqli_fetch_array($rs)) {
                     $judul = "";
                     $url_encode = urldecode("Haii Bossku , Saya ingin Memesan Paket Tour : https://www.bosskujalanjalan.com/Admin/cetak_pt_website.php?id=" . $row['id']);
-
                     $query_cek = "SELECT paket_tour_online.start, paket_tour_online.promo,LTSUB_itin.landtour FROM paket_tour_online LEFT JOIN LTSUB_itin ON paket_tour_online.tour_id=LTSUB_itin.id where LTSUB_itin.landtour='" . $row['landtour'] . "' GROUP BY paket_tour_online.start , paket_tour_online.promo ORDER BY paket_tour_online.start, paket_tour_online.promo ASC";
                     $rs_cek = mysqli_query($con, $query_cek);
                     $gabung_kota = "";
@@ -80,8 +79,6 @@
                     } else {
                         $judul = $row['judul'];
                     }
-
-
 
                 ?>
                     <tr>
@@ -159,5 +156,4 @@
     transform: scale(1.05);
     opacity: 0.9;
 }
-
 </style>

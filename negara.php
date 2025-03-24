@@ -24,6 +24,10 @@ if ($_GET['id'] == "Asia") {
 } else if ($_GET['id']  == "Europe") {
     $sub_judul = "Nikmati keindahan kota bersejarah, lanskap menawan, dan budaya unik Eropa.";
     $img_header = "img/europe/EastEuropeThumb.jpg";
+} else if ($_GET['id'] == "Australia") {
+    $judul = "Benua Australia";
+    $sub_judul = "Keajaiban alam, satwa unik, dan kota metropolitan yang menakjubkan.";
+    $img_header = "img/BenuaAus.jpg";
 }
 ?>
 

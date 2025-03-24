@@ -35,11 +35,11 @@ include "navbar.php";
                     <label for="start" class="form-label fw-semibold">Filter Berdasarkan Start</label>
                     <select id="start" name="start" class="form-select rounded-pill px-3 py-2 text-dark">
                         <option value="">Pilih Start</option>
-                        <option value="SBY" <?= (isset($_GET['start']) && $_GET['start'] == 'SBY') ? 'selected' : '' ?>>Surabaya (SBY)</option>
-                        <option value="JKT" <?= (isset($_GET['start']) && $_GET['start'] == 'JKT') ? 'selected' : '' ?>>Jakarta (JKT)</option>
-                        <option value="DPS" <?= (isset($_GET['start']) && $_GET['start'] == 'DPS') ? 'selected' : '' ?>>Denpasar (DPS)</option>
-                        <option value="SG" <?= (isset($_GET['start']) && $_GET['start'] == 'SG') ? 'selected' : '' ?>>Singapura (SG)</option>
-                        <option value="BTM" <?= (isset($_GET['start']) && $_GET['start'] == 'BTM') ? 'selected' : '' ?>>Batam (BTM)</option>
+                        <option value="Surabaya" <?= (isset($_GET['start']) && $_GET['start'] == 'SBY') ? 'selected' : '' ?>>Surabaya (SBY)</option>
+                        <option value="Jakarta" <?= (isset($_GET['start']) && $_GET['start'] == 'JKT') ? 'selected' : '' ?>>Jakarta (JKT)</option>
+                        <option value="Bali" <?= (isset($_GET['start']) && $_GET['start'] == 'DPS') ? 'selected' : '' ?>>Denpasar (DPS)</option>
+                        <option value="Singapore" <?= (isset($_GET['start']) && $_GET['start'] == 'SG') ? 'selected' : '' ?>>Singapura (SG)</option>
+                        <option value="Batam" <?= (isset($_GET['start']) && $_GET['start'] == 'BTM') ? 'selected' : '' ?>>Batam (BTM)</option>
                     </select>
                 </div>
 
@@ -173,7 +173,7 @@ include "navbar.php";
     </div>
 
     <div class="container my-5 p-4 bg-white shadow-lg rounded-4" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.8);">
-        <h2 class="text-center fw-bold mb-4 text-primary border-bottom pb-2">Admission Ticket</h2>
+        <h2 class="table-title text-center fw-bold mb-4 border-bottom pb-2">Admission Ticket</h2>
         <div class="row">
             <?php
 
@@ -305,7 +305,7 @@ include "navbar.php";
 
 
 
-    <div class="content">
+    <!-- <div class="content">
         <div class="content-promo-lebaran">
             <div class="judul-promo">PROMO PAKET TOUR CONSORTIUM 2024</div>
             <div class="content-promo">
@@ -368,7 +368,9 @@ include "navbar.php";
                 <button type="button" class="btn btn-success" onclick="fungsi_more_consor()">View More</button>
             </div>
         </div>
+    </div> -->
 
+    <div class="container my-5">
         <div class="text-center" style="margin-top: 40px;">
             <h2 class="fw-bold">OUR PRODUCTS</h2>
         </div>
@@ -398,6 +400,7 @@ include "navbar.php";
             </div>
         </div>
     </div>
+
     <script>
         function search_promo() {
             var negara = document.getElementById("negara").value;
