@@ -19,7 +19,7 @@ include "navbar.php";
         <img src="img/asia/AsiaBaratThumb.jpg" alt="Asia Barat" class="w-full h-[550px] object-cover">
 
         <!-- Overlay dengan efek Glassmorphism -->
-        <div class="absolute inset-0 flex items-center justify-center">
+        <div class="absolute inset-0 flex items-center justify-center" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
             <div class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 shadow-2xl text-white border border-white/20">
                 <h2 class="text-center text-2xl md:text-3xl font-extrabold mb-5 text-yellow-400 drop-shadow-lg">
                     Temukan Destinasi Impianmu
@@ -152,7 +152,7 @@ include "navbar.php";
     ?>
 
 
-    <div class="container mx-auto py-10 px-6">
+    <div class="container mx-auto py-10 px-6" data-aos="fade-up" data-aos-duration="3000">
         <!-- Judul -->
         <div class="flex items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Destinasi</h2>
@@ -178,12 +178,12 @@ include "navbar.php";
         </div>
     </div>
 
-    <div class="container mx-auto my-10 p-6 shadow-xl">
+    <div class="container mx-auto my-10 p-6 shadow-xl" data-aos="zoom-in-up" data-aos-easing="linear" data-aos-duration="1000">
         <h2 class="text-2xl font-bold border-b-4 border-blue-500 pb-4 mb-6">Admission Ticket</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <?php
             function getGoogleDriveDirectLink($url)
-            {
+            {   
                 if (strpos($url, 'drive.google.com') !== false) {
                     preg_match('/d\/([^\/]+)/', $url, $matches);
                     if (!empty($matches[1])) {
@@ -229,20 +229,20 @@ include "navbar.php";
         </div>
         <div class="text-center mt-6">
             <a href="tiket.php" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transform hover:scale-110 transition duration-300">
-                🔍 Lihat Semua Tiket
+                Lihat Semua Tiket
             </a>
         </div>
     </div>
 
 
-    <div class="container mx-auto py-10 px-6">
-        <div><?php include "table_paket_tour.php"; ?></div>
+    <div class="container mx-auto py-10 px-6" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <div data-aos="fade-right"><?php include "table_paket_tour.php"; ?></div>
     </div>
-    <div class="container mx-auto py-10 px-6">
+    <div class="container mx-auto py-10 px-6" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
         <div><?php include "table_paket_tour2.php"; ?></div>
     </div>
 
-    <div class="container mx-auto py-10 px-6">
+    <div class="container mx-auto py-10 px-6" data-aos="fade-up"data-aos-duration="3000">
         <div class="flex justify-between items-center mb-8">
             <h1 class="text-2xl font-bold text-gray-800">Visa</h1>
             <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300">Lihat Lainnya ></a>
@@ -355,7 +355,7 @@ include "navbar.php";
         </div>
     </div> -->
 
-    <div class="container mx-auto py-16 px-6">
+    <div class="container mx-auto py-16 px-6" data-aos="zoom-in-right">
         <div class="text-center mb-12">
             <h2 class="text-4xl font-bold text-gray-800 mb-4">OUR PRODUCTS</h2>
             <p class="text-lg text-gray-600">Discover our wide range of offerings that cater to every need and desire.</p>
@@ -404,8 +404,10 @@ include "navbar.php";
         </div>
     </div>
 
-
-
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 
     <script>
         function search_promo() {
