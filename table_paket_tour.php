@@ -1,119 +1,114 @@
-<style>
-    .table-container {
-        padding: 10px;
-        background-color: #f8f9fa;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+<?php
+$query = "SELECT itin.negara, LT_itinerary2.id as tour_id, LT_itinerary2.judul, 
+          LT_itinerary2.landtour, LT_itinerary2.hari, LT_add_Category.category, 
+          login_staff.name as staff_name, login_staff.phone 
+          FROM ( SELECT * FROM LT_itinnew WHERE LT_itinnew.agent_twn != '0' 
+          AND LT_itinnew.statuss != 'E' GROUP BY LT_itinnew.kode ) AS itin 
+          INNER JOIN LT_itinerary2 ON itin.kode = LT_itinerary2.landtour 
+          LEFT JOIN LT_add_Category ON LT_itinerary2.id = LT_add_Category.tour_id 
+          INNER JOIN login_staff ON LT_itinerary2.status = login_staff.id 
+          WHERE LT_itinerary2.landtour != 'undefined' 
+          ORDER BY itin.negara ASC";
+
+$rs = mysqli_query($con, $query);
+$data_negara = [];
+
+while ($row = mysqli_fetch_assoc($rs)) {
+    $negara_bersih = str_replace([' – ', '—', '-'], ',', $row['negara']);
+    $list_negara = explode(',', $negara_bersih);
+
+    foreach ($list_negara as $negara) {
+        $negara = trim($negara);
+        if (!empty($negara) && !isset($data_negara[$negara])) {
+            $data_negara[$negara] = [];
+        }
+        $data_negara[$negara][] = $row;
     }
+}
+?>
+<div class="container mx-auto py-10 px-6">
+    <div class="flex items-center justify-between mb-6">
+        <!-- Title (Left) -->
+        <h1 class="text-2xl font-bold text-gray-800">Eksplorasi Dunia dengan Harga Terjangkau: Daftar Paket Landtour</h1>
 
-    .table-title {
-        text-align: center;
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-        margin-bottom: 15px;
-    }
+        <!-- Search Form (Right) -->
+        <div class="relative w-full max-w-xs">
+            <!-- Search Label -->
+            <label for="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 font-medium transition-all duration-300 ease-in-out opacity-70 hover:opacity-100"></label>
 
-    .table thead {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .table tbody tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    .table th,
-    .table td {
-        vertical-align: middle !important;
-    }
-
-    .btn {
-        border-radius: 5px;
-        font-size: 10pt;
-        padding: 5px 10px;
-    }
-</style>
-
-<div class="table-container">
-    <div class="table-title">LANDTOUR PRICE LIST</div>
-    <div class="table-responsive">
-        <table id="tb-lt-web" class="table table-hover table-bordered table-sm" style="width:100%; font-size: 10pt;">
-            <thead>
-                <tr>
-                    <th class="text-center">No</th>
-                    <th style="max-width: 420px;">Nama Paket</th>
-                    <th class="text-center">Pax</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $query = "SELECT LT_itinerary2.id as tour_id,LT_itinerary2.judul,LT_itinerary2.landtour,LT_itinerary2.hari,LT_itinerary2.status, itin.*,LT_add_Category.category,login_staff.name as staff_name,login_staff.phone FROM ( SELECT * FROM LT_itinnew where LT_itinnew.agent_twn !='0' && LT_itinnew.statuss !='E' GROUP by LT_itinnew.kode ) AS itin INNER JOIN LT_itinerary2 ON itin.kode = LT_itinerary2.landtour LEFT JOIN LT_add_Category ON LT_itinerary2.id = LT_add_Category.tour_id INNER JOIN login_staff ON LT_itinerary2.status=login_staff.id where LT_itinerary2.landtour !='undefined' order by itin.benua , itin.negara ASC";
-                $rs = mysqli_query($con, $query);
-                while ($row = mysqli_fetch_array($rs)) {
-
-                    $url_encode = urldecode("Haii Bossku, Saya ingin Memesan LandTour : ".$domain_web."cetak_all_LTnew.php?id=" . $row['id']);
-                    $data_twn = array(
-                        "kurs" => $row['kurs'],
-                        "nominal" => $row['agent_twn'],
-                    );
-
-                    $show_kurs_twn = get_kurs($data_twn);
-                    $rs_kurs_twn = json_decode($show_kurs_twn, true);
-                    $agent_twn = $rs_kurs_twn['data'];
-
-
-                    $sql_profit = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $agent_twn . "' && price2 >='" . $agent_twn . "'";
-                    $rs_profit = mysqli_query($con, $sql_profit);
-                    $row_profit = mysqli_fetch_array($rs_profit);
-
-                    $pr = 0;
-                    if (isset($row_profit['id'])) {
-                        $pr = $row_profit['profit'];
-                    } else {
-                        $pr = 5;
-                    }
-                    $twin = ($agent_twn * $pr / 100) + $agent_twn;
-                    $twn_sp = get_pembulatan($twin);
-                    $twn_rp = json_decode($twn_sp, true);
-
-
-                ?>
-                    <tr>
-                        <td class="text-center"><?php echo $no ?></td>
-                        <td>
-                            <div><?php echo $row['judul'] ?></div>
-                            <div class="text-muted" style="font-size: 9pt;"><?php echo $row['landtour'] ?></div>
-                        </td>
-                        <td class="text-center"><?php echo $row['pax'] . ($row['pax_u'] != 0 ? "-" . $row['pax_u'] : "") . ($row['pax_b'] != 0 ? "+" . $row['pax_b'] : "") ?></td>
-                        <td class="text-center">Rp. <?php echo number_format($twn_rp['value'], 0, ",", ".") ?></td>
-                        <td class="text-center">
-                            <a class="btn btn-warning btn-sm my-1" href="<?php echo $domain_web ?>Admin/cetak_all_LTnew.php?id=<?php echo $row['tour_id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
-                            <a class="btn btn-success btn-sm my-1" href="https://wa.me/628112557728?text=<?php echo $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> WhatsApp</a>
-                            <a class="btn btn-primary btn-sm my-1" href="<?php echo $domain_web ?>detail-landtour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>"><i class="fa fa-info-circle"></i> Detail</a>
-                        </td>
-                    </tr>
-                <?php
-                    $no++;
-                }
-                ?>
-            </tbody>
-        </table>
+            <!-- Search Input -->
+            <input type="text" id="search" class="w-full py-3 pl-10 pr-4 border rounded-lg bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out" placeholder="Search by country..." onkeyup="searchCountry()">
+        </div>
     </div>
+
+    <!-- Swiper -->
+    <div class="swiper landtourSwiper">
+        <div class="swiper-wrapper">
+            <?php
+            foreach ($data_negara as $negara => $paket) {
+                $imageName = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '_', $negara)) . ".jpg";
+                $imagePath = "img/flag/" . $imageName;
+
+                if (!file_exists($imagePath)) {
+                    $imagePath = "img/flag/default.jpg";
+                }
+            ?>
+                <div class="swiper-slide relative group cursor-pointer transition-all rounded-lg shadow-md overflow-hidden w-72 h-[380px] bg-white border border-gray-200 flex flex-col" data-country="<?php echo $negara; ?>">
+                    <img src="<?= htmlspecialchars($imagePath) ?>" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105" alt="Paket <?php echo htmlspecialchars($negara); ?>">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-left justify-end text-white p-4">
+                        <h5 class="text-xl font-bold"><?php echo htmlspecialchars($negara); ?></h5>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="swiper-button-prev prev-landtour"></div>
+        <div class="swiper-button-next next-landtour"></div>
+    </div>
+
+    <!-- Tempat untuk menampilkan hasil landtour -->
+    <div id="landtour-container" class="mt-6"></div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#tb-lt-web').DataTable({
-            "aLengthMenu": [
-                [5, 10, 25, -1],
-                [5, 10, 25, "All"]
-            ],
-            "iDisplayLength": 10,
-            "bDestroy": true
+    var swiper2 = new Swiper(".landtourSwiper", {
+        slidesPerView: 1.1,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".next-landtour",
+            prevEl: ".prev-landtour",
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 4.2
+            },
+            1024: {
+                slidesPerView: 6.2
+            },
+        },
+    });
+
+    function searchCountry() {
+        const searchQuery = document.getElementById('search').value.toLowerCase();
+        const items = document.querySelectorAll('.country-item');
+
+        items.forEach(item => {
+            const countryName = item.getAttribute('data-country');
+            if (countryName.includes(searchQuery)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+</script>
+<script>
+    document.querySelectorAll('.swiper-slide').forEach(card => {
+        card.addEventListener('click', function() {
+            const country = this.getAttribute('data-country');
+            window.location.href = `land-tour.php?negara=${encodeURIComponent(country)}`;
         });
     });
 </script>

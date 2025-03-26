@@ -47,7 +47,7 @@
   backface-visibility: hidden;
 }
 .panel h1 {
-  font-family: sans-serif;
+  font-family: 'poppins', sans-serif;
   font-size: 64px;
   font-size: 4rem;
   color: #fff;
@@ -72,7 +72,7 @@ a[ id= "EXE_DIV3" ]:target ~ #EXE_MAIN article.panel {
 } */
 
 body {
-    font-family: 'Roboto';
+  font-family: 'poppins', sans-serif;
 }
 /* slide */
 

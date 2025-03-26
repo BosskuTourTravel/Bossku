@@ -100,61 +100,43 @@ include "header.php";
 include "navbar.php";
 ?>
 
-<body>
-    <div class="container my-5 p-4 shadow-lg rounded-4 bg-light">
-        <h2 class="text-center fw-bold mb-4 text-dark border-bottom pb-2">Admission Ticket</h2>
-        <form method="GET" class="mt-4 mb-4 p-3 rounded-4 shadow-sm">
-            <div class="row g-3 align-items-center">
-                <div class="col-md-8"></div>
+<body class="bg-gray-50">
 
-                <!-- Input Pencarian -->
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <span class="input-group-text bg-warning text-dark border-0 rounded-start-3">
-                            <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" name="search" class="form-control shadow-none border-0 rounded-end-3"
-                            placeholder="Cari tempat..."
-                            value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                    </div>
+    <div class="container mx-auto my-10 p-6 shadow-lg rounded-2xl bg-white">
+
+        <h2 class="text-center font-bold text-3xl text-gray-800 mb-6">Admission Ticket</h2>
+
+        <form method="GET" class="flex items-center mb-6 p-4 rounded-lg shadow-md bg-gray-100 transition duration-300 hover:shadow-lg">
+            <div class="w-full flex gap-4">
+                <div class="w-3/4">
+                    <input type="text" name="search" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Cari tempat..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
                 </div>
-
-                <!-- Tombol Cari -->
-                <div class="col-md-1 text-end">
-                    <button type="submit" class="btn btn-warning fw-bold rounded-3 px-4 shadow-sm text-dark">
-                        Cari
-                    </button>
+                <div class="w-1/4">
+                    <button type="submit" class="w-full p-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition duration-300">Cari</button>
                 </div>
             </div>
         </form>
 
+        <p class="text-center text-gray-500 mb-6">Menampilkan <?php echo count($tickets); ?> dari <?php echo $total_tickets; ?> tiket tersedia</p>
 
-
-        <p class="text-center text-muted">Menampilkan <?php echo count($tickets); ?> dari <?php echo $total_tickets; ?> tiket tersedia</p>
-        <div class="row g-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <?php foreach ($tickets as $ticket) {
                 $image = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
             ?>
-                <div class="col-lg-4 col-md-6 mb-4 ticket-card <?php echo $hiddenClass; ?>">
-                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden position-relative">
-                        <img src="<?php echo htmlspecialchars($image); ?>"
-                            alt="Admission Ticket"
-                            class="card-img-top" style="height: 250px; object-fit: cover;">
-
-                        <div class="card-body text-center p-4 d-flex flex-column">
-                            <h5 class="fw-bold text-dark"> <?php echo htmlspecialchars($ticket['name']); ?> </h5>
-                            <p class="text-muted small"> <?php echo htmlspecialchars($ticket['location']); ?> </p>
-                            <div class="badge text-light p-2 fw-bold" style="background-color: #02335B;">
-                                IDR <?php echo number_format($ticket['price'], 0, ',', '.'); ?>
-                            </div>
-
-                            <div class="mt-4 d-grid gap-2">
+                <div class="group relative overflow-hidden rounded-xl shadow-lg bg-white transform hover:scale-105 transition duration-300">
+                    <img src="<?php echo htmlspecialchars($image); ?>" alt="Admission Ticket" class="w-full h-56 object-cover transition duration-300 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300">
+                        <div class="flex flex-col justify-center items-center h-full">
+                            <h5 class="text-white font-semibold text-lg"><?php echo htmlspecialchars($ticket['name']); ?></h5>
+                            <p class="text-white text-sm mb-4"><?php echo htmlspecialchars($ticket['location']); ?></p>
+                            <div class="text-white text-xl font-bold"><?php echo number_format($ticket['price'], 0, ',', '.'); ?> IDR</div>
+                            <div class="mt-4 space-x-4">
                                 <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
-                                    target="_blank" class="btn btn-success btn-md fw-semibold shadow-sm">
+                                    target="_blank" class="px-6 py-2 rounded-lg bg-green-600 text-white font-semibold transition duration-300 hover:bg-green-700">
                                     <i class="bi bi-whatsapp"></i> Buy Ticket
                                 </a>
                                 <a href="<?php echo htmlspecialchars($image); ?>"
-                                    target="_blank" class="btn btn-outline-warning btn-md fw-bold shadow-sm">
+                                    target="_blank" class="px-6 py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg transition duration-300 hover:bg-blue-600 hover:text-white">
                                     <i class="bi bi-image"></i> Lihat Gambar
                                 </a>
                             </div>
@@ -164,110 +146,28 @@ include "navbar.php";
             <?php } ?>
         </div>
 
-        <div class="pagination-wrapper">
+        <div class="flex justify-center gap-4 mt-8">
             <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>&min_price=<?php echo $min_price; ?>&max_price=<?php echo $max_price; ?>" class="pagination-btn prev-btn">&laquo; Prev</a>
+                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold transition duration-300 hover:bg-blue-700">Prev</a>
             <?php endif; ?>
 
-            <div class="pagination-pages">
+            <div class="flex gap-2">
                 <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                    <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>&min_price=<?php echo $min_price; ?>&max_price=<?php echo $max_price; ?>"
-                        class="pagination-number <?php echo ($i == $page) ? 'active-page' : ''; ?>">
+                    <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>" class="px-4 py-2 border-2 border-blue-600 rounded-lg text-blue-600 font-semibold transition duration-300 hover:bg-blue-600 hover:text-white <?php echo ($i == $page) ? 'bg-yellow-500 text-blue-800' : ''; ?>">
                         <?php echo $i; ?>
                     </a>
                 <?php endfor; ?>
             </div>
 
             <?php if ($page < $total_pages): ?>
-                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>&min_price=<?php echo $min_price; ?>&max_price=<?php echo $max_price; ?>" class="pagination-btn next-btn">Next &raquo;</a>
+                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold transition duration-300 hover:bg-blue-700">Next</a>
             <?php endif; ?>
         </div>
+
     </div>
+
 </body>
 
-<style>
-    .form-control,
-    .form-select {
-        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        border: 1px solid #ccc;
-    }
-
-    .form-control:focus,
-    .form-select:focus {
-        border-color: #000;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-dark {
-        transition: all 0.3s ease-in-out;
-        background: #212529;
-        border: none;
-    }
-
-    .btn-dark:hover {
-        background: #000;
-        transform: scale(1.02);
-        box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .pagination-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        gap: 12px;
-    }
-
-    .pagination-btn {
-        padding: 10px 18px;
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 6px;
-        transition: all 0.3s ease-in-out;
-        font-size: 1rem;
-        border: 2px solid transparent;
-    }
-
-    .prev-btn,
-    .next-btn {
-        background: #02335B;
-        color: #FFF;
-        border: 2px solid #02335B;
-    }
-
-    .prev-btn:hover,
-    .next-btn:hover {
-        background: transparent;
-        color: #02335B;
-    }
-
-    .pagination-pages {
-        display: flex;
-        gap: 6px;
-    }
-
-    .pagination-number {
-        padding: 10px 15px;
-        border: 2px solid #02335B;
-        color: #02335B;
-        border-radius: 6px;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-        font-size: 1rem;
-    }
-
-    .pagination-number:hover {
-        background: #02335B;
-        color: #FFF;
-    }
-
-    .active-page {
-        background: #FFCA10;
-        color: #02335B;
-        font-weight: bold;
-        border: 2px solid #FFCA10;
-    }
-</style>
 <?php
 include 'footer.php';
 ?>

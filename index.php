@@ -14,40 +14,50 @@ include "navbar.php";
 
 <body style="overflow-x: hidden; font-family: 'poppins', sans-serif; background-color: #f4f4f4;">
 
-    <div class="position-relative">
+    <div class="relative">
         <!-- Gambar Background -->
-        <img src="img/asia/AsiaBaratThumb.jpg" alt="Asia Barat" class="img-fluid w-100" style="height: 550px; object-fit: cover;">
+        <img src="img/asia/AsiaBaratThumb.jpg" alt="Asia Barat" class="w-full h-[550px] object-cover">
 
         <!-- Overlay dengan efek Glassmorphism -->
-        <div class="position-absolute top-50 start-50 translate-middle w-75 p-4 rounded text-white shadow-lg custom-bg">
-            <h2 class="text-center fw-bold mb-3 text-warning">Temukan Destinasi Impianmu</h2>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 shadow-2xl text-white border border-white/20">
+                <h2 class="text-center text-2xl md:text-3xl font-extrabold mb-5 text-yellow-400 drop-shadow-lg">
+                    Temukan Destinasi Impianmu
+                </h2>
 
-            <!-- Form Pencarian -->
-            <form method="GET" action="" class="row g-3">
-                <!-- Input Search by Country -->
-                <div class="col-md-6">
-                    <label for="country" class="form-label fw-semibold">Cari Berdasarkan Negara</label>
-                    <input type="text" id="country" name="country" class="form-control rounded-pill px-3 py-2 text-dark" placeholder="Masukkan negara..." value="<?= htmlspecialchars($_GET['country'] ?? '') ?>">
-                </div>
+                <!-- Form Pencarian -->
+                <form method="GET" action="" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Input Search by Country -->
+                    <div>
+                        <label for="country" class="block font-semibold">Cari Berdasarkan Negara</label>
+                        <input type="text" id="country" name="country"
+                            class="w-full px-4 py-2 rounded-full text-gray-900 border-2 border-gray-300 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-300 transition duration-300"
+                            placeholder="Masukkan negara..." value="<?= htmlspecialchars($_GET['country'] ?? '') ?>">
+                    </div>
 
-                <!-- Filter by Start (Dropdown) -->
-                <div class="col-md-4">
-                    <label for="start" class="form-label fw-semibold">Filter Berdasarkan Start</label>
-                    <select id="start" name="start" class="form-select rounded-pill px-3 py-2 text-dark">
-                        <option value="">Pilih Start</option>
-                        <option value="Surabaya" <?= (isset($_GET['start']) && $_GET['start'] == 'SBY') ? 'selected' : '' ?>>Surabaya (SBY)</option>
-                        <option value="Jakarta" <?= (isset($_GET['start']) && $_GET['start'] == 'JKT') ? 'selected' : '' ?>>Jakarta (JKT)</option>
-                        <option value="Bali" <?= (isset($_GET['start']) && $_GET['start'] == 'DPS') ? 'selected' : '' ?>>Denpasar (DPS)</option>
-                        <option value="Singapore" <?= (isset($_GET['start']) && $_GET['start'] == 'SG') ? 'selected' : '' ?>>Singapura (SG)</option>
-                        <option value="Batam" <?= (isset($_GET['start']) && $_GET['start'] == 'BTM') ? 'selected' : '' ?>>Batam (BTM)</option>
-                    </select>
-                </div>
+                    <!-- Filter by Start (Dropdown) -->
+                    <div>
+                        <label for="start" class="block font-semibold">Filter Berdasarkan Start</label>
+                        <select id="start" name="start"
+                            class="w-full px-4 py-2 rounded-full text-gray-900 border-2 border-gray-300 focus:border-yellow-400 focus:ring-2 focus:ring-yellow-300 transition duration-300">
+                            <option value="">Pilih Start</option>
+                            <option value="Surabaya" <?= (isset($_GET['start']) && $_GET['start'] == 'SBY') ? 'selected' : '' ?>>Surabaya (SBY)</option>
+                            <option value="Jakarta" <?= (isset($_GET['start']) && $_GET['start'] == 'JKT') ? 'selected' : '' ?>>Jakarta (JKT)</option>
+                            <option value="Bali" <?= (isset($_GET['start']) && $_GET['start'] == 'DPS') ? 'selected' : '' ?>>Denpasar (DPS)</option>
+                            <option value="Singapore" <?= (isset($_GET['start']) && $_GET['start'] == 'SG') ? 'selected' : '' ?>>Singapura (SG)</option>
+                            <option value="Batam" <?= (isset($_GET['start']) && $_GET['start'] == 'BTM') ? 'selected' : '' ?>>Batam (BTM)</option>
+                        </select>
+                    </div>
 
-                <!-- Submit Button -->
-                <div class="col-md-2 d-flex align-items-end">
-                    <button type="submit" class="btn w-100 btn-cari rounded-pill">Cari</button>
-                </div>
-            </form>
+                    <!-- Submit Button -->
+                    <div class="flex items-end">
+                        <button type="submit"
+                            class="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold py-2 px-6 rounded-full transition duration-300 shadow-md hover:shadow-lg">
+                            Cari
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -58,21 +68,21 @@ include "navbar.php";
 
     // Jika user mengisi form, tampilkan hasil
     if (!empty($country) || !empty($start)) {
-        echo '<div class="container mt-4">';
-        echo '<h3 class="text-center mb-4 fw-bold">Hasil Pencarian</h3>';
-        echo '<div class="table-responsive">
-                <table class="table table-hover align-middle shadow-sm">
-                    <thead class="table-dark text-center">
+        echo '<div class="container mx-auto my-8 p-6 bg-white shadow-lg rounded-xl">';
+        echo '<h3 class="text-center text-2xl font-bold mb-6">Hasil Pencarian</h3>';
+        echo '<div class="overflow-x-auto">
+                <table class="w-full border-collapse border border-gray-300 shadow-md rounded-lg overflow-hidden">';
+        echo '<thead class="bg-gray-800 text-white text-center">
                         <tr>
-                            <th>ID</th>
-                            <th>Negara</th>
-                            <th>Kota</th>
-                            <th>Nama</th>
-                            <th>Start</th>
-                            <th>Aksi</th>
+                            <th class="py-3 px-4">ID</th>
+                            <th class="py-3 px-4">Negara</th>
+                            <th class="py-3 px-4">Kota</th>
+                            <th class="py-3 px-4">Nama</th>
+                            <th class="py-3 px-4">Start</th>
+                            <th class="py-3 px-4">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody class="text-center">';
+                    <tbody class="text-center bg-white divide-y divide-gray-200">';
 
         // Query Default
         $sql = "SELECT id, country, city, nama, start, status, link_pdf, link_gambar FROM consortium_list WHERE 1=1";
@@ -98,85 +108,80 @@ include "navbar.php";
                 $link_gambar = !empty(trim($row['link_gambar'])) ? htmlspecialchars($row['link_gambar']) : null;
                 $wa_number = "6281234567890"; // Nomor WA
 
-                echo "<tr class='fw-semibold'>
-                    <td>{$id}</td>
-                    <td>{$country}</td>
-                    <td>{$city}</td>
-                    <td>{$nama}</td>
-                    <td>{$start}</td>
-                    <td>
-                        <div class='d-flex flex-wrap gap-2 justify-content-center'>";
+                echo "<tr class='hover:bg-gray-100'>
+                        <td class='py-3 px-4'>{$id}</td>
+                        <td class='py-3 px-4'>{$country}</td>
+                        <td class='py-3 px-4'>{$city}</td>
+                        <td class='py-3 px-4 font-semibold'>{$nama}</td>
+                        <td class='py-3 px-4'>{$start}</td>
+                        <td class='py-3 px-4'>
+                            <div class='flex flex-wrap gap-2 justify-center'>";
 
                 // Tombol Lihat Itinerary (Jika Ada)
                 if ($link_pdf) {
-                    echo "<a href='{$link_pdf}' target='_blank' class='btn btn-outline-primary btn-sm fw-bold'>
-                            <i class='bi bi-file-earmark-text'></i> Itinerary
+                    echo "<a href='{$link_pdf}' target='_blank' 
+                            class='px-3 py-2 text-sm font-semibold text-blue-600 border border-blue-500 rounded-lg hover:bg-blue-500 hover:text-white transition'>
+                            Itinerary
                           </a>";
                 }
 
                 // Tombol Lihat Gambar (Jika Ada)
                 if ($link_gambar) {
-                    echo "<a href='{$link_gambar}' target='_blank' class='btn btn-outline-warning btn-sm fw-bold'>
-                            <i class='bi bi-image'></i> Flyer
+                    echo "<a href='{$link_gambar}' target='_blank' 
+                            class='px-3 py-2 text-sm font-semibold text-yellow-600 border border-yellow-500 rounded-lg hover:bg-yellow-500 hover:text-white transition'>
+                            Flyer
                           </a>";
                 }
 
                 // Tombol Pesan Sekarang (Selalu Ada)
                 echo "<a href='https://wa.me/{$wa_number}?text=" . urlencode("Halo, saya tertarik dengan paket {$nama} di {$country}. Bagaimana cara memesannya?") . "' 
-                        class='btn btn-outline-success btn-sm fw-bold' target='_blank'>
-                        <i class='bi bi-whatsapp'></i> Pesan
+                        class='px-3 py-2 text-sm font-semibold text-green-600 border border-green-500 rounded-lg hover:bg-green-500 hover:text-white transition' target='_blank'>
+                        Pesan
                       </a>";
 
                 echo "</div>
-                    </td>
-                </tr>";
+                        </td>
+                    </tr>";
             }
         } else {
-            echo "<tr><td colspan='6' class='text-center text-muted fw-light'>Tidak ada hasil ditemukan.</td></tr>";
+            echo "<tr><td colspan='6' class='py-4 text-center text-gray-500'>Tidak ada hasil ditemukan.</td></tr>";
         }
 
         echo '</tbody></table></div></div>';
     }
     ?>
 
-    <div class="container py-5">
+
+    <div class="container mx-auto py-10 px-6">
         <!-- Judul -->
-        <div class="d-flex align-items-center mb-4">
-            <i class="fa fa-globe fa-2x text-primary me-3"></i>
-            <h2 class="fw-bold mb-0 text-uppercase">Destinasi</h2>
+        <div class="flex items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">Destinasi</h2>
         </div>
 
-        <div class="row g-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <?php
-            $query_con = "SELECT consortium_list.id, consortium_list.continent,continent.img FROM consortium_list LEFT JOIN continent ON consortium_list.continent LIKE continent.name GROUP BY consortium_list.continent";
+            $query_con = "SELECT consortium_list.id, consortium_list.continent, continent.img FROM consortium_list LEFT JOIN continent ON consortium_list.continent LIKE continent.name GROUP BY consortium_list.continent";
             $rs_con = mysqli_query($con, $query_con);
             while ($row_con = mysqli_fetch_array($rs_con)) {
-                if (isset($row_con['img'])) {
-                    $img = $row_con['img'];
-                } else {
-                    $img = "img/home.png";
-                }
+                $img = isset($row_con['img']) ? $row_con['img'] : 'img/home.png';
             ?>
-                <div class="col-md-6">
-                    <a href="region.php?id=<?php echo $row_con['continent'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                        <img src="<?php echo $img ?>" alt="Asia" class="img-fluid w-100" style="height: 350px; object-fit: cover;">
-                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                        <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                            <h3 class="fw-bold mb-0 text-white"><?php echo $row_con['continent'] ?></h3>
-                        </div>
-                    </a>
-                </div>
+                <a href="region.php?id=<?php echo $row_con['continent'] ?>" class="group relative block rounded-xl overflow-hidden shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                    <img src="<?php echo $img ?>" alt="<?php echo $row_con['continent'] ?>" class="w-full h-[350px] object-cover">
+                    <div class="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition duration-300"></div>
+                    <div class="absolute bottom-4 left-4 text-white">
+                        <h3 class="text-2xl font-bold"><?php echo $row_con['continent'] ?></h3>
+                    </div>
+                </a>
             <?php
             }
             ?>
         </div>
     </div>
 
-    <div class="container my-5 p-4 bg-white shadow-lg rounded-4" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.8);">
-        <h2 class="table-title text-center fw-bold mb-4 border-bottom pb-2">Admission Ticket</h2>
-        <div class="row">
+    <div class="container mx-auto my-10 p-6 shadow-xl">
+        <h2 class="text-2xl font-bold border-b-4 border-blue-500 pb-4 mb-6">Admission Ticket</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <?php
-
             function getGoogleDriveDirectLink($url)
             {
                 if (strpos($url, 'drive.google.com') !== false) {
@@ -190,10 +195,10 @@ include "navbar.php";
 
             $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
                lti.summer_img, lti.winter_img, lti.autumn_img
-        FROM List_tempat AS lt
-        LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
-        WHERE lt.price > 100000
-        LIMIT 1000";
+               FROM List_tempat AS lt
+               LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
+               WHERE lt.price > 100000
+               LIMIT 4";
 
             $result = $con->query($sql);
             $tickets = [];
@@ -203,105 +208,85 @@ include "navbar.php";
                 }
             }
 
-            $maxVisible = 3; // Jumlah card yang ditampilkan pertama kali
-            foreach ($tickets as $index => $ticket) {
+            foreach ($tickets as $ticket) {
                 $image = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
-                $hiddenClass = ($index >= $maxVisible) ? 'hidden-card' : ''; // Sembunyikan jika lebih dari 3
             ?>
-                <div class="col-lg-4 col-md-6 mb-4 ticket-card <?php echo $hiddenClass; ?>">
-                    <div class="card border-0 shadow-lg rounded-4 overflow-hidden position-relative">
-                        <img src="<?php echo htmlspecialchars($image); ?>"
-                            alt="Admission Ticket"
-                            class="card-img-top" style="height: 250px; object-fit: cover;">
-
-                        <div class="card-body text-center p-4 d-flex flex-column">
-                            <h5 class="fw-bold text-dark"><?php echo htmlspecialchars($ticket['name']); ?></h5>
-                            <p class="text-muted small">
-                                Location: <span class="fw-bold text-white px-2 py-1 rounded bg-primary">
-                                    <?php echo htmlspecialchars($ticket['location']); ?>
-                                </span>
-                            </p>
-                            <div class="price-tag bg-warning text-white py-2 px-3 rounded-pill mx-auto">
-                                <span class="fs-5 fw-bold">IDR <?php echo number_format($ticket['price'], 0, ',', '.'); ?></span>
-                            </div>
-                            <div class="mt-4 d-grid gap-2">
-                                <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
-                                    target="_blank" class="btn btn-success btn-lg fw-bold shadow-sm">
-                                    <i class="bi bi-whatsapp"></i> Buy Ticket
-                                </a>
-                                <a href="<?php echo htmlspecialchars($image); ?>"
-                                    target="_blank" class="btn btn-outline-warning btn-lg fw-bold shadow-sm">
-                                    <i class="bi bi-image"></i> Lihat Gambar
-                                </a>
-                            </div>
+                <div class="ticket-card bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl relative">
+                    <img src="<?php echo htmlspecialchars($image); ?>" alt="Ticket Image" class="w-full h-56 object-cover">
+                    <div class="p-4 text-center">
+                        <h5 class="text-lg font-bold text-gray-900"> <?php echo htmlspecialchars($ticket['name']); ?> </h5>
+                        <p class="text-sm text-gray-600 mt-2">Location: <span class="text-white px-3 py-1 rounded bg-blue-600"> <?php echo htmlspecialchars($ticket['location']); ?> </span></p>
+                        <div class="mt-3 text-lg font-bold text-yellow-500">IDR <?php echo number_format($ticket['price'], 0, ',', '.'); ?></div>
+                        <div class="mt-4 flex flex-col gap-2">
+                            <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
+                                class="w-full py-2 bg-[#FFCA10] text-[#02335B] font-bold rounded-lg hover:bg-black hover:text-[#FFCA10] transition transform hover:scale-105">Pesan Sekarang</a>
+                            <a href="<?php echo htmlspecialchars($image); ?>" target="_blank"
+                                class="w-full py-2 bg-[#02335B] text-[#FFCA10] font-semibold rounded-lg border border-yellow-500 hover:bg-yellow-500 hover:text-white transition transform hover:scale-105">Lihat Gambar</a>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
-
-        <div class="text-center mt-4">
-            <a href="<?php echo $domain_web ?>tiket.php" class="btn btn-primary btn-lg">Lihat Semua Tiket</a>
+        <div class="text-center mt-6">
+            <a href="tiket.php" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transform hover:scale-110 transition duration-300">
+                🔍 Lihat Semua Tiket
+            </a>
         </div>
     </div>
 
-    <div class="container my-5">
+
+    <div class="container mx-auto py-10 px-6">
         <div><?php include "table_paket_tour.php"; ?></div>
+    </div>
+    <div class="container mx-auto py-10 px-6">
         <div><?php include "table_paket_tour2.php"; ?></div>
     </div>
 
-    <div class="container my-5" style="margin-top: 20px;">
-        <div class="header-section">
-            <h1>Visa</h1>
-            <a href="#">Lihat Lainnya ></a>
+    <div class="container mx-auto py-10 px-6">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-2xl font-bold text-gray-800">Visa</h1>
+            <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300">Lihat Lainnya ></a>
         </div>
 
-        <div class="row g-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <!-- Card Visa Jepang -->
-            <div class="col-md-3 col-sm-6">
-                <div class="visa-card">
-                    <img src="img/VisaJapan.jpg" alt="Japan">
-                    <div class="visa-content">
-                        <h5>Visa Jepang</h5>
-                        <p class="price">Rp1.500.000</p>
-                    </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <img src="img/VisaJapan.jpg" alt="Visa Jepang" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h5 class="text-xl font-semibold text-gray-800">Visa Jepang</h5>
+                    <p class="text-lg text-gray-600 mt-2">Rp1.500.000</p>
                 </div>
             </div>
 
             <!-- Card Visa China -->
-            <div class="col-md-3 col-sm-6">
-                <div class="visa-card">
-                    <img src="img/VisaChina.jpg" alt="USA">
-                    <div class="visa-content">
-                        <h5>Visa China</h5>
-                        <p class="price">Rp2.800.000</p>
-                    </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <img src="img/VisaChina.jpg" alt="Visa China" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h5 class="text-xl font-semibold text-gray-800">Visa China</h5>
+                    <p class="text-lg text-gray-600 mt-2">Rp2.800.000</p>
                 </div>
             </div>
 
-            <!-- Card Visa Prancis -->
-            <div class="col-md-3 col-sm-6">
-                <div class="visa-card">
-                    <img src="img/VisaTurkey.jpg" alt="France">
-                    <div class="visa-content">
-                        <h5>Visa Turkey</h5>
-                        <p class="price">Rp2.500.000</p>
-                    </div>
+            <!-- Card Visa Turkey -->
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <img src="img/VisaTurkey.jpg" alt="Visa Turkey" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h5 class="text-xl font-semibold text-gray-800">Visa Turkey</h5>
+                    <p class="text-lg text-gray-600 mt-2">Rp2.500.000</p>
                 </div>
             </div>
 
             <!-- Card Visa Australia -->
-            <div class="col-md-3 col-sm-6">
-                <div class="visa-card">
-                    <img src="img/VisaAusie.jpg" alt="Australia">
-                    <div class="visa-content">
-                        <h5>Visa Australia</h5>
-                        <p class="price">Rp2.200.000</p>
-                    </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                <img src="img/VisaAusie.jpg" alt="Visa Australia" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h5 class="text-xl font-semibold text-gray-800">Visa Australia</h5>
+                    <p class="text-lg text-gray-600 mt-2">Rp2.200.000</p>
                 </div>
             </div>
         </div>
     </div>
+
 
 
 
@@ -370,36 +355,57 @@ include "navbar.php";
         </div>
     </div> -->
 
-    <div class="container my-5">
-        <div class="text-center" style="margin-top: 40px;">
-            <h2 class="fw-bold">OUR PRODUCTS</h2>
+    <div class="container mx-auto py-16 px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">OUR PRODUCTS</h2>
+            <p class="text-lg text-gray-600">Discover our wide range of offerings that cater to every need and desire.</p>
         </div>
-        <div class="row text-center">
-            <div class="col-md-6 col-lg-3 mb-3">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Kategori 1: Attraction -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>Activity">
-                    <img src="img/attraction2.png" class="img-thumbnail shadow-sm img-hover">
+                    <img src="img/attraction2.png" alt="Attraction" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
+                        <span class="text-white text-xl font-semibold">Explore Attractions</span>
+                    </div>
                 </a>
             </div>
 
-            <div class="col-md-6 col-lg-3 mb-3">
-                <a href="">
-                    <img src="img/cruise.png" class="img-thumbnail shadow-sm img-hover">
+            <!-- Kategori 2: Cruise -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                <a href="#">
+                    <img src="img/cruise.png" alt="Cruise" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
+                        <span class="text-white text-xl font-semibold">Amazing Cruises</span>
+                    </div>
                 </a>
             </div>
 
-            <div class="col-md-6 col-lg-3 mb-3">
+            <!-- Kategori 3: Land Tour -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>paket-landtour.php">
-                    <img src="img/land_tour.png" class="img-thumbnail shadow-sm img-hover">
+                    <img src="img/land_tour.png" alt="Land Tour" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
+                        <span class="text-white text-xl font-semibold">Land Tours</span>
+                    </div>
                 </a>
             </div>
 
-            <div class="col-md-6 col-lg-3 mb-3">
+            <!-- Kategori 4: Hotel -->
+            <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>Hotel">
-                    <img src="img/hotel.png" class="img-thumbnail shadow-sm img-hover">
+                    <img src="img/hotel.png" alt="Hotel" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
+                        <span class="text-white text-xl font-semibold">Luxury Hotels</span>
+                    </div>
                 </a>
             </div>
         </div>
     </div>
+
+
+
 
     <script>
         function search_promo() {

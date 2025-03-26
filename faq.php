@@ -6,16 +6,23 @@ include "slug.php";
 ?>
 
 <body>
-    <div class="position-relative">
-        <img src="img/Map.jpg" alt="Europe Map" class="img-fluid w-100" style="height: 500px; object-fit: cover;">
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-        <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
-            <div class="faq-header">FAQ</div>
+    <!-- Hero Section with image and improved overlay visibility -->
+    <div class="relative w-full h-[500px]">
+        <!-- Image -->
+        <img src="img/Map.jpg" alt="Europe Map" class="w-full h-full object-cover">
+
+        <!-- Transparent dark overlay (opacity dikurangi agar gambar lebih jelas) -->
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+
+        <!-- Header text (FAQ) -->
+        <div class="absolute inset-0 flex items-center justify-center text-center text-white z-10">
+            <h1 class="text-4xl font-extrabold text-shadow-lg">FAQ</h1>
         </div>
     </div>
 
-    <div class="faq-container">
-        <div class="accordion" id="faqAccordion">
+    <!-- FAQ Section -->
+    <div class="max-w-4xl mx-auto py-12 px-4">
+        <div class="space-y-6">
             <?php
             $faqs = [
                 "Apa Itu Bossku Tour & Travel?" => "Bossku Tour & Travel adalah agen perjalanan yang menyediakan berbagai paket wisata domestik dan internasional dengan harga terbaik serta pelayanan yang profesional.",
@@ -31,16 +38,12 @@ include "slug.php";
             $i = 1;
             foreach ($faqs as $question => $answer) {
             ?>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading<?php echo $i; ?>">
-                        <button class="accordion-button <?php echo $i > 1 ? 'collapsed' : ''; ?>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?php echo $i; ?>" aria-expanded="<?php echo $i == 1 ? 'true' : 'false'; ?>" aria-controls="collapse<?php echo $i; ?>">
-                            <?php echo $question; ?>
-                        </button>
-                    </h2>
-                    <div id="collapse<?php echo $i; ?>" class="accordion-collapse collapse <?php echo $i == 1 ? 'show' : ''; ?>" aria-labelledby="heading<?php echo $i; ?>" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            <?php echo $answer; ?>
-                        </div>
+                <div class="border-b border-gray-300 py-4">
+                    <h3 class="text-xl font-semibold text-[#02335B] cursor-pointer" onclick="toggleAnswer(<?php echo $i; ?>)">
+                        <?php echo $question; ?>
+                    </h3>
+                    <div id="answer<?php echo $i; ?>" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <p class="mt-2 text-gray-600"><?php echo $answer; ?></p>
                     </div>
                 </div>
             <?php
@@ -49,32 +52,30 @@ include "slug.php";
             ?>
         </div>
     </div>
+
+    <script>
+        // JavaScript untuk toggle visibility dari answer di FAQ
+        function toggleAnswer(index) {
+            const answerElement = document.getElementById(`answer${index}`);
+
+            // Toggle antara max-h-0 dan max-h-[1000px] untuk memberikan animasi yang smooth
+            if (answerElement.classList.contains('max-h-0')) {
+                answerElement.classList.remove('max-h-0');
+                answerElement.classList.add('max-h-[1000px]'); // Bisa diubah sesuai ukuran yang pas
+            } else {
+                answerElement.classList.remove('max-h-[1000px]');
+                answerElement.classList.add('max-h-0');
+            }
+        }
+    </script>
 </body>
 
-
 <?php
-include "footer.php"
+include "footer.php";
 ?>
 
 <style>
-    .faq-header {
-        height: 300px;
-        background-image: url('<?php echo $domain_web ?>img/header/faq.jpg');
-        background-position: bottom;
-        background-repeat: no-repeat;
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: white;
-        font-size: 40px;
-        font-weight: bold;
-        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .faq-container {
-        max-width: 950px;
-        margin: auto;
-        padding: 40px 20px;
+    .text-shadow-lg {
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
     }
 </style>

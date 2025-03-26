@@ -2,14 +2,13 @@
 include "db=connection.php";
 include "slug.php";
 include "API/Price/Api_LT_total_baru.php";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include "header.php";
 include "navbar.php";
-$query = "SELECT consortium_list.id, consortium_list.continent,consortium_list.detail,consortium_list.country,country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' GROUP BY consortium_list.detail";
+$query = "SELECT consortium_list.id, consortium_list.continent, consortium_list.detail, consortium_list.country, country.img FROM consortium_list LEFT JOIN country ON consortium_list.country LIKE country.name where consortium_list.continent='" . $_GET['id'] . "' GROUP BY consortium_list.detail";
 $rs = mysqli_query($con, $query);
 
 if ($_GET['id'] == "Asia") {
@@ -29,58 +28,53 @@ if ($_GET['id'] == "Asia") {
 ?>
 
 <body>
-    <div class="position-relative">
-        <img src="<?php echo $img_header ?>" alt="Asia Map" class="img-fluid w-100" style="height: 400px; object-fit: cover;">
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.75); z-index: 1;"></div>
-        <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
-            <h1 class="fw-bold"><?php echo $judul ?></h1>
-            <p class="fs-5 mt-3 px-3" style="max-width: 800px;">
-                <?php echo $sub_judul ?>
-            </p>
+    <div class="relative">
+        <img src="<?php echo $img_header ?>" alt="Benua Image" class="w-full h-[400px] object-cover">
+        <div class="absolute inset-0 bg-black opacity-75"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10 px-4">
+            <h1 class="text-4xl font-bold"><?php echo $judul ?></h1>
+            <p class="text-lg mt-4 max-w-3xl mx-auto"><?php echo $sub_judul ?></p>
         </div>
     </div>
 
-    <div class="container py-5">
-        <div class="row g-2">
+    <div class="container py-12 px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <?php
             while ($row = mysqli_fetch_array($rs)) {
+                // Define image paths for regions based on continent
+                $images = [
+                    "Europe" => [
+                        "West" => "img/europe/WestEurope.jpg",
+                        "East" => "img/europe/EastEurope.jpg",
+                    ],
+                    "Asia" => [
+                        "North" => "img/asia/AsiaBarat.jpg",
+                        "Southeast" => "img/asia/AsiaTenggara.jpg",
+                        "South" => "img/asia/AsiaSelatan.jpg",
+                        "Northwest" => "img/asia/Northwest.jpg",
+                        "East" => "img/asia/AsiaTimur.jpg"
+                    ],
+                    "Australia" => [
+                        "" => "img/AustraliaThumb.jpg"
+                    ]
+                ];
 
+                $continent = $_GET['id']; // Get continent name from URL
+                $region = $row['detail']; // Get region name from the query
+
+                // Default image path
+                $image = "img/default.jpg";
+                // Check if the image exists for the continent and region
+                if (isset($images[$continent][$region])) {
+                    $image = $images[$continent][$region];
+                }
             ?>
-                <div class="col-md-4">
-                    <a href="negara.php?id=<?php echo $_GET['id'] . "&&region=" . $row['detail'] ?>" class="custom-card position-relative overflow-hidden rounded-4 shadow-lg d-block">
-                        <?php
-                        // Array manual untuk menyimpan gambar berdasarkan benua & region
-                        $images = [
-                            "Europe" => [
-                                "West" => "img/europe/WestEurope.jpg",
-                                "East" => "img/europe/EastEurope.jpg",
-                            ],
-                            "Asia" => [
-                                "North" => "img/asia/AsiaBarat.jpg",
-                                "Southeast" => "img/asia/AsiaTenggara.jpg",
-                                "South" => "img/asia/AsiaSelatan.jpg",
-                                "Northwest" => "img/asia/Northwest.jpg",
-                                "East" => "img/asia/AsiaTimur.jpg"
-                            ],
-                            "Australia" => [
-                                "" => "img/AustraliaThumb.jpg"
-                            ]
-                        ];
-                        // Ambil nama benua dari URL
-                        $continent = $_GET['id'];  // Misal: "Asia" atau "Europe"
-                        $region = $row['detail'];  // Misal: "West", "Southeast", dll
-
-                        // Cek apakah ada gambar untuk benua dan region ini
-                        $image = "img/default.jpg"; // Default image
-                        if (isset($images[$continent][$region])) {
-                            $image = $images[$continent][$region];
-                        }
-                        ?>
-                        <img src="<?php echo $image; ?>" alt="<?php echo $row['detail']; ?>" class="img-fluid w-100" style="height: 220px; object-fit: cover;">
-
-                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-black opacity-50"></div>
-                        <div class="position-absolute bottom-0 start-0 w-100 p-3 text-left">
-                            <h3 class="fw-bold mb-0 text-white"><?php echo $row['detail'] . " " ?></h3>
+                <div class="relative group">
+                    <a href="negara.php?id=<?php echo $_GET['id'] . "&&region=" . $row['detail'] ?>" class="block overflow-hidden rounded-lg shadow-lg">
+                        <img src="<?php echo $image; ?>" alt="<?php echo $row['detail']; ?>" class="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-black opacity-50 group-hover:opacity-75 transition-opacity duration-300 rounded-lg"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 text-white">
+                            <h3 class="text-xl font-semibold"><?php echo $row['detail']; ?></h3>
                         </div>
                     </a>
                 </div>
@@ -94,45 +88,6 @@ if ($_GET['id'] == "Asia") {
 include "footer.php";
 ?>
 
-<style>
-    .custom-card {
-        position: relative;
-        border-radius: 15px;
-        overflow: hidden;
-        transition: transform 0.3s ease-in-out;
-    }
+<script src="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.js"></script>
 
-    .custom-card:hover {
-        transform: scale(1.05);
-    }
-
-    .custom-card img {
-        width: 100%;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 15px;
-    }
-
-    .card-overlay {
-        position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: end;
-        color: white;
-        padding: 15px;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
-        transition: all 0.3s ease-in-out;
-    }
-
-    .card-title {
-        font-size: 20px;
-        font-weight: 600;
-    }
-
-    .card-subtitle {
-        font-size: 14px;
-        font-weight: 400;
-        margin-bottom: 10px;
-    }
-</style>
+</html>

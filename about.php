@@ -5,113 +5,66 @@ include "db=connection.php";
 include "slug.php";
 ?>
 
-<style>
-    .hero {
-        height: 350px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 40px;
-        font-weight: bold;
-        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    }
+<body class="bg-gray-100">
 
-    .about-content {
-        padding: 50px 20px;
-        text-align: center;
-    }
-
-    .about-content p {
-        max-width: 800px;
-        margin: auto;
-        line-height: 1.8;
-    }
-
-    .service-card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        /* Pastikan tinggi setiap card seragam */
-    }
-
-    .service-card .card-body {
-        flex-grow: 1;
-        /* Memastikan teks menyesuaikan */
-    }
-
-    .service-card img {
-        height: 200px;
-        /* Sesuaikan ukuran gambar */
-        object-fit: cover;
-        /* Agar gambar tidak terdistorsi */
-    }
-
-    .service-card:hover {
-        transform: translateY(-5px);
-        transition: 0.3s ease-in-out;
-        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-    }
-</style>
-
-<body>
-    <div class="position-relative">
-        <img src="img/About.jpg" alt="Europe Map" class="img-fluid w-100" style="height: 500px; object-fit: cover;">
-        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.6); z-index: 1;"></div>
-        <div class="position-absolute top-50 start-50 translate-middle text-white text-center" style="z-index: 2;">
-            <div class="hero">ABOUT US</div>
+    <!-- Hero Section -->
+    <div class="relative">
+    <img src="img/About.jpg" alt="Europe Map" class="w-full h-64 object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
+            <h1 class="text-4xl font-extrabold shadow-lg text-shadow-lg">ABOUT US</h1>
         </div>
     </div>
 
-    <div class="about-content">
-        <h2>Tentang Bossku Tour & Travel</h2>
-        <p>Bossku Tour & Travel adalah agen perjalanan yang menyediakan berbagai paket wisata domestik dan internasional dengan harga terbaik. Kami berkomitmen untuk memberikan pengalaman perjalanan yang nyaman, aman, dan berkesan bagi setiap pelanggan dengan layanan profesional dan fasilitas terbaik.</p>
+    <!-- About Content Section -->
+    <div class="px-6 py-12 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Tentang Bossku Tour & Travel</h2>
+        <p class="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
+            Bossku Tour & Travel adalah agen perjalanan yang menyediakan berbagai paket wisata domestik dan internasional dengan harga terbaik. Kami berkomitmen untuk memberikan pengalaman perjalanan yang nyaman, aman, dan berkesan bagi setiap pelanggan dengan layanan profesional dan fasilitas terbaik.
+        </p>
     </div>
 
-
-    <div class="container text-center py-5">
-        <div class="row g-4">
-            <div class="col-md-3">
-                <div class="card service-card">
-                    <img src="img/Map.jpg" class="card-img-top" alt="Customized Holiday">
-                    <div class="card-body">
-                        <h5 class="card-title">Customized Holiday</h5>
-                        <p class="card-text">Liburan yang bisa disesuaikan sesuai keinginan Anda.</p>
-                    </div>
+    <!-- Services Section -->
+    <div class="container mx-auto px-4 py-12 text-center">
+        <h3 class="text-2xl font-bold text-gray-800 mb-8">Layanan Kami</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Service Card 1 -->
+            <div class="service-card bg-white shadow-lg rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                <img src="img/Map.jpg" class="w-full h-48 object-cover" alt="Customized Holiday">
+                <div class="p-6">
+                    <h5 class="text-xl font-semibold text-gray-800">Customized Holiday</h5>
+                    <p class="text-gray-600 mt-2">Liburan yang bisa disesuaikan sesuai keinginan Anda.</p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card service-card">
-                    <img src="img/Group.jpg" class="card-img-top" alt="Group Incentives">
-                    <div class="card-body">
-                        <h5 class="card-title">Group Incentives</h5>
-                        <p class="card-text">Paket perjalanan untuk perusahaan atau grup.</p>
-                    </div>
+            <!-- Service Card 2 -->
+            <div class="service-card bg-white shadow-lg rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                <img src="img/Group.jpg" class="w-full h-48 object-cover" alt="Group Incentives">
+                <div class="p-6">
+                    <h5 class="text-xl font-semibold text-gray-800">Group Incentives</h5>
+                    <p class="text-gray-600 mt-2">Paket perjalanan untuk perusahaan atau grup.</p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card service-card">
-                    <img src="img/Paspor.jpg" class="card-img-top" alt="Travel Document">
-                    <div class="card-body">
-                        <h5 class="card-title">Travel Document</h5>
-                        <p class="card-text">Membantu dalam pengurusan paspor dan visa.</p>
-                    </div>
+            <!-- Service Card 3 -->
+            <div class="service-card bg-white shadow-lg rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                <img src="img/Paspor.jpg" class="w-full h-48 object-cover" alt="Travel Document">
+                <div class="p-6">
+                    <h5 class="text-xl font-semibold text-gray-800">Travel Document</h5>
+                    <p class="text-gray-600 mt-2">Membantu dalam pengurusan paspor dan visa.</p>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card service-card">
-                    <img src="img/Insurance.jpg" class="card-img-top" alt="Travel Insurance">
-                    <div class="card-body">
-                        <h5 class="card-title">Travel Insurance</h5>
-                        <p class="card-text">Perlindungan asuransi perjalanan bagi pelancong.</p>
-                    </div>
+            <!-- Service Card 4 -->
+            <div class="service-card bg-white shadow-lg rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                <img src="img/Insurance.jpg" class="w-full h-48 object-cover" alt="Travel Insurance">
+                <div class="p-6">
+                    <h5 class="text-xl font-semibold text-gray-800">Travel Insurance</h5>
+                    <p class="text-gray-600 mt-2">Perlindungan asuransi perjalanan bagi pelancong.</p>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
-
 <?php
-include "footer.php"
+include "footer.php";
 ?>

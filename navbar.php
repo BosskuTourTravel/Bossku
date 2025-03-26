@@ -1,88 +1,53 @@
 <?php include "slug.php"; ?>
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #02335B;">
-	<div class="container">
-		<!-- Logo -->
-		<a class="navbar-brand" href="<?php echo $domain_web ?>">
-			<img src="img/LogoWeb.png" alt="Bossku Tour & Travel" width="120" class="img-fluid">
-		</a>
-
-		<!-- Tombol Toggle -->
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<!-- Menu Tengah -->
-		<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-			<ul class="navbar-nav text-center">
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>">HOME</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>about.php">ABOUT</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>faq.php">FAQ</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>terms_condition.php">TERMS & CONDITIONS</a></li>
-				<li class="nav-item"><a class="nav-link fw-bold text-white" href="<?php echo $domain_web ?>privacy_policy.php">PRIVACY POLICY</a></li>
-			</ul>
-		</div>
-
-		<!-- Button di Kanan -->
-		<div class="d-flex gap-2">
-			<a href="<?php echo $domain_web ?>member/" class="btn login-btn d-flex align-items-center justify-content-center">Login</a>
-		</div>
-	</div>
+<nav class="bg-[#02335B] py-4 shadow-lg">
+    <div class="container mx-auto flex items-center justify-between px-4">
+        <!-- Logo -->
+        <a href="<?php echo $domain_web ?>" class="flex-shrink-0">
+            <img src="img/LogoWeb.png" alt="Bossku Tour & Travel" class="w-[120px] md:w-[100px] transition-transform duration-300 hover:scale-105">
+        </a>
+        
+        <!-- Tombol Toggle -->
+        <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+        
+        <!-- Menu Tengah -->
+        <div id="navbarNav" class="hidden md:flex md:items-center md:space-x-6 text-white text-center">
+            <a href="<?php echo $domain_web ?>" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">HOME</a>
+            <a href="<?php echo $domain_web ?>about.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">ABOUT</a>
+            <a href="<?php echo $domain_web ?>faq.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">FAQ</a>
+            <a href="<?php echo $domain_web ?>terms_condition.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">TERMS & CONDITIONS</a>
+            <a href="<?php echo $domain_web ?>privacy_policy.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">PRIVACY POLICY</a>
+        </div>
+        
+        <!-- Button di Kanan -->
+        <div class="hidden md:flex gap-2">
+            <a href="<?php echo $domain_web ?>member/" class="bg-[#FFCA10] text-[#02335B] border-2 border-[#02335B] rounded-full px-6 py-2 font-bold transition duration-300 hover:bg-[#02335B] hover:text-[#FFCA10] shadow-md">Login</a>
+        </div>
+    </div>
+    
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden flex flex-col items-center bg-[#02335B] text-white py-4 space-y-4 transition-all duration-300">
+        <a href="<?php echo $domain_web ?>" class="font-bold text-white hover:text-gray-300">HOME</a>
+        <a href="<?php echo $domain_web ?>about.php" class="font-bold text-white hover:text-gray-300">ABOUT</a>
+        <a href="<?php echo $domain_web ?>faq.php" class="font-bold text-white hover:text-gray-300">FAQ</a>
+        <a href="<?php echo $domain_web ?>terms_condition.php" class="font-bold text-white hover:text-gray-300">TERMS & CONDITIONS</a>
+        <a href="<?php echo $domain_web ?>privacy_policy.php" class="font-bold text-white hover:text-gray-300">PRIVACY POLICY</a>
+        <a href="<?php echo $domain_web ?>member/" class="bg-white text-[#02335B] border-2 border-[#02335B] rounded-full px-6 py-2 font-bold transition duration-300 hover:bg-[#02335B] hover:text-white shadow-md">Login</a>
+    </div>
 </nav>
 
-<!-- CSS -->
+<!-- JavaScript untuk Toggle Menu -->
+<script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+</script>
+
 <style>
-/* Ukuran Button */
-.keranjang-btn,
-.login-btn {
-    width: 110px;
-    height: 30px;
-    font-size: 17px;
-    font-weight: 640;
-    text-align: center;
-    border-radius: 20px; /* Membuatnya bulat */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease-in-out;
+a {
+    text-decoration: none !important;
 }
-
-/* Button Keranjang */
-.keranjang-btn {
-    background-color: #FFCA10;
-    color: #02335B;
-    border: none;
-}
-
-.keranjang-btn:hover {
-    background-color: #02335B;
-    color: #FFCA10;
-}
-
-/* Button Login */
-.login-btn {
-    background-color: #FFFFFF;
-    color: #02335B;
-    border: 2px solid #02335B;
-}
-
-.login-btn:hover {
-    background-color: #02335B;
-    color: #FFFFFF;
-}
-
-
-
-	/* Responsif */
-	@media (max-width: 991px) {
-		.navbar-brand img {
-			width: 100px;
-			/* Ukuran logo lebih kecil di layar kecil */
-		}
-
-		.d-flex.gap-2 {
-			flex-wrap: wrap;
-			/* Agar button tidak berdesakan */
-			justify-content: center;
-			margin-top: 10px;
-		}
-	}
 </style>

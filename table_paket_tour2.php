@@ -1,159 +1,131 @@
 <?php
-// include "API/Price/Api_LT_total_baru.php";
-// include "slug.php";
+// Pastikan koneksi database ($conn atau $con) sudah didefinisikan sebelumnya
+$countries = [];
+$country = isset($_GET['country']) ? $con->real_escape_string($_GET['country']) : '';
+
+// Query untuk mendapatkan jumlah trip per negara
+$query = "SELECT negara, COUNT(*) as total_trip FROM paket_tour_online GROUP BY negara ORDER BY negara ASC";
+$result = $con->query($query); // Gunakan $conn agar konsisten
+
+// Debug: Cek apakah query benar
+// echo "<pre>$query</pre>";
+
+while ($row = $result->fetch_assoc()) {
+    $splitCountries = explode(" - ", $row['negara']); // Pisahkan negara yang digabung
+    foreach ($splitCountries as $country) {
+        $country = trim($country);
+        if (!isset($countries[$country])) {
+            $countries[$country] = $row['total_trip']; // Simpan jumlah trip
+        } else {
+            $countries[$country] += $row['total_trip']; // Tambah jumlah trip jika ada negara yang sama
+        }
+    }
+}
 ?>
-<div class="table-container" style="margin-top: 30px;">
-    <div class="table-title">PAKET TOUR PRICE LIST</div>
-    <div class="table-responsive">
-        <table id="tb-pt-web" class="table table-striped table-bordered table-sm" style="width:100% ;font-size: 10pt; padding: 20px;">
-            <thead style="background-color: #007bff; color: white;">
-                <tr>
-                    <th>No</th>
-                    <th style="max-width: 350px;">Nama Paket</th>
-                    <th>Pax</th>
-                    <th>Code</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $no = 1;
-                $query = "SELECT * FROM(SELECT paket_tour_online.*, LTSUB_itin.judul,LTSUB_itin.landtour,LT_change_judul.nama as change_judul,LTP_insert_sfee.ket as staff_id,login_staff.name as staff_name ,login_staff.phone FROM paket_tour_online INNER JOIN LTSUB_itin ON paket_tour_online.tour_id=LTSUB_itin.id lEFT JOIN LT_change_judul ON paket_tour_online.tour_id=LT_change_judul.copy_id && paket_tour_online.grub_id=LT_change_judul.grub_id INNER JOIN LTP_insert_sfee ON paket_tour_online.sfee_id=LTP_insert_sfee.id INNER JOIN login_staff ON LTP_insert_sfee.ket=login_staff.id order by paket_tour_online.gt ASC) as itin GROUP BY itin.landtour order by itin.negara ASC";
-                $rs = mysqli_query($con, $query);
-                while ($row = mysqli_fetch_array($rs)) {
-                    $judul = "";
-                    $url_encode = urldecode("Haii Bossku , Saya ingin Memesan Paket Tour : https://www.bosskujalanjalan.com/Admin/cetak_pt_website.php?id=" . $row['id']);
-                    $query_cek = "SELECT paket_tour_online.start, paket_tour_online.promo,LTSUB_itin.landtour FROM paket_tour_online LEFT JOIN LTSUB_itin ON paket_tour_online.tour_id=LTSUB_itin.id where LTSUB_itin.landtour='" . $row['landtour'] . "' GROUP BY paket_tour_online.start , paket_tour_online.promo ORDER BY paket_tour_online.start, paket_tour_online.promo ASC";
-                    $rs_cek = mysqli_query($con, $query_cek);
-                    $gabung_kota = "";
-                    $gabung_promo = "";
-                    $cek_kota = "";
-                    $cek_promo = "";
-                    while ($row_cek = mysqli_fetch_array($rs_cek)) {
-                        $kota = "";
-                        if ($row_cek['start'] == "BTH") {
-                            $kota = "Batam";
-                        } else if ($row_cek['start'] == "SUB") {
-                            $kota = "Surabaya";
-                        } else if ($row_cek['start'] == "CGK") {
-                            $kota = "Jakarta";
-                        } else if ($row_cek['start'] == "DPS") {
-                            $kota = "Denpasar";
-                        } else {
-                            $kota = "Undefined";
-                        }
 
+<div class="container mx-auto py-10 px-6">
+    <!-- Search Form -->
+    <div class="flex justify-between items-center mb-5">
+        <!-- Title (Left) -->
+        <h2 class="text-2xl font-bold mb-5">Eksplorasi Dunia dengan Paket Tour Kami</h2>
 
-                        if ($row_cek['promo'] == "p_ls") {
-                            $detail = "Low Seasons";
-                        } else if ($row_cek['promo'] == "p_ny") {
-                            $detail = "New Years";
-                        } else if ($row_cek['promo'] == "p_lebaran") {
-                            $detail = "Lebaran";
-                        } else if ($row_cek['promo'] == "p_sh") {
-                            $detail = "School Holiday";
-                        } else {
-                            $detail = "Undefined";
-                        }
+        <!-- Search Form (Right) -->
+        <div class="relative w-full max-w-xs">
+            <!-- Search Label -->
+            <label for="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-pink-600 font-medium transition-all duration-300 ease-in-out opacity-70 hover:opacity-100"></label>
 
-                        if ($cek_kota == "") {
-                            $gabung_kota .=  $kota . " " . $detail;
-                            $cek_promo = $row_cek['promo'];
-                            $cek_kota = $row_cek['start'];
-                        } else {
-                            if ($cek_kota == $row_cek['start']) {
-                                if ($cek_promo != $row_cek['promo']) {
-                                    $gabung_kota .= " / " . $detail;
-                                    $cek_promo = $row_cek['promo'];
-                                }
-                            } else {
-                                $gabung_kota .= " || " . $kota . " " . $detail;
-                                $cek_kota = $row_cek['start'];
-                            }
-                        }
-                    }
+            <!-- Search Input -->
+            <input type="text" id="search" class="w-full py-3 pl-10 pr-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-700 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out" placeholder="Search by country..." onkeyup="searchCountry()">
+        </div>
+    </div>
 
-                    if (isset($row['change_judul'])) {
-                        $judul = $row['change_judul'];
-                    } else {
-                        $judul = $row['judul'];
-                    }
+    <!-- Swiper Slider -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <?php
+            foreach ($countries as $country => $totalTrip) {
+                $imageName = strtolower(trim(preg_replace('/[^a-zA-Z0-9]+/', '_', $country), '_')) . ".jpg";
+                $imagePath = "img/flag/" . $imageName;
 
-                ?>
-                    <tr>
-                        <th><?php echo $no ?></th>
-                        <td>
-                            <div>
-                                <a href="<?php echo $domain_web ?>detail-paket-tour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>" class="link-body-emphasis link-offset-2 link-underline-opacity-0 link-underline-opacity-75-hover" style="color: black;"><b><?php echo $judul ?></b></a>
-                            </div>
-                            <div><?php echo $row['negara'] ?></div>
-                            <div><?php echo "<b>Start From :</b> " . $gabung_kota ?></div>
-                        </td>
-                        <td><?php echo $row['pax_tour'] ?></td>
-                        <td>
-                            <?php echo $row['landtour'] ?>
-                        </td>
-                        <td><?php echo "IDR " . number_format($row['gt'], 0, ".", ".") ?></td>
-                        <td>
-                            <a class="btn btn-warning btn-sm tip my-1" href="Admin/cetak_pt_website.php?id=<?php echo $row['id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
-                            <a class="btn btn-success btn-sm tip my-1" href="https://wa.me/628112557728?text=<?php echo $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> Whatsapp</a>
-                            <a class="btn btn-primary btn-sm tip my-1" href="<?php echo $domain_web ?>detail-paket-tour.php?id=<?php echo $row['id'] ?>&master=<?php echo $row['tour_id'] ?>"><i class="fa fa-info-circle"></i> detail</a>
-                        </td>
-                    </tr>
-                <?php
-                    $no++;
+                // Cek apakah gambar ada
+                if (!file_exists($imagePath)) {
+                    $imagePath = "img/flag/default.jpg";
                 }
-                ?>
-            </tbody>
-        </table>
+                // echo $imagePath;
+            ?>
+                <div class="swiper-slide relative hover:scale-105 transition-all overflow-hidden rounded-lg shadow-lg">
+                    <a href="paket-tour.php?country=<?php echo urlencode($country); ?>" class="block">
+                        <img src="<?= htmlspecialchars($imagePath) ?>" class="w-full h-64 object-cover" alt="Paket <?php echo htmlspecialchars($country); ?>">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-left justify-end text-white p-4">
+                            <h5 class="text-xl font-bold"><?php echo htmlspecialchars($country); ?></h5>
+                            <p class="text-xs font-medium"><?php echo $totalTrip; ?> Paket Tour Tersedia</p>
+                        </div>
+                    </a>
+                </div>
+            <?php } ?>
+        </div>
+        <!-- Navigasi Swiper -->
+        <div class="swiper-button-prev prev-myswiper"></div>
+        <div class="swiper-button-next next-myswiper"></div>
     </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-    $('#tb-pt-web').DataTable({
-        "aLengthMenu": [
-            [5, 10, 25, -1],
-            [5, 10, 25, "All"]
-        ],
-        "iDisplayLength": 10,
-        "bDestroy": true,
-        "pagingType": "full_numbers",
-        "language": {
-            "lengthMenu": "Tampilkan _MENU_ paket",
-            "zeroRecords": "Paket tidak ditemukan",
-            "info": "Menampilkan _START_ sampai _END_ dari _TOTAL_ paket",
-            "infoEmpty": "Tidak ada data",
-            "infoFiltered": "(dari total _MAX_ paket)"
-        }
-    });
-});
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    var swiper1 = new Swiper(".mySwiper", {
+        slidesPerView: 1.1,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".next-myswiper",
+            prevEl: ".prev-myswiper",
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 3.2
+            },
+            1024: {
+                slidesPerView: 4.2
+            },
+        },
+    });
+
+    // Function to search countries
+    function searchCountry() {
+        const searchQuery = document.getElementById('search').value.toLowerCase();
+        const items = document.querySelectorAll('.swiper-slide');
+
+        items.forEach(item => {
+            const countryName = item.getAttribute('data-country').toLowerCase();
+            if (countryName.includes(searchQuery)) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
 </script>
 
 <style>
-    /* Header Table */
-#tb-pt-web thead {
-    background: linear-gradient(to right, #004d00, #008000);
-    color: white;
-    text-transform: uppercase;
-}
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 48px !important;
+        height: 48px !important;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s;
+    }
 
-/* Hover Effect pada Row */
-#tb-pt-web tbody tr:hover {
-    background-color: #f0fff0;
-    transition: 0.3s;
-}
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        background-color: rgba(0, 0, 0, 0.8);
+    }
 
-/* Styling Tombol Action */
-.btn-sm {
-    font-size: 12px;
-    border-radius: 8px;
-    transition: all 0.3s;
-}
-
-.btn-sm:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 24px !important;
+        color: white !important;
+    }
 </style>
