@@ -1,12 +1,35 @@
-<footer class="bg-gray-800 text-white py-12">
-  <div class="container mx-auto px-6">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-      <!-- About Section -->
-      <div>
-        <h6 class="text-lg font-semibold mb-4">About</h6>
-        <p class="text-gray-400 text-justify">
-          Bossku Tour & Travel adalah <i>agen perjalanan ritel dan online</i> yang menangani jenis perjalanan individu dan kelompok dengan penjualan distribusi sebagian besar berasal dari situs web dan media sosial. Bossku Tour & Travel juga menawarkan paket liburan menarik terlengkap yang dibuat berdasarkan minat pelanggan, dengan berbagai akomodasi mulai dari standar hingga mewah.
-        </p>
+  <!-- Site footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify" style="text-align: justify;">Bossku Tour & Travel adalah <i>agen perjalanan ritel dan online </i> yang menangani jenis perjalanan individu dan kelompok dengan penjualan distribusi sebagian besar berasal dari situs web dan media sosial. Bossku Tour & Travel juga menawarkan paket liburan menarik terlengkap yang dibuat berdasarkan minat pelanggan, Dengan beragam akomodasi mulai dari standar hingga mewah, kami menawarkan berbagai pilihan paket menarik yang tersedia di website kami dan juga paket yang disesuaikan berdasarkan permintaan klien.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Product</h6>
+          <ul class="footer-links">
+            <li><a href="">Paket Tour</a></li>
+            <li><a href="<?php echo $domain_web ?>paket-landtour.php">Land Tour</a></li>
+            <li><a href="">Cruise</a></li>
+            <li><a href="">Tiket Pesawat Domestic</a></li>
+            <li><a href="">Tiket Pesawat International</a></li>
+            <li><a href="">Pasport</a></li>
+            <li><a href="">Visa</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="<?php echo $domain_web ?>about.php">About Us</a></li>
+            <li><a href="<?php echo $domain_web ?>contact.php">Contact Us</a></li>
+            <li><a href="<?php echo $domain_web ?>Perhitungan">Perhitungan</a></li>
+            <li><a href="<?php echo $domain_web ?>privacy_policy.php">Privacy Policy</a></li>
+            <li><a href="">Sitemap</a></li>
+          </ul>
+        </div>
       </div>
 
       <!-- Product Section -->
