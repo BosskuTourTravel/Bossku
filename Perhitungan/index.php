@@ -86,6 +86,66 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Breakfast</label>
+                                    <input type="text" class="form-control" id="bf" name="bf">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>x</label>
+                                    <input type="text" class="form-control" id="kali_bf" name="kali_bf" onchange="add_total_bf()">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Total</label>
+                                    <input type="text" class="form-control" id="total_bf" name="total_bf" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Lunch</label>
+                                    <input type="text" class="form-control" id="ln" name="ln">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>x</label>
+                                    <input type="text" class="form-control" id="kali_ln" name="kali_ln" onchange="add_total_ln()">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Total</label>
+                                    <input type="text" class="form-control" id="total_ln" name="total_ln" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Dinner</label>
+                                    <input type="text" class="form-control" id="dn" name="dn">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>x</label>
+                                    <input type="text" class="form-control" id="kali_dn" name="kali_dn" onchange="add_total_dn()">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="mb-3">
+                                    <label>Total</label>
+                                    <input type="text" class="form-control" id="total_dn" name="total_dn" disabled>
+                                </div>
+                            </div>
+                        </div>
                         <div class="my-2">
                             <select class="form-control" id="loopHotel" onchange="loop_hotel(this.value)">
                                 <option value="0" selected>Pilih jumlah Coloumn Hotel</option>
@@ -145,6 +205,15 @@
                 $(this).val(formatAngka($(this).val()));
             });
             $("#fee_tl").keyup(function() {
+                $(this).val(formatAngka($(this).val()));
+            });
+            $("#bf").keyup(function() {
+                $(this).val(formatAngka($(this).val()));
+            });
+            $("#ln").keyup(function() {
+                $(this).val(formatAngka($(this).val()));
+            });
+            $("#dn").keyup(function() {
                 $(this).val(formatAngka($(this).val()));
             });
 
@@ -212,6 +281,43 @@
             let hasil = formatAngka(valuez);
 
             $("#fee_total_tl").val(hasil);
+        }
+
+        function add_total_bf() {
+            var bf = document.getElementById("bf").value;
+            let angka = parseInt(bf.replace(/\./g, ''));
+            let kali_bf = document.getElementById("kali_bf").value;
+
+
+            var total = parseInt(angka) * parseInt(kali_bf);
+            let valuez = Math.ceil(total).toString();
+            let hasil = formatAngka(valuez);
+
+            $("#total_bf").val(hasil);
+        }
+        function add_total_ln() {
+            var ln = document.getElementById("ln").value;
+            let angka = parseInt(ln.replace(/\./g, ''));
+            let kali_ln = document.getElementById("kali_ln").value;
+
+
+            var total = parseInt(angka) * parseInt(kali_ln);
+            let valuez = Math.ceil(total).toString();
+            let hasil = formatAngka(valuez);
+
+            $("#total_ln").val(hasil);
+        }
+        function add_total_dn() {
+            var dn = document.getElementById("dn").value;
+            let angka = parseInt(dn.replace(/\./g, ''));
+            let kali_dn = document.getElementById("kali_dn").value;
+
+
+            var total = parseInt(angka) * parseInt(kali_dn);
+            let valuez = Math.ceil(total).toString();
+            let hasil = formatAngka(valuez);
+
+            $("#total_dn").val(hasil);
         }
 
 
@@ -306,6 +412,9 @@
             var pesawat = document.getElementById("pesawat_total_peserta").value;
             var pesawat_tl = document.getElementById("pesawat_total_tl").value;
             var feetl = document.getElementById("fee_total_tl").value;
+            var breakfast = document.getElementById("total_bf").value;
+            var lunch = document.getElementById("total_ln").value;
+            var dinner = document.getElementById("total_dn").value;
             var loop_hotel = document.getElementById("loopHotel").value;
             var loop_transport = document.getElementById("loopTransport").value;
             var loop_adm = document.getElementById("loopAdm").value;
@@ -316,6 +425,9 @@
             var total_pesawat = 0;
             var total_pesawat_tl = 0;
             var total_feetl = 0;
+            var total_bf = 0;
+            var total_ln = 0;
+            var total_dn = 0;
             for (i = 1; i <= loop_hotel; i++) {
                 var hotel = document.getElementById("hotel_total" + i).value;
                 var hotel_angka = parseInt(hotel.replace(/\./g, ''));
@@ -341,10 +453,18 @@
             if(feetl !==""){
                 total_feetl = parseInt(feetl.replace(/\./g, ''));
             }
+            if(breakfast !==""){
+                total_bf = parseInt(breakfast.replace(/\./g, ''));
+            }
+            if(lunch !==""){
+                total_ln = parseInt(lunch.replace(/\./g, ''));
+            }
+            if(dinner !==""){
+                total_dn = parseInt(dinner.replace(/\./g, ''));
+            }
 
-            console.log(total_pesawat +" "+ total_pesawat_tl +" "+ total_feetl +" "+ total_hotel +" " +total_transport +" "+ total_adm);
-
-            var gt = total_pesawat + total_pesawat_tl + total_feetl + total_hotel +total_transport + total_adm ;
+            console.log(total_pesawat +" "+ total_pesawat_tl +" "+ total_feetl +" "+ total_hotel +" " +total_transport +" "+ total_adm +" "+ total_bf+" " + total_ln+" " + total_dn );
+            var gt = total_pesawat + total_pesawat_tl + total_feetl + total_hotel +total_transport + total_adm + total_bf + total_ln + total_dn ;
             $.ajax({
                 url: "show_gt.php",
                 method: "POST",
