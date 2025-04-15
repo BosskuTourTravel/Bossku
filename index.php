@@ -183,7 +183,7 @@ include "navbar.php";
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             <?php
             function getGoogleDriveDirectLink($url)
-            {   
+            {
                 if (strpos($url, 'drive.google.com') !== false) {
                     preg_match('/d\/([^\/]+)/', $url, $matches);
                     if (!empty($matches[1])) {
@@ -236,52 +236,59 @@ include "navbar.php";
 
 
     <div class="container mx-auto py-10 px-6" data-aos-offset="300" data-aos-easing="ease-in-sine">
-        <div data-aos="fade-right"><?php include "table_paket_tour.php"; ?></div>
+        <div data-aos="fade-down"><?php include "table_paket_tour.php"; ?></div>
     </div>
-    <div class="container mx-auto py-10 px-6" data-aos="fade-left" data-aos-offset="500" data-aos-duration="500">
-        <div><?php include "table_paket_tour2.php"; ?></div>
+    <div class="container mx-auto py-10 px-6" data-aos-offset="500" data-aos-duration="500">
+        <div data-aos="fade-up"><?php include "table_paket_tour2.php"; ?></div>
     </div>
 
-    <div class="container mx-auto py-10 px-6" data-aos="fade-up"data-aos-duration="3000">
-        <div class="flex justify-between items-center mb-8">
-            <h1 class="text-2xl font-bold text-gray-800">Visa</h1>
-            <a href="#" class="text-blue-600 hover:text-blue-800 transition duration-300">Lihat Lainnya ></a>
+    <div class="container mx-auto py-12 px-6" data-aos="fade-up" data-aos-duration="2000">
+        <div class="flex justify-between items-center mb-10 pb-4">
+            <h1 class="text-4xl font-extrabold text-gray-900 tracking-wide relative">
+                Visa
+            </h1>
+            <a href="#" class="relative text-blue-600 hover:text-blue-800 font-semibold transition duration-300 flex items-center group after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 group-hover:after:w-full">
+                Lihat Lainnya
+                <span class="ml-2 transform transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110">&rarr;</span>
+            </a>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <!-- Card Visa Jepang -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <img src="img/VisaJapan.jpg" alt="Visa Jepang" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h5 class="text-xl font-semibold text-gray-800">Visa Jepang</h5>
-                    <p class="text-lg text-gray-600 mt-2">Rp1.500.000</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Card Template -->
+            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
+                    <img src="img/VisaJapan.jpg" alt="Visa Jepang" class="h-full object-cover w-full">
+                </div>
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-white text-xl font-bold text-center">Visa Japan - Rp1.500.000</span>
                 </div>
             </div>
 
-            <!-- Card Visa China -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <img src="img/VisaChina.jpg" alt="Visa China" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h5 class="text-xl font-semibold text-gray-800">Visa China</h5>
-                    <p class="text-lg text-gray-600 mt-2">Rp2.800.000</p>
+            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
+                    <img src="img/VisaChina.jpg" alt="Visa China" class="h-full object-cover w-full">
+                </div>
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-white text-xl font-bold text-center">Visa China - Rp2.800.000</span>
                 </div>
             </div>
 
-            <!-- Card Visa Turkey -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <img src="img/VisaTurkey.jpg" alt="Visa Turkey" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h5 class="text-xl font-semibold text-gray-800">Visa Turkey</h5>
-                    <p class="text-lg text-gray-600 mt-2">Rp2.500.000</p>
+            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
+                    <img src="img/VisaTurkey.jpg" alt="Visa Turkey" class="h-full object-cover w-full">
+                </div>
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-white text-xl font-bold text-center">Visa Turkey - Rp2.500.000</span>
                 </div>
             </div>
 
-            <!-- Card Visa Australia -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <img src="img/VisaAusie.jpg" alt="Visa Australia" class="w-full h-48 object-cover">
-                <div class="p-4">
-                    <h5 class="text-xl font-semibold text-gray-800">Visa Australia</h5>
-                    <p class="text-lg text-gray-600 mt-2">Rp2.200.000</p>
+            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
+                    <img src="img/VisaAusie.jpg" alt="Visa Australia" class="h-full object-cover w-full">
+                </div>
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span class="text-white text-xl font-bold text-center">Visa Australia - Rp2.200.000</span>
                 </div>
             </div>
         </div>
@@ -365,7 +372,7 @@ include "navbar.php";
             <!-- Kategori 1: Attraction -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>Activity">
-                    <img src="img/attraction2.png" alt="Attraction" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <img src="img/Frame 1.png" alt="Attraction" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Explore Attractions</span>
                     </div>
@@ -375,7 +382,7 @@ include "navbar.php";
             <!-- Kategori 2: Cruise -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="#">
-                    <img src="img/cruise.png" alt="Cruise" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <img src="img/Frame 2.png" alt="Cruise" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Amazing Cruises</span>
                     </div>
@@ -385,7 +392,7 @@ include "navbar.php";
             <!-- Kategori 3: Land Tour -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>paket-landtour.php">
-                    <img src="img/land_tour.png" alt="Land Tour" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <img src="img/Frame 3.png" alt="Land Tour" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Land Tours</span>
                     </div>
@@ -395,7 +402,7 @@ include "navbar.php";
             <!-- Kategori 4: Hotel -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>Hotel">
-                    <img src="img/hotel.png" alt="Hotel" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
+                    <img src="img/Frame 4.png" alt="Hotel" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Luxury Hotels</span>
                     </div>

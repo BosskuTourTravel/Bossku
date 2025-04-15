@@ -17,10 +17,6 @@ $row_data = mysqli_fetch_array($rs_data);
 
 // var_dump($query_data);
 
-
-
-
-
 ?>
 <style>
     .ui-highlight .ui-state-default {
@@ -36,7 +32,7 @@ $row_data = mysqli_fetch_array($rs_data);
     }
 </style>
 
-<script src="./js/script.js"></script>
+<!-- <script src="./js/script.js"></script> -->
 
 <body>
     <?php

@@ -18,7 +18,7 @@
             <a href="<?php echo $domain_web ?>" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">HOME</a>
             <a href="<?php echo $domain_web ?>about.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">ABOUT</a>
             <a href="<?php echo $domain_web ?>faq.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">FAQ</a>
-            <a href="<?php echo $domain_web ?>terms_condition.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">TERMS & CONDITIONS</a>
+            <a href="<?php echo $domain_web ?>contact.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">CONTACT US</a>
             <a href="<?php echo $domain_web ?>privacy_policy.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">PRIVACY POLICY</a>
         </div>
         
@@ -33,7 +33,7 @@
         <a href="<?php echo $domain_web ?>" class="font-bold text-white hover:text-gray-300">HOME</a>
         <a href="<?php echo $domain_web ?>about.php" class="font-bold text-white hover:text-gray-300">ABOUT</a>
         <a href="<?php echo $domain_web ?>faq.php" class="font-bold text-white hover:text-gray-300">FAQ</a>
-        <a href="<?php echo $domain_web ?>terms_condition.php" class="font-bold text-white hover:text-gray-300">TERMS & CONDITIONS</a>
+        <a href="<?php echo $domain_web ?>contact.php" class="font-bold text-white hover:text-gray-300">Contact Us</a>
         <a href="<?php echo $domain_web ?>privacy_policy.php" class="font-bold text-white hover:text-gray-300">PRIVACY POLICY</a>
         <a href="<?php echo $domain_web ?>member/" class="bg-white text-[#02335B] border-2 border-[#02335B] rounded-full px-6 py-2 font-bold transition duration-300 hover:bg-[#02335B] hover:text-white shadow-md">Login</a>
     </div>
@@ -45,9 +45,3 @@
         document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 </script>
-
-<style>
-a {
-    text-decoration: none !important;
-}
-</style>

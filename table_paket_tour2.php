@@ -23,19 +23,15 @@ while ($row = $result->fetch_assoc()) {
 }
 ?>
 
-<div class="container mx-auto py-10 px-6">
+<div class="container">
     <!-- Search Form -->
     <div class="flex justify-between items-center mb-5">
         <!-- Title (Left) -->
         <h2 class="text-2xl font-bold mb-5">Eksplorasi Dunia dengan Paket Tour Kami</h2>
 
         <!-- Search Form (Right) -->
-        <div class="relative w-full max-w-xs">
-            <!-- Search Label -->
-            <label for="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-pink-600 font-medium transition-all duration-300 ease-in-out opacity-70 hover:opacity-100"></label>
-
-            <!-- Search Input -->
-            <input type="text" id="search" class="w-full py-3 pl-10 pr-4 border rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-700 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out" placeholder="Search by country..." onkeyup="searchCountry()">
+        <div class="relative w-full sm:max-w-xs mt-3 sm:mt-0">
+            <input type="text" id="cari" class="w-full py-3 pl-10 pr-4 border rounded-lg bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out" placeholder="Search by country..." onkeyup="searchNegara()">
         </div>
     </div>
 
@@ -53,7 +49,7 @@ while ($row = $result->fetch_assoc()) {
                 }
                 // echo $imagePath;
             ?>
-                <div class="swiper-slide relative hover:scale-105 transition-all overflow-hidden rounded-lg shadow-lg">
+                <div class="swiper-slide relative group cursor-pointer transition-all rounded-lg shadow-md overflow-hidden w-72 h-[380px] bg-white border border-gray-200 flex flex-col" data-country="<?php echo htmlspecialchars($country); ?>">
                     <a href="paket-tour.php?country=<?php echo urlencode($country); ?>" class="block">
                         <img src="<?= htmlspecialchars($imagePath) ?>" class="w-full h-64 object-cover" alt="Paket <?php echo htmlspecialchars($country); ?>">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-left justify-end text-white p-4">
@@ -90,13 +86,13 @@ while ($row = $result->fetch_assoc()) {
     });
 
     // Function to search countries
-    function searchCountry() {
-        const searchQuery = document.getElementById('search').value.toLowerCase();
+    function searchNegara() {
+        const search = document.getElementById('cari').value.toLowerCase();
         const items = document.querySelectorAll('.swiper-slide');
 
         items.forEach(item => {
             const countryName = item.getAttribute('data-country').toLowerCase();
-            if (countryName.includes(searchQuery)) {
+            if (countryName.includes(search)) {
                 item.style.display = 'block';
             } else {
                 item.style.display = 'none';

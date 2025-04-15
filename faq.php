@@ -11,9 +11,6 @@ include "slug.php";
         <!-- Image -->
         <img src="img/Map.jpg" alt="Europe Map" class="w-full h-full object-cover">
 
-        <!-- Transparent dark overlay (opacity dikurangi agar gambar lebih jelas) -->
-        <div class="absolute inset-0 bg-black opacity-30"></div>
-
         <!-- Header text (FAQ) -->
         <div class="absolute inset-0 flex items-center justify-center text-center text-white z-10">
             <h1 class="text-4xl font-extrabold text-shadow-lg">FAQ</h1>

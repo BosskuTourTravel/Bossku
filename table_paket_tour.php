@@ -39,20 +39,23 @@ while ($row = mysqli_fetch_assoc($rs)) {
 // exit;
 ?>
 
-<div class="container mx-auto py-10 px-6">
-    <div class="flex items-center justify-between mb-6">
+<div class="container">
+    <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-gray-800">Eksplorasi Dunia dengan Harga Terjangkau: Daftar Paket Landtour</h1>
 
-        <div class="relative w-full max-w-xs">
+        <div class="relative w-full sm:max-w-xs mt-3 sm:mt-0">
+            <!-- Label hanya muncul di bawah judul saat mobile -->
             <input type="text" id="search" class="w-full py-3 pl-10 pr-4 border rounded-lg bg-gray-100 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-md hover:shadow-lg transition-all duration-300 ease-in-out" placeholder="Search by country..." onkeyup="searchCountry()">
         </div>
     </div>
 
+
+
     <div class="swiper landtourSwiper">
         <div class="swiper-wrapper">
-            <?php foreach ($data_negara as $negara => $paket) { 
+            <?php foreach ($data_negara as $negara => $paket) {
                 if (empty($paket)) continue; // Lewati negara tanpa trip
-                
+
                 $imageName = strtolower(preg_replace('/[^a-zA-Z0-9]+/', '_', $negara)) . ".jpg";
                 $imagePath = "img/flag/" . $imageName;
 
@@ -62,7 +65,7 @@ while ($row = mysqli_fetch_assoc($rs)) {
             ?>
                 <div class="swiper-slide relative group cursor-pointer transition-all rounded-lg shadow-md overflow-hidden w-72 h-[380px] bg-white border border-gray-200 flex flex-col" data-country="<?php echo htmlspecialchars($negara); ?>">
                     <img src="<?= htmlspecialchars($imagePath) ?>" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105" alt="Paket <?php echo htmlspecialchars($negara); ?>">
-                    
+
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-left justify-end text-white p-4">
                         <h5 class="text-xl font-bold"><?php echo htmlspecialchars($negara); ?></h5>
                     </div>
@@ -113,10 +116,9 @@ while ($row = mysqli_fetch_assoc($rs)) {
 
     // JavaScript untuk menampilkan daftar trip ketika card diklik
     document.querySelectorAll('.swiper-slide').forEach(card => {
-    card.addEventListener('click', function() {
-        const country = this.getAttribute('data-country');
-        window.location.href = `land-tour.php?negara=${encodeURIComponent(country)}`;
+        card.addEventListener('click', function() {
+            const country = this.getAttribute('data-country');
+            window.location.href = `land-tour.php?negara=${encodeURIComponent(country)}`;
+        });
     });
-});
-
 </script>

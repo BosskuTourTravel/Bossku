@@ -7,137 +7,109 @@ include "slug.php";
 
 <body>
     <div class="p-5">
-        <div class="d-flex flex-row justify-content-center p-4">
-            <h2>Perhitungan Paket Tour Bossku</h2>
+        <div class="flex flex-row justify-center p-4">
+            <h2 class="text-2xl font-semibold">Perhitungan Paket Tour Bossku</h2>
         </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="align-content-start">
-                    <form>
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Jumlah Peserta</label>
-                                    <input type="number" class="form-control" id="peserta" name="peserta" onchange="add_peserta(this.value)">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Jumlah TL</label>
-                                    <input type="number" class="form-control" id="tl" name="tl" value="0" onchange="add_peserta2(this.value)">
-                                </div>
-                            </div>
+        <div class="bg-white shadow-md rounded-lg">
+            <div class="p-6">
+                <form>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block mb-1">Jumlah Peserta</label>
+                            <input type="number" id="peserta" name="peserta" onchange="add_peserta(this.value)" class="w-full border rounded px-3 py-2">
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Tiket Pesawat Customer PP</label>
-                                    <input type="text" class="form-control" id="pesawat_peserta" name="pesawat_peserta" onchange="add_total_pesawat_peserta(this.value)">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Detail</label>
-                                    <input type="text" class="form-control" id="pesawat_detail_peserta" name="pesawat_detail_peserta" disabled>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Total</label>
-                                    <input type="text" class="form-control" id="pesawat_total_peserta" name="pesawat_total_peserta" disabled>
-                                </div>
-                            </div>
+                        <div>
+                            <label class="block mb-1">Jumlah TL</label>
+                            <input type="number" id="tl" name="tl" value="0" onchange="add_peserta2(this.value)" class="w-full border rounded px-3 py-2">
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Tiket Pesawat TL PP</label>
-                                    <input type="text" class="form-control" id="pesawat_tl" name="pesawat_tl" onchange="add_total_pesawat()">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Detail</label>
-                                    <input type="text" class="form-control" id="pesawat_detail_tl" name="pesawat_detail_tl" disabled>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Total</label>
-                                    <input type="text" class="form-control" id="pesawat_total_tl" name="pesawat_total_tl" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>FEE TL </label>
-                                    <input type="text" class="form-control" id="fee_tl" name="fee_tl" onchange="add_total_feetl()">
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Detail</label>
-                                    <input type="text" class="form-control" id="fee_detail_tl" name="fee_detail_tl" disabled>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="mb-3">
-                                    <label>Total</label>
-                                    <input type="text" class="form-control" id="fee_total_tl" name="fee_total_tl" disabled>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="my-2">
-                            <select class="form-control" id="loopHotel" onchange="loop_hotel(this.value)">
-                                <option value="0" selected>Pilih jumlah Coloumn Hotel</option>
-                                <?php
-                                for ($i = 1; $i <= 10; $i++) {
-                                ?>
-                                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                            <div id="hotel-show" class="my-2"></div>
-                        </div>
-                        <div class="my-2">
-                            <select class="form-control" onchange="loop_transport(this.value)" id="loopTransport">
-                                <option value="0" selected>Pilih jumlah Coloumn Transport</option>
-                                <?php
-                                for ($i = 1; $i <= 10; $i++) {
-                                ?>
-                                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                            <div id="transport-show" class="my-2"></div>
-                        </div>
-                        <div class="my-2">
-                            <select class="form-control" id="loopAdm" onchange="loop_adm(this.value)">
-                                <option value="0" selected>Pilih jumlah Coloumn Admission</option>
-                                <?php
-                                for ($i = 1; $i <= 10; $i++) {
-                                ?>
-                                    <option value="<?php echo $i ?>"><?php echo $i ?></option>
-                                <?php
-                                }
-                                ?>
-                            </select>
-                            <div id="adm-show" class="my-2"></div>
-                        </div>
-                        <div class="d-flex flex-row justify-content-between">
-                            <button type="button" class="btn btn-primary" onclick="add_gt()">Submit</button>
-                            <div id="gt">
-                            </div>
-                        </div>
+                    </div>
 
-                    </form>
-                </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div>
+                            <label class="block mb-1">Tiket Pesawat Customer PP</label>
+                            <input type="text" id="pesawat_peserta" name="pesawat_peserta" onchange="add_total_pesawat_peserta(this.value)" class="w-full border rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block mb-1">Detail</label>
+                            <input type="text" id="pesawat_detail_peserta" name="pesawat_detail_peserta" disabled class="w-full border rounded px-3 py-2 bg-gray-100">
+                        </div>
+                        <div>
+                            <label class="block mb-1">Total</label>
+                            <input type="text" id="pesawat_total_peserta" name="pesawat_total_peserta" disabled class="w-full border rounded px-3 py-2 bg-gray-100">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div>
+                            <label class="block mb-1">Tiket Pesawat TL PP</label>
+                            <input type="text" id="pesawat_tl" name="pesawat_tl" onchange="add_total_pesawat()" class="w-full border rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block mb-1">Detail</label>
+                            <input type="text" id="pesawat_detail_tl" name="pesawat_detail_tl" disabled class="w-full border rounded px-3 py-2 bg-gray-100">
+                        </div>
+                        <div>
+                            <label class="block mb-1">Total</label>
+                            <input type="text" id="pesawat_total_tl" name="pesawat_total_tl" disabled class="w-full border rounded px-3 py-2 bg-gray-100">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div>
+                            <label class="block mb-1">FEE TL</label>
+                            <input type="text" id="fee_tl" name="fee_tl" onchange="add_total_feetl()" class="w-full border rounded px-3 py-2">
+                        </div>
+                        <div>
+                            <label class="block mb-1">Detail</label>
+                            <input type="text" id="fee_detail_tl" name="fee_detail_tl" disabled class="w-full border rounded px-3 py-2 bg-gray-100">
+                        </div>
+                        <div>
+                            <label class="block mb-1">Total</label>
+                            <input type="text" id="fee_total_tl" name="fee_total_tl" disabled class="w-full border rounded px-3 py-2 bg-gray-100">
+                        </div>
+                    </div>
+
+                    <div class="my-4">
+                        <select id="loopHotel" onchange="loop_hotel(this.value)" class="w-full border rounded px-3 py-2">
+                            <option value="0" selected>Pilih jumlah Coloumn Hotel</option>
+                            <?php for ($i = 1; $i <= 10; $i++) { ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php } ?>
+                        </select>
+                        <div id="hotel-show" class="mt-3"></div>
+                    </div>
+
+                    <div class="my-4">
+                        <select id="loopTransport" onchange="loop_transport(this.value)" class="w-full border rounded px-3 py-2">
+                            <option value="0" selected>Pilih jumlah Coloumn Transport</option>
+                            <?php for ($i = 1; $i <= 10; $i++) { ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php } ?>
+                        </select>
+                        <div id="transport-show" class="mt-3"></div>
+                    </div>
+
+                    <div class="my-4">
+                        <select id="loopAdm" onchange="loop_adm(this.value)" class="w-full border rounded px-3 py-2">
+                            <option value="0" selected>Pilih jumlah Coloumn Admission</option>
+                            <?php for ($i = 1; $i <= 10; $i++) { ?>
+                                <option value="<?php echo $i ?>"><?php echo $i ?></option>
+                            <?php } ?>
+                        </select>
+                        <div id="adm-show" class="mt-3"></div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row justify-between items-center mt-6 gap-4">
+                        <button type="button" onclick="add_gt()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded shadow">
+                            Submit
+                        </button>
+                        <div id="gt" class="text-lg font-medium"></div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
     <script>
         $(document).ready(function() {
             $("#pesawat_tl").keyup(function() {
@@ -334,19 +306,19 @@ include "slug.php";
                 var adm_angka = parseInt(adm.replace(/\./g, ''));
                 total_adm += adm_angka;
             }
-            if(pesawat !==""){
+            if (pesawat !== "") {
                 total_pesawat = parseInt(pesawat.replace(/\./g, ''));
             }
-            if(pesawat_tl !==""){
+            if (pesawat_tl !== "") {
                 total_pesawat_tl = parseInt(pesawat_tl.replace(/\./g, ''));
             }
-            if(feetl !==""){
+            if (feetl !== "") {
                 total_feetl = parseInt(feetl.replace(/\./g, ''));
             }
 
-            console.log(total_pesawat +" "+ total_pesawat_tl +" "+ total_feetl +" "+ total_hotel +" " +total_transport +" "+ total_adm);
+            console.log(total_pesawat + " " + total_pesawat_tl + " " + total_feetl + " " + total_hotel + " " + total_transport + " " + total_adm);
 
-            var gt = total_pesawat + total_pesawat_tl + total_feetl + total_hotel +total_transport + total_adm ;
+            var gt = total_pesawat + total_pesawat_tl + total_feetl + total_hotel + total_transport + total_adm;
             $.ajax({
                 url: "show_gt.php",
                 method: "POST",

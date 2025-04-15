@@ -123,26 +123,27 @@ include "navbar.php";
             <?php foreach ($tickets as $ticket) {
                 $image = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
             ?>
-                <div class="group relative overflow-hidden rounded-xl shadow-lg bg-white transform hover:scale-105 transition duration-300">
-                    <img src="<?php echo htmlspecialchars($image); ?>" alt="Admission Ticket" class="w-full h-56 object-cover transition duration-300 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition duration-300">
-                        <div class="flex flex-col justify-center items-center h-full">
-                            <h5 class="text-white font-semibold text-lg"><?php echo htmlspecialchars($ticket['name']); ?></h5>
-                            <p class="text-white text-sm mb-4"><?php echo htmlspecialchars($ticket['location']); ?></p>
-                            <div class="text-white text-xl font-bold"><?php echo number_format($ticket['price'], 0, ',', '.'); ?> IDR</div>
-                            <div class="mt-4 space-x-4">
-                                <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
-                                    target="_blank" class="px-6 py-2 rounded-lg bg-green-600 text-white font-semibold transition duration-300 hover:bg-green-700">
-                                    <i class="bi bi-whatsapp"></i> Buy Ticket
-                                </a>
-                                <a href="<?php echo htmlspecialchars($image); ?>"
-                                    target="_blank" class="px-6 py-2 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg transition duration-300 hover:bg-blue-600 hover:text-white">
-                                    <i class="bi bi-image"></i> Lihat Gambar
-                                </a>
-                            </div>
+                <div class="rounded-xl shadow-md bg-white overflow-hidden transition transform hover:scale-105 duration-300">
+                    <img src="<?php echo htmlspecialchars($image); ?>" alt="Admission Ticket" class="w-full h-56 object-cover">
+                    <div class="p-4">
+                        <h5 class="text-gray-800 font-bold text-lg"><?php echo htmlspecialchars($ticket['name']); ?></h5>
+                        <p class="text-gray-600 text-sm"><?php echo htmlspecialchars($ticket['location']); ?></p>
+                        <div class="text-blue-600 text-xl font-semibold my-2">
+                            <?php echo number_format($ticket['price'], 0, ',', '.'); ?> IDR
+                        </div>
+                        <div class="mt-3 flex flex-wrap gap-2">
+                            <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
+                                target="_blank" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition">
+                                <i class="bi bi-whatsapp"></i> Buy Ticket
+                            </a>
+                            <a href="<?php echo htmlspecialchars($image); ?>" target="_blank"
+                                class="px-4 py-2 border border-blue-600 text-blue-600 text-sm rounded-md hover:bg-blue-600 hover:text-white transition">
+                                <i class="bi bi-image"></i> Lihat Gambar
+                            </a>
                         </div>
                     </div>
                 </div>
+
             <?php } ?>
         </div>
 

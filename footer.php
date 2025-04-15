@@ -31,6 +31,7 @@
           <li><a href="<?php echo $domain_web ?>contact.php" class="text-gray-400 hover:text-white">Contact Us</a></li>
           <li><a href="<?php echo $domain_web ?>perhitungan.php" class="text-gray-400 hover:text-white">Perhitungan</a></li>
           <li><a href="<?php echo $domain_web ?>privacy_policy.php" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+          <li><a href="<?php echo $domain_web ?>terms_condition.php" class="text-gray-400 hover:text-white">Terms & Condition</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Sitemap</a></li>
         </ul>
       </div>
@@ -48,7 +49,7 @@
 
           <!-- TikTok -->
           <li>
-            <a href="https://www.youtube.com/@myholidaylover" class="text-gray-400 hover:text-black">
+            <a href="https://www.tiktok.com/@bosskutourandtravel" class="text-gray-400 hover:text-black">
               <i class="fa-brands fa-tiktok fa-lg"></i>
             </a>
           </li>
