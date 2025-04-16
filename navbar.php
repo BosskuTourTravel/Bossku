@@ -1,5 +1,5 @@
 <?php include "slug.php"; ?>
-<nav class="bg-[#02335B] py-4 shadow-lg">
+<nav class="bg-[#02335B] py-4 shadow-lg fixed top-0 left-0 w-full z-50">
     <div class="container mx-auto flex items-center justify-between px-4">
         <!-- Logo -->
         <a href="<?php echo $domain_web ?>" class="flex-shrink-0">
@@ -18,7 +18,7 @@
             <a href="<?php echo $domain_web ?>" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">HOME</a>
             <a href="<?php echo $domain_web ?>about.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">ABOUT</a>
             <a href="<?php echo $domain_web ?>faq.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">FAQ</a>
-            <a href="<?php echo $domain_web ?>contact.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">CONTACT US</a>
+            <a href="<?php echo $domain_web ?>contact.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">Contact</a>
             <a href="<?php echo $domain_web ?>privacy_policy.php" class="font-bold text-white transition-colors duration-300 hover:text-[#FFCA10] relative overflow-hidden after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#FFCA10] after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">PRIVACY POLICY</a>
         </div>
         
@@ -33,7 +33,7 @@
         <a href="<?php echo $domain_web ?>" class="font-bold text-white hover:text-gray-300">HOME</a>
         <a href="<?php echo $domain_web ?>about.php" class="font-bold text-white hover:text-gray-300">ABOUT</a>
         <a href="<?php echo $domain_web ?>faq.php" class="font-bold text-white hover:text-gray-300">FAQ</a>
-        <a href="<?php echo $domain_web ?>contact.php" class="font-bold text-white hover:text-gray-300">Contact Us</a>
+        <a href="<?php echo $domain_web ?>contact.php" class="font-bold text-white hover:text-gray-300">Contact</a>
         <a href="<?php echo $domain_web ?>privacy_policy.php" class="font-bold text-white hover:text-gray-300">PRIVACY POLICY</a>
         <a href="<?php echo $domain_web ?>member/" class="bg-white text-[#02335B] border-2 border-[#02335B] rounded-full px-6 py-2 font-bold transition duration-300 hover:bg-[#02335B] hover:text-white shadow-md">Login</a>
     </div>

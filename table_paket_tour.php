@@ -63,7 +63,7 @@ while ($row = mysqli_fetch_assoc($rs)) {
                     $imagePath = "img/flag/default.jpg";
                 }
             ?>
-                <div class="swiper-slide relative group cursor-pointer transition-all rounded-lg shadow-md overflow-hidden w-72 h-[380px] bg-white border border-gray-200 flex flex-col" data-country="<?php echo htmlspecialchars($negara); ?>">
+                <div class="swiper-slide klik relative group cursor-pointer transition-all rounded-lg shadow-md overflow-hidden w-72 h-[380px] bg-white border border-gray-200 flex flex-col" data-country="<?php echo htmlspecialchars($negara); ?>">
                     <img src="<?= htmlspecialchars($imagePath) ?>" class="w-full h-64 object-cover transition duration-300 group-hover:scale-105" alt="Paket <?php echo htmlspecialchars($negara); ?>">
 
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col items-left justify-end text-white p-4">
@@ -102,7 +102,7 @@ while ($row = mysqli_fetch_assoc($rs)) {
 
     function searchCountry() {
         const searchQuery = document.getElementById('search').value.toLowerCase();
-        const items = document.querySelectorAll('.swiper-slide');
+        const items = document.querySelectorAll('.klik');
 
         items.forEach(item => {
             const countryName = item.getAttribute('data-country').toLowerCase();
@@ -115,7 +115,7 @@ while ($row = mysqli_fetch_assoc($rs)) {
     }
 
     // JavaScript untuk menampilkan daftar trip ketika card diklik
-    document.querySelectorAll('.swiper-slide').forEach(card => {
+    document.querySelectorAll('.klik').forEach(card => {
         card.addEventListener('click', function() {
             const country = this.getAttribute('data-country');
             window.location.href = `land-tour.php?negara=${encodeURIComponent(country)}`;

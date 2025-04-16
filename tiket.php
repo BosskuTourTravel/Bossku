@@ -16,7 +16,7 @@ function getGoogleDriveDirectLink($url)
 }
 
 // Inisialisasi pagination dan filter
-$limit = 6;
+$limit = 8;
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $offset = ($page - 1) * $limit;
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
@@ -92,85 +92,95 @@ $total_tickets = $total_row['total'];
 $total_pages = ceil($total_tickets / $limit);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 include "header.php";
 include "navbar.php";
 ?>
+<div class="container mx-auto px-4 py-16 mt-10">
 
-<body class="bg-gray-50">
+    <h2 class="text-center font-bold text-3xl text-gray-800 mb-8">Admission Ticket</h2>
 
-    <div class="container mx-auto my-10 p-6 shadow-lg rounded-2xl bg-white">
+    <form method="GET" class="flex flex-col gap-4 justify-center align-center md:flex-row items-center mb-8 p-6 rounded-lg shadow-lg bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 transition duration-300 hover:shadow-xl space-y-4 md:space-y-0 md:space-x-4">
+        <div class="flex-grow w-full md:w-1/2">
+            <input type="text" name="search" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-gray-700" placeholder="🔍 Search for a place..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+        </div>
+        <div class="w-full md:w-1/4">
+            <select name="price_filter" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white text-gray-700">
+                <option value="">💰 Price Filter</option>
+                <option value="low" <?php echo $price_filter == 'low' ? 'selected' : ''; ?>>Low (&lt; 200k)</option>
+                <option value="medium" <?php echo $price_filter == 'medium' ? 'selected' : ''; ?>>Medium (200k - 500k)</option>
+                <option value="high" <?php echo $price_filter == 'high' ? 'selected' : ''; ?>>High (&gt; 500k)</option>
+            </select>
+        </div>
+        <div class="w-full md:w-1/4">
+            <select name="sort_by" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white text-gray-700">
+                <option value="">🔃 Sort By</option>
+                <option value="price_asc" <?php echo $sort_by == 'price_asc' ? 'selected' : ''; ?>>Price: Low to High</option>
+                <option value="price_desc" <?php echo $sort_by == 'price_desc' ? 'selected' : ''; ?>>Price: High to Low</option>
+            </select>
+        </div>
+        <div class="w-full md:w-auto flex justify-center md:justify-start">
+            <button type="submit" class="px-4 py-2 rounded-lg bg-black text-white font-semibold hover:bg-gray-800 transition duration-300 flex items-center gap-2">
+                <i class="bi bi-search"></i>
+                Search
+            </button>
+        </div>
+    </form>
 
-        <h2 class="text-center font-bold text-3xl text-gray-800 mb-6">Admission Ticket</h2>
+    <p class="text-center text-gray-500 mb-8">Showing <?php echo count($tickets); ?> of <?php echo $total_tickets; ?> available tickets</p>
 
-        <form method="GET" class="flex items-center mb-6 p-4 rounded-lg shadow-md bg-gray-100 transition duration-300 hover:shadow-lg">
-            <div class="w-full flex gap-4">
-                <div class="w-3/4">
-                    <input type="text" name="search" class="w-full p-3 rounded-lg border-2 border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Cari tempat..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-                </div>
-                <div class="w-1/4">
-                    <button type="submit" class="w-full p-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition duration-300">Cari</button>
-                </div>
-            </div>
-        </form>
-
-        <p class="text-center text-gray-500 mb-6">Menampilkan <?php echo count($tickets); ?> dari <?php echo $total_tickets; ?> tiket tersedia</p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <?php foreach ($tickets as $ticket) {
-                $image = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
-            ?>
-                <div class="rounded-xl shadow-md bg-white overflow-hidden transition transform hover:scale-105 duration-300">
-                    <img src="<?php echo htmlspecialchars($image); ?>" alt="Admission Ticket" class="w-full h-56 object-cover">
-                    <div class="p-4">
-                        <h5 class="text-gray-800 font-bold text-lg"><?php echo htmlspecialchars($ticket['name']); ?></h5>
-                        <p class="text-gray-600 text-sm"><?php echo htmlspecialchars($ticket['location']); ?></p>
-                        <div class="text-blue-600 text-xl font-semibold my-2">
-                            <?php echo number_format($ticket['price'], 0, ',', '.'); ?> IDR
-                        </div>
-                        <div class="mt-3 flex flex-wrap gap-2">
-                            <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
-                                target="_blank" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition">
-                                <i class="bi bi-whatsapp"></i> Buy Ticket
-                            </a>
-                            <a href="<?php echo htmlspecialchars($image); ?>" target="_blank"
-                                class="px-4 py-2 border border-blue-600 text-blue-600 text-sm rounded-md hover:bg-blue-600 hover:text-white transition">
-                                <i class="bi bi-image"></i> Lihat Gambar
-                            </a>
-                        </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <?php foreach ($tickets as $ticket) {
+            $image = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
+        ?>
+            <div class="rounded-xl shadow-lg bg-white overflow-hidden transition transform hover:scale-105 duration-300">
+                <img src="<?php echo htmlspecialchars($image); ?>" alt="Admission Ticket" class="w-full h-56 object-cover">
+                <div class="p-6">
+                    <h5 class="text-gray-800 font-bold text-lg mb-2"><?php echo htmlspecialchars($ticket['name']); ?></h5>
+                    <p class="text-gray-600 text-sm mb-4"><?php echo htmlspecialchars($ticket['location']); ?></p>
+                    <div class="text-blue-600 text-xl font-semibold mb-4">
+                        <?php echo number_format($ticket['price'], 0, ',', '.'); ?> IDR
+                    </div>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
+                            target="_blank" class="px-4 py-2 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition">
+                            <i class="bi bi-whatsapp"></i> Buy Ticket
+                        </a>
+                        <a href="<?php echo htmlspecialchars($image); ?>" target="_blank"
+                            class="px-4 py-2 border border-blue-600 text-blue-600 text-sm rounded-md hover:bg-blue-600 hover:text-white transition">
+                            <i class="bi bi-image"></i> View Image
+                        </a>
                     </div>
                 </div>
-
-            <?php } ?>
-        </div>
-
-        <div class="flex justify-center gap-4 mt-8">
-            <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold transition duration-300 hover:bg-blue-700">Prev</a>
-            <?php endif; ?>
-
-            <div class="flex gap-2">
-                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                    <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>" class="px-4 py-2 border-2 border-blue-600 rounded-lg text-blue-600 font-semibold transition duration-300 hover:bg-blue-600 hover:text-white <?php echo ($i == $page) ? 'bg-yellow-500 text-blue-800' : ''; ?>">
-                        <?php echo $i; ?>
-                    </a>
-                <?php endfor; ?>
             </div>
-
-            <?php if ($page < $total_pages): ?>
-                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>" class="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold transition duration-300 hover:bg-blue-700">Next</a>
-            <?php endif; ?>
-        </div>
-
+        <?php } ?>
     </div>
 
-</body>
+    <div class="flex flex-wrap items-center justify-between mt-10 px-4 sm:px-8 gap-4">
+
+        <div class="sm:block w-24"></div>
+
+        <div class="flex-1 overflow-x-auto scrollbar-hide flex justify-center gap-1 text-sm text-black flex-wrap sm:flex-nowrap">
+            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>" class="px-3 py-2 rounded-md whitespace-nowrap <?php echo ($i == $page) ? 'font-bold underline' : 'font-normal bg-white hover:bg-gray-100'; ?>">
+                    <?php echo $i; ?>
+                </a>
+            <?php endfor; ?>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between sm:justify-center mt-10 px-4 sm:px-8 gap-4">
+            <?php if ($page > 1): ?>
+                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>" class="flex items-center gap-1 px-4 py-2 rounded-lg border-2 font-semibold hover:bg-gray-100"><span>&larr;</span> Previous</a>
+            <?php endif; ?>
+
+            <?php if ($page < $total_pages): ?>
+                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>" class="flex items-center gap-1 px-4 py-2 rounded-lg border-2 font-semibold hover:bg-gray-100">Next<span>&rarr;</span> </a>
+            <?php endif; ?>
+        </div>
+    </div>
+
+</div>
 
 <?php
 include 'footer.php';
 ?>
-
-</html>

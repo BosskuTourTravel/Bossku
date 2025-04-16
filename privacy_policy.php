@@ -5,65 +5,39 @@ include "db=connection.php";
 include "slug.php";
 ?>
 
-<body class="bg-gray-100 text-gray-800">
+<div class="container mx-auto px-4 py-16 mt-10">
+    <!-- Title -->
+    <h1 class="text-[#02335B] text-sm font-semibold tracking-wide mb-2 border border-[#02335B] rounded-full px-2 py-0 inline-block bg-[#F0F8FF]">Privacy Policy</h1>
+    <h2 class="text-3xl font-bold tracking-wide">Privacy Policy</h2>
+    <p class="font-medium text-sm tracking-wide text-gray-500 mb-4">Your privacy is important to us.</p>
 
-    <!-- Main content wrapper -->
-    <div class="max-w-5xl mx-auto p-6">
-        <!-- Card with shadow for better focus -->
-        <div class="bg-white shadow-xl rounded-lg p-8 space-y-6">
-
-            <!-- Title -->
-            <h1 class="text-4xl font-bold text-center text-blue-600 mb-6">Kebijakan Privasi</h1>
-
-            <!-- Intro text -->
-            <p class="text-lg text-gray-600">
-                Selamat datang di Bossku Tour & Travel. Kami menghormati privasi Anda dan berkomitmen untuk melindungi informasi pribadi Anda.
-            </p>
-
-            <!-- Section 1 -->
-            <div>
-                <h4 class="text-2xl font-semibold text-blue-500 mt-6">1. Informasi yang Kami Kumpulkan</h4>
-                <p class="text-lg text-gray-600 mt-2">
-                    Kami dapat mengumpulkan informasi pribadi seperti nama, email, nomor telepon, dan informasi pembayaran saat Anda menggunakan layanan kami. Data ini dikumpulkan untuk memastikan pengalaman perjalanan yang lebih baik dan personal bagi pelanggan kami.
-                </p>
-            </div>
-
-            <!-- Section 2 -->
-            <div>
-                <h4 class="text-2xl font-semibold text-blue-500 mt-6">2. Penggunaan Informasi</h4>
-                <p class="text-lg text-gray-600 mt-2">
-                    Informasi yang kami kumpulkan digunakan untuk memproses pemesanan, meningkatkan layanan kami, dan berkomunikasi dengan Anda. Selain itu, data ini dapat digunakan untuk memberikan rekomendasi perjalanan yang sesuai dengan preferensi Anda serta menginformasikan tentang promosi terbaru.
-                </p>
-            </div>
-
-            <!-- Section 3 -->
-            <div>
-                <h4 class="text-2xl font-semibold text-blue-500 mt-6">3. Keamanan Data</h4>
-                <p class="text-lg text-gray-600 mt-2">
-                    Kami menjaga keamanan data Anda dengan menggunakan teknologi enkripsi dan tindakan keamanan lainnya. Kami juga melakukan audit berkala untuk memastikan bahwa data pelanggan tetap aman dan terlindungi dari akses yang tidak sah.
-                </p>
-            </div>
-
-            <!-- Section 4 -->
-            <div>
-                <h4 class="text-2xl font-semibold text-blue-500 mt-6">4. Perubahan Kebijakan</h4>
-                <p class="text-lg text-gray-600 mt-2">
-                    Kebijakan ini dapat diperbarui sewaktu-waktu. Kami akan memberi tahu Anda tentang perubahan melalui situs web kami. Kami menyarankan untuk memeriksa halaman ini secara berkala agar tetap mendapatkan informasi terbaru tentang bagaimana kami melindungi privasi Anda.
-                </p>
-            </div>
-
-            <!-- Contact Info -->
-            <p class="text-lg mt-4 text-gray-600">
-                Jika Anda memiliki pertanyaan mengenai kebijakan privasi ini, silakan hubungi kami melalui email di 
-                <a href="mailto:bosskutourandtravel@gmail.com" class="font-semibold text-blue-600 hover:text-blue-800">bosskutourandtravel@gmail.com</a>.
-            </p>
-
-        </div>
+    <!-- Content -->
+    <div class="mt-8 space-y-6 text-gray-700 text-md leading-relaxed">
+        <p class="text-justify">
+            Di agen perjalanan kami, kami berkomitmen untuk melindungi privasi Anda. Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat Anda mengunjungi situs web kami atau menggunakan layanan kami.
+        </p>
+        <p class="text-justify">
+            Kami dapat mengumpulkan informasi pribadi seperti nama, alamat email, nomor telepon, dan preferensi perjalanan Anda saat Anda melakukan pemesanan atau menghubungi kami. Informasi ini digunakan semata-mata untuk memberikan pengalaman perjalanan terbaik kepada Anda.
+        </p>
+        <p class="text-justify">
+            Kami tidak membagikan informasi pribadi Anda kepada pihak ketiga tanpa persetujuan Anda, kecuali jika diwajibkan oleh hukum atau untuk memenuhi pengaturan perjalanan Anda. Kami mengambil langkah-langkah keamanan yang sesuai untuk melindungi data Anda dari akses atau pengungkapan yang tidak sah.
+        </p>
+        <p class="text-justify">
+            Dengan menggunakan situs web dan layanan kami, Anda menyetujui pengumpulan dan penggunaan informasi pribadi Anda sebagaimana dijelaskan dalam Kebijakan Privasi ini. Jika Anda memiliki pertanyaan atau kekhawatiran tentang praktik privasi kami, silakan hubungi kami.
+        </p>
+        <p class="text-justify">
+            Kami terus memperbarui kebijakan privasi kami untuk memastikan bahwa informasi Anda tetap aman dan sesuai dengan peraturan yang berlaku.
+        </p>
     </div>
 
-    <!-- Footer inclusion -->
+    <!-- Button -->
+    <div class="flex justify-center mt-10">
+        <p class="text-sm font-medium text-gray-600">
+            For inquiries, feel free to reach out to us via our <a href="contact.php" class="text-[#02335B] font-semibold hover:underline">contact page</a>.
+        </p>
+    </div>
+</div>
+
 <?php
 include "footer.php";
 ?>
-
-</body>

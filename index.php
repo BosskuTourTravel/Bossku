@@ -152,13 +152,13 @@ include "navbar.php";
     ?>
 
 
-    <div class="container mx-auto py-10 px-6" data-aos="fade-up" data-aos-duration="3000">
+    <div class="container mx-auto py-10 px-6 mb-8" data-aos="fade-up" data-aos-duration="3000">
         <!-- Judul -->
         <div class="flex items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Destinasi</h2>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
             <?php
             $query_con = "SELECT consortium_list.id, consortium_list.continent, continent.img FROM consortium_list LEFT JOIN continent ON consortium_list.continent LIKE continent.name GROUP BY consortium_list.continent";
             $rs_con = mysqli_query($con, $query_con);
@@ -178,59 +178,79 @@ include "navbar.php";
         </div>
     </div>
 
-    <div class="container mx-auto my-10 p-6 shadow-xl" data-aos="zoom-in-up" data-aos-easing="linear" data-aos-duration="1000">
-        <h2 class="text-2xl font-bold border-b-4 border-blue-500 pb-4 mb-6">Admission Ticket</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            <?php
-            function getGoogleDriveDirectLink($url)
-            {
-                if (strpos($url, 'drive.google.com') !== false) {
-                    preg_match('/d\/([^\/]+)/', $url, $matches);
-                    if (!empty($matches[1])) {
-                        return "https://lh3.googleusercontent.com/d/{$matches[1]}=s0";
-                    }
-                }
-                return $url;
-            }
-
-            $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
-               lti.summer_img, lti.winter_img, lti.autumn_img
-               FROM List_tempat AS lt
-               LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
-               WHERE lt.price > 100000
-               LIMIT 4";
-
-            $result = $con->query($sql);
-            $tickets = [];
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $tickets[] = $row;
-                }
-            }
-
-            foreach ($tickets as $ticket) {
-                $image = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
-            ?>
-                <div class="ticket-card bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-2xl relative">
-                    <img src="<?php echo htmlspecialchars($image); ?>" alt="Ticket Image" class="w-full h-56 object-cover">
-                    <div class="p-4 text-center">
-                        <h5 class="text-lg font-bold text-gray-900"> <?php echo htmlspecialchars($ticket['name']); ?> </h5>
-                        <p class="text-sm text-gray-600 mt-2">Location: <span class="text-white px-3 py-1 rounded bg-blue-600"> <?php echo htmlspecialchars($ticket['location']); ?> </span></p>
-                        <div class="mt-3 text-lg font-bold text-yellow-500">IDR <?php echo number_format($ticket['price'], 0, ',', '.'); ?></div>
-                        <div class="mt-4 flex flex-col gap-2">
-                            <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?php echo urlencode($ticket['name']); ?>"
-                                class="w-full py-2 bg-[#FFCA10] text-[#02335B] font-bold rounded-lg hover:bg-black hover:text-[#FFCA10] transition transform hover:scale-105">Pesan Sekarang</a>
-                            <a href="<?php echo htmlspecialchars($image); ?>" target="_blank"
-                                class="w-full py-2 bg-[#02335B] text-[#FFCA10] font-semibold rounded-lg border border-yellow-500 hover:bg-yellow-500 hover:text-white transition transform hover:scale-105">Lihat Gambar</a>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
+    <div class="container mx-auto py-10 px-6 mb-4" data-aos="zoom-in-up" data-aos-easing="linear" data-aos-duration="1000">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold border-b-4 border-blue-500 pb-2">Admission Ticket</h2>
+            <a href="tiket.php" class="text-blue-600 font-semibold hover:underline">Lihat Semua Tiket</a>
         </div>
-        <div class="text-center mt-6">
-            <a href="tiket.php" class="px-8 py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white text-lg font-semibold rounded-full shadow-lg hover:shadow-2xl transform hover:scale-110 transition duration-300">
-                Lihat Semua Tiket
-            </a>
+
+        <div class="swiper3 swiper w-full">
+            <div class="swiper-wrapper">
+                <?php
+                function getGoogleDriveDirectLink($url)
+                {
+                    if (strpos($url, 'drive.google.com') !== false) {
+                        preg_match('/d\/([^\/]+)/', $url, $matches);
+                        if (!empty($matches[1])) {
+                            return "https://lh3.googleusercontent.com/d/{$matches[1]}=s0";
+                        }
+                    }
+                    return $url;
+                }
+
+                $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
+                        lti.summer_img, lti.winter_img, lti.autumn_img
+                    FROM List_tempat AS lt
+                    LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
+                    WHERE lt.price > 100000
+                    ORDER BY lt.id DESC
+                    LIMIT 6";
+
+                $result = $con->query($sql);
+                if ($result && $result->num_rows > 0) {
+                    while ($ticket = $result->fetch_assoc()) {
+                        $img = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
+                ?>
+                        <div class="swiper-slide">
+                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[370px]">
+                                <img src="<?= htmlspecialchars($img); ?>" alt="Ticket Image" class="w-full h-64 object-cover">
+
+                                <div class="flex flex-col justify-between flex-1 p-4">
+                                    <div>
+                                        <h5 class="text-base sm:text-lg font-bold text-gray-800 mb-1 truncate">
+                                            <?= htmlspecialchars($ticket['name']); ?>
+                                        </h5>
+                                        <p class="text-sm text-gray-600 mb-2">
+                                            Lokasi: <span class="inline-block px-2 py-0.5 rounded bg-blue-600 text-white"><?= htmlspecialchars($ticket['location']); ?></span>
+                                        </p>
+                                        <div class="text-yellow-500 font-semibold text-base mb-3">
+                                            IDR <?= number_format($ticket['price'], 0, ',', '.'); ?>
+                                        </div>
+                                    </div>
+
+                                    <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?= urlencode($ticket['name']); ?>"
+                                        class="block mt-auto w-full py-2 bg-[#FFCA10] text-[#02335B] text-center text-sm font-semibold rounded-lg hover:bg-black hover:text-[#FFCA10] transition-all duration-200 ease-in-out transform hover:scale-105">
+                                        Pesan Sekarang
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                <?php }
+                } ?>
+
+                <!-- Slide untuk Lihat Semua -->
+                <div class="swiper-slide flex items-center justify-center">
+                    <a href="tiket.php"
+                        class="flex flex-col items-center justify-center w-full h-[370px] max-w-xs mx-auto border-2 border-dashed border-blue-400 text-blue-600 hover:bg-blue-50 rounded-lg text-lg font-semibold transition text-center py-10">
+                        <span>Lihat Semua Tiket</span>
+                        <span class="text-3xl mt-2">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigasi -->
+            <div class="swiper-button-next text-blue-600"></div>
+            <div class="swiper-button-prev text-blue-600"></div>
         </div>
     </div>
 
@@ -242,7 +262,7 @@ include "navbar.php";
         <div data-aos="fade-up"><?php include "table_paket_tour2.php"; ?></div>
     </div>
 
-    <div class="container mx-auto py-12 px-6" data-aos="fade-up" data-aos-duration="2000">
+    <!-- <div class="container mx-auto py-12 px-6" data-aos="fade-up" data-aos-duration="2000">
         <div class="flex justify-between items-center mb-10 pb-4">
             <h1 class="text-4xl font-extrabold text-gray-900 tracking-wide relative">
                 Visa
@@ -251,11 +271,11 @@ include "navbar.php";
                 Lihat Lainnya
                 <span class="ml-2 transform transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110">&rarr;</span>
             </a>
-        </div>
+        </div> -->
 
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            <!-- Card Template -->
+    <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
             <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
                 <div class="h-64 w-full flex items-center justify-center bg-gray-100">
                     <img src="img/VisaJapan.jpg" alt="Visa Jepang" class="h-full object-cover w-full">
@@ -292,10 +312,7 @@ include "navbar.php";
                 </div>
             </div>
         </div>
-    </div>
-
-
-
+    </div> -->
 
     <!-- <div class="content">
         <div class="content-promo-lebaran">
@@ -774,3 +791,29 @@ include "footer.php";
 ?>
 
 </html>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var swiper3 = new Swiper('.swiper3', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoheight: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            }
+        });
+    });
+</script>
