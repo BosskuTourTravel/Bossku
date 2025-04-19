@@ -19,8 +19,8 @@ include "slug.php";
         <a href="javascript:history.back()" class="text-center text-md font-semibold tracking-wide hover:underline ">
             <i class="bi bi-arrow-left"></i> Kembali
         </a>
-        <a href="detail-visa-individu.php" class="text-center text-md font-semibold tracking-wide hover:underline ">
-            Visa Individu <i class="bi bi-arrow-right"></i>
+        <a href="passport.php" class="text-center text-md font-semibold tracking-wide hover:underline ">
+            Passport <i class="bi bi-arrow-right"></i>
         </a>
     </div>
 

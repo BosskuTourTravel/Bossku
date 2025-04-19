@@ -18,7 +18,7 @@
           <li><a href="#" class="text-gray-400 hover:text-white">Cruise</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Tiket Pesawat Domestic</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Tiket Pesawat International</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">Pasport</a></li>
+          <li><a href="passport.php" class="text-gray-400 hover:text-white">Passport</a></li>
           <li><a href="visa.php" class="text-gray-400 hover:text-white">Visa</a></li>
         </ul>
       </div>

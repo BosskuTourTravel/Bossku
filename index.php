@@ -262,58 +262,6 @@ include "navbar.php";
         <div data-aos="fade-up"><?php include "table_paket_tour2.php"; ?></div>
     </div>
 
-    <!-- <div class="container mx-auto py-12 px-6" data-aos="fade-up" data-aos-duration="2000">
-        <div class="flex justify-between items-center mb-10 pb-4">
-            <h1 class="text-4xl font-extrabold text-gray-900 tracking-wide relative">
-                Visa
-            </h1>
-            <a href="#" class="relative text-blue-600 hover:text-blue-800 font-semibold transition duration-300 flex items-center group after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-blue-600 after:transition-all after:duration-300 group-hover:after:w-full">
-                Lihat Lainnya
-                <span class="ml-2 transform transition-transform duration-300 group-hover:translate-x-2 group-hover:scale-110">&rarr;</span>
-            </a>
-        </div> -->
-
-
-    <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-
-            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
-                    <img src="img/VisaJapan.jpg" alt="Visa Jepang" class="h-full object-cover w-full">
-                </div>
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span class="text-white text-xl font-bold text-center">Visa Japan - Rp1.500.000</span>
-                </div>
-            </div>
-
-            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
-                    <img src="img/VisaChina.jpg" alt="Visa China" class="h-full object-cover w-full">
-                </div>
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span class="text-white text-xl font-bold text-center">Visa China - Rp2.800.000</span>
-                </div>
-            </div>
-
-            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
-                    <img src="img/VisaTurkey.jpg" alt="Visa Turkey" class="h-full object-cover w-full">
-                </div>
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span class="text-white text-xl font-bold text-center">Visa Turkey - Rp2.500.000</span>
-                </div>
-            </div>
-
-            <div class="group relative bg-white shadow-md rounded-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                <div class="h-64 w-full flex items-center justify-center bg-gray-100">
-                    <img src="img/VisaAusie.jpg" alt="Visa Australia" class="h-full object-cover w-full">
-                </div>
-                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span class="text-white text-xl font-bold text-center">Visa Australia - Rp2.200.000</span>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <!-- <div class="content">
         <div class="content-promo-lebaran">
             <div class="judul-promo">PROMO PAKET TOUR CONSORTIUM 2024</div>
@@ -380,8 +328,8 @@ include "navbar.php";
     </div> -->
 
     <div class="container mx-auto py-16 px-6" data-aos="zoom-in-right">
-        <div class="text-center mb-12">
-            <h2 class="text-4xl font-bold text-gray-800 mb-4">OUR PRODUCTS</h2>
+        <div class="text-center mb-4">
+            <h2 class="text-4xl font-bold text-gray-800 mb-2">OUR PRODUCTS</h2>
             <p class="text-lg text-gray-600">Discover our wide range of offerings that cater to every need and desire.</p>
         </div>
 

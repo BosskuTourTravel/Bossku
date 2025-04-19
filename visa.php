@@ -50,6 +50,23 @@ include "slug.php";
                 </a>
             </div>
         </div>
+
+        <div class="shadow-lg rounded-2xl p-6 flex flex-col md:flex-row items-center gap-4 border-t-4 border-blue-600 bg-white transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-blue-800 w-full md:w-5/12 lg:w-1/3">
+            <!-- Gambar -->
+            <img src="img/Passport.jpg" alt="Passport" class="w-48 h-48 object-cover rounded-xl hover:scale-105 transition duration-300">
+
+            <!-- Teks -->
+            <div class="flex-1 text-center md:text-left">
+            <h2 class="text-xl font-bold text-[#02335B] mb-1">Passport</h2>
+            <p class="text-[#02335B] text-sm mb-4">
+                Layanan pembuatan dan perpanjangan passport, cocok untuk kebutuhan perjalanan internasional Anda. Proses mudah dan cepat untuk kenyamanan Anda.
+            </p>
+
+            <a href="passport.php" class="mt-4 bg-[#FFCA10] text-[#02335B] border-1 border-[#02335B] rounded-full px-4 py-1 font-semibold transition duration-300 hover:bg-[#02335B] hover:text-[#FFCA10] shadow-md inline-block">
+                Detail <i class="bi bi-arrow-right"></i>
+            </a>
+            </div>
+        </div>
     </div>
 
 </div>

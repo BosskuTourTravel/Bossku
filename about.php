@@ -30,7 +30,7 @@ include "slug.php";
             Let us guide you as we explore the wonders of the world together, <span class="italic">crafting memories</span> that will stay with you forever.
         </p>
         <p class="text-justify">
-            We pride ourselves on offering <span class="font-semibold text-[#FFCA10]">exclusive deals and packages</span> designed to suit your budget and expectations. Whether you're traveling with loved ones, or in a group, we handle every detail so you can focus on enjoying the journey.
+            We pride ourselves on offering <strong class="font-bold text-[#FFCA10]">exclusive deals and packages</strong> designed to suit your budget and expectations. Whether you're traveling with loved ones, or in a group, we handle every detail so you can focus on enjoying the journey.
         </p>
         <p class="text-justify">
             Through our partnerships with <span class="font-semibold text-[#02335B]">top-rated hotels, airlines, and local experts,</span> we bring you unparalleled services and experiences. From luxurious stays to authentic cultural encounters, we aim to exceed your expectations at every turn.
