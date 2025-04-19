@@ -5,136 +5,57 @@ include "db=connection.php";
 include "slug.php";
 ?>
 
-<body>
-    <div class="container mx-auto py-12 px-6" x-data="visaApp()">
-        <div class="flex justify-between items-center mb-6 pb-4">
-            <h1 class="text-4xl font-extrabold text-gray-900 tracking-wide">Visa</h1>
+<div class="container mx-auto px-4 py-16 mt-10">
+
+    <!-- Title -->
+    <div class="flex flex-col items-center justify-center mb-4">
+        <h1 class="text-centertext-[#02335B] text-sm font-semibold tracking-wide mb-2 border border-[#02335B] rounded-full px-2 py-0 inline-block bg-[#F0F8FF]">Visa</h1>
+        <h2 class="text-3xl font-bold tracking-wide text-center">Visa</h2>
+        <p class="font-medium text-sm tracking-wide text-center text-gray-500">Let's Explore Our Immigration And Visa Type</p>
+    </div>
+
+    <!-- Card -->
+    <div class="flex gap-6 justify-center items-start px-4 flex-wrap">
+        <!-- Card Visa Individu -->
+        <div class="shadow-lg rounded-2xl p-6 flex items-center gap-4 border-t-4 border-blue-600 bg-white transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-blue-800">
+            <!-- Gambar -->
+            <img src="img/SoloTrip.jpg" alt="Visa Individu" class="w-48 h-48 object-cover rounded-xl hover:scale-105 transition duration-300">
+
+            <!-- Teks -->
+            <div class="flex-1">
+                <h2 class="text-xl font-bold text-[#02335B] mb-1">Visa Individu</h2>
+                <p class="text-gray-600 text-sm mb-4">
+                    Layanan visa untuk satu orang, cocok untuk perjalanan pribadi, bisnis, atau kunjungan keluarga. Proses mudah dan cepat untuk kebutuhan perjalanan Anda.
+                </p>
+
+                <a href="detail-visa-individu.php" class="mt-4 bg-[#FFCA10] text-[#02335B] border-1 border-[#02335B] rounded-full px-4 py-1 font-semibold transition duration-300 hover:bg-[#02335B] hover:text-[#FFCA10] shadow-md">
+                    Detail <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- Input Pencarian -->
-        <div class="mb-6">
-            <input type="text" placeholder="Cari visa berdasarkan negara..." 
-                x-model="searchQuery" 
-                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-700">
-        </div>
+        <!-- Card Visa Group -->
+        <div class="shadow-lg rounded-2xl p-6 flex items-center gap-4 border-t-4 border-blue-600 bg-white transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-blue-800">
+            <!-- Gambar -->
+            <img src="img/GroupTrip.jpg" alt="Visa Group" class="w-48 h-48 object-cover rounded-xl hover:scale-105 transition duration-300">
 
-        <!-- Grid Visa -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4">
-            <template x-for="(data, negara) in filteredVisaData()" :key="negara">
-                <div class="relative bg-white shadow-md rounded-2xl overflow-hidden transform">
-                    
-                    <!-- Gambar Visa -->
-                    <div class="h-96 flex items-center justify-center bg-gray-100 relative">
-                        <img :src="`img/Visa${negara}.jpg`" :alt="`Visa ${negara}`" 
-                            class="h-full object-cover w-full hover:scale-105 transition-transform duration-300">
+            <!-- Teks -->
+            <div class="flex-1">
+                <h2 class="text-xl font-bold text-[#02335B] mb-1">Visa Group</h2>
+                <p class="text-[#02335B] text-sm mb-4">
+                    Layanan visa untuk rombongan, ideal untuk tur, perjalanan dinas, atau kegiatan kelompok lainnya. Proses cepat dan efisien untuk memenuhi kebutuhan kelompok Anda.
+                </p>
 
-                        <!-- Tombol Booking -->
-                        <a :href="`detail-visa.php?country=${encodeURIComponent(negara)}`"
-                            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-[#FFCA10] text-[#02335B]  
-                            px-4 py-2 rounded-lg text-sm font-bold hover:bg-[#02335B] hover:text-[#FFCA10] 
-                            transition w-11/12 text-center">
-                            Booking →
-                        </a>
-                    </div>
-                </div>
-            </template>
+                <a href="detail-visa-group.php" class="mt-4 bg-[#FFCA10] text-[#02335B] border-1 border-[#02335B] rounded-full px-4 py-1 font-semibold transition duration-300 hover:bg-[#02335B] hover:text-[#FFCA10] shadow-md">
+                    Detail <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 
-    <script>
-        function visaApp() {
-            return {
-                searchQuery: '',
-                visaData: {
-                    'Japan': [
-                        { jenis: 'Visa Turis', harga: 'Rp 500.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 1.200.000' }
-                    ],
-                    'Amerika': [
-                        { jenis: 'Visa Pelajar', harga: 'Rp 2.000.000' },
-                        { jenis: 'Visa Kerja', harga: 'Rp 3.500.000' }
-                    ],
-                    'Korea Selatan': [
-                        { jenis: 'Visa Turis', harga: 'Rp 800.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 1.500.000' }
-                    ],
-                    'Australia': [
-                        { jenis: 'Visa Pelajar', harga: 'Rp 1.800.000' },
-                        { jenis: 'Visa PR', harga: 'Rp 5.000.000' }
-                    ],
-                    'Jerman': [
-                        { jenis: 'Visa Pelajar', harga: 'Rp 2.500.000' },
-                        { jenis: 'Visa Kerja', harga: 'Rp 4.000.000' }
-                    ],
-                    'Prancis': [
-                        { jenis: 'Visa Turis', harga: 'Rp 1.200.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 1.800.000' }
-                    ],
-                    'Singapura': [
-                        { jenis: 'Visa Turis', harga: 'Rp 500.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 1.000.000' }
-                    ],
-                    'Italia': [
-                        { jenis: 'Visa Pelajar', harga: 'Rp 2.200.000' },
-                        { jenis: 'Visa Kerja', harga: 'Rp 3.500.000' }
-                    ],
-                    'China': [
-                        { jenis: 'Visa Kunjungan', harga: 'Rp 600.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 1.400.000' }
-                    ],
-                    'Kanada': [
-                        { jenis: 'Visa Pelajar', harga: 'Rp 2.700.000' },
-                        { jenis: 'Visa PR', harga: 'Rp 6.000.000' }
-                    ],
-                    'Swiss': [
-                        { jenis: 'Visa Turis', harga: 'Rp 1.500.000' },
-                        { jenis: 'Visa Kerja', harga: 'Rp 3.800.000' }
-                    ],
-                    'Spanyol': [
-                        { jenis: 'Visa Pelajar', harga: 'Rp 2.300.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 2.000.000' }
-                    ],
-                    'Thailand': [
-                        { jenis: 'Visa Turis', harga: 'Rp 400.000' },
-                        { jenis: 'Visa Kerja', harga: 'Rp 1.200.000' }
-                    ],
-                    'Malaysia': [
-                        { jenis: 'Visa Turis', harga: 'Rp 350.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 900.000' }
-                    ],
-                    'Belanda': [
-                        { jenis: 'Visa Pelajar', harga: 'Rp 2.800.000' },
-                        { jenis: 'Visa Kerja', harga: 'Rp 4.500.000' }
-                    ],
-                    'Rusia': [
-                        { jenis: 'Visa Kunjungan', harga: 'Rp 900.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 2.500.000' }
-                    ],
-                    'India': [
-                        { jenis: 'Visa Turis', harga: 'Rp 300.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 700.000' }
-                    ],
-                    'Afrika Selatan': [
-                        { jenis: 'Visa Kunjungan', harga: 'Rp 1.000.000' },
-                        { jenis: 'Visa Kerja', harga: 'Rp 3.000.000' }
-                    ],
-                    'Argentina': [
-                        { jenis: 'Visa Turis', harga: 'Rp 750.000' },
-                        { jenis: 'Visa Bisnis', harga: 'Rp 1.300.000' }
-                    ]
-                },
-                filteredVisaData() {
-                    if (!this.searchQuery) {
-                        return this.visaData;
-                    }
-                    let query = this.searchQuery.toLowerCase();
-                    return Object.fromEntries(
-                        Object.entries(this.visaData).filter(([negara]) => 
-                            negara.toLowerCase().includes(query)
-                        )
-                    );
-                }
-            };
-        }
-    </script>
-</body>
+
+</div>
+
+<?php
+include "footer.php";
+?>

@@ -19,7 +19,7 @@
           <li><a href="#" class="text-gray-400 hover:text-white">Tiket Pesawat Domestic</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Tiket Pesawat International</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Pasport</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">Visa</a></li>
+          <li><a href="visa.php" class="text-gray-400 hover:text-white">Visa</a></li>
         </ul>
       </div>
 
