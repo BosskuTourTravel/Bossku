@@ -16,7 +16,7 @@ include "slug.php";
 
     <!-- Button -->
     <div class="flex justify-between items-center mb-4">
-        <a href="visa.php" class="text-center text-md font-semibold tracking-wide hover:underline ">
+        <a href="javascript:history.back()" class="text-center text-md font-semibold tracking-wide hover:underline ">
             <i class="bi bi-arrow-left"></i> Kembali
         </a>
         <a href="detail-visa-group.php" class="text-center text-md font-semibold tracking-wide hover:underline ">
@@ -45,12 +45,13 @@ include "slug.php";
                 Layanan ini memberikan kenyamanan dan efisiensi dalam proses pengajuan visa secara personal, tanpa ribet dan tanpa harus mengikuti jadwal rombongan.
             </p>
 
-            <ul class="list-disc list-inside text-gray-600 text-md">
+            <ul class="list-disc text-gray-600 text-md p-4 leading-relaxed">
                 <li>Proses lebih cepat dan fleksibel</li>
                 <li>Dapat disesuaikan dengan kebutuhan pribadi</li>
                 <li>Bimbingan langsung dari tim berpengalaman</li>
                 <li>Dukungan dokumen lengkap dan valid</li>
             </ul>
+
 
             <!-- Sub Judul 2 -->
             <h2 class="text-xl font-semibold text-[#02335B] mt-6 mb-2">Mengapa Harus Pilih Visa Individu Kami?</h2>

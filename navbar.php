@@ -34,7 +34,7 @@
         <a href="<?php echo $domain_web ?>about.php" class="font-bold text-white hover:text-gray-300">ABOUT</a>
         <a href="<?php echo $domain_web ?>faq.php" class="font-bold text-white hover:text-gray-300">FAQ</a>
         <a href="<?php echo $domain_web ?>contact.php" class="font-bold text-white hover:text-gray-300">CONTACT</a>
-        <a href="<?php echo $domain_web ?>privacy_policy.php" class="font-bold text-white hover:text-gray-300">VISA</a>
+        <a href="<?php echo $domain_web ?>visa.php" class="font-bold text-white hover:text-gray-300">VISA</a>
         <a href="<?php echo $domain_web ?>member/" class="bg-white text-[#02335B] border-2 border-[#02335B] rounded-full px-6 py-2 font-bold transition duration-300 hover:bg-[#02335B] hover:text-white shadow-md">Login</a>
     </div>
 </nav>

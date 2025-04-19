@@ -212,7 +212,7 @@ include "navbar.php";
                         $img = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
                 ?>
                         <div class="swiper-slide">
-                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[370px]">
+                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[390px]">
                                 <img src="<?= htmlspecialchars($img); ?>" alt="Ticket Image" class="w-full h-64 object-cover">
 
                                 <div class="flex flex-col justify-between flex-1 p-4">

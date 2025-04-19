@@ -10,13 +10,13 @@ include "slug.php";
     <!-- Title -->
     <div class="flex flex-col items-center justify-center mb-4">
         <h1 class="text-center text-[#02335B] text-sm font-semibold tracking-wide mb-2 border border-[#02335B] rounded-full px-2 py-0 inline-block bg-[#F0F8FF]">Visa</h1>
-        <h2 class="text-3xl font-bold tracking-wide text-center">Visa Individu</h2>
-        <p class="font-medium text-sm tracking-wide text-center text-gray-500">Layanan visa untuk satu orang, cocok untuk perjalanan pribadi, bisnis, atau kunjungan keluarga.<br> Proses mudah dan cepat untuk kebutuhan perjalanan Anda.</p>
+        <h2 class="text-3xl font-bold tracking-wide text-center">Visa Group</h2>
+        <p class="font-medium text-sm tracking-wide text-center text-gray-500">Temukan solusi terbaik untuk kebutuhan perjalanan grup Anda dengan layanan Visa Group kami.</p>
     </div>
 
     <!-- Button -->
     <div class="flex justify-between items-center mb-4">
-        <a href="visa.php" class="text-center text-md font-semibold tracking-wide hover:underline ">
+        <a href="javascript:history.back()" class="text-center text-md font-semibold tracking-wide hover:underline ">
             <i class="bi bi-arrow-left"></i> Kembali
         </a>
         <a href="detail-visa-individu.php" class="text-center text-md font-semibold tracking-wide hover:underline ">
@@ -45,7 +45,7 @@ include "slug.php";
                 Layanan ini memberikan efisiensi biaya dan waktu untuk perjalanan rombongan, serta pengurusan dokumen yang lebih mudah karena dilakukan secara kolektif dengan pendampingan penuh.
             </p>
 
-            <ul class="list-disc list-inside text-gray-600 text-md">
+            <ul class="list-disc text-gray-600 text-md p-4 leading-relaxed">
                 <li>Biaya lebih hemat untuk pengajuan grup</li>
                 <li>Koordinasi dokumen yang lebih praktis</li>
                 <li>Jadwal proses yang disesuaikan kebutuhan grup</li>
