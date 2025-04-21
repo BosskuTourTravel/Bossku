@@ -334,6 +334,7 @@ include "navbar.php";
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
             <!-- Kategori 1: Attraction -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>tiket.php">
