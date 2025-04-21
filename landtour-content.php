@@ -4,17 +4,18 @@
 include "header.php";
 include "site.php";
 include "navbar.php";
-include "db=connection.php";
-include "slug.php";
+include "db=connection.php"; // Perbaikan nama file
+include "slug.php"; // Perbaikan nama file
+
 function get_kurs_manual($d)
 {
-    include "db=connection.php";
+    include "db=connection.php"; // Perbaikan nama file
     $kurs = $d['kurs'];
     $nominal = $d['nominal'];
-    $query = "SELECT * FROM  kurs_bca_field where nama = '" . $kurs . "' order by id ASC ";
+    $query = "SELECT * FROM kurs_bca_field WHERE nama = '" . mysqli_real_escape_string($con, $kurs) . "' ORDER BY id ASC"; // Perbaikan query
     $rs = mysqli_query($con, $query);
     $row = mysqli_fetch_array($rs);
-    if ($row['id'] == "") {
+    if (empty($row['id'])) {
         return json_encode(array("status" => "data Kurs tidak Tersedia", "data" => '0'), true);
     } else {
         if ($kurs == "IDR") {
@@ -24,11 +25,12 @@ function get_kurs_manual($d)
                 return json_encode(array("status" => "nominal 0", "data" => $nominal), true);
             } else {
                 $price = $nominal * $row['jual'];
-                return json_encode(array("status" => $result_data['status'], "data" => $price), true);
+                return json_encode(array("status" => "success", "data" => $price), true);
             }
         }
     }
 }
+
 function get_pembulatan($x)
 {
     $totalharga = ceil($x);
@@ -41,38 +43,41 @@ function get_pembulatan($x)
     }
     return json_encode(array("status" => 1, "value" => $total_harga), true);
 }
-
 ?>
 
 <body>
-    <div class="content-tour">
-        <nav aria-label="breadcrumb" style="padding: 10px; background-color: whitesmoke; border-radius: 15px; margin: auto;">
-            <div class="row">
-                <div class="col" style="text-align: left;">
-                    <ol class="breadcrumb">
+    <div class="container mx-auto px-4 py-16 mt-10">
+        <!-- Title -->
+        <h1 class="text-[#02335B] text-lg font-semibold tracking-wide text-center mb-2">Paket Land Tour</h1>
+        <h2 class="text-3xl font-bold tracking-wide text-center">Jelajahi Destinasi Menarik Bersama Kami</h2>
+        <p class="font-medium text-sm tracking-wide text-center text-gray-500">Temukan paket wisata menarik di berbagai belahan dunia.</p>
+
+        <!-- card -->
+        <nav aria-label="breadcrumb" class="p-4 rounded-lg mx-auto mt-10">
+            <div class="flex justify-between items-center">
+                <div>
+                    <ol class="breadcrumb flex space-x-2 text-sm text-gray-600">
                         <li class="breadcrumb-item">Land Tour</li>
                         <li class="breadcrumb-item" aria-current="page">
-                            <?php echo $_GET['id'] ?>
+                            <?php echo htmlspecialchars($_GET['id']); ?>
                         </li>
                     </ol>
                 </div>
-                <div class="col" style="text-align: right;">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Search...." aria-describedby="basic-addon2" id="cari" value="<?php echo $_GET['search'] ?>">
-                        <div class="input-group-append" style="padding-left: 5px;">
-                            <button id="myBtn" class="btn btn-primary" type="button" onclick="fungsi_cari('<?php echo $_GET['id'] ?>')">Cari</button>
-                        </div>
+                <div>
+                    <div class="flex items-center space-x-2 w-full max-w-md mx-auto">
+                        <input type="text" class="form-input border-gray-300 bg-gray-100 rounded-md shadow-sm w-full py-2 px-4 text-sm" placeholder="Search...." id="cari" value="<?php echo !empty($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                        <button id="myBtn" class="btn bg-[#FFCA10] text-black px-4 py-2 rounded-md hover:bg-blue-600 text-sm font-semibold" type="button" onclick="fungsi_cari('<?php echo htmlspecialchars($_GET['id']); ?>')">Cari</button>
                     </div>
                 </div>
             </div>
         </nav>
-        <div style="padding: 10px;">
+        <div class="p-4">
             <?php
-            $query_ct = "SELECT * FROM LT_Category order by id ASC";
+            $query_ct = "SELECT * FROM LT_Category ORDER BY id ASC";
             $rs_ct = mysqli_query($con, $query_ct);
             while ($row_ct = mysqli_fetch_array($rs_ct)) {
             ?>
-                <button type="button" class="btn btn-primary rounded-pill" onclick="cat_lt(<?php echo $row_ct['id'] ?>,'<?php echo $_GET['id'] ?>')"><?php echo $row_ct['nama'] ?></button>
+                <button type="button" class="btn bg-[#02335B] font-semibold text-white px-4 py-1 rounded-full hover:bg-[#FFCA10] hover:text-[#02335B] transition" onclick="cat_lt(<?php echo $row_ct['id']; ?>,'<?php echo htmlspecialchars($_GET['id']); ?>')"><?php echo htmlspecialchars($row_ct['nama']); ?></button>
             <?php
             }
             ?>
@@ -80,18 +85,18 @@ function get_pembulatan($x)
         <div class="search"></div>
         <div class="category"></div>
         <div class="auto-load">
-            <div class="row" style="text-align: center; padding: 10px;">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-center p-4">
                 <?php
                 $x = 0;
-                $query = "SELECT * FROM  LT_itinerary2 where landtour !='undefined' && judul like '%" . $_GET['search'] . "%'  order by id ASC";
+                $search = isset($_GET['search']) ? $_GET['search'] : '';
+                $query = "SELECT * FROM LT_itinerary2 WHERE landtour !='undefined' AND judul LIKE '%" . mysqli_real_escape_string($con, $search) . "%' ORDER BY id ASC";
                 $rs = mysqli_query($con, $query);
                 while ($row = mysqli_fetch_array($rs)) {
-
-                    $query_bn = "SELECT * FROM LT_itinnew where kode='" . $row['landtour'] . "'   && agent_twn !='0' && benua='" . $_GET['id'] . "'    order by agent_twn ASC LIMIT 1";
+                    $query_bn = "SELECT * FROM LT_itinnew WHERE kode='" . mysqli_real_escape_string($con, $row['landtour']) . "' AND agent_twn !='0' AND benua='" . mysqli_real_escape_string($con, $_GET['id']) . "' ORDER BY agent_twn ASC LIMIT 1";
                     $rs_bn = mysqli_query($con, $query_bn);
                     $row_bn = mysqli_fetch_array($rs_bn);
 
-                    if ($row_bn['agent_twn'] != "") {
+                    if ($row_bn && isset($row_bn['agent_twn']) && $row_bn['agent_twn'] != "") {
                         $x++;
 
                         $data_twn = array(
@@ -121,21 +126,18 @@ function get_pembulatan($x)
 
                         $show_kurs_inf = get_kurs_manual($data_inf);
                         $rs_kurs_inf = json_decode($show_kurs_inf, true);
-                        // var_dump($data_twn);
-                        // var_dump($rs_kurs_twn);
 
                         $agent_twn = $rs_kurs_twn['data'];
                         $agent_sgl = $rs_kurs_sgl['data'];
                         $agent_cnb = $rs_kurs_cnb['data'];
                         $agent_inf = $rs_kurs_inf['data'];
 
-
-                        $sql_profit = "SELECT * FROM LT_itin_profit_range_bossku where price1 <='" . $agent_twn . "' && price2 >='" . $agent_twn . "'";
+                        $sql_profit = "SELECT * FROM LT_itin_profit_range_bossku WHERE price1 <= '" . $agent_twn . "' AND price2 >= '" . $agent_twn . "'";
                         $rs_profit = mysqli_query($con, $sql_profit);
                         $row_profit = mysqli_fetch_array($rs_profit);
 
                         $pr = 0;
-                        if ($row_profit['id'] != "") {
+                        if (!empty($row_profit['id'])) {
                             $pr = $row_profit['profit'];
                         } else {
                             $pr = 5;
@@ -157,76 +159,48 @@ function get_pembulatan($x)
                         }
                         $pax_val = $row_bn['pax'] . $pax_u . $pax_b;
                 ?>
-                        <div class="col-xs-12 col-md-6 col-lg-4" style="padding: 5px 5px;">
-                            <a href="<?php  echo $domain_web ?>detail-landtour.php?id=<?php echo $row_bn['id'] ?>&master=<?php echo $row['id'] ?>" class="front-text" style="text-decoration: none; color:black">
-                                <div class="thumbnail">
-                                    <img src="<?php  echo $domain_web ?>Admin/images/<?php echo $row['gambar1'] ?>" class="img-fluid img-thumbnail2">
-                                    <?php
-                                    if ($row_bn['statuss'] == 'E') {
-
-                                    ?>
-                                        <div class="top-left" style="color: red;">
-                                            EXPIRED
+                        <a href="<?php echo $domain_web; ?>detail-landtour.php?id=<?php echo $row_bn['id']; ?>&master=<?php echo $row['id']; ?>" class="block text-black no-underline">
+                            <div class="thumbnail bg-white shadow-md rounded-lg overflow-hidden h-full flex flex-col">
+                                <img src="<?php echo $domain_web; ?>Admin/images/<?php echo htmlspecialchars($row['gambar1']); ?>" class="w-full h-48 object-cover aspect-square">
+                                <?php
+                                if ($row_bn['statuss'] == 'E') {
+                                ?>
+                                    <div class="absolute top-2 left-2 text-red-500 font-bold">EXPIRED</div>
+                                <?php
+                                }
+                                ?>
+                                <div class="p-4 flex-grow flex flex-col justify-between">
+                                    <div>
+                                        <div class="font-bold text-lg"><?php echo htmlspecialchars($row['judul']); ?></div>
+                                        <div class="text-gray-500 text-xs"><?php echo htmlspecialchars($row_bn['kota']); ?></div>
+                                        <div class="text-gray-500 text-sm"><?php echo htmlspecialchars($row['landtour']) . " - " . htmlspecialchars($row_bn['expired']); ?></div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <div class="flex justify-between items-center">
+                                            <div class="text-gray-500 text-sm"><?php echo $pax_val . " Pax"; ?></div>
+                                            <div class="line-through text-purple-600 text-sm"><?php echo "IDR " . number_format($coret, 0, ",", "."); ?></div>
                                         </div>
-                                    <?php
-                                    }
-
-                                    ?>
-                                    <div class="card-body-tour">
-                                        <div class="judul">
-                                            <?php echo $row['judul'] ?>
-                                        </div>
-                                        <div style="color: gray; font-size: 8pt;">
-                                            <?php echo $row_bn['kota'] ?>
-                                        </div>
-                                        <div style="color: gray; font-size: 8pt;">
-                                            <?php echo $row['landtour'] ?> - <?php echo  $row_bn['expired'] ?>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div style="color: gray; font-size: 8pt;">
-                                                    <?php echo $pax_val . " Pax" ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div style="text-decoration: line-through; font-size: 9pt; color: darkmagenta; text-align: right;"> <?php echo "IDR " . number_format($coret, 0, ",", ".") ?></div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-3" style="color: darkgreen;">
+                                        <div class="flex items-center mt-2">
+                                            <div class="text-green-600">
                                                 <i class="fa fa-building"></i>
                                                 <i class="fa fa-bus"></i>
                                                 <i class="fa fa-coffee"></i>
-                                                <div style="color: gray; font-size: 6pt;">SIC Everyday</div>
+                                                <div class="text-gray-500 text-xs">SIC Everyday</div>
                                             </div>
-                                            <div class="col-9">
-                                                <div class="card-body-price">
-                                                    <div style="color: darkgreen;"><?php echo "IDR " . number_format($twn_rp['value'], 0, ",", ".") ?></div>
-                                                    <div style="color: gray; font-size: 6pt;">
-                                                        Guarantee Departure (Start From 2pax) klik for price
-                                                    </div>
-                                                </div>
+                                            <div class="ml-auto text-right">
+                                                <div class="text-green-600 font-bold"><?php echo "IDR " . number_format($twn_rp['value'], 0, ",", "."); ?></div>
+                                                <div class="text-gray-500 text-xs">Guarantee Departure (Start From 2pax) klik for price</div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                 <?php
-                    }
-                    if ($x == '6') {
-                        break;
                     }
                 }
                 ?>
             </div>
-        </div>
-        <div class="more-landtour"></div>
-        <div style="text-align: center; padding: 20px;">
-            <input type="hidden" name="val_li" id="val_li" value='6'>
-            <button type="button" class="btn btn-outline-success" onclick="fungsi_more('<?php echo $_GET['id'] ?>')">More
-                Landtour</button>
         </div>
     </div>
     <script>
@@ -235,7 +209,7 @@ function get_pembulatan($x)
             $.ajax({
                 url: "more-landtour.php",
                 method: "POST",
-                asynch: false,
+                async: false,
                 data: {
                     id: li,
                     x: x
@@ -250,29 +224,14 @@ function get_pembulatan($x)
 
         function fungsi_cari(x) {
             var cari = document.getElementById('cari').value;
-            window.location.href = "<?php  echo $domain_web ?>landtour-content.php?id=Asia&search=" + cari;
-            // $.ajax({
-            //     url: "search-landtour.php",
-            //     method: "POST",
-            //     asynch: false,
-            //     data: {
-            //         cari: cari,
-            //         benua: x
-            //     },
-            //     success: function(data) {
-            //         $('.search').html(data);
-            //         $('.more-landtour').html('');
-            //         $('.auto-load').html('');
-
-            //     }
-            // });
+            window.location.href = "<?php echo $domain_web; ?>landtour-content.php?id=" + encodeURIComponent(x) + "&search=" + encodeURIComponent(cari);
         }
 
         function cat_lt(x, y) {
             $.ajax({
                 url: "search-cat-landtour.php",
                 method: "POST",
-                asynch: false,
+                async: false,
                 data: {
                     cari: x,
                     benua: y
@@ -281,7 +240,6 @@ function get_pembulatan($x)
                     $('.search').html(data);
                     $('.more-landtour').html('');
                     $('.auto-load').html('');
-
                 }
             });
         }

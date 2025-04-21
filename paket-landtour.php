@@ -9,61 +9,49 @@ include "slug.php";
 ?>
 
 <body>
-    <div style="text-align: center; width: 80%; margin: auto;">
-        <div class="row" style="text-align: center; padding: 40px;">
-            <div class="col-xs-12 col-md-6 col-lg-4" style="padding: 5px 5px;">
-                <div class="thumbnail">
-                    <a href="<?php echo $domain_web ?>landtour-content.php?id=Eropa" class="front-text">
-                        <img src="<?php echo $domain_web ?>img/home_page/EROPA.jpg" class="img-fluid img-thumbnail">
-                        <div class="centered">EROPA</div>
-                    </a>
+    <div class="container mx-auto px-4 py-16 mt-10">
+        <!-- Title -->
+        <h1 class="text-[#02335B] text-lg font-semibold tracking-wide text-center mb-2">Paket Land Tour</h1>
+        <h2 class="text-3xl font-bold tracking-wide text-center">Jelajahi Destinasi Menarik Bersama Kami</h2>
+        <p class="font-medium text-sm tracking-wide text-center text-gray-500">Temukan paket wisata menarik di berbagai belahan dunia.</p>
 
-                </div>
+        <!-- Card -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <a href="<?php echo $domain_web ?>landtour-content.php?id=Eropa" class="block">
+                <img src="<?php echo $domain_web ?>img/home_page/EROPA.jpg" alt="Eropa" class="w-full h-48 object-cover">
+                <div class="text-center py-4 font-semibold text-lg text-[#02335B]">EROPA</div>
+            </a>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-4" style="padding: 5px 5px;">
-                <div class="thumbnail">
-                    <a href="<?php echo $domain_web ?>landtour-content.php?id=Australia" class="front-text">
-                        <img src="<?php echo $domain_web ?>img/home_page/AUSTRALIA.jpg" class="img-fluid img-thumbnail">
-                        <div class="centered">AUSTRALIA</div>
-                    </a>
-
-                </div>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <a href="<?php echo $domain_web ?>landtour-content.php?id=Australia" class="block">
+                <img src="<?php echo $domain_web ?>img/home_page/AUSTRALIA.jpg" alt="Australia" class="w-full h-48 object-cover">
+                <div class="text-center py-4 font-semibold text-lg text-[#02335B]">AUSTRALIA</div>
+            </a>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-4" style="padding: 5px 5px;">
-                <div class="thumbnail">
-                    <a href="<?php echo $domain_web ?>landtour-content.php?id=Asia" class="front-text">
-                        <img src="<?php echo $domain_web ?>img/home_page/JAPAN.jpg" class="img-fluid img-thumbnail">
-                        <div class="centered">ASIA</div>
-                    </a>
-
-                </div>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <a href="<?php echo $domain_web ?>landtour-content.php?id=Asia" class="block">
+                <img src="<?php echo $domain_web ?>img/home_page/JAPAN.jpg" alt="Asia" class="w-full h-48 object-cover">
+                <div class="text-center py-4 font-semibold text-lg text-[#02335B]">ASIA</div>
+            </a>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-4" style="padding: 5px 5px;">
-                <div class="thumbnail">
-                    <a href="<?php echo $domain_web ?>landtour-content.php?id=Afrika" class="front-text">
-                        <img src="<?php echo $domain_web?>img/home_page/AFRIKA.jpg" class="img-fluid img-thumbnail">
-                        <div class="centered">AFRIKA</div>
-                    </a>
-
-                </div>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <a href="<?php echo $domain_web ?>landtour-content.php?id=Afrika" class="block">
+                <img src="<?php echo $domain_web ?>img/home_page/AFRIKA.jpg" alt="Afrika" class="w-full h-48 object-cover">
+                <div class="text-center py-4 font-semibold text-lg text-[#02335B]">AFRIKA</div>
+            </a>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-4" style="padding: 5px 5px;">
-                <div class="thumbnail">
-                    <a href="<?php echo $domain_web ?>landtour-content.php?id=Amerika" class="front-text">
-                        <img src="<?php echo $domain_web ?>img/home_page/AMERIKA.jpg" class="img-fluid img-thumbnail">
-                        <div class="centered">AMERIKA UTARA</div>
-                    </a>
-
-                </div>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <a href="<?php echo $domain_web ?>landtour-content.php?id=Amerika" class="block">
+                <img src="<?php echo $domain_web ?>img/home_page/AMERIKA.jpg" alt="Amerika Utara" class="w-full h-48 object-cover">
+                <div class="text-center py-4 font-semibold text-lg text-[#02335B]">AMERIKA UTARA</div>
+            </a>
             </div>
-            <div class="col-xs-12 col-md-6 col-lg-4" style="padding: 5px 5px;">
-                <div class="thumbnail">
-                    <a href="<?php echo $domain_web ?>landtour-content.php?id=Amerika" class="front-text">
-                        <img src="<?php echo $domain_web ?>img/home_page/AMERIKA-SEL2.jpg" class="img-fluid img-thumbnail">
-                        <div class="centered">AMERIKA SELATAN</div>
-                    </a>
-
-                </div>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+            <a href="<?php echo $domain_web ?>landtour-content.php?id=Amerika" class="block">
+                <img src="<?php echo $domain_web ?>img/home_page/AMERIKA-SEL2.jpg" alt="Amerika Selatan" class="w-full h-48 object-cover">
+                <div class="text-center py-4 font-semibold text-lg text-[#02335B]">AMERIKA SELATAN</div>
+            </a>
             </div>
         </div>
     </div>

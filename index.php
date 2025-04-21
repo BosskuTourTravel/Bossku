@@ -336,7 +336,7 @@ include "navbar.php";
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Kategori 1: Attraction -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <a href="<?php echo $domain_web ?>Activity">
+                <a href="<?php echo $domain_web ?>tiket.php">
                     <img src="img/Frame 1.png" alt="Attraction" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Explore Attractions</span>
