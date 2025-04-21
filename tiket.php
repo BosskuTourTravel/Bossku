@@ -97,16 +97,21 @@ include "header.php";
 include "navbar.php";
 ?>
 <div class="container mx-auto px-4 py-16 mt-10">
-
-    <h2 class="text-center font-bold text-3xl text-gray-800 mb-8">Admission Ticket</h2>
+    <!-- Title -->
+    <h1 class="text-[#02335B] text-lg font-semibold tracking-wide text-center">Admission Tickets</h1>
+    <h2 class="text-3xl font-bold tracking-wide text-center">Explore the World with Us</h2>
+    <p class="font-medium text-sm tracking-wide text-center text-gray-500">Discover amazing places and experiences.</p>
+    <p class="font-medium text-sm tracking-wide text-center text-gray-500 mb-4">Book your tickets now!</p>
 
     <form method="GET" class="flex flex-col gap-4 justify-center align-center md:flex-row items-center mb-8 p-6 rounded-lg shadow-lg bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 transition duration-300 hover:shadow-xl space-y-4 md:space-y-0 md:space-x-4">
         <div class="flex-grow w-full md:w-1/2">
-            <input type="text" name="search" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-gray-700" placeholder="🔍 Search for a place..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+            <div class="relative">
+                <input type="text" name="search" class="w-full p-3 pl-10 rounded-lg bg-white border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none placeholder-gray-400 text-gray-700" placeholder="Search for a place..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+            </div>
         </div>
         <div class="w-full md:w-1/4">
             <select name="price_filter" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white text-gray-700">
-                <option value="">💰 Price Filter</option>
+                <option value="">Price Filter</option>
                 <option value="low" <?php echo $price_filter == 'low' ? 'selected' : ''; ?>>Low (&lt; 200k)</option>
                 <option value="medium" <?php echo $price_filter == 'medium' ? 'selected' : ''; ?>>Medium (200k - 500k)</option>
                 <option value="high" <?php echo $price_filter == 'high' ? 'selected' : ''; ?>>High (&gt; 500k)</option>
@@ -114,7 +119,7 @@ include "navbar.php";
         </div>
         <div class="w-full md:w-1/4">
             <select name="sort_by" class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white text-gray-700">
-                <option value="">🔃 Sort By</option>
+                <option value="">Sort By</option>
                 <option value="price_asc" <?php echo $sort_by == 'price_asc' ? 'selected' : ''; ?>>Price: Low to High</option>
                 <option value="price_desc" <?php echo $sort_by == 'price_desc' ? 'selected' : ''; ?>>Price: High to Low</option>
             </select>
