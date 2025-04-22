@@ -60,13 +60,6 @@
               <i class="fa-brands fa-instagram fa-lg"></i>
             </a>
           </li>
-
-          <!-- LinkedIn (commented out) -->
-          <!-- <li>
-            <a href="#" class="text-gray-400 hover:text-blue-700">
-                <i class="fa-brands fa-linkedin fa-lg"></i>
-            </a>
-        </li> -->
         </ul>
       </div>
 

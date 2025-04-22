@@ -19,7 +19,7 @@ include "navbar.php";
         <img src="img/asia/AsiaBaratThumb.jpg" alt="Asia Barat" class="w-full h-[550px] object-cover">
 
         <!-- Overlay dengan efek Glassmorphism -->
-        <div class="absolute inset-0 flex items-center justify-center" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1500">
+        <div class="absolute inset-0 flex items-center justify-center">
             <div class="bg-white/10 backdrop-blur-md p-6 md:p-8 rounded-2xl w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 shadow-2xl text-white border border-white/20">
                 <h2 class="text-center text-2xl md:text-3xl font-extrabold mb-5 text-yellow-400 drop-shadow-lg">
                     Temukan Destinasi Impianmu
@@ -152,7 +152,7 @@ include "navbar.php";
     ?>
 
 
-    <div class="container mx-auto py-10 px-6 mb-8" data-aos="fade-up" data-aos-duration="3000">
+    <div class="container mx-auto py-10 px-6 mb-8">
         <!-- Judul -->
         <div class="flex items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Destinasi</h2>
@@ -178,7 +178,7 @@ include "navbar.php";
         </div>
     </div>
 
-    <div class="container mx-auto py-10 px-6 mb-4" data-aos="zoom-in-up" data-aos-easing="linear" data-aos-duration="1000">
+    <div class="container mx-auto py-10 px-6 mb-4">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold border-b-4 border-blue-500 pb-2">Admission Ticket</h2>
             <a href="tiket.php" class="text-blue-600 font-semibold hover:underline">Lihat Semua Tiket</a>
@@ -254,9 +254,8 @@ include "navbar.php";
         </div>
     </div>
 
-
-    <div class="container mx-auto py-10 px-6" data-aos-offset="300" data-aos-easing="ease-in-sine">
-        <div data-aos="fade-down"><?php include "table_paket_tour.php"; ?></div>
+    <div class="container mx-auto py-10 px-6">
+       <?php include "table_paket_tour.php"; ?></div>
     </div>
 
     <!-- <div class="content">
@@ -324,7 +323,7 @@ include "navbar.php";
         </div>
     </div> -->
 
-    <div class="container mx-auto py-16 px-6" data-aos="zoom-in-right">
+    <div class="container mx-auto py-16 px-6">
         <div class="text-center mb-4">
             <h2 class="text-4xl font-bold text-gray-800 mb-2">OUR PRODUCTS</h2>
             <p class="text-lg text-gray-600">Discover our wide range of offerings that cater to every need and desire.</p>
@@ -344,7 +343,7 @@ include "navbar.php";
 
             <!-- Kategori 2: Cruise -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <a href="#">
+                <a href="<?php echo $domain_web ?>cruise.php">
                     <img src="img/Frame 2.png" alt="Cruise" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Amazing Cruises</span>
@@ -373,11 +372,6 @@ include "navbar.php";
             </div>
         </div>
     </div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 
     <script>
         function search_promo() {
