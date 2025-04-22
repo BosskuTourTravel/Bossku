@@ -13,7 +13,7 @@
       <div>
         <h6 class="text-lg font-semibold mb-4">Product</h6>
         <ul class="space-y-2">
-          <li><a href="#" class="text-gray-400 hover:text-white">Paket Tour</a></li>
+          <li><a href="<?php echo $domain_web ?>paket_tour.php" class="text-gray-400 hover:text-white">Paket Tour</a></li>
           <li><a href="<?php echo $domain_web ?>paket-landtour.php" class="text-gray-400 hover:text-white">Land Tour</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Cruise</a></li>
           <li><a href="#" class="text-gray-400 hover:text-white">Tiket Pesawat Domestic</a></li>

@@ -258,9 +258,6 @@ include "navbar.php";
     <div class="container mx-auto py-10 px-6" data-aos-offset="300" data-aos-easing="ease-in-sine">
         <div data-aos="fade-down"><?php include "table_paket_tour.php"; ?></div>
     </div>
-    <div class="container mx-auto py-10 px-6" data-aos-offset="500" data-aos-duration="500">
-        <div data-aos="fade-up"><?php include "table_paket_tour2.php"; ?></div>
-    </div>
 
     <!-- <div class="content">
         <div class="content-promo-lebaran">
@@ -334,7 +331,7 @@ include "navbar.php";
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            
+
             <!-- Kategori 1: Attraction -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>tiket.php">
@@ -367,7 +364,7 @@ include "navbar.php";
 
             <!-- Kategori 4: Hotel -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <a href="<?php echo $domain_web ?>Hotel">
+                <a href="<?php echo $domain_web ?>Hotel-content.php">
                     <img src="img/Frame 4.png" alt="Hotel" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Luxury Hotels</span>
