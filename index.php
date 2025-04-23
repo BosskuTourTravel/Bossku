@@ -152,7 +152,7 @@ include "navbar.php";
     ?>
 
 
-    <div class="container mx-auto py-10 px-6 mb-8">
+    <div class="container mx-auto py-10 px-6 mb-4">
         <!-- Judul -->
         <div class="flex items-center mb-6">
             <h2 class="text-2xl font-bold text-gray-800">Destinasi</h2>
@@ -178,7 +178,7 @@ include "navbar.php";
         </div>
     </div>
 
-    <div class="container mx-auto py-10 px-6 mb-4">
+    <div class="container mx-auto py-8 px-6 mb-4">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold border-b-4 border-blue-500 pb-2">Admission Ticket</h2>
             <a href="tiket.php" class="text-blue-600 font-semibold hover:underline">Lihat Semua Tiket</a>
@@ -365,7 +365,7 @@ include "navbar.php";
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
                 <a href="<?php echo $domain_web ?>Hotel-content.php">
                     <img src="img/Frame 4.png" alt="Hotel" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
-                    <div class="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center">
+                    <div class="absolute inset-0 bg-black bg-opacity-75 opacity-0 group-hover:opacity-50 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Luxury Hotels</span>
                     </div>
                 </a>
