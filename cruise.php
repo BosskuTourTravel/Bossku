@@ -1,8 +1,8 @@
 <?php
-include "db=connection.php";
 include "header.php";
 include "navbar.php";
 include "slug.php";
+include "cruise-data.php"; // pastikan ini array $cruises sudah didefinisikan
 
 function slugify($string)
 {
@@ -16,7 +16,24 @@ function formatRupiah($angka)
 {
     return 'Rp' . number_format($angka, 0, ',', '.');
 }
+
+// Pencarian
+$search = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
+$filteredCruises = array_filter($cruises, function ($cruise) use ($search) {
+    return $search === '' || strpos(strtolower($cruise['country']), $search) !== false;
+});
+
+// Pagination
+$perPage = 6;
+$totalData = count($filteredCruises);
+$totalPages = ceil($totalData / $perPage);
+$page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = max(1, min($totalPages, $page));
+
+$offset = ($page - 1) * $perPage;
+$displayCruises = array_slice($filteredCruises, $offset, $perPage);
 ?>
+
 
 <div class="container mx-auto px-4 py-16 mt-10">
     <!-- Title -->
@@ -24,10 +41,26 @@ function formatRupiah($angka)
     <h2 class="text-3xl font-bold tracking-wide text-center">Discover Your Perfect Cruise</h2>
     <p class="font-medium text-sm tracking-wide text-center text-gray-500">Let us help you find the ideal cruise experience tailored to your needs.</p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
-        <?php include 'cruise-data.php'; ?>
+    <form method="GET" class="w-full max-w-md mx-auto flex flex-wrap sm:flex-nowrap items-center gap-2 mt-8 px-4">
+        <input
+            type="text"
+            name="search"
+            placeholder="Cari cruise berdasarkan negara tujuan..."
+            value="<?php echo htmlspecialchars($search); ?>"
+            class="w-full sm:w-auto flex-grow border border-gray-300 px-5 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#02335B] focus:border-transparent transition duration-200 text-sm" />
 
-        <?php foreach ($cruises as $cruise):
+        <button
+            type="submit"
+            class="w-full md:w-auto bg-[#02335B] text-white px-6 py-2 rounded-lg shadow hover:bg-[#035a8b] transition-all duration-200 text-sm">
+            Cari
+        </button>
+    </form>
+
+
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+
+        <?php foreach ($displayCruises as $cruise):
             $cruiseName = $cruise['name'];
             $cruiseImage = $cruise['image'];
             $cruiseDescription = $cruise['description'];
@@ -77,13 +110,66 @@ function formatRupiah($angka)
         <?php endforeach; ?>
     </div>
 
-    <!-- Modal -->
-    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="relative bg-white rounded-lg w-100 mx-4 p-4 transform scale-95 transition-transform duration-300" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-black text-xl font-bold">&times;</button>
-            <img id="modalImage" src="" alt="Cruise Image" class="w-auto h-100 mx-auto rounded-lg">
+    <div class="mt-6 flex flex-col items-center justify-between gap-2 text-sm text-gray-600">
+        <p>
+            Menampilkan <?php echo ($offset + 1); ?> &ndash; <?php echo min($offset + $perPage, $totalData); ?> dari <?php echo $totalData; ?> produk
+        </p>
+
+        <!-- Pagination -->
+        <div class="flex justify-center items-center space-x-2 text-[#02335B] font-medium">
+            <?php if ($page > 1): ?>
+                <a href="?search=<?php echo urlencode($search); ?>&page=<?php echo $page - 1; ?>" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">&laquo;</a>
+            <?php endif; ?>
+
+            <?php
+            $visiblePages = [];
+            if ($totalPages <= 7) {
+                $visiblePages = range(1, $totalPages);
+            } else {
+                $visiblePages = array_unique(array_merge(
+                    [1, 2],
+                    range(max(1, $page - 1), min($totalPages, $page + 1)),
+                    [$totalPages - 1, $totalPages]
+                ));
+                sort($visiblePages);
+            }
+
+            $lastPageShown = 0;
+            foreach ($visiblePages as $i):
+                if ($lastPageShown + 1 < $i) echo "<span class='px-2'>...</span>";
+                $lastPageShown = $i;
+            ?>
+                <a href="?search=<?php echo urlencode($search); ?>&page=<?php echo $i; ?>"
+                    class="px-3 py-1 rounded <?php echo $i === $page ? 'bg-[#02335B] text-white' : 'bg-gray-200 hover:bg-gray-300'; ?>">
+                    <?php echo $i; ?>
+                </a>
+            <?php endforeach; ?>
+
+            <?php if ($page < $totalPages): ?>
+                <a href="?search=<?php echo urlencode($search); ?>&page=<?php echo $page + 1; ?>" class="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300">&raquo;</a>
+            <?php endif; ?>
         </div>
     </div>
+
+
+
+    <!-- Modal ala Galeri Slim -->
+    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-transparent w-auto max-w-md p-0 transform scale-95 transition-transform duration-300 ease-out" onclick="event.stopPropagation()">
+
+            <!-- Tombol Close -->
+            <button onclick="closeModal()"
+                class="absolute top-2 right-2 text-white bg-black bg-opacity-40 hover:bg-opacity-60 rounded-full p-1 text-xl font-bold transition">
+                &times;
+            </button>
+
+            <!-- Gambar -->
+            <img id="modalImage" src="" alt="Cruise Image"
+                class="w-full max-h-[60vh] object-contain rounded-lg shadow-lg border border-white/20" />
+        </div>
+    </div>
+
+
 
 
 </div>

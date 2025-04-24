@@ -2,6 +2,8 @@
 include "db=connection.php";
 include "slug.php";
 include "API/Price/Api_LT_total_baru.php";
+include "cruise-data.php";
+include "testimoni-data.php";
 ?>
 
 <!DOCTYPE html>
@@ -152,6 +154,7 @@ include "navbar.php";
     ?>
 
 
+    <!-- Destinasi -->
     <div class="container mx-auto py-10 px-6 mb-4">
         <!-- Judul -->
         <div class="flex items-center mb-6">
@@ -178,10 +181,12 @@ include "navbar.php";
         </div>
     </div>
 
-    <div class="container mx-auto py-8 px-6 mb-4">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold border-b-4 border-blue-500 pb-2">Admission Ticket</h2>
-            <a href="tiket.php" class="text-blue-600 font-semibold hover:underline">Lihat Semua Tiket</a>
+
+    <!-- Admission Ticket -->
+    <div class="container mx-auto py-10 px-6 mb-4">
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
+            <h2 class="text-2xl font-bold">Admission Ticket</h2>
+            <a href="tiket.php" class="text-blue-600 text-center font-semibold hover:underline">Lihat Semua Tiket</a>
         </div>
 
         <div class="swiper3 swiper w-full">
@@ -254,9 +259,60 @@ include "navbar.php";
         </div>
     </div>
 
+
+
+    <!-- Cruise -->
     <div class="container mx-auto py-10 px-6">
-       <?php include "table_paket_tour.php"; ?></div>
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
+            <h1 class="text-3xl font-bold text-center md:text-left">Paket Wisata Cruise Unggulan</h1>
+            <a href="cruise.php" class="text-blue-600 font-semibold hover:underline text-center md:text-right">
+                Lihat Semua &rarr;
+            </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <?php foreach (array_slice($cruises, 0, 3) as $cruise): ?>
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                    <img src="<?= $cruise['image'] ?>" alt="<?= $cruise['name'] ?>" class="w-full h-56 object-cover">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= $cruise['name'] ?></h2>
+                        <p class="text-gray-600 text-sm mb-3"><?= $cruise['description'] ?></p>
+                        <p class="text-blue-600 font-bold text-lg mb-4">Rp <?= number_format($cruise['price'], 0, ',', '.') ?></p>
+                        <a href="cruise-details.php?slug=<?= $cruise['slug'] ?>" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Lihat Detail</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </div>
+
+
+
+    <!-- Testimoni -->
+    <div class="container mx-auto py-10 px-6">
+        <h2 class="text-3xl font-bold text-center mb-4 tracking-wide">Apa Kata Mereka</h2>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <?php foreach ($testimonials as $testimonial): ?>
+                    <div class="swiper-slide">
+                        <div class="bg-white shadow-xl rounded-2xl p-6 flex flex-col justify-between transition-transform hover:shadow-2xl hover:scale-105 h-75">
+                            <p class="text-gray-600 text-lg italic mb-4 flex-grow">
+                                <i class="fa fa-quote-left text-xl"></i> <?= htmlspecialchars($testimonial['message']) ?> <i class="fa fa-quote-right text-xl"></i>
+                            </p>
+
+                            <div class="flex items-center gap-4 mt-auto">
+                                <div>
+                                    <p class="font-semibold text-gray-800"><?= htmlspecialchars($testimonial['name']) ?></p>
+                                    <p class="mt-1 text-sm font-semibold text-gray-600"><?= htmlspecialchars($testimonial['tour_name']) ?></p> <!-- Menampilkan Nama Tour -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- <div class="content">
         <div class="content-promo-lebaran">
@@ -323,7 +379,7 @@ include "navbar.php";
         </div>
     </div> -->
 
-    <div class="container mx-auto py-16 px-6">
+    <div class="container mx-auto py-10 px-6">
         <div class="text-center mb-4">
             <h2 class="text-4xl font-bold text-gray-800 mb-2">OUR PRODUCTS</h2>
             <p class="text-lg text-gray-600">Discover our wide range of offerings that cater to every need and desire.</p>
@@ -373,7 +429,57 @@ include "navbar.php";
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
+        var swiper = new Swiper('.swiper3', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoheight: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            }
+        });
+
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 10,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+            },
+            speed: 2000,
+            effect: 'slide',
+            easing: 'ease',
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                }
+            }
+        });
+
+
         function search_promo() {
             var negara = document.getElementById("negara").value;
             $.ajax({
@@ -730,30 +836,7 @@ include "navbar.php";
 include "footer.php";
 ?>
 
-</html>
-
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var swiper3 = new Swiper('.swiper3', {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            autoheight: true,
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                },
-                768: {
-                    slidesPerView: 3,
-                },
-                1024: {
-                    slidesPerView: 4,
-                },
-            }
-        });
-    });
 </script>
+
+</html>

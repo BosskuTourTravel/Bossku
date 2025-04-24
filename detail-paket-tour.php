@@ -36,7 +36,6 @@ $row_data = mysqli_fetch_array($rs_data);
     }
 </style>
 
-<script src="./js/script.js"></script>
 
 <body>
     <?php
@@ -324,105 +323,113 @@ $row_data = mysqli_fetch_array($rs_data);
             <h1 class="text-[#02335B] text-lg font-semibold tracking-wide text-center mb">Paket Land Tour</h1>
             <h1 class="text-3xl font-bold text-gray-800 text-center"><?php echo $row_data['judul'] ?></h1>
 
-            <div class="text-center">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 py-5">
-                    <?php
-                    $link2 = "https://drive.google.com/file/d/1ZX73bzx42Ox7qNldS6kY_z6XogQmBesH/view?usp=sharing";
-                    $headers2 = explode('/', $link2);
-                    $thumbnail = $headers2[5];
-                    $thumbnail_gmb1 = $headers2[5];
-                    $thumbnail_gmb2 = $headers2[5];
-                    $thumbnail_gmb3 = $headers2[5];
-                    $thumbnail_gmb4 = $headers2[5];
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-5xl mx-auto px-2 mt-10">
+                <?php
+                $link2 = "https://drive.google.com/file/d/1ZX73bzx42Ox7qNldS6kY_z6XogQmBesH/view?usp=sharing";
+                $headers2 = explode('/', $link2);
+                $thumbnail = $headers2[5];
+                $thumbnail_gmb1 = $headers2[5];
+                $thumbnail_gmb2 = $headers2[5];
+                $thumbnail_gmb3 = $headers2[5];
+                $thumbnail_gmb4 = $headers2[5];
 
-                    $query_main = "SELECT * FROM selected_img_main  where tour_id ='" . $row_data['master_id'] . "' order by id DESC limit 1";
-                    $rs_main = mysqli_query($con, $query_main);
-                    $row_main = mysqli_fetch_array($rs_main);
-                    if (isset($row_main['id'])) {
-                        if (isset($row_main['img1'])) {
-                            $query_sel_main1 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img1'] . "'";
-                            $rs_sel_main1 = mysqli_query($con, $query_sel_main1);
-                            $row_sel_main1 = mysqli_fetch_array($rs_sel_main1);
-                            $s1 = $row_sel_main1['tmp_type'];
+                function getL3ImageLink($driveId)
+                {
+                    $thumbnailUrl = 'https://drive.google.com/thumbnail?id=' . $driveId;
+                    $headers = get_headers($thumbnailUrl, 1);
 
-                            $link_gmb1 = $row_sel_main1[$s1];
-                            $headers_gmb1 = explode('/', $link_gmb1);
-                            $thumbnail_gmb1 = $headers_gmb1[5];
-                    ?>
-                            <figure class="relative">
-                                <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . $thumbnail_gmb1 ?>" alt="Gallery image 1" class="w-full h-auto rounded-lg shadow-md">
-                            </figure>
-                        <?php
-                        }
-                        if (isset($row_main['img2'])) {
-                            $query_sel_main2 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img2'] . "'";
-                            $rs_sel_main2 = mysqli_query($con, $query_sel_main2);
-                            $row_sel_main2 = mysqli_fetch_array($rs_sel_main2);
-                            $s2 = $row_sel_main2['tmp_type'];
+                    if (isset($headers['Location'])) {
+                        $location = is_array($headers['Location']) ? end($headers['Location']) : $headers['Location'];
 
-                            $link_gmb2 = $row_sel_main2[$s2];
-                            $headers_gmb2 = explode('/', $link_gmb2);
-                            $thumbnail_gmb2 = $headers_gmb2[5];
-                        ?>
-                            <figure class="relative">
-                                <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . $thumbnail_gmb2 ?>" alt="Gallery image 2" class="w-full h-auto rounded-lg shadow-md">
-                            </figure>
-                        <?php
-                        }
-                        if (isset($row_main['img3'])) {
-                            $query_sel_main3 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img3'] . "'";
-                            $rs_sel_main3 = mysqli_query($con, $query_sel_main3);
-                            $row_sel_main3 = mysqli_fetch_array($rs_sel_main3);
-                            $s3 = $row_sel_main3['tmp_type'];
-
-                            $link_gmb3 = $row_sel_main3[$s3];
-                            $headers_gmb3 = explode('/', $link_gmb3);
-                            $thumbnail_gmb3 = $headers_gmb3[5];
-                        ?>
-                            <figure class="relative">
-                                <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . $thumbnail_gmb3 ?>" alt="Gallery image 3" class="w-full h-auto rounded-lg shadow-md">
-                            </figure>
-                        <?php
-                        }
-                        if (isset($row_main['img4'])) {
-                            $query_sel_main4 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img4'] . "'";
-                            $rs_sel_main4 = mysqli_query($con, $query_sel_main4);
-                            $row_sel_main4 = mysqli_fetch_array($rs_sel_main4);
-                            $s4 = $row_sel_main4['tmp_type'];
-
-                            $link_gmb4 = $row_sel_main4[$s4];
-                            $headers_gmb4 = explode('/', $link_gmb4);
-                            $thumbnail_gmb4 = $headers_gmb4[5];
-                        ?>
-                            <figure class="relative">
-                                <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . $thumbnail_gmb4 ?>" alt="Gallery image 4" class="w-full h-auto rounded-lg shadow-md">
-                            </figure>
-                        <?php
-                        }
-                    } else {
-                        $query_sel_img = "SELECT * FROM  selected_img_tmp where tour_id ='" . $row_data['master_id'] . "' limit 4";
-                        $rs_sel_img = mysqli_query($con, $query_sel_img);
-                        $x = 1;
-                        while ($row_sel_img = mysqli_fetch_array($rs_sel_img)) {
-                            $query_stmp = "SELECT List_tempat_img.id ,List_tempat_img.link,List_tempat_img.summer_img,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM List_tempat_img LEFT JOIN List_tempat ON List_tempat_img.tmp_id=List_tempat.id where List_tempat_img.tmp_id='" . $row_sel_img['tmp'] . "'";
-                            $rs_stmp = mysqli_query($con, $query_stmp);
-                            $row_stmp = mysqli_fetch_array($rs_stmp);
-
-                            $p = $row_sel_img['tmp_type'];
-                            $link = $row_stmp[$p];
-                            $headers = explode('/', $link);
-                            $thumbnail = $headers[5];
-                        ?>
-                            <figure class="relative">
-                                <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . $thumbnail ?>" alt="Gallery image <?php echo $x ?>" class="w-full h-auto rounded-lg shadow-md">
-                            </figure>
-                    <?php
-                            $x++;
+                        if (strpos($location, 'https://lh3.googleusercontent.com') !== false) {
+                            // Ubah sXXX ke s0 (resolusi penuh)
+                            return preg_replace('/=s\d+/', '=s0', $location);
                         }
                     }
+
+                    // fallback kalau gagal
+                    return 'https://drive.google.com/thumbnail?id=' . $driveId;
+                }
+
+                $query_main = "SELECT * FROM selected_img_main  where tour_id ='" . $row_data['master_id'] . "' order by id DESC limit 1";
+                $rs_main = mysqli_query($con, $query_main);
+                $row_main = mysqli_fetch_array($rs_main);
+                if (isset($row_main['id'])) {
+                    if (isset($row_main['img1'])) {
+                        $query_sel_main1 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img1'] . "'";
+                        $rs_sel_main1 = mysqli_query($con, $query_sel_main1);
+                        $row_sel_main1 = mysqli_fetch_array($rs_sel_main1);
+                        $s1 = $row_sel_main1['tmp_type'];
+
+                        $link_gmb1 = $row_sel_main1[$s1];
+                        $headers_gmb1 = explode('/', $link_gmb1);
+                        $thumbnail_gmb1 = $headers_gmb1[5];
+                ?>
+                        <img src="<?php echo getL3ImageLink($thumbnail_gmb1); ?>" alt="Gallery image 1" class="w-full max-w-5xl h-auto rounded-lg shadow-md mx-auto">
+                    <?php
+                    }
+                    if (isset($row_main['img2'])) {
+                        $query_sel_main2 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img2'] . "'";
+                        $rs_sel_main2 = mysqli_query($con, $query_sel_main2);
+                        $row_sel_main2 = mysqli_fetch_array($rs_sel_main2);
+                        $s2 = $row_sel_main2['tmp_type'];
+
+                        $link_gmb2 = $row_sel_main2[$s2];
+                        $headers_gmb2 = explode('/', $link_gmb2);
+                        $thumbnail_gmb2 = $headers_gmb2[5];
                     ?>
-                </div>
+                        <img src="<?php echo getL3ImageLink($thumbnail_gmb2); ?>" alt="Gallery image 2" class="w-full max-w-5xl h-auto rounded-lg shadow-md mx-auto">
+                    <?php
+                    }
+                    if (isset($row_main['img3'])) {
+                        $query_sel_main3 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img3'] . "'";
+                        $rs_sel_main3 = mysqli_query($con, $query_sel_main3);
+                        $row_sel_main3 = mysqli_fetch_array($rs_sel_main3);
+                        $s3 = $row_sel_main3['tmp_type'];
+
+                        $link_gmb3 = $row_sel_main3[$s3];
+                        $headers_gmb3 = explode('/', $link_gmb3);
+                        $thumbnail_gmb3 = $headers_gmb3[5];
+                    ?>
+                        <img src="<?php echo getL3ImageLink($thumbnail_gmb3); ?>" alt="Gallery image 3" class="w-full max-w-5xl h-auto rounded-lg shadow-md mx-auto">
+                    <?php
+                    }
+                    if (isset($row_main['img4'])) {
+                        $query_sel_main4 = "SELECT selected_img_tmp.*,List_tempat_img.link,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM selected_img_tmp LEFT JOIN List_tempat_img ON selected_img_tmp.tmp=List_tempat_img.tmp_id LEFT JOIN List_tempat ON selected_img_tmp.tmp=List_tempat.id where selected_img_tmp.id ='" . $row_main['img4'] . "'";
+                        $rs_sel_main4 = mysqli_query($con, $query_sel_main4);
+                        $row_sel_main4 = mysqli_fetch_array($rs_sel_main4);
+                        $s4 = $row_sel_main4['tmp_type'];
+
+                        $link_gmb4 = $row_sel_main4[$s4];
+                        $headers_gmb4 = explode('/', $link_gmb4);
+                        $thumbnail_gmb4 = $headers_gmb4[5];
+                    ?>
+                        <img src="<?php echo getL3ImageLink($thumbnail_gmb4); ?>" alt="Gallery image 4" class="w-full max-w-5xl h-auto rounded-lg shadow-md mx-auto">
+                    <?php
+                    }
+                } else {
+                    $query_sel_img = "SELECT * FROM  selected_img_tmp where tour_id ='" . $row_data['master_id'] . "' limit 4";
+                    $rs_sel_img = mysqli_query($con, $query_sel_img);
+                    $x = 1;
+                    while ($row_sel_img = mysqli_fetch_array($rs_sel_img)) {
+                        $query_stmp = "SELECT List_tempat_img.id ,List_tempat_img.link,List_tempat_img.summer_img,List_tempat_img.winter_img,List_tempat_img.autumn_img,List_tempat.tempat FROM List_tempat_img LEFT JOIN List_tempat ON List_tempat_img.tmp_id=List_tempat.id where List_tempat_img.tmp_id='" . $row_sel_img['tmp'] . "'";
+                        $rs_stmp = mysqli_query($con, $query_stmp);
+                        $row_stmp = mysqli_fetch_array($rs_stmp);
+
+                        $p = $row_sel_img['tmp_type'];
+                        $link = $row_stmp[$p];
+                        $headers = explode('/', $link);
+                        $thumbnail = $headers[5];
+                    ?>
+                        <img src="<?php echo getL3ImageLink($thumbnail); ?>" alt="Gallery image <?php echo $x ?>" class="w-full max-w-5xl h-auto rounded-lg shadow-md mx-auto">
+
+                <?php
+                        $x++;
+                    }
+                }
+                ?>
             </div>
+
             <div class="content-more text-left p-5">
                 <div class="overflow-x-auto">
                     <table class="table-auto w-full border-collapse border border-gray-300 text-left text-sm">
@@ -443,7 +450,7 @@ $row_data = mysqli_fetch_array($rs_data);
                             $rs = mysqli_query($con, $query);
                             while ($row = mysqli_fetch_array($rs)) {
                                 $judul = "";
-                                $url_encode = urldecode("Haii " . $row['staff_name'] . ", Saya ingin Memesan Paket Tour : https://www.holidaymyboss.com/Admin/cetak_pt_website.php?id=" . $row['id']);
+                                $url_encode = urldecode("Haii Bossku, Saya ingin Memesan Paket Tour : https://www.holidaymyboss.com/Admin/cetak_pt_website.php?id=" . $row['id']);
 
                                 if (isset($row['change_judul'])) {
                                     $judul = $row['change_judul'];
@@ -490,10 +497,19 @@ $row_data = mysqli_fetch_array($rs_data);
                                         <div><?php echo "IDR " . number_format($row['gt'], 0, ".", ".") ?></div>
                                     </td>
                                     <td class="border border-gray-300 px-4 py-2">
-                                        <a class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600" href="Admin/cetak_pt_website.php?id=<?php echo $row['id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print</a>
-                                        <a class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600" href="Admin/cetak_pt_website_agent.php?id=<?php echo $row['id'] ?>" target="_BLANK"><i class="fa fa-print"></i> Print Agent</a>
-                                        <a class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600" href="https://wa.me/<?php echo $row['phone'] . '?text=' . $url_encode ?>" target="_BLANK"><i class="fa fa-whatsapp"></i> Whatsapp</a>
+                                        <div class="flex flex-col sm:flex-row sm:flex-wrap gap-2">
+                                            <a class="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 text-sm text-center" href="Admin/cetak_pt_website.php?id=<?php echo $row['id'] ?>" target="_BLANK">
+                                                <i class="fa fa-print"></i> Print
+                                            </a>
+                                            <a class="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-sm text-center" href="Admin/cetak_pt_website_agent.php?id=<?php echo $row['id'] ?>" target="_BLANK">
+                                                <i class="fa fa-print"></i> Print Agent
+                                            </a>
+                                            <a class="bg-green-600 text-white px-2 py-1 rounded hover:bg-green-700 text-sm text-center" href="https://wa.me/<?php echo $row['phone'] . '?text=' . $url_encode ?>" target="_BLANK">
+                                                <i class="fa fa-whatsapp"></i> Whatsapp
+                                            </a>
+                                        </div>
                                     </td>
+
                                 </tr>
                             <?php
                             }
@@ -633,7 +649,7 @@ $row_data = mysqli_fetch_array($rs_data);
                     <ul class="list-disc pl-5 text-gray-700">
                         <li>Pendaftaran Uang Muka / Down Payment sebesar 50% dari Total Tour. No Refund/pengembalian jika ada pembatalan dari peserta.</li>
                         <li>Pembatalan 2 minggu sebelum keberangkatan dikenakan 75% dari biaya tour.</li>
-                        <li>PERFORMA tidak bertanggung jawab atas kecelakaan, kehilangan, pencurian/kerusakan barang bawaan masing-masing peserta, force majeur, dan bencana alam lainnya, delay dari pesawat udara/kereta/alat-alat transportasi lainnya.</li>
+                        <li>Bossku tidak bertanggung jawab atas kecelakaan, kehilangan, pencurian/kerusakan barang bawaan masing-masing peserta, force majeur, dan bencana alam lainnya, delay dari pesawat udara/kereta/alat-alat transportasi lainnya.</li>
                         <li>Jika hotel-hotel yang telah ditetapkan dalam acara tour ternyata penuh, tour operator berhak mengganti dengan hotel lain yang setaraf sesuai dengan pertimbangan dan konfirmasinya.</li>
                         <li>TIDAK ADA pengembalian biaya tour/tiket yang tidak terpakai karena diluar kemampuan kami, sehingga batal (termasuk visa yang ditolak atau ditolak masuk oleh pihak imigrasi negara yang dituju, dll).</li>
                         <li>Performa Tour & Travel berhak membatalkan keberangkatan seandainya peserta tidak mencapai jumlah minimum peserta/menunda jadwal keberangkatan. Segala langkah dan keputusan yang diambil atau diputuskan oleh Performa Tour & Travel sebagai penyelenggara tour adalah keputusan mutlak dan tidak dapat diganggu gugat.</li>
