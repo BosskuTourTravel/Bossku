@@ -81,7 +81,7 @@ $data_val = implode('-', $val_tgl);
                                     $thumbnail_gmb1 = $headers_gmb1[5];
                             ?>
                                     <figure class="gallery__item gallery__item--1">
-                                        <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . htmlspecialchars($thumbnail_gmb1); ?>" alt="Gallery image 1" class="gallery__img">
+                                        <img src="<?php echo 'https://lh3.googleusercontent.com/d/' . htmlspecialchars($thumbnail_gmb1). '=s0'; ?>" alt="Gallery image 1" class="gallery__img">
                                     </figure>
                                 <?php
                                 }
@@ -100,7 +100,7 @@ $data_val = implode('-', $val_tgl);
                                     $thumbnail_gmb2 = $headers_gmb2[5];
                                 ?>
                                     <figure class="gallery__item gallery__item--2">
-                                        <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . htmlspecialchars($thumbnail_gmb2); ?>" alt="Gallery image 2" class="gallery__img">
+                                        <img src="<?php echo 'https://lh3.googleusercontent.com/d/' . htmlspecialchars($thumbnail_gmb2) . '=s0'; ?>" alt="Gallery image 2" class="gallery__img">
                                     </figure>
                                 <?php
                                 }
@@ -119,7 +119,7 @@ $data_val = implode('-', $val_tgl);
                                     $thumbnail_gmb3 = $headers_gmb3[5];
                                 ?>
                                     <figure class="gallery__item gallery__item--3">
-                                        <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . htmlspecialchars($thumbnail_gmb3); ?>" alt="Gallery image 3" class="gallery__img">
+                                        <img src="<?php echo 'https://lh3.googleusercontent.com/d/' . htmlspecialchars($thumbnail_gmb3) . '=s0'; ?>" alt="Gallery image 3" class="gallery__img">
                                     </figure>
                                 <?php
                                 }
@@ -138,7 +138,7 @@ $data_val = implode('-', $val_tgl);
                                     $thumbnail_gmb4 = $headers_gmb4[5];
                                 ?>
                                     <figure class="gallery__item gallery__item--4">
-                                        <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . htmlspecialchars($thumbnail_gmb4); ?>" alt="Gallery image 4" class="gallery__img">
+                                        <img src="<?php echo 'https://lh3.googleusercontent.com/d/' . htmlspecialchars($thumbnail_gmb4) . '=s0'; ?>" alt="Gallery image 4" class="gallery__img">
                                     </figure>
                                 <?php
                                 }
@@ -160,7 +160,7 @@ $data_val = implode('-', $val_tgl);
                                     $thumbnail = $headers[5];
                                 ?>
                                     <figure class="gallery__item gallery__item--<?php echo $x; ?>">
-                                        <img src="<?php echo 'https://drive.google.com/thumbnail?id=' . htmlspecialchars($thumbnail); ?>" alt="Gallery image <?php echo $x; ?>" class="gallery__img">
+                                        <img src="<?php echo 'https://lh3.googleusercontent.com/d/' . htmlspecialchars($thumbnail) . '=s0'; ?>" alt="Gallery image <?php echo $x; ?>" class="gallery__img">
                                     </figure>
                             <?php
                                     $x++;

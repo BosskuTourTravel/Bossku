@@ -288,21 +288,32 @@ include "navbar.php";
 
     <!-- Testimoni -->
     <div class="container mx-auto py-10 px-6">
-        <h2 class="text-3xl font-bold text-center mb-4 tracking-wide">Apa Kata Mereka</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 tracking-wide text-gray-800">Apa Kata Mereka</h2>
 
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
                 <?php foreach ($testimonials as $testimonial): ?>
                     <div class="swiper-slide">
-                        <div class="bg-white shadow-xl rounded-2xl p-6 flex flex-col justify-between transition-transform hover:shadow-2xl hover:scale-105 h-75">
-                            <p class="text-gray-600 text-lg italic mb-4 flex-grow">
-                                <i class="fa fa-quote-left text-xl"></i> <?= htmlspecialchars($testimonial['message']) ?> <i class="fa fa-quote-right text-xl"></i>
+                        <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col justify-between transition-transform hover:shadow-2xl hover:scale-105 h-full border border-gray-200">
+                            <p class="text-gray-700 text-base md:text-lg italic mb-6 flex-grow">
+                                <i class="fa fa-quote-left text-xl text-indigo-400 mr-2"></i>
+                                <?= htmlspecialchars($testimonial['message']) ?>
+                                <i class="fa fa-quote-right text-xl text-indigo-400 ml-2"></i>
                             </p>
 
-                            <div class="flex items-center gap-4 mt-auto">
+                            <div class="flex items-center gap-2 mt-auto">
+                                <?php if (!empty($testimonial['image_url'])): ?>
+                                    <img src="<?= htmlspecialchars($testimonial['image_url']) ?>" alt="Avatar"
+                                        class="w-25 h-16 rounded-lg object-cover">
+                                <?php else: ?>
+                                    <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold text-sm">
+                                        <?= strtoupper(substr($testimonial['name'], 0, 1)) ?>
+                                    </div>
+                                <?php endif; ?>
+
                                 <div>
                                     <p class="font-semibold text-gray-800"><?= htmlspecialchars($testimonial['name']) ?></p>
-                                    <p class="mt-1 text-sm font-semibold text-gray-600"><?= htmlspecialchars($testimonial['tour_name']) ?></p> <!-- Menampilkan Nama Tour -->
+                                    <p class="text-sm text-indigo-600 font-medium"><?= htmlspecialchars($testimonial['tour_name']) ?></p>
                                 </div>
                             </div>
                         </div>
@@ -311,6 +322,7 @@ include "navbar.php";
             </div>
         </div>
     </div>
+
 
 
 
