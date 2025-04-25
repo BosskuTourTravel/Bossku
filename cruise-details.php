@@ -26,6 +26,10 @@ function formatRupiah($angka)
 {
     return "Rp " . number_format($angka, 0, ',', '.');
 }
+function formatUSD($angka)
+{
+    return "USD " . number_format($angka, 2, '.', ',');
+}
 
 $waNumber = "628112557728";
 $waMessage = "Halo! Saya tertarik untuk memesan cruise: " . $cruise['name'] . ". Mohon info lebih lanjut.";
@@ -64,7 +68,25 @@ $waLink = "https://wa.me/{$waNumber}?text={$encodedMessage}";
             <!-- Deskripsi di sebelah kanan -->
             <div class="md:w-5/12 w-full p-6">
                 <h2 class="text-3xl font-bold text-[#02335B]"><?php echo $cruise['name']; ?></h2>
-                <p class="text-xl font-bold text-[#02335B]"><?php echo formatRupiah($cruise['price']); ?></p>
+                <p class="text-xl font-bold text-[#02335B]">
+                    <?php
+                    if (!empty($cruise['price'])) {
+                        $currency = strtoupper(trim($cruise['currency']));
+                        $cruisePrice = $cruise['price'];
+
+                        if ($currency === 'IDR') {
+                            echo formatRupiah($cruisePrice);
+                        } elseif ($currency === 'USD') {
+                            echo formatUSD($cruisePrice);
+                        } else {
+                            echo number_format($cruisePrice); // fallback
+                        }
+                    } else {
+                        echo 'Harga belum tersedia';
+                    }
+                    ?>
+                </p>
+
                 <p class="text-sm text-gray-500 mt-2">Country: <?php echo $cruise['country']; ?></p>
                 <p class="text-sm text-gray-600 mt-2 tracking-wide text-justify leading-relaxed"><?php echo $cruise['detailed_description']; ?></p>
                 <?php if (!empty($cruise['inclusions'])): ?>

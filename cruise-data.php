@@ -6,6 +6,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/14BVoL6XcmQAmRFnTX4KJpNpr6K4NU2Gu',
         'description' => 'Jelajahi keindahan Gold Coast dengan tur kota yang unik menggunakan kendaraan amphibious, dilengkapi dengan cruise di sungai yang menakjubkan.',
         'detailed_description' => 'Nikmati pengalaman wisata unik bersama Aquaduck yang menggabungkan tur darat dan air di Gold Coast. Mulai dari menyusuri kawasan kota yang ikonik, kemudian meluncur langsung ke Sungai Nerang tanpa berpindah kendaraan. Cocok untuk keluarga, pasangan, maupun solo traveler yang ingin merasakan petualangan yang berbeda.',
+        'currency' => 'IDR',
         'price' => 535000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -18,6 +19,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1CdyWE176y2O1-dYhFe89FExFVP3zIqSq',
         'description' => 'Nikmati perjalanan sungai Brisbane yang menyegarkan, dengan berhenti di tiga brewery terbaik untuk mencicipi bir lokal sambil menikmati pemandangan.',
         'detailed_description' => 'Manjakan diri Anda dengan pelayaran santai di sepanjang Sungai Brisbane, sambil menikmati pemandangan kota yang menawan dari sudut pandang yang berbeda. Tur ini akan membawa Anda berhenti di tiga brewery pilihan, di mana Anda dapat mencicipi beragam bir lokal yang segar dan unik. Ini adalah cara yang sempurna untuk bersantai, menikmati cita rasa lokal, dan menghabiskan hari di Brisbane.',
+        'currency' => 'IDR',
         'price' => 1440000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -34,6 +36,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/19syJUNVO02JnyE6hGFf5k3Ye3ulJCbqe',
         'description' => 'Saksikan matahari terbenam yang memukau di Broome sambil menikmati hidangan laut segar dan pengalaman wisata perhiasan tradisional.',
         'detailed_description' => 'Saksikan keajaiban langit Broome yang berubah warna saat matahari terbenam di cakrawala. Pelayaran setengah hari ini memadukan pemandangan yang memukau dengan kelezatan hidangan laut segar yang disajikan di atas kapal. Selain itu, Anda akan mendapatkan wawasan menarik tentang warisan industri perhiasan mutiara Broome yang kaya, menjadikannya pengalaman budaya dan kuliner yang tak terlupakan.',
+        'currency' => 'IDR',
         'price' => 4100000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -52,6 +55,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/18CAmpcdHIwArPt7ccSqG_bRtlW1ex1Ak',
         'description' => 'Temui keindahan alam liar Bruny Island dengan cruise yang mengesankan, mengungkapkan pemandangan spektakuler dan satwa liar yang langka.',
         'detailed_description' => 'Mulailah petualangan maritim yang mendebarkan dari Adventure Bay untuk menjelajahi keindahan alam liar Bruny Island. Saksikan formasi batuan pesisir yang dramatis, gua-gua laut yang menakjubkan, dan berkesempatan untuk melihat langsung berbagai satwa liar endemik Tasmania, termasuk anjing laut, burung laut, dan mungkin paus atau lumba-lumba. Ini adalah perjalanan yang memanjakan mata dan jiwa para pecinta alam.',
+        'currency' => 'IDR',
         'price' => 1670000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -65,6 +69,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1VfAdWAOUJFx-3MYrZmFhMouo59zZLiSX',
         'description' => 'Saksikan keseruan Grand Prix Sydney dari atas kapal, nikmati pemandangan spektakuler dari pelabuhan sambil merasakan atmosfer acara balap yang mendebarkan.',
         'detailed_description' => 'Nikmati pengalaman menonton balap Grand Prix Sydney dengan cara yang berbeda dan eksklusif dari atas kapal di pelabuhan. Anda akan mendapatkan pemandangan lintasan balap dan suasana acara yang luar biasa, jauh dari keramaian tribun. Sambil menikmati hidangan dan minuman, rasakan getaran dan kegembiraan balapan dari sudut pandang yang unik dan tak terlupakan',
+        'currency' => 'IDR',
         'price' => 535000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -77,6 +82,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1Q4F9GAURKO83_RlIs42HWb0CFE7JGBJs',
         'description' => 'Menikmati keindahan malam di Sungai Han dengan kapal pesiar Poseidon yang mewah dan penuh cahaya.',
         'detailed_description' => 'Han River Night Cruise by Poseidon menawarkan pengalaman malam yang memukau di jantung kota Da Nang, Vietnam. Kapal pesiar ini dihiasi lampu warna-warni dan menyediakan suasana romantis serta hiburan langsung yang mengesankan. Sepanjang perjalanan, Anda akan disuguhi pemandangan ikonik seperti Jembatan Naga yang menyemburkan api dan air, serta panorama kota yang berkilau di malam hari. Cocok untuk pasangan, keluarga, maupun wisatawan yang ingin merasakan pesona Da Nang dari sudut pandang yang berbeda.',
+        'currency' => 'IDR',
         'price' => 131000.00,
         'country' => 'Vietnam',
         'inclusions' => [
@@ -91,6 +97,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1IJyTlTSOS5FqQ_shBWaXRkEZp_2WBFMM',
         'description' => 'Jelajahi keajaiban Teluk Ha Long dalam satu hari dengan kenyamanan kapal Phoenix Cruise.',
         'detailed_description' => 'Phoenix Cruise menghadirkan petualangan sehari penuh menjelajahi keindahan alam Teluk Ha Long yang diakui UNESCO. Dalam perjalanan ini, pengunjung akan menikmati panorama tebing kapur yang dramatis, gua-gua misterius, dan perairan hijau jernih. Paket ini sudah termasuk makan siang seafood segar, pemandu lokal berbahasa Inggris, serta aktivitas seru seperti kayak atau jelajah gua. Cocok bagi wisatawan yang memiliki waktu terbatas namun tetap ingin merasakan pengalaman autentik di salah satu destinasi alam terbaik di Vietnam.',
+        'currency' => 'IDR',
         'price' => 622000.00,
         'country' => 'Vietnam',
         'inclusions' => [
@@ -107,6 +114,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1LhxhI5b969nlTr1g04oB_vfeOSDUSMrD',
         'description' => 'Rasakan malam istimewa di Pattaya dengan pelayaran mewah lengkap dengan makan malam dan hiburan.',
         'detailed_description' => 'All Star Cruise di Pattaya menyuguhkan pengalaman malam yang glamor dan menyenangkan, dimulai dari pelabuhan dan berlayar di sekitar Teluk Thailand. Dalam perjalanan ini, tamu akan dimanjakan dengan makan malam prasmanan internasional, pertunjukan musik dan tari yang energik, serta pemandangan laut saat matahari terbenam yang memukau. Suasana meriah dan layanan yang ramah menjadikan cruise ini pilihan populer untuk pasangan, keluarga, maupun rombongan yang ingin menikmati malam istimewa di Pattaya.',
+        'currency' => 'IDR',
         'price' => 476000.00,
         'country' => 'Thailand',
         'inclusions' => [
@@ -120,6 +128,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1rhz7zkQ5WeRgyNIgEeTvg-jEhkFJ81qm',
         'description' => 'Nikmati keindahan sejarah dan budaya Ayutthaya melalui cruise mewah di Sungai Chao Phraya.',
         'detailed_description' => 'Ayutthaya Grand Pearl River Cruise Tour membawa Anda dalam perjalanan seharian mengelilingi kota bersejarah Ayutthaya yang merupakan situs warisan dunia UNESCO. Menyusuri Sungai Chao Phraya, Anda akan mengagumi berbagai kuil dan reruntuhan kuno yang mencerminkan kejayaan kerajaan Ayutthaya. Cruise ini dilengkapi dengan pemandu lokal berpengalaman, makan siang internasional, serta pengalaman budaya yang memukau. Ini adalah cara sempurna untuk menikmati keindahan alam dan sejarah Thailand dengan kenyamanan kapal pesiar modern.',
+        'currency' => 'IDR',
         'price' => 745000.00,
         'country' => 'Thailand',
         'inclusions' => [
@@ -134,6 +143,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1cNBMEAwFqWsRL9NPlY6CbsYO8v5Kiu_f',
         'description' => 'Menyantap makan malam mewah sambil menikmati pemandangan malam Bangkok dari atas kapal pesiar Grand Pearl.',
         'detailed_description' => 'Grand Pearl Dinner Cruise menawarkan pengalaman kuliner yang tak terlupakan dengan menyantap hidangan lezat sambil berlayar di Sungai Chao Phraya. Nikmati pemandangan ikonik Bangkok yang berkilau di malam hari, seperti Wat Arun dan Grand Palace, serta menikmati pertunjukan live musik yang menambah suasana romantis. Paket makan malam ini mencakup pilihan hidangan internasional dan tradisional Thailand yang menggugah selera. Cruise ini cocok untuk pasangan, keluarga, atau wisatawan yang ingin merayakan momen spesial di kota yang penuh pesona ini.',
+        'currency' => 'IDR',
         'price' => 780000.00,
         'country' => 'Thailand',
         'inclusions' => [
@@ -147,6 +157,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1XYIc01o24ww4O5C39HAsSkgk--df9P4z',
         'description' => 'Rasakan kemewahan dan kenyamanan di atas kapal Shangri La, menikmati pemandangan indah Bangkok saat berlayar di Sungai Chao Phraya.',
         'detailed_description' => 'Shangri La Horizon Cruise menyuguhkan pengalaman mewah bagi para wisatawan yang ingin menikmati pemandangan menakjubkan Bangkok dari sudut pandang yang berbeda. Dilengkapi dengan fasilitas modern dan layanan istimewa, cruise ini menawarkan makan malam yang disiapkan dengan bahan-bahan segar dan berkualitas. Nikmati suasana elegan sambil melintasi landmark terkenal di Bangkok, termasuk Wat Arun dan Temple of Dawn. Ideal bagi mereka yang mencari pengalaman cruise yang eksklusif dan berkelas di kota metropolitan ini.',
+        'currency' => 'IDR',
         'price' => 970000.00,
         'country' => 'Thailand',
         'inclusions' => [
@@ -159,6 +170,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1PPJdKcXSd9wHaQ55M6O7Zm6qlQoV_Jfl',
         'description' => 'Nikmati keindahan alam 1770 dengan cruise santai yang membawa Anda melalui perairan yang tenang dan pemandangan spektakuler.',
         'detailed_description' => '1770 Larc Afternoon Cruise memberikan kesempatan untuk menjelajahi pantai dan perairan sekitar 1770, Queensland, Australia. Cruise ini menawarkan perjalanan santai di atas kapal yang dirancang khusus untuk menjelajahi daerah pesisir yang indah, termasuk titik-titik eksotis yang tidak bisa diakses dengan kendaraan biasa. Selama perjalanan, Anda akan disuguhi pemandangan alam yang menakjubkan, termasuk hutan tropis dan pantai yang jarang dijamah wisatawan. Paket ini cocok untuk mereka yang ingin merasakan kedamaian alam sambil menikmati udara segar Australia.',
+        'currency' => 'IDR',
         'price' => 470000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -171,6 +183,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1AEL7dyitfZLEgdeyQomAVfUrxNkfZ1xu',
         'description' => 'Menjelajahi keajaiban alam Khao Sok dengan perjalanan kapal di Danau Cheow Lan yang mempesona.',
         'detailed_description' => 'Khao Sok Lake Day Trip membawa Anda ke jantung Taman Nasional Khao Sok, salah satu kawasan hutan hujan tropis tertua di dunia. Dalam perjalanan ini, Anda akan menjelajahi Danau Cheow Lan yang dikelilingi oleh tebing-tebing karst yang dramatis. Aktivitas yang ditawarkan termasuk berlayar dengan kapal kayu tradisional, berjalan kaki melalui hutan tropis, dan mengunjungi gua yang penuh keindahan alam. Makan siang khas Thailand yang lezat juga disediakan, menjadikan pengalaman ini semakin berkesan. Cocok untuk wisatawan yang mencari petualangan alam yang mempesona di Thailand.',
+        'currency' => 'IDR',
         'price' => 1850000.00,
         'country' => 'Thailand',
         'inclusions' => [
@@ -188,6 +201,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1dCcIs4dxOe7yS_RmeCalHTZVzHp3-YGh',
         'description' => 'Nikmati pelayaran santai menyusuri Sungai Daintree yang terkenal dengan keanekaragaman hayatinya.',
         'detailed_description' => 'Daintree River Cruise mengajak Anda menyusuri salah satu sungai paling ikonik di Australia. Dalam perjalanan ini, Anda dapat mengamati satwa liar seperti buaya air asin, burung eksotis, dan flora tropis di hutan hujan Daintree yang lebat. Pemandu lokal akan memberikan wawasan menarik seputar ekosistem dan sejarah kawasan ini. Cocok untuk pecinta alam dan penggemar ekowisata yang ingin merasakan sisi alami Australia.',
+        'currency' => 'IDR',
         'price' => 370000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -200,6 +214,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1wl9trvW5DbhEKzP9KVMCWt8PwYTXoT5T',
         'description' => 'Jelajahi pelabuhan dan landmark ikonik Sydney dengan pelayaran santai bersama Captain Cook Cruises.',
         'detailed_description' => 'Captain Cook Cruises Sightseeing Cruise menawarkan pengalaman tak terlupakan menyusuri Pelabuhan Sydney yang indah. Anda akan melihat pemandangan spektakuler seperti Sydney Opera House, Harbour Bridge, dan skyline kota dari atas kapal. Tersedia komentar langsung dari pemandu yang menjelaskan sejarah dan budaya kota. Pilihan sempurna untuk wisatawan yang ingin melihat sisi terbaik Sydney dari laut.',
+        'currency' => 'IDR',
         'price' => 2100000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -214,6 +229,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1C0IuyZmXjk0pVtcbRiIPeu6Qrt3kufA3',
         'description' => 'Nikmati suasana romantis matahari terbenam di Darwin Harbour sambil menyantap hidangan buffet lezat.',
         'detailed_description' => 'Charles Darwin Sunset Buffet Dinner Cruise menghadirkan pengalaman bersantap istimewa di atas kapal sambil menikmati pemandangan matahari terbenam yang memukau di pelabuhan Darwin. Anda akan menikmati hidangan buffet yang menampilkan hasil laut segar dan makanan khas Australia, lengkap dengan dek ber-AC dan area terbuka untuk menikmati panorama. Ideal untuk pasangan, keluarga, atau acara spesial.',
+        'currency' => 'IDR',
         'price' => 1465000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -229,6 +245,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/1CchdEnmxQ1XRdOHza2yRi_z9mod57o3f',
         'description' => 'Petualangan sehari penuh menjelajahi Cape Tribulation dan hutan hujan Daintree dengan pelayaran satwa liar.',
         'detailed_description' => 'Cape Tribulation Day Tour With Daintree Wildlife Cruise menawarkan pengalaman eksplorasi alam terbaik di Queensland. Mulai dari penjelajahan hutan hujan Daintree yang kuno, menyaksikan satwa liar dari dekat di pelayaran sungai, hingga berjalan-jalan di pantai Cape Tribulation yang menawan. Ditemani oleh pemandu lokal, Anda akan mendapatkan pengetahuan mendalam tentang flora, fauna, dan budaya setempat. Ideal untuk pencinta alam dan wisatawan aktif.',
+        'currency' => 'IDR',
         'price' => 2100000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -243,6 +260,7 @@ $cruises = [
         'image' => 'https://lh3.googleusercontent.com/d/13V45a3oRfPN_FJAvLwBQTgYUjslr_NwN',
         'description' => 'Rasakan suasana malam yang tenang dengan pelayaran makan malam di perairan pelabuhan Cairns.',
         'detailed_description' => 'Cairns Harbour And Dinner Cruise mengundang Anda menikmati makan malam yang elegan sambil berlayar menyusuri pelabuhan Cairns. Nikmati pemandangan malam yang menakjubkan, hidangan buffet berkelas dengan bahan lokal, serta minuman penyambutan saat Anda naik ke atas kapal mewah yang nyaman. Cocok untuk pengalaman romantis atau sekadar relaksasi malam yang berbeda.',
+        'currency' => 'IDR',
         'price' => 1250000.00,
         'country' => 'Australia',
         'inclusions' => [
@@ -253,4 +271,51 @@ $cruises = [
             'Delicious Buffet Dinner Featuring Fresh Seafood And Local Produce',
         ],
     ],
+    [
+        'slug' => 'dragon-sunset-cruise',
+        'name' => 'Dragon Sunset Cruise',
+        'image' => 'https://lh3.googleusercontent.com/d/1uQ14X7xIN5MmKZFcM2ws21NEnkytpEXp',
+        'description' => 'Nikmati keindahan senja yang memukau sambil berlayar di atas kapal Dragon yang nyaman dan penuh fasilitas hiburan.',
+        'detailed_description' => 'Dragon Sunset Cruise adalah pengalaman pelayaran yang menyenangkan di perairan Malaysia saat matahari terbenam. Anda akan disuguhi pemandangan senja yang memesona, ditemani dengan fasilitas lengkap seperti karaoke, jacuzzi air asin, serta shower dan lavatory. Cocok untuk liburan bersama pasangan, keluarga, maupun teman-teman yang ingin menikmati sore yang tenang dengan suasana laut terbuka.',
+        'currency' => 'IDR',
+        'price' => 303000.00,
+        'country' => 'Malaysia',
+        'inclusions' => [
+            'Free Use Of Karaoke',
+            'Free Use Od Salt Water Jacuzzi',
+            'Public Liability Incurance',
+            'Lavatories',
+            'Life Jacket',
+            'Open Shower',
+        ],
+    ],
+    [
+        'slug' => 'sunset-cruise-experience',
+        'name' => 'Sunset Cruise Experience',
+        'image' => 'https://lh3.googleusercontent.com/d/1pZo4liXJi4i1JNOQR46OgAOXSiaPUyA6',
+        'description' => 'Eksplorasi laut saat matahari terbenam dengan tur selama 4 jam yang lengkap dengan fasilitas dan pemandu profesional.',
+        'detailed_description' => 'Sunset Cruise Experience menghadirkan pelayaran selama 4 jam di laut terbuka, di mana Anda dapat menikmati panorama matahari terbenam yang luar biasa. Pelayaran ini dilengkapi dengan pemandu berbahasa Inggris, akses ke semua fasilitas termasuk ruang shower, serta kesempatan untuk berenang di laut terbuka. Pengalaman ini sangat cocok bagi Anda yang mencari petualangan sore hari yang menyenangkan dengan suasana laut tropis.',
+        'currency' => 'IDR',
+        'price' => 341000.00,
+        'country' => 'Malaysia',
+        'inclusions' => [
+            'English Speaking Guide',
+            'Use All Of Facilities',
+            'Shower Room',
+            'Insurance Provided By Operator',
+            '4 Hours Tour',
+            'Open Sea Swimming',
+        ],
+    ],
+    [
+        'slug' => 'disney-adventure-cruise-line',
+        'name' => 'Disney Adventure Cruise Line',
+        'image' => 'https://lh3.googleusercontent.com/d/1ND7AcH8lXxA37mfQpQ-qC99RgLYmc2Hy',
+        'description' => 'Berlayar bersama karakter ikonik Disney dalam petualangan seru yang penuh hiburan untuk semua usia.',
+        'detailed_description' => 'Disney Adventure Cruise Line menyuguhkan pelayaran keluarga yang tak terlupakan dengan tema khas Disney. Dari pertunjukan langsung, pertemuan karakter Disney favorit, hingga aktivitas anak dan dewasa yang menyenangkan—semua tersedia dalam kapal pesiar yang mewah dan aman. Nikmati perjalanan lintas laut yang penuh sihir, dirancang khusus untuk keluarga yang ingin menggabungkan petualangan dan kenyamanan dalam satu pengalaman spektakuler.',
+        'currency' => 'USD',
+        'price' => 384.00,
+        'country' => 'Singapore',
+    ],
+
 ];

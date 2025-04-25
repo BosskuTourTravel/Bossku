@@ -14,7 +14,11 @@ function slugify($string)
 
 function formatRupiah($angka)
 {
-    return 'Rp' . number_format($angka, 0, ',', '.');
+    return 'Rp ' . number_format($angka, 0, ',', '.');
+}
+function formatUSD($angka)
+{
+    return "USD " . number_format($angka, 2, '.', ',');
 }
 
 // Pencarian
@@ -64,6 +68,7 @@ $displayCruises = array_slice($filteredCruises, $offset, $perPage);
             $cruiseName = $cruise['name'];
             $cruiseImage = $cruise['image'];
             $cruiseDescription = $cruise['description'];
+            $currency = $cruise['currency']; // misalnya, 'IDR' atau 'USD'
             $cruisePrice = $cruise['price'];
             $cruiseCountry = $cruise['country'];
             $cruiseSlug = slugify($cruiseName);
@@ -88,7 +93,13 @@ $displayCruises = array_slice($filteredCruises, $offset, $perPage);
                     <!-- Harga -->
                     <div class="mt-3">
                         <span class="block text-lg font-semibold text-[#02335B] tracking-wide">
-                            <?php echo formatRupiah($cruisePrice); ?>
+                            <?php
+                            if ($currency === 'IDR') {
+                                echo formatRupiah($cruisePrice);
+                            } elseif ($currency === 'USD') {
+                                echo formatUSD($cruisePrice);
+                            }
+                            ?>
                         </span>
                     </div>
 
