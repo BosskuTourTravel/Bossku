@@ -140,7 +140,7 @@ $displayCruises = array_slice($filteredCruises, $offset, $perPage);
                 $lastPageShown = $i;
             ?>
                 <a href="?search=<?php echo urlencode($search); ?>&page=<?php echo $i; ?>"
-                    class="px-3 py-1 rounded <?php echo $i === $page ? 'bg-[#02335B] text-white' : 'bg-gray-200 hover:bg-gray-300'; ?>">
+                    class="px-3 py-1 rounded <?php echo $i === $page ? 'bg-[#02335B] text-white font-bold' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' ?>">
                     <?php echo $i; ?>
                 </a>
             <?php endforeach; ?>

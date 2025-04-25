@@ -264,13 +264,23 @@ include "navbar.php";
     <!-- Cruise -->
     <div class="container mx-auto py-10 px-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
-            <h1 class="text-3xl font-bold text-center md:text-left">Paket Wisata Cruise Unggulan</h1>
+            <h1 class="text-3xl font-bold text-center md:text-left">Wisata Cruise Unggulan</h1>
             <a href="cruise.php" class="text-blue-600 font-semibold hover:underline text-center md:text-right">
                 Lihat Semua &rarr;
             </a>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <?php foreach (array_slice($cruises, 0, 3) as $cruise): ?>
+            <?php
+            $randomCruises = array_rand($cruises, 3);
+
+            // Jika hanya 1 item yang dipilih, jadikan array untuk konsistensi
+            if (!is_array($randomCruises)) {
+                $randomCruises = [$randomCruises];
+            }
+
+            // Loop untuk menampilkan data cruise
+            foreach ($randomCruises as $cruiseIndex) :
+                $cruise = $cruises[$cruiseIndex]; ?>
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
                     <img src="<?= $cruise['image'] ?>" alt="<?= $cruise['name'] ?>" class="w-full h-56 object-cover">
                     <div class="p-4">
