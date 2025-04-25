@@ -252,6 +252,18 @@ include "slug.php";
                 </a>
             </div>
 
+            <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-6 text-center mx-auto">
+                <h3 class="text-xl font-bold text-[#02335B] mb-2">Siap Terbang?</h3>
+                <p class="text-gray-600 text-sm mb-4">Hubungi kami sekarang untuk pesan tiket pesawat dengan proses mudah, cepat, dan harga terbaik!</p>
+
+                <a href="https://wa.me/6281234567890?text=Halo%20admin%2C%20saya%20ingin%20pesan%20tiket%20pesawat."
+                    target="_blank"
+                    aria-label="Pesan tiket pesawat lewat WhatsApp"
+                    class="inline-block bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-full shadow-md transition duration-300">
+                    <i class="fab fa-whatsapp mr-2"></i>Pesan Sekarang via WhatsApp
+                </a>
+            </div>
+
             <!-- Konten Bawah -->
             <a href="pdf/Passport.pdf" download class="bg-[#FFCA10] text-center w-full max-w-md flex flex-row items-center shadow-lg rounded-xl px-6 py-3 gap-2 border-t-4 border-blue-600 transform transition-all duration-300 hover:-translate-y-2 hover:border-blue-800 text-[#02335B] font-semibold text-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-[#02335B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
