@@ -42,3 +42,13 @@
 	<script src="https://superal.github.io/canvas2image/canvas2image.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 </head>
+
+<body>
+	<a href="https://wa.me/628112557728?text=Halo%20Bossku"
+		target="_blank"
+		class="fixed shadow-lg bottom-4 right-0 mr-3 z-50 bg-green-600 text-white px-6 py-3 rounded-full shadow-xl transition-all duration-300 flex items-center
+                hover:scale-105 transform:hover">
+		<i class="fa-brands fa-whatsapp fa-xl"></i>&emsp;
+		<span class="font-semibold text-lg">Chat via WhatsApp</span>
+	</a>
+</body>

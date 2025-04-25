@@ -8,7 +8,7 @@ include "slug.php";
 <div class="container mx-auto px-4 py-16 mt-10">
     <!-- Title -->
     <div class="text-center mb-8">
-        <h1 class="text-[#02335B] text-lg font-semibold tracking-wide">About Us</h1>
+        <h1 class="text-[#02335B] text-sm font-semibold tracking-wide">About Us</h1>
         <h2 class="text-4xl font-bold tracking-wide text-[#02335B]">Embark on a Journey with Us</h2>
         <p class="font-medium text-sm tracking-wide text-gray-500 mt-2">Your gateway to unforgettable travel experiences.</p>
     </div>
@@ -40,10 +40,10 @@ include "slug.php";
         </p>
     </div>
 
-    <!-- Button -->
-    <div class="flex justify-center mt-10">
+    <!-- Secondary Text -->
+    <div class="flex justify-center mt-4">
         <p class="text-sm font-medium text-gray-600">
-            For inquiries, feel free to reach out to us via our <a href="contact.php" class="text-[#02335B] font-semibold hover:underline">contact page</a>.
+            Have questions? <a href="contact.php" class="text-[#02335B] font-semibold hover:underline">Contact our team</a> — we're here to help!
         </p>
     </div>
 </div>
