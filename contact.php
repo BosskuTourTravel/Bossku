@@ -7,7 +7,7 @@ include "slug.php";
 
 <div class="container mx-auto px-4 py-16 mt-10">
     <!-- Title -->
-    <h1 class="text-[#02335B] text-lg font-semibold tracking-wide text-center mb-2">Contact Us</h1>
+    <h1 class="text-[#02335B] text-sm font-semibold tracking-wide text-center mb-2">Contact Us</h1>
     <h2 class="text-3xl font-bold tracking-wide text-center">Need Help? We're Here For You</h2>
     <p class="font-medium text-sm tracking-wide text-center text-gray-500">Feel free to reach out to us for any inquiries or assistance.</p>
 

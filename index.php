@@ -431,7 +431,7 @@ include "navbar.php";
 
             <!-- Kategori 4: Hotel -->
             <div class="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
-                <a href="<?php echo $domain_web ?>Hotel-content.php">
+                <a href="<?php echo $domain_web ?>hotel.php">
                     <img src="img/Frame 4.png" alt="Hotel" class="w-full h-64 object-cover transition-transform transform group-hover:scale-105 duration-500">
                     <div class="absolute inset-0 bg-black bg-opacity-75 opacity-0 group-hover:opacity-50 transition-opacity duration-300 flex justify-center items-center">
                         <span class="text-white text-xl font-semibold">Luxury Hotels</span>
