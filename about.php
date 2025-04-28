@@ -107,7 +107,7 @@ include "slug.php";
         <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col justify-between space-y-6">
             <div class="space-y-4">
                 <h3 class="text-2xl font-bold text-primary-900">Kantor Pusat</h3>
-                <p class="text-gray-700 text-base">Jl. Mulyosari Baru No. 42 - 44, Kav. 89, Kota Surabaya</p>
+                <p class="text-gray-700 text-base">Jl. Mulyosari Baru No. 42 &minus; 44, Kav. 89, Kota Surabaya</p>
                 <p class="text-gray-700 text-base">Tel: <a href="tel:+628112557728" class="text-primary-700 hover:underline">+62 811 2557 728</a></p>
                 <p class="text-gray-700 text-base">Email: <a href="mailto:bosskutourandtravel@gmail.com" class="text-primary-700 hover:underline">bosskutourandtravel@gmail.com</a></p>
             </div>
