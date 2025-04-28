@@ -1,8 +1,7 @@
 <?php
+include "header.php";
 include "navbar.php";
 include "slug.php";
-include "header.php";
-include 'navbar.php';
 include "data-mobil.php";
 ?>
 
