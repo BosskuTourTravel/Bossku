@@ -115,8 +115,8 @@ include "slug.php";
             <div class="pt-6 border-t border-gray-300 space-y-4">
                 <h3 class="text-2xl font-bold text-primary-900">Jam Kerja</h3>
                 <ul class="text-gray-700 text-base space-y-1">
-                    <li>Senin - Jumat: 08.00 WIB – 17.00 WIB</li>
-                    <li>Sabtu: 08.00 WIB – 16.00 WIB</li>
+                    <li>Senin - Jumat: 08.00 WIB &minus; 17.00 WIB</li>
+                    <li>Sabtu: 08.00 WIB &minus; 16.00 WIB</li>
                     <li>Minggu & Tanggal Merah: Libur</li>
                 </ul>
             </div>
