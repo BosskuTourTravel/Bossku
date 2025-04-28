@@ -14,7 +14,7 @@ $rental = [
         'Harga' => 'Rp 600.000 / hari',
         'image' => 'https://lh3.googleusercontent.com/d/1Vuz-8QLmSJQ75ltQx8TCxK8ISKisyTfF',
         'seat' => '7 Seats',
-        'transmisi' => 'Manual',
+        'transmisi' => 'Automatic',
     ],
     [
         'id' => 3,
@@ -46,7 +46,7 @@ $rental = [
         'Harga' => 'Rp 1.750.000 / hari',
         'image' => 'https://lh3.googleusercontent.com/d/1011Q3YU7pYE94Z6rumR3_jwviPSLl4hp',
         'seat' => '14 Seats',
-        'transmisi' => 'Automatic',
+        'transmisi' => 'Manual',
     ],
     [
         'id' => 7,
