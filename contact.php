@@ -75,24 +75,39 @@ include "slug.php";
                     </svg>DM us on Instagram</a>
             </div>
 
+            <hr class="border-t border-gray-300">
+            </hr>
+
             <div>
                 <h2 class="text-lg font-semibold tracking-wide">Call Us</h2>
-                <p class="text-gray-500 text-sm font-medium tracking-wide mb-3">Call our team: Mon &minus; Fri, 8AM &minus; 5PM | Sat, 8AM &minus; 4PM</p>
+                <p class="text-gray-500 text-sm font-medium tracking-wide mb-3">Our professional team is ready to assist you</p>
                 <a href="tel:+628112557758" target="_blank" class="flex items-center gap-2 font-semibold underline transition mb-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
                     </svg>
                     +62 811 2557 758</a>
             </div>
-
+            <hr class="border-t border-gray-300">
             <div>
                 <h2 class="text-lg font-semibold tracking-wide">Visit Us</h2>
-                <p class="text-gray-500 text-sm font-medium tracking-wide mb-3">Come visit our office: Mon &minus; Fri, 8AM &minus; 5PM | Sat, 8AM &minus; 4PM</p>
+                <p class="text-gray-500 text-sm font-medium tracking-wide mb-3">We welcome you to visit our office.</p>
                 <a href="https://maps.app.goo.gl/s4cWpmwAMvP95pam8" target="_blank" class="flex items-center gap-2 font-semibold underline transition mb-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
                     </svg>
                     Jl. Mulyosari Baru No. 42 - 44, Kav. 89, Kota Surabaya</a>
             </div>
+
+            <hr class="border-t border-gray-300">
+
+            <div>
+                <h2 class="text-lg font-semibold tracking-wide">Working Hours</h2>
+                <ul class="text-gray-500 text-sm font-medium tracking-wide space-y-1 mt-2">
+                    <li>Monday – Friday: 8:00 AM – 5:00 PM</li>
+                    <li>Saturday: 8:00 AM – 4:00 PM</li>
+                    <li>Sunday & Public Holidays: Closed</li>
+                </ul>
+            </div>
+
         </div>
     </div>
 </div>
