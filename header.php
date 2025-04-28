@@ -3,9 +3,23 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-6S0YCH4DFM"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-6S0YCH4DFM');
+	</script>
 
 	<title>Bossku Tour & Travel</title>
 	<link rel="icon" type="image/png" sizes="64x64" href="img/Icon.png">
+	<meta name="description" content="Bossku Jalan Jalan menyediakan paket tour internasional dan domestik dengan harga murah dan layanan terpercaya. Promo liburan seru sekarang!">
+
 
 
 
