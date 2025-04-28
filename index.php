@@ -313,7 +313,7 @@ include "navbar.php";
                                 <h3 class="text-lg font-bold text-primary-900 mb-1"><?php echo $car['name']; ?></h3>
                                 <p class="text-gray-600 text-sm mb-3"><?php echo $car['transmisi']; ?> / <?php echo $car['seat']; ?></p>
                                 <p class="text-primary-700 font-semibold mb-2"><?php echo $car['Harga']; ?></p>
-                                <a href="detail-rental.php?id=<?= $item['id'] ?>" class="mt-4 inline-block bg-[#FFCA10] text-[#112A46] px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-[#FFCA10] transition">Lihat Detail</a>
+                                <a href="detail-rental.php?id=<?= $car['id'] ?>" class="mt-4 inline-block bg-[#FFCA10] text-[#112A46] px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-[#FFCA10] transition">Lihat Detail</a>
                                 <a href="https://wa.me/628112557728?text=Saya%20ingin%20menyewa%20mobil%20<?= urlencode($item['name']) ?>%20dengan%20harga%20<?= urlencode($item['Harga']) ?>" class="mt-4 inline-block bg-[#02335B] text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-[#02335B] transition">Sewa Sekarang</a>
                             </div>
                         </div>
