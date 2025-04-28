@@ -96,6 +96,46 @@ include "slug.php";
         </div>
     </div>
 
+    <div class="text-center mb-10 mt-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary-900 mb-2">Kunjungi Kantor Kami</h2>
+        <p class="text-gray-600 text-base font-medium max-w-2xl mx-auto">
+            Kami dengan senang hati menyambut Anda di kantor kami untuk konsultasi perjalanan yang personal dan nyaman.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div class="bg-white p-8 rounded-2xl shadow-xl flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+                <h3 class="text-2xl font-bold text-primary-900">Kantor Pusat</h3>
+                <p class="text-gray-700 text-base">Jl. Mulyosari Baru No. 42 - 44, Kav. 89, Kota Surabaya</p>
+                <p class="text-gray-700 text-base">Tel: <a href="tel:+628112557728" class="text-primary-700 hover:underline">+62 811 2557 728</a></p>
+                <p class="text-gray-700 text-base">Email: <a href="mailto:bosskutourandtravel@gmail.com" class="text-primary-700 hover:underline">bosskutourandtravel@gmail.com</a></p>
+            </div>
+
+            <div class="pt-6 border-t border-gray-300 space-y-4">
+                <h3 class="text-2xl font-bold text-primary-900">Jam Kerja</h3>
+                <ul class="text-gray-700 text-base space-y-1">
+                    <li>Senin - Jumat: 08.00 WIB – 17.00 WIB</li>
+                    <li>Sabtu: 08.00 WIB – 16.00 WIB</li>
+                    <li>Minggu & Tanggal Merah: Libur</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden shadow-xl">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.8067697649635!2d112.79829319999999!3d-7.2628191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7f90043dffc1f%3A0x909c5b4c3d9400a5!2sBossku%20Tour%20%26%20travel!5e0!3m2!1sid!2sid!4v1745803931482!5m2!1sid!2sid"
+                width="100%"
+                height="100%"
+                style="min-height: 400px; border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+
+
 
     <!-- Contact Prompt -->
     <div class="flex justify-center mt-8">
