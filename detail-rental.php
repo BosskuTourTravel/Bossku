@@ -10,7 +10,7 @@ include "data-mobil.php";
     <!-- Title -->
     <h1 class="text-[#02335B] text-sm font-semibold tracking-wide text-center mb-2">Detail Rental Mobil</h1>
     <h2 class="text-3xl font-bold tracking-wide text-center">Mobil Terbaik untuk Perjalanan Anda</h2>
-    <p class="font-medium text-sm tracking-wide text-center text-gray-500">Pilih mobil yang sesuai dengan kebutuhan perjalanan Anda.</p>
+    <p class="font-medium text-sm tracking-wide text-center text-gray-500 mb-4">Pilih mobil yang sesuai dengan kebutuhan perjalanan Anda.</p>
 
     <a href="javascript:history.back()" class="text-center mt-6 text-md font-semibold tracking-wide hover:underline ">
         <i class="bi bi-arrow-left"></i> Kembali
@@ -24,27 +24,37 @@ include "data-mobil.php";
     });
     $item = reset($item); // Get the first element of the filtered array
     ?>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
-        <img src="<?= $item['image'] ?>" alt="<?= $item['name'] ?>" class="w-full h-64 object-cover rounded-lg shadow-md">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 items-center">
+        <div class="rounded-2xl shadow-lg">
+            <img src="<?= $item['image'] ?>" alt="<?= $item['name'] ?>" class="w-full h-72 object-cover hover:scale-105 transition-transform duration-300">
+        </div>
         <div class="p-6">
-            <h3 class="text-2xl font-semibold text-[#02335B] mb-3"><?= $item['name'] ?></h3>
-            <p class="text-lg text-gray-500 mb-2"><?= $item['Harga'] ?></p>
-            <p class="text-gray-500 mb-2"><strong>Seat:</strong> <?= $item['seat'] ?></p>
-            <p class="text-gray-500 mb-4"><strong>Transmisi:</strong> <?= $item['transmisi'] ?></p>
+            <h1 class="text-3xl font-bold text-[#02335B] mb-4"><?= htmlspecialchars($item['name']) ?></h1>
+
+            <!-- Harga -->
+            <div class="text-2xl font-extrabold text-[#FFCA10] mb-6">
+                <?= htmlspecialchars($item['Harga']) ?>
+            </div>
+
+            <!-- Detail Mobil -->
+            <div class="text-gray-700 space-y-2 mb-8">
+                <p><strong>Seat:</strong> <?= htmlspecialchars($item['seat']) ?></p>
+                <p><strong>Transmisi:</strong> <?= htmlspecialchars($item['transmisi']) ?></p>
+            </div>
 
             <!-- Include Section -->
-            <div class="mt-6">
+            <div class="mb-8">
                 <h3 class="text-lg font-semibold text-[#02335B] mb-2">Include:</h3>
-                <ul class="list-disc list-inside text-md text-gray-600 space-y-1 font-medium">
+                <ul class="list-disc list-inside text-md text-gray-600 space-y-1">
                     <li>Driver</li>
                     <li>BBM</li>
                 </ul>
             </div>
 
             <!-- Melayani Section -->
-            <div class="mt-6">
+            <div class="mb-10">
                 <h3 class="text-lg font-semibold text-[#02335B] mb-2">Melayani:</h3>
-                <ul class="list-disc list-inside text-md text-gray-600 space-y-1 font-medium">
+                <ul class="list-disc list-inside text-md text-gray-600 space-y-1">
                     <li>Full Day Tour</li>
                     <li>Half Day Tour</li>
                     <li>Pickup Transfer</li>
@@ -53,9 +63,15 @@ include "data-mobil.php";
             </div>
 
             <!-- Sewa Sekarang Button -->
-            <a href="https://wa.me/628112557728?text=Halo, Saya%20ingin%20menyewa%20mobil%20<?= urlencode($item['name']) ?>%20dengan%20harga%20<?= urlencode($item['Harga']) ?>" class="mt-6 inline-block bg-[#FFCA10] text-[#112A46] px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-[#FFCA10] transition">Sewa Sekarang</a>
+            <div class="text-center">
+                <a href="https://wa.me/628112557728?text=Halo, Saya%20ingin%20menyewa%20mobil%20<?= urlencode($item['name']) ?>%20dengan%20harga%20<?= urlencode($item['Harga']) ?>"
+                    class="inline-block bg-[#FFCA10] text-[#112A46] px-4 py-2 rounded-full font-bold text-lg hover:bg-white hover:text-[#FFCA10] border-2 border-[#FFCA10] transition-all">
+                    Sewa Sekarang
+                </a>
+            </div>
         </div>
     </div>
+
 
 </div>
 
