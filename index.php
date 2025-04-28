@@ -4,6 +4,7 @@ include "slug.php";
 include "API/Price/Api_LT_total_baru.php";
 include "cruise-data.php";
 include "testimoni-data.php";
+include "data-mobil.php"
 ?>
 
 <!DOCTYPE html>
@@ -295,6 +296,48 @@ include "navbar.php";
     </div>
 
 
+    <!-- Rental Mobil -->
+    <div class="container mx-auto py-10 px-6">
+        <h2 class="text-3xl font-bold mb-8 tracking-wide text-gray-800">Rental Mobil</h2>
+        <div class="swiper myRentalSlider">
+            <div class="swiper-wrapper">
+
+                <?php
+                // Batasi hanya 4 mobil pertama yang ditampilkan
+                $rental_limited = array_slice($rental, 0, 4);
+                foreach ($rental_limited as $car): ?>
+                    <div class="swiper-slide">
+                        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                            <img src="<?php echo $car['image']; ?>" alt="<?php echo $car['name']; ?>" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-primary-900 mb-1"><?php echo $car['name']; ?></h3>
+                                <p class="text-gray-600 text-sm mb-3"><?php echo $car['transmisi']; ?> / <?php echo $car['seat']; ?></p>
+                                <p class="text-primary-700 font-semibold mb-2"><?php echo $car['Harga']; ?></p>
+                                <a href="detail-rental.php?id=<?= $item['id'] ?>" class="mt-4 inline-block bg-[#FFCA10] text-[#112A46] px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-[#FFCA10] transition">Lihat Detail</a>
+                                <a href="https://wa.me/628112557728?text=Saya%20ingin%20menyewa%20mobil%20<?= urlencode($item['name']) ?>%20dengan%20harga%20<?= urlencode($item['Harga']) ?>" class="mt-4 inline-block bg-[#02335B] text-white px-4 py-2 rounded-lg font-semibold hover:bg-white hover:text-[#02335B] transition">Sewa Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+
+                <!-- Card Lihat Semua -->
+                <div class="swiper-slide">
+                    <a href="rental.php"
+                        class="flex flex-col items-center justify-center w-full h-[370px] max-w-xs mx-auto border-2 border-dashed border-blue-400 text-blue-600 hover:bg-blue-50 rounded-lg text-lg font-semibold transition text-center py-10">
+                        <span>Lihat Semua Rental</span>
+                        <span class="text-3xl mt-2">&rarr;</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Default Swiper Buttons -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+        </div>
+    </div>
+
 
     <!-- Testimoni -->
     <div class="container mx-auto py-10 px-6">
@@ -454,6 +497,23 @@ include "navbar.php";
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
+        var swiper = new Swiper(".myRentalSlider", {
+            slidesPerView: 1.1,
+            spaceBetween: 16,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            }
+        });
+
         var swiper = new Swiper('.swiper3', {
             slidesPerView: 1,
             spaceBetween: 20,
