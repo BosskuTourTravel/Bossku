@@ -2,7 +2,6 @@
 include "db=connection.php";
 include "slug.php";
 include "API/Price/Api_LT_total_baru.php";
-include "cruise-data.php";
 include "testimoni-data.php";
 include "data-mobil.php"
 ?>
@@ -272,26 +271,49 @@ include "navbar.php";
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php
-            $randomCruises = array_rand($cruises, 3);
+            $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
+            lti.summer_img, lti.winter_img, lti.autumn_img, lt.keterangan, lt.kurs
+            FROM List_tempat AS lt
+            LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
+            WHERE lt.tempat LIKE '%cruise%' AND lt.price > 100000";
 
-            // Jika hanya 1 item yang dipilih, jadikan array untuk konsistensi
-            if (!is_array($randomCruises)) {
-                $randomCruises = [$randomCruises];
+            $result = $con->query($sql);
+
+            $cruises = [];
+
+            if ($result && $result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    // Pakai salah satu gambar, misalnya musim panas (atau sesuaikan logika gambar random jika perlu)
+                    $row['image'] = $row['summer_img'];
+                    $row['description'] = $row['keterangan'];
+                    $row['slug'] = strtolower(str_replace(' ', '-', $row['name'])); // Buat slug sederhana
+
+                    $cruises[] = $row;
+                }
             }
 
-            // Loop untuk menampilkan data cruise
-            foreach ($randomCruises as $cruiseIndex) :
-                $cruise = $cruises[$cruiseIndex]; ?>
-                <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                    <img src="<?= $cruise['image'] ?>" alt="<?= $cruise['name'] ?>" class="w-full h-56 object-cover">
-                    <div class="p-4">
-                        <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= $cruise['name'] ?></h2>
-                        <p class="text-gray-600 text-sm mb-3"><?= $cruise['description'] ?></p>
-                        <p class="text-blue-600 font-bold text-lg mb-4">Rp <?= number_format($cruise['price'], 0, ',', '.') ?></p>
-                        <a href="cruise-details.php?slug=<?= $cruise['slug'] ?>" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Lihat Detail</a>
+            if (!empty($cruises)) :
+                $randomCruises = array_rand($cruises, min(3, count($cruises)));
+
+                if (!is_array($randomCruises)) {
+                    $randomCruises = [$randomCruises];
+                }
+
+                foreach ($randomCruises as $index) :
+                    $cruise = $cruises[$index];
+            ?>
+                    <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="<?= $cruise['image'] ?>" alt="<?= $cruise['name'] ?>" class="w-full h-56 object-cover">
+                        <div class="p-4">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= $cruise['name'] ?></h2>
+                            <p class="text-blue-600 font-bold text-lg mb-4">Rp <?= number_format($cruise['price'], 0, ',', '.') ?> <?= $cruise['kurs'] ?></p>
+                            <a href="cruise-details.php?slug=<?= $cruise['slug'] ?>" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Lihat Detail</a>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+            <?php
+                endforeach;
+            endif;
+            ?>
         </div>
     </div>
 

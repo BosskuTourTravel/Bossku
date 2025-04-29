@@ -28,7 +28,7 @@ $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price,
                lti.summer_img, lti.winter_img, lti.autumn_img
         FROM List_tempat AS lt
         LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
-        WHERE lt.price > 100000";
+        WHERE lt.price > 100000 AND lt.tempat NOT LIKE '%cruise%'";
 
 // Tambahkan filter pencarian
 $params = [];
