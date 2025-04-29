@@ -3,32 +3,69 @@ include "header.php";
 include "navbar.php";
 include "slug.php";
 include "db=connection.php";
-include "cruise-data.php";
 
-// Mengambil parameter slug dari URL
-if (isset($_GET['slug'])) {
-    $cruiseSlug = $_GET['slug'];
+$slug = isset($_GET['slug']) ? $_GET['slug'] : '';
 
-    // Mencari cruise berdasarkan slug
-    $cruise = null; // Inisialisasi variabel $cruise sebagai null
-    foreach ($cruises as $c) {
-        if ($c['slug'] === $cruiseSlug) {
-            $cruise = $c;
-            break;
-        }
+function slugify($text)
+{
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+    if (function_exists('iconv')) {
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
     }
-} else {
-    echo "No cruise selected!";
+    $text = preg_replace('~[^-\w]+~', '', $text);
+    $text = trim($text, '-');
+    $text = preg_replace('~-+~', '-', $text);
+    $text = strtolower($text);
+
+    return !empty($text) ? $text : 'n-a';
+}
+
+// Validasi
+if (empty($slug)) {
+    echo "<p>Cruise tidak ditemukan.</p>";
     exit;
 }
 
+// Query database
+$sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
+        lti.summer_img, lti.winter_img, lti.autumn_img, lt.keterangan, lt.kurs
+        FROM List_tempat AS lt
+        LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id";
+
+$result = $con->query($sql);
+
+$cruise = null;
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        if (slugify($row['name']) == $slug) {
+            $cruise = [
+                'id' => $row['id'],
+                'name' => $row['name'],
+                'country' => $row['location'],
+                'price' => $row['price'],
+                'currency' => $row['kurs'],
+                'image' => $row['summer_img'] ?: ($row['winter_img'] ?: $row['autumn_img']),
+                'description' => $row['keterangan'],
+            ];
+            break;
+        }
+    }
+}
+
+if (!$cruise) {
+    echo "<p>Cruise tidak ditemukan.</p>";
+    exit;
+}
+
+
+// Function format harga (bisa dipindah ke include-an juga)
 function formatRupiah($angka)
 {
-    return "Rp " . number_format($angka, 0, ',', '.');
+    return 'Rp ' . number_format($angka, 0, ',', '.');
 }
 function formatUSD($angka)
 {
-    return "USD " . number_format($angka, 2, '.', ',');
+    return '$' . number_format($angka, 2, '.', ',');
 }
 
 $waNumber = "628112557728";
@@ -53,7 +90,7 @@ $waLink = "https://wa.me/{$waNumber}?text={$encodedMessage}";
 
             <!-- Gambar di sebelah kiri (lebih besar) -->
             <div class="md:w-7/12 w-full">
-                <img src="<?php echo $cruise['image']; ?>" alt="<?php echo $cruise['name']; ?>" class="w-full h-100 object-cover rounded-lg shadow-lg">
+                <img src="<?php echo $cruise['image']; ?>" alt="<?php echo htmlspecialchars($cruise['name']); ?>" class="w-full md:w-1/2 rounded-lg shadow-md">
 
                 <!-- CTA di bawah gambar -->
                 <a href="<?php echo $waLink; ?>" target="_blank" class="flex items-center justify-center gap-2 mt-4 text-sm font-semibold text-white bg-[#02335B] hover:bg-[#1ebc5c] transition-all duration-300 px-6 py-3 rounded-lg shadow-md hover:shadow-lg">
@@ -88,18 +125,7 @@ $waLink = "https://wa.me/{$waNumber}?text={$encodedMessage}";
                 </p>
 
                 <p class="text-sm text-gray-500 mt-2">Country: <?php echo $cruise['country']; ?></p>
-                <p class="text-sm text-gray-600 mt-2 tracking-wide text-justify leading-relaxed"><?php echo $cruise['detailed_description']; ?></p>
-                <?php if (!empty($cruise['inclusions'])): ?>
-                    <div class="mt-6">
-                        <h3 class="text-lg font-semibold text-[#02335B] mb-2">Termasuk:</h3>
-                        <ul class="list-disc list-inside text-md text-gray-600 space-y-1 font-medium">
-                            <?php foreach ($cruise['inclusions'] as $item): ?>
-                                <li><?php echo $item; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-
+                <p class="text-sm text-gray-600 mt-2 tracking-wide text-justify leading-relaxed"><?php echo $cruise['description']; ?></p>
             </div>
         </div>
     </div>

@@ -2,27 +2,55 @@
 include "header.php";
 include "navbar.php";
 include "slug.php";
-include "cruise-data.php"; // pastikan ini array $cruises sudah didefinisikan
+include "db=connection.php";
 
-function slugify($string)
+
+function slugify($text)
 {
-    $string = strtolower(trim($string));
-    $string = preg_replace('/[^a-z0-9-]/', '-', $string);
-    $string = preg_replace('/-+/', '-', $string);
-    return rtrim($string, '-');
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+    if (function_exists('iconv')) {
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+    }
+    $text = preg_replace('~[^-\w]+~', '', $text);
+    $text = trim($text, '-');
+    $text = preg_replace('~-+~', '-', $text);
+    $text = strtolower($text);
+
+    return !empty($text) ? $text : 'n-a';
 }
 
-function formatRupiah($angka)
-{
-    return 'Rp ' . number_format($angka, 0, ',', '.');
-}
-function formatUSD($angka)
-{
-    return "USD " . number_format($angka, 2, '.', ',');
-}
 
 // Pencarian
 $search = isset($_GET['search']) ? strtolower(trim($_GET['search'])) : '';
+
+// Query ambil data
+$sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
+        lti.summer_img, lti.winter_img, lti.autumn_img, lt.keterangan, lt.kurs
+        FROM List_tempat AS lt
+        LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
+        WHERE lt.tempat LIKE '%cruise%' AND lt.price > 100000";
+
+$result = $con->query($sql);
+
+// Simpan hasil ke array
+$cruises = [];
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $cruises[] = [
+            'id' => $row['id'],
+            'name' => $row['name'],
+            'country' => $row['location'],  // asumsinya 'city' = negara (bisa disesuaikan)
+            'price' => $row['price'],
+            'currency' => $row['kurs'], // Asumsi semua harga IDR, atau bisa ditambah kolom currency di database
+            'image' => $row['summer_img'] ?: ($row['winter_img'] ?: $row['autumn_img']),
+        ];
+    }
+} else {
+    // Kalau tidak ada hasil, $cruises tetap kosong
+    $cruises = [];
+}
+
+// Filter berdasarkan search negara tujuan
 $filteredCruises = array_filter($cruises, function ($cruise) use ($search) {
     return $search === '' || strpos(strtolower($cruise['country']), $search) !== false;
 });
@@ -33,11 +61,19 @@ $totalData = count($filteredCruises);
 $totalPages = ceil($totalData / $perPage);
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 $page = max(1, min($totalPages, $page));
-
 $offset = ($page - 1) * $perPage;
 $displayCruises = array_slice($filteredCruises, $offset, $perPage);
-?>
 
+// Function helper format harga
+function formatRupiah($angka)
+{
+    return 'Rp ' . number_format($angka, 0, ',', '.');
+}
+function formatUSD($angka)
+{
+    return '$' . number_format($angka, 2, '.', ',');
+}
+?>
 
 <div class="container mx-auto px-4 py-16 mt-10">
     <!-- Title -->
@@ -67,7 +103,6 @@ $displayCruises = array_slice($filteredCruises, $offset, $perPage);
         <?php foreach ($displayCruises as $cruise):
             $cruiseName = $cruise['name'];
             $cruiseImage = $cruise['image'];
-            $cruiseDescription = $cruise['description'];
             $currency = $cruise['currency']; // misalnya, 'IDR' atau 'USD'
             $cruisePrice = $cruise['price'];
             $cruiseCountry = $cruise['country'];
