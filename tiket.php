@@ -161,28 +161,43 @@ include "navbar.php";
         <?php } ?>
     </div>
 
-    <div class="flex flex-wrap items-center justify-between mt-10 px-4 sm:px-8 gap-4">
+    <div class="flex flex-col md:flex-row items-center justify-between mt-10 px-4 sm:px-8 gap-4">
 
-        <div class="sm:block w-24"></div>
+        <!-- Spacer kosong untuk alignment di desktop, bisa dihapus jika tidak digunakan -->
+        <div class="hidden sm:block w-24"></div>
 
-        <div class="flex-1 overflow-x-auto scrollbar-hide flex justify-center gap-1 text-sm text-black flex-wrap sm:flex-nowrap">
+        <!-- Pagination number -->
+        <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-black">
             <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>" class="px-3 py-2 rounded-md whitespace-nowrap <?php echo ($i == $page) ? 'font-bold underline' : 'font-normal bg-white hover:bg-gray-100'; ?>">
+                <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>"
+                    class="px-3 py-2 rounded-md whitespace-nowrap 
+               <?php echo ($i == $page)
+                    ? 'font-bold underline text-blue-600'
+                    : 'font-normal bg-white hover:bg-gray-100'; ?>">
                     <?php echo $i; ?>
                 </a>
             <?php endfor; ?>
         </div>
 
-        <div class="flex flex-wrap items-center justify-between sm:justify-center mt-10 px-4 sm:px-8 gap-4">
+        <!-- Prev / Next Buttons -->
+        <div class="flex items-center justify-center gap-4">
             <?php if ($page > 1): ?>
-                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>" class="flex items-center gap-1 px-4 py-2 rounded-lg border-2 font-semibold hover:bg-gray-100"><span>&larr;</span> Previous</a>
+                <a href="?page=<?php echo $page - 1; ?>&search=<?php echo urlencode($search); ?>"
+                    class="flex items-center gap-1 px-4 py-2 rounded-lg border font-semibold hover:bg-gray-100 transition">
+                    <span>&larr;</span> Previous
+                </a>
             <?php endif; ?>
 
             <?php if ($page < $total_pages): ?>
-                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>" class="flex items-center gap-1 px-4 py-2 rounded-lg border-2 font-semibold hover:bg-gray-100">Next<span>&rarr;</span> </a>
+                <a href="?page=<?php echo $page + 1; ?>&search=<?php echo urlencode($search); ?>"
+                    class="flex items-center gap-1 px-4 py-2 rounded-lg border font-semibold hover:bg-gray-100 transition">
+                    Next <span>&rarr;</span>
+                </a>
             <?php endif; ?>
         </div>
+
     </div>
+
 
 </div>
 
