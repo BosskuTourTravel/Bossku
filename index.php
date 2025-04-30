@@ -217,7 +217,7 @@ include "navbar.php";
                         $img = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
                 ?>
                         <div class="swiper-slide">
-                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[390px]">
+                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[450px]">
                                 <img src="<?= htmlspecialchars($img); ?>" alt="Ticket Image" class="w-full h-64 object-cover">
 
                                 <div class="flex flex-col justify-between flex-1 p-4">
@@ -225,16 +225,16 @@ include "navbar.php";
                                         <h5 class="text-base sm:text-lg font-bold text-gray-800 mb-1 truncate">
                                             <?= htmlspecialchars($ticket['name']); ?>
                                         </h5>
-                                        <p class="text-sm text-gray-600 mb-2">
+                                        <p class="text-sm text-gray-600 mb-1">
                                             Lokasi: <span class="inline-block px-2 py-0.5 rounded bg-blue-600 text-white"><?= htmlspecialchars($ticket['location']); ?></span>
                                         </p>
-                                        <div class="text-yellow-500 font-semibold text-base mb-3">
+                                        <div class="text-yellow-500 font-semibold text-base mb-1">
                                             IDR <?= number_format($ticket['price'], 0, ',', '.'); ?>
                                         </div>
                                     </div>
 
                                     <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?= urlencode($ticket['name']); ?>"
-                                        class="block mt-auto w-full py-2 bg-[#FFCA10] text-[#02335B] text-center text-sm font-semibold rounded-lg hover:bg-black hover:text-[#FFCA10] transition-all duration-200 ease-in-out transform hover:scale-105">
+                                        class="block w-full py-2 bg-[#FFCA10] text-[#02335B] text-center text-sm font-semibold rounded-lg hover:bg-black hover:text-[#FFCA10] transition-all duration-200 ease-in-out transform hover:scale-105">
                                         Pesan Sekarang
                                     </a>
                                 </div>
@@ -246,7 +246,7 @@ include "navbar.php";
                 <!-- Slide untuk Lihat Semua -->
                 <div class="swiper-slide flex items-center justify-center">
                     <a href="tiket.php"
-                        class="flex flex-col items-center justify-center w-full h-[370px] max-w-xs mx-auto border-2 border-dashed border-blue-400 text-blue-600 hover:bg-blue-50 rounded-lg text-lg font-semibold transition text-center py-10">
+                        class="flex flex-col items-center justify-center w-full h-[450px] max-w-xs mx-auto border-2 border-dashed border-blue-400 text-blue-600 hover:bg-blue-50 rounded-lg text-lg font-semibold transition text-center py-10">
                         <span>Lihat Semua Tiket</span>
                         <span class="text-3xl mt-2">&rarr;</span>
                     </a>
@@ -289,7 +289,7 @@ include "navbar.php";
                         $cruiseImage = $img; // Menggunakan gambar yang sudah didefinisikan
                 ?>
                         <div class="swiper-slide">
-                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[390px]">
+                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[430px]">
                                 <img src="<?= htmlspecialchars($img); ?>" alt="Cruise Image" class="w-full h-64 object-cover">
 
                                 <div class="flex flex-col justify-between flex-1 p-4">
@@ -319,7 +319,7 @@ include "navbar.php";
                 <!-- Slide untuk Lihat Semua -->
                 <div class="swiper-slide flex items-center justify-center">
                     <a href="cruise.php"
-                        class="flex flex-col items-center justify-center w-full h-[370px] max-w-xs mx-auto border-2 border-dashed border-blue-400 text-blue-600 hover:bg-blue-50 rounded-lg text-lg font-semibold transition text-center py-10">
+                        class="flex flex-col items-center justify-center w-full h-[430px] max-w-xs mx-auto border-2 border-dashed border-blue-400 text-blue-600 hover:bg-blue-50 rounded-lg text-lg font-semibold transition text-center py-10">
                         <span>Lihat Semua Cruise</span>
                         <span class="text-3xl mt-2">&rarr;</span>
                     </a>

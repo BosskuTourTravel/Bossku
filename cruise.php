@@ -35,6 +35,7 @@ $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price,
         FROM List_tempat AS lt
         LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
         WHERE lt.price > 100000 AND lt.tempat LIKE '%cruise%'
+        ORDER BY lt.id DESC
         LIMIT $limit OFFSET $offset";
 
 $result = $con->query($sql);
