@@ -207,7 +207,7 @@ include "navbar.php";
                         lti.summer_img, lti.winter_img, lti.autumn_img
                     FROM List_tempat AS lt
                     LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
-                    WHERE lt.price > 100000
+                    WHERE lt.price > 100000 AND lt.tempat NOT LIKE '%cruise%'
                     ORDER BY lt.id DESC
                     LIMIT 6";
 
@@ -262,60 +262,75 @@ include "navbar.php";
 
 
     <!-- Cruise -->
-    <!-- <div class="container mx-auto py-10 px-6">
+    <div class="container mx-auto py-10 px-6 mb-4">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
-            <h1 class="text-3xl font-bold text-center md:text-left">Wisata Cruise Unggulan</h1>
-            <a href="cruise.php" class="text-blue-600 font-semibold hover:underline text-center md:text-right">
-                Lihat Semua &rarr;
-            </a>
+            <h2 class="text-2xl font-bold">Cruise</h2>
+            <a href="cruise.php" class="text-blue-600 text-center font-semibold hover:underline">Lihat Semua Cruise</a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <?php
-            $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
-            lti.summer_img, lti.winter_img, lti.autumn_img, lt.keterangan, lt.kurs
+
+        <?php
+        $sql = "SELECT lt.id, lt.tempat AS name, lt.city AS location, lt.price, 
+            lti.summer_img, lti.winter_img, lti.autumn_img
             FROM List_tempat AS lt
             LEFT JOIN List_tempat_img AS lti ON lt.id = lti.tmp_id
-            WHERE lt.tempat LIKE '%cruise%' AND lt.price > 100000";
+            WHERE lt.price > 100000 AND lt.tempat LIKE '%cruise%'
+            ORDER BY lt.id DESC
+            LIMIT 5";
+        ?>
 
-            $result = $con->query($sql);
+        <div class="swiper3 swiper w-full">
+            <div class="swiper-wrapper">
+                <?php
+                $result = $con->query($sql);
+                if ($result && $result->num_rows > 0) {
+                    while ($cruise = $result->fetch_assoc()) {
+                        $img = getGoogleDriveDirectLink($cruise['summer_img'] ?? $cruise['winter_img'] ?? $cruise['autumn_img'] ?? 'https://via.placeholder.com/300x200');
+                        $cruiseId = $cruise['id']; // Pastikan ini didefinisikan
+                        $cruiseImage = $img; // Menggunakan gambar yang sudah didefinisikan
+                ?>
+                        <div class="swiper-slide">
+                            <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[390px]">
+                                <img src="<?= htmlspecialchars($img); ?>" alt="Cruise Image" class="w-full h-64 object-cover">
 
-            $cruises = [];
+                                <div class="flex flex-col justify-between flex-1 p-4">
+                                    <div>
+                                        <h5 class="text-base sm:text-lg font-bold text-gray-800 mb-1 truncate">
+                                            <?= htmlspecialchars($cruise['name']); ?>
+                                        </h5>
+                                        <p class="text-sm mb-2">
+                                        <p class="inline-block px-2 py-0.5 font-medium rounded bg-[#02335B] text-[#FFCA10]"><?= htmlspecialchars($cruise['location']); ?></p>
+                                        </p>
+                                        <div class="text-[#02335B] mt-2 font-bold text-base mb-3">
+                                            IDR <?= number_format($cruise['price'], 0, ',', '.'); ?>
+                                        </div>
+                                    </div>
 
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    // Pakai salah satu gambar, misalnya musim panas (atau sesuaikan logika gambar random jika perlu)
-                    $row['image'] = $row['summer_img'];
-                    $row['description'] = $row['keterangan'];
-                    $row['slug'] = strtolower(str_replace(' ', '-', $row['name']));
-
-                    $cruises[] = $row;
-                }
-            }
-
-            if (!empty($cruises)) :
-                $randomCruises = array_rand($cruises, min(3, count($cruises)));
-
-                if (!is_array($randomCruises)) {
-                    $randomCruises = [$randomCruises];
-                }
-
-                foreach ($randomCruises as $index) :
-                    $cruise = $cruises[$index];
-            ?>
-                    <div class="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                        <img src="<?= $cruise['image'] ?>" alt="<?= $cruise['name'] ?>" class="w-full h-56 object-cover">
-                        <div class="p-4">
-                            <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= $cruise['name'] ?></h2>
-                            <p class="text-blue-600 font-bold text-lg mb-4">Rp <?= number_format($cruise['price'], 0, ',', '.') ?> <?= $cruise['kurs'] ?></p>
-                            <a href="cruise-details.php?slug=<?= urlencode($cruise['slug']); ?>" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Lihat Detail</a>
+                                    <div class='flex-grow'></div>
+                                    <div class='mt-4 flex gap-2 flex-wrap justify-end'>
+                                        <a href='<?= htmlspecialchars($cruiseImage); ?>' target='_blank' class='text-sm font-semibold text-[#02335B] bg-[#FFCA10] px-4 py-2 rounded hover:bg-yellow-500 transition-all duration-200'>Lihat Gambar</a>
+                                        <a href='cruise-details.php?id=<?= htmlspecialchars($cruiseId); ?>' class='text-sm font-semibold text-white bg-[#02335B] px-4 py-2 rounded hover:bg-[#035a8b] transition-all duration-200'>View Details</a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-            <?php
-                endforeach;
-            endif;
-            ?>
+                <?php }
+                } ?>
+
+                <!-- Slide untuk Lihat Semua -->
+                <div class="swiper-slide flex items-center justify-center">
+                    <a href="cruise.php"
+                        class="flex flex-col items-center justify-center w-full h-[370px] max-w-xs mx-auto border-2 border-dashed border-blue-400 text-blue-600 hover:bg-blue-50 rounded-lg text-lg font-semibold transition text-center py-10">
+                        <span>Lihat Semua Cruise</span>
+                        <span class="text-3xl mt-2">&rarr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Navigasi -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
-    </div> -->
+    </div>
 
 
     <!-- Rental Mobil -->
@@ -672,6 +687,60 @@ include "navbar.php";
     </script>
 </body>
 <style>
+    .swiper-button-next,
+    .swiper-button-prev {
+        width: 50px;
+        /* Lebar tombol */
+        height: 50px;
+        /* Tinggi tombol */
+        background-color: #FFCA10;
+        /* Warna latar belakang tombol */
+        color: #02335B;
+        /* Warna ikon */
+        border-radius: 50%;
+        /* Membuat tombol bulat */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        /* Efek transisi */
+        z-index: 10;
+        /* Pastikan tombol di atas konten */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        /* Bayangan untuk efek kedalaman */
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        background-color: #02335B;
+        /* Warna latar belakang saat hover */
+        color: #FFCA10;
+        /* Warna ikon saat hover */
+        transform: scale(1.1);
+        /* Efek zoom saat hover */
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+        font-size: 24px;
+        /* Ukuran ikon */
+        font-weight: bold;
+        /* Ketebalan ikon */
+    }
+
+    /* Menambahkan ikon panah */
+    .swiper-button-next::after {
+        content: '➔';
+        /* Ikon panah kanan */
+    }
+
+    .swiper-button-prev::after {
+        content: '➔';
+        /* Ikon panah kiri, bisa diganti dengan simbol lain */
+        transform: rotate(180deg);
+        /* Memutar panah kiri */
+    }
+
     .hidden-card {
         display: none;
     }
