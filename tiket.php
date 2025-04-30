@@ -161,22 +161,39 @@ include "navbar.php";
         <?php } ?>
     </div>
 
+    <?php
+    $range = 2; // jumlah halaman di kiri & kanan halaman aktif
+    ?>
+
     <div class="flex flex-col md:flex-row items-center justify-between mt-10 px-4 sm:px-8 gap-4">
 
-        <!-- Spacer kosong untuk alignment di desktop, bisa dihapus jika tidak digunakan -->
+        <!-- Spacer (optional) -->
         <div class="hidden sm:block w-24"></div>
 
-        <!-- Pagination number -->
+        <!-- Page numbers with ellipsis -->
         <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-black">
-            <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-                <a href="?page=<?php echo $i; ?>&search=<?php echo urlencode($search); ?>"
-                    class="px-3 py-2 rounded-md whitespace-nowrap 
-               <?php echo ($i == $page)
-                    ? 'font-bold underline text-blue-600'
-                    : 'font-normal bg-white hover:bg-gray-100'; ?>">
-                    <?php echo $i; ?>
-                </a>
-            <?php endfor; ?>
+            <?php
+            if ($total_pages > 1) {
+                // Always show first page
+                if ($page > $range + 2) {
+                    echo '<a href="?page=1&search=' . urlencode($search) . '" class="px-3 py-2 rounded-md bg-white hover:bg-gray-100">1</a>';
+                    echo '<span class="px-2">...</span>';
+                }
+
+                for ($i = max(1, $page - $range); $i <= min($total_pages, $page + $range); $i++) {
+                    if ($i == $page) {
+                        echo '<a href="?page=' . $i . '&search=' . urlencode($search) . '" class="px-3 py-2 rounded-md font-bold underline text-blue-600">' . $i . '</a>';
+                    } else {
+                        echo '<a href="?page=' . $i . '&search=' . urlencode($search) . '" class="px-3 py-2 rounded-md bg-white hover:bg-gray-100">' . $i . '</a>';
+                    }
+                }
+
+                if ($page < $total_pages - $range - 1) {
+                    echo '<span class="px-2">...</span>';
+                    echo '<a href="?page=' . $total_pages . '&search=' . urlencode($search) . '" class="px-3 py-2 rounded-md bg-white hover:bg-gray-100">' . $total_pages . '</a>';
+                }
+            }
+            ?>
         </div>
 
         <!-- Prev / Next Buttons -->
@@ -195,10 +212,7 @@ include "navbar.php";
                 </a>
             <?php endif; ?>
         </div>
-
     </div>
-
-
 </div>
 
 <?php
