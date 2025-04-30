@@ -391,16 +391,7 @@ include "navbar.php";
                                 <i class="fa fa-quote-right text-xl text-indigo-400 ml-2"></i>
                             </p>
 
-                            <div class="flex items-center gap-2 mt-auto">
-                                <?php if (!empty($testimonial['image_url'])): ?>
-                                    <img src="<?= htmlspecialchars($testimonial['image_url']) ?>" alt="Avatar"
-                                        class="w-25 h-16 rounded-lg object-cover">
-                                <?php else: ?>
-                                    <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold text-sm">
-                                        <?= strtoupper(substr($testimonial['name'], 0, 1)) ?>
-                                    </div>
-                                <?php endif; ?>
-
+                            <div class="flex items-center gap-3 mt-auto">
                                 <div>
                                     <p class="font-semibold text-gray-800"><?= htmlspecialchars($testimonial['name']) ?></p>
                                     <p class="text-sm text-indigo-600 font-medium"><?= htmlspecialchars($testimonial['tour_name']) ?></p>
