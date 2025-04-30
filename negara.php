@@ -43,7 +43,7 @@ if ($_GET['id'] == "Asia") {
 
     <!-- Main Content Section -->
     <div class="flex justify-center items-center py-10">
-        <div class="container max-w-7xl px-6">
+        <div class="container mx-auto px-4 py-4">
             <!-- Search input -->
             <div class="mb-6 flex justify-start relative">
                 <!-- Icon Search -->

@@ -87,19 +87,18 @@ $rs = mysqli_query($con, $query);
             <input type="hidden" name="country" value="<?= htmlspecialchars($_GET['country']) ?>">
 
             <div class="relative w-full max-w-md">
-            <input 
-                type="text" 
-                name="search" 
-                id="searchInput" 
-                class="w-full py-3 pl-12 pr-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700 placeholder-gray-400" 
-                placeholder="Cari trip..." 
-                value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>"
-            >
-            <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2.5-5.5a8.5 8.5 0 111-1 8.5 8.5 0 011 1z" />
-                </svg>
-            </span>
+                <input
+                    type="text"
+                    name="search"
+                    id="searchInput"
+                    class="w-full py-3 pl-12 pr-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-gray-700 placeholder-gray-400"
+                    placeholder="Cari trip..."
+                    value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+                <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2.5-5.5a8.5 8.5 0 111-1 8.5 8.5 0 011 1z" />
+                    </svg>
+                </span>
             </div>
         </form>
 
@@ -148,7 +147,17 @@ $rs = mysqli_query($con, $query);
                 <div class="card bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex flex-col h-full">
                     <!-- Thumbnail Flyer -->
                     <?php if (!empty($link_gambar)) { ?>
-                        <img src="<?php echo htmlspecialchars($link_gambar, ENT_QUOTES, 'UTF-8'); ?>" alt="Flyer <?php echo htmlspecialchars($row['nama'], ENT_QUOTES, 'UTF-8'); ?>" class="w-full h-64 object-cover rounded-t-lg">
+                        <div class="relative w-full h-64">
+                            <img src="<?php echo htmlspecialchars($link_gambar, ENT_QUOTES, 'UTF-8'); ?>"
+                                alt="Flyer <?php echo htmlspecialchars($row['nama'], ENT_QUOTES, 'UTF-8'); ?>"
+                                class="w-full h-full object-cover rounded-t-lg <?php echo (strpos($row['nama'], '[EXPIRED]') !== false) ? 'opacity-100' : ''; ?>">
+                            <?php if (strpos($row['nama'], '[EXPIRED]') !== false) { ?>
+                                <div class="absolute inset-0 bg-black opacity-75 rounded-t-lg"></div>
+                                <div class="absolute inset-0 flex items-center justify-center text-red-600 text-xl font-bold">
+                                    <span>EXPIRED</span>
+                                </div>
+                            <?php } ?>
+                        </div>
                     <?php } ?>
 
                     <!-- Konten Card -->
@@ -194,11 +203,11 @@ $rs = mysqli_query($con, $query);
             <?php } ?>
         </div>
 
-        <div class="flex flex-wrap items-center justify-between mt-10 px-4 sm:px-8 gap-4">
+        <div class="flex flex-col md:flex-row items-center justify-between mt-10 px-4 sm:px-8 gap-4">
 
             <div class="sm:block w-24"></div>
 
-            <div class="flex-1 overflow-x-auto scrollbar-hide flex justify-center gap-1 text-sm text-black flex-wrap sm:flex-nowrap">
+            <div class="flex flex-wrap items-center justify-center gap-2 text-sm text-black">
                 <?php
                 $queryString = "id=" . urlencode($_GET['id']) .
                     "&region=" . urlencode($_GET['region']) .
@@ -220,16 +229,16 @@ $rs = mysqli_query($con, $query);
                 <?php } ?>
             </div>
 
-            <div class="flex flex-wrap items-center justify-between sm:justify-center mt-10 px-4 sm:px-8 gap-4">
+            <div class="flex items-center justify-center gap-4">
                 <?php if ($page > 1) { ?>
                     <a href="?<?php echo $queryString; ?>&page=<?php echo $page - 1; ?>"
-                        class="flex items-center gap-1 px-4 py-2 rounded-lg border-2 font-semibold hover:bg-gray-100">
+                        class="flex items-center gap-1 px-4 py-2 rounded-lg border font-semibold hover:bg-gray-100 transition">
                         <span>&larr;</span> Previous
                     </a>
                 <?php } ?>
                 <?php if ($page < $total_pages) { ?>
                     <a href="?<?php echo $queryString; ?>&page=<?php echo $page + 1; ?>"
-                        class="flex items-center gap-1 px-4 py-2 rounded-lg border-2 font-semibold hover:bg-gray-100">
+                        class="flex items-center gap-1 px-4 py-2 rounded-lg border font-semibold hover:bg-gray-100 transition">
                         Next <span>&rarr;</span>
                     </a>
                 <?php } ?>
@@ -243,7 +252,7 @@ $rs = mysqli_query($con, $query);
     const form = document.querySelector('form');
     const searchInput = document.getElementById('searchInput');
 
-    searchInput.addEventListener('input', function () {
+    searchInput.addEventListener('input', function() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             // Hapus input page kalau ada, supaya balik ke page 1

@@ -37,8 +37,8 @@ if ($_GET['id'] == "Asia") {
         </div>
     </div>
 
-    <div class="container py-12 px-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
             <?php
             while ($row = mysqli_fetch_array($rs)) {
                 // Define image paths for regions based on continent
