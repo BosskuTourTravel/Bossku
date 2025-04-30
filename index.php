@@ -262,7 +262,7 @@ include "navbar.php";
 
 
     <!-- Cruise -->
-    <div class="container mx-auto py-10 px-6">
+    <!-- <div class="container mx-auto py-10 px-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-2">
             <h1 class="text-3xl font-bold text-center md:text-left">Wisata Cruise Unggulan</h1>
             <a href="cruise.php" class="text-blue-600 font-semibold hover:underline text-center md:text-right">
@@ -286,7 +286,7 @@ include "navbar.php";
                     // Pakai salah satu gambar, misalnya musim panas (atau sesuaikan logika gambar random jika perlu)
                     $row['image'] = $row['summer_img'];
                     $row['description'] = $row['keterangan'];
-                    $row['slug'] = strtolower(str_replace(' ', '-', $row['name'])); // Buat slug sederhana
+                    $row['slug'] = strtolower(str_replace(' ', '-', $row['name']));
 
                     $cruises[] = $row;
                 }
@@ -307,7 +307,7 @@ include "navbar.php";
                         <div class="p-4">
                             <h2 class="text-xl font-semibold text-gray-800 mb-2"><?= $cruise['name'] ?></h2>
                             <p class="text-blue-600 font-bold text-lg mb-4">Rp <?= number_format($cruise['price'], 0, ',', '.') ?> <?= $cruise['kurs'] ?></p>
-                            <a href="cruise-details.php?slug=<?= $cruise['slug'] ?>" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Lihat Detail</a>
+                            <a href="cruise-details.php?slug=<?= urlencode($cruise['slug']); ?>" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">Lihat Detail</a>
                         </div>
                     </div>
             <?php
@@ -315,7 +315,7 @@ include "navbar.php";
             endif;
             ?>
         </div>
-    </div>
+    </div> -->
 
 
     <!-- Rental Mobil -->
