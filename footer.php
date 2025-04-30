@@ -16,9 +16,12 @@
           <li><a href="<?php echo $domain_web ?>paket_tour.php" class="text-gray-400 hover:text-white">Paket Tour</a></li>
           <li><a href="<?php echo $domain_web ?>paket-landtour.php" class="text-gray-400 hover:text-white">Land Tour</a></li>
           <li><a href="<?php echo $domain_web ?>cruise.php" class="text-gray-400 hover:text-white">Cruise</a></li>
-          <li><a href="<?php echo $domain_web ?>pesawat.php" class="text-gray-400 hover:text-white">Tiket Pesawat</a></li>
+          <li><a href="<?php echo $domain_web ?>tiket.php" class="text-gray-400 hover:text-white">Attraction</a></li>
           <li><a href="<?php echo $domain_web ?>passport.php" class="text-gray-400 hover:text-white">Passport</a></li>
           <li><a href="<?php echo $domain_web ?>visa.php" class="text-gray-400 hover:text-white">Visa</a></li>
+          <li><a href="<?php echo $domain_web ?>pesawat.php" class="text-gray-400 hover:text-white">Tiket Pesawat</a></li>
+          <li><a href="<?php echo $domain_web ?>hotel.php" class="text-gray-400 hover:text-white">Hotel</a></li>
+          <li><a href="<?php echo $domain_web ?>rental.php" class="text-gray-400 hover:text-white">Rental Mobil</a></li>
         </ul>
       </div>
 
