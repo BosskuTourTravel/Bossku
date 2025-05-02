@@ -308,7 +308,7 @@ include "navbar.php";
                                     <div class='flex-grow'></div>
                                     <div class='mt-4 flex gap-2 flex-wrap justify-end'>
                                         <a href='<?= htmlspecialchars($cruiseImage); ?>' target='_blank' class='text-sm font-semibold text-[#02335B] bg-[#FFCA10] px-4 py-2 rounded hover:bg-yellow-500 transition-all duration-200'>Lihat Gambar</a>
-                                        <a href='cruise-details.php?id=<?= htmlspecialchars($cruiseId); ?>' class='text-sm font-semibold text-white bg-[#02335B] px-4 py-2 rounded hover:bg-[#035a8b] transition-all duration-200'>View Details</a>
+                                        <a href='cruise-details.php?id=<?= htmlspecialchars($cruiseId); ?>' class='text-sm font-semibold text-white bg-[#02335B] px-4 py-2 rounded hover:bg-white hover:text-[#02335B] transition-all duration-200'>View Details</a>
                                     </div>
                                 </div>
                             </div>
