@@ -34,7 +34,7 @@
           <li><a href="<?php echo $domain_web ?>Perhitungan" class="text-gray-400 hover:text-white">Perhitungan</a></li>
           <li><a href="<?php echo $domain_web ?>privacy_policy.php" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
           <li><a href="<?php echo $domain_web ?>terms_condition.php" class="text-gray-400 hover:text-white">Terms & Condition</a></li>
-          <li><a href="#" class="text-gray-400 hover:text-white">Sitemap</a></li>
+          <li><a href="generate-sitemap.php" class="text-gray-400 hover:text-white">Sitemap</a></li>
         </ul>
       </div>
 
