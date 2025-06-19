@@ -155,7 +155,7 @@ include "navbar.php";
             }
         });
 
-        fetch("https://script.google.com/macros/s/AKfycbwIgOSYCneSrRv2DOaDA6b1fxb2116EiiAelk-_mqICkOly88IoxxUtk3NOjdcr92Gy/exec", {
+        fetch("https://script.google.com/macros/s/AKfycbzxhLMQEPRC__l5D5Arq5LeuG8EXTtBbVz6nOMZzGe9CNIucX5zoMiOppWh-_Rpn1zHTA/exec", {
                 method: "POST",
                 body: formData
             })
