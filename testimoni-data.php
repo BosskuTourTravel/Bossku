@@ -26,8 +26,8 @@ $testimonials = [
     ],
     [
         'name' => 'Juned',
-        'message' => 'Tour ke Jepang akhirnya terwujud juga! Makasih banyak Bossku Tour & Travel, bener-bener pengalaman yang nggak bisa dilupakan!',
-        'tour_name' => '7D5N Playful Japan',
+        'message' => 'Bossku Tour & Travel, top markotop, Mantap',
+        'tour_name' => '4D3N Singapore Malaysia',
         "image_url" => ""
     ],
 ];

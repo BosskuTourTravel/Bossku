@@ -215,6 +215,7 @@ include "navbar.php";
                 if ($result && $result->num_rows > 0) {
                     while ($ticket = $result->fetch_assoc()) {
                         $img = getGoogleDriveDirectLink($ticket['summer_img'] ?? $ticket['winter_img'] ?? $ticket['autumn_img'] ?? 'https://via.placeholder.com/300x200');
+                        $ticketId = $ticket['id'];
                 ?>
                         <div class="swiper-slide">
                             <div class="bg-white shadow-md rounded-2xl overflow-hidden w-full max-w-xs mx-auto flex flex-col h-[450px]">
@@ -233,10 +234,16 @@ include "navbar.php";
                                         </div>
                                     </div>
 
-                                    <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?= urlencode($ticket['name']); ?>"
-                                        class="block w-full py-2 bg-[#FFCA10] text-[#02335B] text-center text-sm font-semibold rounded-lg hover:bg-black hover:text-[#FFCA10] transition-all duration-200 ease-in-out transform hover:scale-105">
-                                        Pesan Sekarang
-                                    </a>
+                                    <div class="flex gap-2 mt-4">
+                                        <a href="https://wa.me/628112557728?text=Halo, saya ingin membeli tiket <?= urlencode($ticket['name']); ?>"
+                                            class="flex-1 py-2 bg-[#FFCA10] text-[#02335B] text-center text-sm font-semibold rounded-lg hover:bg-black hover:text-[#FFCA10] transition-all duration-200 ease-in-out transform hover:scale-105">
+                                            Pesan Sekarang
+                                        </a>
+                                        <a href="tiket-detail.php?id=<?= htmlspecialchars($ticketId); ?>"
+                                            class="flex-1 py-2 bg-[#02335B] text-white text-center text-sm font-semibold rounded-lg hover:bg-[#FFCA10] hover:text-[#02335B] transition-all duration-200 ease-in-out transform hover:scale-105">
+                                            Lihat Detail
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -406,74 +413,6 @@ include "navbar.php";
         </div>
     </div>
 
-
-
-
-    <!-- <div class="content">
-        <div class="content-promo-lebaran">
-            <div class="judul-promo">PROMO PAKET TOUR CONSORTIUM 2024</div>
-            <div class="content-promo">
-                <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6" style="text-align: right;">
-                        <div class="row">
-                            <div class="col" style="padding: 10px 5px;">
-                                <button type="button" class="btn btn-success" onclick="search_promo_consor()"><i class="fa fa-search"></i></button>
-                            </div>
-                            <div class="col" style="padding: 10px 5px;">
-                                <div class="form-group">
-                                    <input class="form-control" list="negaraList_consor" id="negara_consor" placeholder="Cari berdasarkan Negara" autocomplete="off">
-                                    <datalist id="negaraList_consor">
-                                        <?php
-                                        // country
-                                        $query_country = "SELECT name FROM country order by name ASC";
-                                        $rs_country = mysqli_query($con, $query_country);
-                                        while ($row_country = mysqli_fetch_array($rs_country)) {
-                                        ?>
-                                            <option value="<?php echo $row_country['name'] ?>">
-                                            <?php
-                                        }
-                                            ?>
-                                    </datalist>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <?php
-                    $query_upload = "SELECT * FROM Upload_Drive2 where p_cons='1' && status='on' order by price ASC limit 4";
-                    $rs_upload = mysqli_query($con, $query_upload);
-                    while ($row_upload = mysqli_fetch_array($rs_upload)) {
-                        $thumbnail = "https://drive.google.com/thumbnail?id=" . explode('/', $row_upload['thumbnail'])[5];
-                        $documents = "https://drive.google.com/file/d/" . explode('/', $row_upload['documents'])[5] . "/view";
-                    ?>
-                        <div class="col-md-6 col-lg-3 mb-4">
-                            <a href="<?php echo $documents ?>" target="_blank" class="text-decoration-none text-dark">
-                                <div class="card shadow-sm border-0">
-                                    <img src="<?php echo $thumbnail ?>" class="card-img-top img-fluid" style="height: 200px; object-fit: cover;">
-                                    <div class="card-body">
-                                        <h6 class="card-title"><?php echo $row_upload['judul'] ?></h6>
-                                    </div>
-                                    <div class="card-footer bg-white font-weight-bold">
-                                        <?php echo "IDR " . number_format($row_upload['price'], 0, ".", ".") ?>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    <?php } ?>
-                </div>
-
-                <div class="search-consor"></div>
-                <div class="more-consor"></div>
-            </div>
-            <div class="footer-promo" style="text-align: center; margin-top: -30px;">
-                <input type="hidden" name="val_li_consor" id="val_li_consor" value='10'>
-                <button type="button" class="btn btn-success" onclick="fungsi_more_consor()">View More</button>
-            </div>
-        </div>
-    </div> -->
-
     <div class="container mx-auto py-10 px-6">
         <div class="text-center mb-4">
             <h2 class="text-4xl font-bold text-gray-800 mb-2">OUR PRODUCTS</h2>
@@ -522,6 +461,43 @@ include "navbar.php";
                 </a>
             </div>
         </div>
+    </div>
+
+    <div class="container mx-auto py-10 px-6">
+        <!-- Section Gabung Jadi Mitra Kami -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col md:flex-row items-center gap-8 mb-10">
+            <div class="flex-1">
+                <!-- Judul Utama -->
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                    Dapatkan Rp400.000 per Customer! Tanpa Modal, Tanpa Target!
+                </h2>
+
+                <!-- Ajakan Singkat -->
+                <p class="text-gray-600 mb-6">
+                    Yuk gabung jadi Mitra Bossku Tour! Mulai hasilkan uang dari penjualan tiket, tour, hotel, hingga rental mobil — semuanya tanpa biaya pendaftaran!
+                </p>
+
+                <!-- Poin Keuntungan -->
+                <ul class="mb-6 list-disc pl-5 text-gray-700">
+                    <li>Komisi hingga Rp400.000/transaksi</li>
+                    <li>Dashboard mitra aktif 24 jam</li>
+                    <li>Dukungan promosi</li>
+                    <li>Produk lengkap: Tiket, Tour, Hotel, Rental, dan lainnya</li>
+                </ul>
+
+                <!-- CTA -->
+                <a href="agent.php"
+                    class="inline-block bg-[#FFCA10] text-[#02335B] px-6 py-3 rounded-lg font-bold shadow hover:bg-[#02335B] hover:text-[#FFCA10] transition">
+                    Daftar Sekarang
+                </a>
+            </div>
+
+            <!-- Gambar -->
+            <div class="flex-1 flex justify-center">
+                <img src="img/mitra.png" alt="Gabung Mitra Bossku" class="w-64 h-64 object-contain">
+            </div>
+        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
