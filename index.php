@@ -474,15 +474,18 @@ include "navbar.php";
 
                 <!-- Ajakan Singkat -->
                 <p class="text-gray-600 mb-6">
-                    Yuk gabung jadi Mitra Bossku Tour! Mulai hasilkan uang dari penjualan tiket, tour, hotel, hingga rental mobil — semuanya tanpa biaya pendaftaran!
+                    Ingin penghasilan tambahan dari rumah tanpa harus jualan atau stok produk?
+                    Gabung jadi bagian dari <strong> Bossku - Travel Partner.</strong>
+                    Cukup bagikan itinerary liburan yang sudah kami siapkan ke teman, keluarga, atau followers kamu.
                 </p>
 
                 <!-- Poin Keuntungan -->
+                <h2 class="text-2xl font-bold mb-4 text-gray-700 mt-4">Kenapa Cocok Buat Kamu?</h2>
                 <ul class="mb-6 list-disc pl-5 text-gray-700">
-                    <li>Komisi hingga Rp400.000/transaksi</li>
-                    <li>Dashboard mitra aktif 24 jam</li>
-                    <li>Dukungan promosi</li>
-                    <li>Produk lengkap: Tiket, Tour, Hotel, Rental, dan lainnya</li>
+                    <li>Bisa dikerjakan dari rumah</li>
+                    <li>Gak perlu pengalaman</li>
+                    <li>Komisi besar & sistem simpel</li>
+                    <li>Materi promosi tinggal pakai</li>
                 </ul>
 
                 <!-- CTA -->
@@ -494,7 +497,7 @@ include "navbar.php";
 
             <!-- Gambar -->
             <div class="flex-1 flex justify-center">
-                <img src="img/mitra.png" alt="Gabung Mitra Bossku" class="w-64 h-64 object-contain">
+                <img src="img/agent.jpg" alt="Gabung Mitra Bossku" class="w-64 h-64 object-contain rounded-lg shadow-lg">
             </div>
         </div>
 
