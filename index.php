@@ -463,7 +463,7 @@ include "navbar.php";
         </div>
     </div>
 
-    <div class="container mx-auto py-10 px-6">
+    <div id="BosskuPartner" class="container mx-auto py-10 px-6 scroll-mt-20">
         <!-- Section Gabung Jadi Mitra Kami -->
         <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col md:flex-row items-center gap-8 mb-10">
             <div class="flex-1">
@@ -475,7 +475,7 @@ include "navbar.php";
                 <!-- Ajakan Singkat -->
                 <p class="text-gray-600 mb-6">
                     Ingin penghasilan tambahan dari rumah tanpa harus jualan atau stok produk?
-                    Gabung jadi bagian dari <strong> Bossku - Travel Partner.</strong>
+                    Gabung jadi bagian dari <strong> Bossku Travel Partner.</strong>
                     Cukup bagikan itinerary liburan yang sudah kami siapkan ke teman, keluarga, atau followers kamu.
                 </p>
 
@@ -659,6 +659,10 @@ include "navbar.php";
     </script>
 </body>
 <style>
+    html {
+        scroll-behavior: smooth;
+    }
+
     .swiper-button-next,
     .swiper-button-prev {
         width: 50px;

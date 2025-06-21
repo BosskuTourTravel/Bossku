@@ -5,14 +5,15 @@ include "navbar.php";
 
 <div class="container mx-auto px-4 py-16 mt-10">
     <div class="min-h-screen flex flex-col items-center">
-        <h1 class="text-4xl font-extrabold text-[#02335B] tracking-tight">Form Pendaftaran Bossku Travel Partner</h1>
-        <h2 class="text-lg font-medium text-[#02335B] mb-8">Gabung jadi Mitra, Raih Komisi & Bangun Jaringan Bisnis Wisata Bersama Bossku Tour!</h2>
+        <h1 class="text-4xl font-extrabold text-[#02335B] tracking-tight">Form Pendaftaran BossKu Travel Partner</h1>
+        <h2 class="text-lg font-medium text-[#02335B] mb-4">Gabung jadi Mitra, Raih Komisi & Bangun Jaringan Bisnis Wisata Bersama BossKu Tour & Travel!</h2>
 
-        <div class="w-full max-w-3xl mx-auto mb-10">
-            <div class="bg-white/80 rounded-2xl shadow-xl p-4 flex flex-col items-center border border-gray-100">
-                <img src="img/AlurBTP.jpg" alt="Alur Bossku Travel Partner" class="rounded-xl shadow-lg w-full object-cover mb-3">
-                <p class="text-center text-[#02335B] font-semibold text-lg mt-2">Alur Menjadi Bossku Travel Partner</p>
-            </div>
+        <div class="w-full max-w-5xl mx-auto mb-10">
+            <img src="img/Alur.jpeg" alt="Alur BossKu Travel Partner" class="rounded-xl shadow-lg w-full object-cover mb-3">
+        </div>
+
+        <div class="arrow-bounce-smooth flex justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" height="50" width="45" viewBox="0 0 384 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path fill="#02335b" d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg>
         </div>
 
         <!-- FORM PENDAFTARAN -->
@@ -26,7 +27,7 @@ include "navbar.php";
                         </svg>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-bold text-[#02335B]">Bossku Travel Partner</h3>
+                        <h3 class="text-2xl font-bold text-[#02335B]">BossKu Travel Partner</h3>
                         <p class="text-gray-500 text-sm">Isi data dengan benar untuk bergabung</p>
                     </div>
                 </div>
@@ -39,10 +40,35 @@ include "navbar.php";
                     </div>
                     <div>
                         <label for="phone" class="block font-semibold mb-2 text-[#02335B]">Nomor WhatsApp</label>
-                        <input type="tel" id="phone" name="phone" required
-                            class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#FFCA10] focus:outline-none shadow-sm bg-white/90 transition placeholder-gray-400"
-                            placeholder="08xxxxxxxxxx">
+                        <div class="flex rounded-xl shadow-sm overflow-hidden border border-gray-200 bg-white/90 focus-within:ring-2 focus-within:ring-[#FFCA10] transition">
+                            <span class="flex items-center px-3 text-gray-600 bg-gray-100 border-r">+62</span>
+                            <input type="tel" id="phone" name="phone_display" required
+                                class="w-full px-4 py-3 focus:outline-none placeholder-gray-400"
+                                placeholder="81234567890"
+                                pattern="[0-9]{8,13}"
+                                inputmode="numeric"
+                                oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                        </div>
+                        <p id="phone-error" class="text-red-600 text-sm mt-1 hidden">Nomor WhatsApp wajib diisi dengan angka yang valid.</p>
                     </div>
+
+                    <script>
+                        // Validasi nomor WhatsApp sebelum submit
+                        document.getElementById('mitraform').addEventListener('submit', function(e) {
+                            var phoneInput = document.getElementById('phone');
+                            var phoneError = document.getElementById('phone-error');
+                            var phoneVal = phoneInput.value.trim();
+                            var phonePattern = /^08[0-9]{8,13}$/;
+                            if (!phonePattern.test(phoneVal)) {
+                                e.preventDefault();
+                                phoneError.classList.remove('hidden');
+                                phoneInput.focus();
+                                return false;
+                            } else {
+                                phoneError.classList.add('hidden');
+                            }
+                        });
+                    </script>
                     <div>
                         <label for="city" class="block font-semibold mb-2 text-[#02335B]">Kota/Kabupaten</label>
                         <input type="text" id="city" name="city" required
@@ -60,6 +86,18 @@ include "navbar.php";
                             <option value="whatsapp">WhatsApp</option>
                             <option value="lainnya">Lainnya</option>
                         </select>
+                    </div>
+                    <div>
+                        <label class="inline-flex items-start gap-2 mt-2">
+                            <input type="checkbox" id="terms" name="terms" required class="mt-1 accent-[#FFCA10] w-5 h-5 rounded border-gray-300">
+                            <span class="text-sm text-gray-700">
+                                Saya telah membaca dan menyetujui
+                                <button type="button" onclick="document.querySelector('[x-data*=open]').__x.$data.open=true;" class="underline text-[#02335B] hover:text-[#FFCA10] font-semibold focus:outline-none">
+                                    Syarat &amp; Ketentuan
+                                </button>
+                                BossKu Travel Partner.
+                            </span>
+                        </label>
                     </div>
                     <div class="pt-6">
                         <button type="submit"
@@ -113,8 +151,8 @@ include "navbar.php";
                         </div>
                         <div>
                             <span class="font-semibold">Email:</span>
-                            <a href="mailto:info@bosskutour.com"
-                                class="underline font-semibold hover:text-[#FFCA10] transition break-all">info@bosskutour.com</a>
+                            <a href="mailto:partner@bosskujalanjalan.com"
+                                class="underline font-semibold hover:text-[#FFCA10] transition break-all">partner@bosskujalanjalan.com</a>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-4">
@@ -177,22 +215,22 @@ include "navbar.php";
                                         Kamu akan mendapatkan materi promosi tanpa logo Bossku, supaya calon customer tetap fokus ke kamu, bukan langsung ke pusat.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Bagaimana cara promosinya?</span><br><span class="text-gray-600">Kamu bisa share lewat WA, IG Story, broadcast, grup Facebook, TikTok, dll.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Dari mana saya dapat materi promosi?</span><br><span class="text-gray-600">Kami akan sediakan link berisi itinerary, caption siap pakai, dan gambar promo yang bisa langsung kamu bagikan.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Bagaimana saya tahu ada orang yang mendaftar lewat saya?</span><br><span class="text-gray-600">Customer akan menyebut nama kamu saat mendaftar.<br>
+                                <li><span class="font-semibold text-[#02335B]">Bagaimana saya tahu ada customer yang mendaftar lewat saya?</span><br><span class="text-gray-600">Customer akan menyebut nama kamu saat mendaftar.<br>
                                         Kamu juga bisa bantu kawal mereka langsung ke kantor Bossku, dan pastikan mereka menyebut kamu sebagai referensinya.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Berapa komisi yang saya dapat?</span><br><span class="text-gray-600">Rp400.000 per orang yang berhasil ikut tour tanpa cancel hingga keberangkatan dan sudah bayar penuh.</span></li>
+                                <li><span class="font-semibold text-[#02335B]">Berapa komisi yang saya dapat?</span><br><span class="text-gray-600">Rp400.000 per customer yang berhasil ikut tour tanpa cancel hingga keberangkatan dan sudah bayar penuh.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Kapan komisi dibayar?</span><br><span class="text-gray-600">Maksimal 14 hari kerja setelah tour berangkat, asalkan peserta tidak cancel.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Boleh jual ke lebih dari satu orang?</span><br><span class="text-gray-600">Sangat boleh! Semakin banyak yang ikut, semakin besar komisi kamu.</span></li>
+                                <li><span class="font-semibold text-[#02335B]">Boleh jual ke lebih dari satu customer?</span><br><span class="text-gray-600">Sangat boleh! Semakin banyak yang ikut, semakin besar komisi kamu.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Apakah saya harus ikut tour juga?</span><br><span class="text-gray-600">Tidak. Kamu bisa promosiin walau kamu sendiri tidak ikut.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Apa ada target penjualan?</span><br><span class="text-gray-600">Tidak ada target. Bisa jalan santai sesuai waktu dan kapasitasmu.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Apa saya bisa pakai materi promosi pakai nama saya sendiri?</span><br><span class="text-gray-600">Boleh banget. Branding bisa pakai nama pribadi kamu, seolah kamu agen travel.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Kalau customer yang saya ajak cancel, apakah saya tetap dapat komisi?</span><br><span class="text-gray-600">Tidak. Komisi hanya diberikan kalau customer ikut tour tanpa cancel sampai keberangkatan.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Boleh gak kasih diskon pribadi ke calon customer?</span><br><span class="text-gray-600">Boleh, asal diskon itu diambil dari bagian komisi kamu, bukan minta potongan ke Bossku Tour.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Bagaimana kalau 2 BossKu Travel Partner klaim 1 customer?</span><br><span class="text-gray-600">Bossku Tour tidak ikut campur. Customer akan ditanya siapa yang benar-benar membimbing mereka. Karena itu, penting kamu jaga komunikasi dan dokumentasi.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Kalau saya berhasil bawa banyak orang, apa dapat bonus ekstra?</span><br><span class="text-gray-600">Untuk saat ini tidak ada bonus tambahan, namun kamu akan tetap dapat Rp400.000 per orang yang berangkat tanpa cancel.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Apa saya bisa lihat contoh itinerary dulu?</span><br><span class="text-gray-600">Sangat bisa. Kami siapkan link dengan semua itinerary yang bisa kamu akses dan download.</span></li>
+                                <li><span class="font-semibold text-[#02335B]">Boleh gak kasih diskon pribadi ke calon customer?</span><br><span class="text-gray-600">Boleh, asal diskon itu diambil dari bagian komisi kamu, bukan minta potongan ke BossKu Tour & Travel.</span></li>
+                                <li><span class="font-semibold text-[#02335B]">Bagaimana kalau 2 BossKu Travel Partner klaim 1 customer?</span><br><span class="text-gray-600">BossKu Tour & Travel tidak ikut campur. Customer akan ditanya siapa yang benar-benar membimbing mereka. Karena itu, penting kamu jaga komunikasi dan dokumentasi dengan customer.</span></li>
+                                <li><span class="font-semibold text-[#02335B]">Kalau saya berhasil bawa banyak customer, apa dapat bonus ekstra?</span><br><span class="text-gray-600">Untuk saat ini tidak ada bonus tambahan, namun kamu akan tetap dapat Rp400.000 per customer yang berangkat tanpa cancel.</span></li>
+                                <li><span class="font-semibold text-[#02335B]">Apa saya bisa lihat contoh itinerary dulu?</span><br><span class="text-gray-600">Sangat bisa. Kami siapkan link dengan semua itinerary yang bisa kamu akses dan download, Setelah kamu jadi bagian dari BossKu Travel Partner.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Bagaimana jika saya belum pernah jualan tour sebelumnya?</span><br><span class="text-gray-600">Tidak masalah. Kami akan bantu dari awal. Sistem kami sangat ramah untuk pemula.</span></li>
                                 <li><span class="font-semibold text-[#02335B]">Apakah BossKu Travel Partner boleh masuk ke dalam grup WA untuk update info tour?</span><br><span class="text-gray-600">Ya, setelah daftar kamu akan masuk ke grup BossKu Travel Partner aktif dan dapat update promo.</span></li>
-                                <li><span class="font-semibold text-[#02335B]">Kalau ada pertanyaan dari customer yang saya tidak bisa jawab, apa saya bisa minta bantuan?</span><br><span class="text-gray-600">Bisa banget. Kamu bisa hubungi admin Bossku Tour, kami bantu follow up langsung ke calon customer kamu.</span></li>
+                                <li><span class="font-semibold text-[#02335B]">Kalau ada pertanyaan dari customer yang saya tidak bisa jawab, apa saya bisa minta bantuan?</span><br><span class="text-gray-600">Bisa banget. Kamu bisa hubungi admin BossKu Tour & Travel, kami bantu follow up langsung ke calon customer kamu.</span></li>
                             </ol>
                         </div>
                     </div>
@@ -215,29 +253,29 @@ include "navbar.php";
                             <div class="space-y-3">
                                 <p><strong>1. Pendaftaran</strong><br>
                                     Program BossKu Travel Partner terbuka untuk umum tanpa batas usia atau latar belakang.
-                                    Pendaftaran BossKu Travel Partner dilakukan secara online melalui link resmi dari Bossku Tour.
+                                    Pendaftaran BossKu Travel Partner dilakukan secara online melalui link resmi dari BossKu Tour & Travel.
                                 </p>
                                 <p><strong>2. Sistem Kerja</strong><br>
-                                    BossKu Travel Partner bertugas mempromosikan paket tour dari Bossku Tour kepada calon customer.
-                                    Komisi diberikan untuk setiap orang yang berhasil ikut tour hingga hari keberangkatan tanpa pembatalan.
+                                    BossKu Travel Partner bertugas mempromosikan paket tour dari BossKu Tour & Travel kepada calon customer.
+                                    Komisi diberikan untuk setiap customer yang berhasil ikut tour hingga hari keberangkatan tanpa pembatalan.
                                 </p>
                                 <p><strong>3. Komisi</strong><br>
-                                    Komisi sebesar Rp400.000 per orang akan diberikan jika customer ikut tour tanpa pembatalan dan bayar lunas.
+                                    Komisi sebesar Rp400.000 per customer akan diberikan jika customer ikut tour tanpa pembatalan dan bayar lunas.
                                     Komisi dibayar maksimal 14 hari kerja setelah keberangkatan.
                                 </p>
                                 <p><strong>4. Tracking Referral</strong><br>
                                     Tracking dilakukan melalui laporan BossKu Travel Partner dan info dari customer saat daftar.
-                                    Kalau ada dua BossKu Travel Partner klaim, Bossku Tour nggak ikut campur.
+                                    Kalau ada dua BossKu Travel Partner klaim, BossKu Tour & Travel nggak ikut campur.
                                 </p>
                                 <p><strong>5. Tanggung Jawab BossKu Travel Partner</strong><br>
-                                    Dilarang menyebar info palsu, janji diskon abal-abal, atau merusak citra Bossku Tour.
+                                    Dilarang menyebar info palsu, janji diskon abal-abal, atau merusak citra BossKu Tour & Travel.
                                     Jaga etika dan profesionalisme ya!
                                 </p>
                                 <p><strong>6. Pemberhentian BossKu Travel Partner</strong><br>
-                                    Bisa diberhentikan kalau terbukti nyalahgunakan sistem atau merugikan Bossku Tour.
+                                    Bisa diberhentikan kalau terbukti salah gunakan sistem atau merugikan BossKu Tour & Travel.
                                 </p>
                                 <p><strong>7. Perubahan Aturan</strong><br>
-                                    Bossku Tour boleh ubah aturan kapan aja, info resminya lewat grup BossKu Travel Partner.
+                                    BossKu Tour & Travel boleh ubah aturan kapan aja, info resminya lewat grup BossKu Travel Partner.
                                 </p>
                             </div>
                         </div>
@@ -252,7 +290,27 @@ include "navbar.php";
     document.getElementById('mitraform').addEventListener('submit', function(e) {
         e.preventDefault();
         const form = e.target;
+        const phoneInput = document.getElementById('phone');
+        const phoneError = document.getElementById('phone-error');
+        const phoneVal = phoneInput.value.trim();
+        const phonePattern = /^[0-9]{8,13}$/;
+
+        if (!phonePattern.test(phoneVal)) {
+            phoneError.classList.remove('hidden');
+            phoneInput.focus();
+            return false;
+        } else {
+            phoneError.classList.add('hidden');
+        }
+
+        // Proses FormData
         const formData = new FormData(form);
+        const fullPhone = '+62' + phoneVal;
+
+        // Tambahin ke FormData dengan nama field baru (atau timpa yang lama kalau mau)
+        formData.append('phone', fullPhone); // 'phone' ini yang dikirim ke Google Script
+        formData.delete('phone_display'); // opsional: hapus input tampilan dummy
+
         Swal.fire({
             title: 'Mengirim...',
             text: 'Harap tunggu sebentar...',
@@ -271,8 +329,24 @@ include "navbar.php";
                 Swal.fire({
                     icon: 'success',
                     title: 'Pendaftaran Berhasil!',
-                    text: 'Data kamu sudah dikirim ke Bossku Tour.',
-                    confirmButtonColor: '#FFCA10'
+                    html: `Data kamu sudah dikirim ke BossKu Tour & Travel.<br><br>
+                    <a href="https://wa.me/8112557728?text=Halo%20min,%20saya%20sudah%20daftar.%20Boleh%20minta%20link%20aksesnya?" 
+                       target="_blank"
+                       style="
+                            display: inline-block;
+                            background-color: #25D366;
+                            color: white;
+                            padding: 10px 24px;
+                            font-weight: bold;
+                            border-radius: 5px;
+                            text-decoration: none;
+                            font-size: 16px;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                            margin-top: 10px;
+                       ">
+                       📲 Minta Akses via WhatsApp
+                    </a>`,
+                    showConfirmButton: false
                 });
                 form.reset();
             })
@@ -287,6 +361,21 @@ include "navbar.php";
     });
 </script>
 
+
+<style>
+@keyframes smoothBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+.arrow-bounce-smooth {
+  animation: smoothBounce 1.5s ease-in-out infinite;
+}
+</style>
 
 
 
